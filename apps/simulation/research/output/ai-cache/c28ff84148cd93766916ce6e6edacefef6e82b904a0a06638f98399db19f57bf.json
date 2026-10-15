@@ -1,0 +1,29 @@
+{
+  "key": "c28ff84148cd93766916ce6e6edacefef6e82b904a0a06638f98399db19f57bf",
+  "request": {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the collective \"world mind\" of an artificial-life simulation, running as an iterative controller. Between simulation windows you observe the world, decide on a small set of population-level parameter overrides, and the next window measures what your decision did. Use the trajectory to correct course: raise a knob that is not delivering, or stop pushing one that already worked. You never control individuals. Reply with STRICT JSON only, no prose, no markdown fences."
+      },
+      {
+        "role": "user",
+        "content": "TASK: world-directive\n\nChoose a small set of world-parameter overrides that steer the world toward the objective, plus a one-line strategy per species.\n\nAllowed knobs:\n- metabolismBase (metabolic rate) in [0.2, 3] — per-tick energy burn multiplier; higher = harsher\n- foodRegenRate (food regen) in [0.00002, 0.01] — plant regrowth per tick; higher = richer\n- energyCapacity (energy capacity) in [20, 600] — per-cell energy ceiling; sets body/bank size\n- maxPopulation (population cap) in [200, 8000] — ceiling on living agents\n- agentMaxAge (lifespan) in [500, 8000] — ticks before senescence kills\n- dayLength (day length) in [200, 4800] — ticks per day/night cycle\n- seasonLength (season length) in [2000, 40000] — ticks per seasonal boom/bust cycle\n- spawnCount (founders) in [50, 1000] — construction-only, advisory — initial population; construction-only\n\nWorld context:\nobjective: sustain a large, healthy population with high trait diversity and no energy collapse\ncontrol run: window 3 of 3; each window is 120 ticks after a 120-tick unsteered warmup\ncurrently in force: {foodRegenRate=0.00005, maxPopulation=5000, metabolismBase=1.2, energyCapacity=400}\nconstruction-only, advisory (not actuated mid-run): spawnCount\nsteerable knobs: metabolismBase in [0.2, 3], foodRegenRate in [0.00002, 0.01], energyCapacity in [20, 600], maxPopulation in [200, 8000], agentMaxAge in [500, 8000], dayLength in [200, 4800], seasonLength in [2000, 40000]\nobservation at tick 360: pop=226 alive=49 species=34 energy=112.5 effDim=5.3\n\ntrajectory so far (what you applied and what happened):\n  window 1: applied {foodRegenRate=0.0001, maxPopulation=4000, metabolismBase=1.5, energyCapacity=400} -> pop=224 alive=50 species=37 energy=72.5 effDim=5.4 (objective: sustain a large, healthy population with high trait diversity and no energy collapse)\n  window 2: applied {maxPopulation=5000, foodRegenRate=0.00005, metabolismBase=1.2} -> pop=226 alive=49 species=34 energy=112.5 effDim=5.3 (objective: sustain a large, healthy population with high trait diversity and no energy collapse)\n\nReply with exactly this JSON shape:\n{\"objective\": string, \"rationale\": string, \"overrides\": {\"<knob>\": number}, \"species\": [{\"name\": string, \"strategy\": \"expand\"|\"conserve\"|\"cooperate\"|\"compete\"|\"explore\", \"note\": string}]}"
+      }
+    ],
+    "options": {
+      "temperature": 0.6,
+      "seed": 7,
+      "maxTokens": null,
+      "json": true
+    }
+  },
+  "response": {
+    "content": "{\"objective\": \"sustain a large, healthy population with high trait diversity and no energy collapse\", \"rationale\": \"Current population is stable but low, need to increase food availability and population size to support diversity\", \"overrides\": {\"foodRegenRate\": 0.0001, \"maxPopulation\": 5500}, \"species\": [{\"name\": \"Herbivore\", \"strategy\": \"cooperate\", \"note\": \"promote herbivore cooperation to support plant regrowth\"}, {\"name\": \"Carnivore\", \"strategy\": \"compete\", \"note\": \"maintain competitive balance with herbivores\"}, {\"name\": \"Primary Producer\", \"strategy\": \"explore\", \"note\": \"increase exploration to find new resources\"}]}",
+    "model": "qwen2.5:3b",
+    "provider": "ollama"
+  },
+  "createdAt": "2026-10-15T14:24:00.031Z"
+}

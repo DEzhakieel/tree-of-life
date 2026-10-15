@@ -9,6 +9,12 @@ export interface WorldKnob {
   min: number;
   max: number;
   note: string;
+  /**
+   * Only read when the world is built (e.g. founders). Writing it into a
+   * running engine has no effect, so the controller reports it as advisory
+   * instead of actuating it.
+   */
+  constructionOnly?: boolean;
 }
 
 export const WORLD_KNOBS: WorldKnob[] = [
@@ -19,7 +25,7 @@ export const WORLD_KNOBS: WorldKnob[] = [
   { key: 'agentMaxAge', label: 'lifespan', min: 500, max: 8000, note: 'ticks before senescence kills' },
   { key: 'dayLength', label: 'day length', min: 200, max: 4800, note: 'ticks per day/night cycle' },
   { key: 'seasonLength', label: 'season length', min: 2000, max: 40000, note: 'ticks per seasonal boom/bust cycle' },
-  { key: 'spawnCount', label: 'founders', min: 50, max: 1000, note: 'initial population' },
+  { key: 'spawnCount', label: 'founders', min: 50, max: 1000, note: 'initial population; construction-only', constructionOnly: true },
 ];
 
 const KNOB_BY_KEY = new Map(WORLD_KNOBS.map((k) => [k.key, k]));

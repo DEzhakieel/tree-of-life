@@ -46,7 +46,7 @@ export function createLlm(cfg: LlmConfig = {}): Llm {
     };
     const key = cache.keyFor(request);
 
-    if (cacheMode !== 'off') {
+    if (cacheMode === 'on' || cacheMode === 'replay') {
       const hit = cache.read(key);
       if (hit) {
         return {

@@ -8,15 +8,17 @@ import type { LlmMessage } from './types.js';
 
 export function worldDirectivePrompt(context: string): LlmMessage[] {
   const knobTable = WORLD_KNOBS.map(
-    (k) => `- ${k.key} (${k.label}) in [${k.min}, ${k.max}] — ${k.note}`,
+    (k) => `- ${k.key} (${k.label}) in [${k.min}, ${k.max}]${k.constructionOnly ? ' — construction-only, advisory' : ''} — ${k.note}`,
   ).join('\n');
   return [
     {
       role: 'system',
       content:
-        'You are the collective "world mind" of an artificial-life simulation. ' +
-        'You do not control individuals; you steer population-level pressures. ' +
-        'Reply with STRICT JSON only, no prose, no markdown fences.',
+        'You are the collective "world mind" of an artificial-life simulation, running as an iterative controller. ' +
+        'Between simulation windows you observe the world, decide on a small set of population-level ' +
+        'parameter overrides, and the next window measures what your decision did. ' +
+        'Use the trajectory to correct course: raise a knob that is not delivering, or stop pushing one that already worked. ' +
+        'You never control individuals. Reply with STRICT JSON only, no prose, no markdown fences.',
     },
     {
       role: 'user',
@@ -76,6 +78,7 @@ export function researchProposalPrompt(context: string): LlmMessage[] {
 Current benchmark coverage and recent results:
 ${context}
 
+This is an iterative loop: earlier rounds are listed with their verdicts. Do not repeat an experiment that already ran — either refine it (new params) or pick something genuinely new.
 Propose up to 3 experiments. Reply with exactly this JSON shape:
 {"proposals": [{"id": string, "model": string, "hypothesis": string, "params": object, "expected": string}]}`,
     },

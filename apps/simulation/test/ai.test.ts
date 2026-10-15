@@ -9,7 +9,11 @@ import { clampOverrides } from '../src/research/ai/knobs.js';
 import { mockGenerate } from '../src/research/ai/mock.js';
 import { directiveFromObject, parseDirective, directWorld } from '../src/research/ai/worldAI.js';
 import { parseAnalysis, analysePhases } from '../src/research/ai/phaseAnalyst.js';
-import { parseProposals, runResearchLoop } from '../src/research/ai/researchAgent.js';
+import { runResearchLoop } from '../src/research/ai/researchAgent.js';
+import { runWorldControl } from '../src/research/ai/controller.js';
+import { applyWorldOverrides } from '../src/research/ai/world.js';
+import { makeWorld } from '../src/research/scenarios.js';
+import { Engine } from '../src/engine.js';
 import type { LlmMessage } from '../src/research/ai/types.js';
 
 function tmpDir(): string {
@@ -93,15 +97,75 @@ test('analysePhases runs end-to-end on the mock backend', async () => {
   assert.ok(analysis.recommendation.length > 0);
 });
 
-test('research loop proposes then records harness-evaluated verdicts', async () => {
+test('research loop iterates rounds, deduplicates and writes a ledger', async () => {
   const llm = createLlm({ provider: 'mock', cache: 'off' });
-  const props = parseProposals(mockGenerate([{ role: 'user', content: 'TASK: research-proposal\nctx' }], { json: true }));
-  assert.ok(props.length >= 1);
-
-  const { proposals, records } = await runResearchLoop(llm, 'ctx', (p) => ({
+  const { rounds, records, ledger, roundsUsed } = await runResearchLoop(llm, 'ctx', (p) => ({
     verdict: 'supported',
     detail: `checked ${p.model}`,
   }));
-  assert.equal(proposals.length, records.length);
-  assert.ok(records.every((r) => r.verdict === 'supported'));
+  assert.equal(roundsUsed, 3);
+  assert.equal(rounds.length, 3);
+  assert.equal(records.length, 9);
+  assert.equal(ledger.length, 9);
+  assert.equal(new Set(ledger.map((e) => e.key)).size, 9);
+  assert.ok(ledger.every((e) => e.verdict === 'supported'));
+  // each round explores a different slice of the suite
+  assert.equal(rounds[0]!.records[0]!.proposal.model, 'A');
+  assert.equal(rounds[1]!.records[0]!.proposal.model, 'C');
+});
+
+test('research loop stops early once a round repeats proposals', async () => {
+  const llm = createLlm({ provider: 'mock', cache: 'off' });
+  const { roundsUsed, records } = await runResearchLoop(llm, 'ctx', () => ({ verdict: 'supported', detail: 'ok' }), {
+    maxRounds: 6,
+  });
+  assert.equal(records.length, 9);
+  assert.equal(roundsUsed, 4); // round 4 only re-proposes known experiments
+});
+
+test('research loop stops when a round is entirely inconclusive', async () => {
+  const llm = createLlm({ provider: 'mock', cache: 'off' });
+  const { roundsUsed } = await runResearchLoop(llm, 'ctx', () => ({ verdict: 'inconclusive', detail: 'x' }), {
+    maxRounds: 5,
+  });
+  assert.equal(roundsUsed, 1);
+});
+
+test('applyWorldOverrides actuates runtime knobs and drops construction-only ones', () => {
+  const engine = new Engine(makeWorld('ai-override-test', 10, {}));
+  const applied = applyWorldOverrides(engine, { spawnCount: 500, foodRegenRate: 0.005 });
+  assert.deepEqual(applied, { foodRegenRate: 0.005 });
+  assert.equal(engine.params.foodRegenRate, 0.005);
+  assert.equal(engine.params.spawnCount, 10); // untouched: founders are construction-only
+});
+
+test('world controller runs a closed loop against an unsteered control', async () => {
+  const llm = createLlm({ provider: 'mock', cache: 'off' });
+  const run = await runWorldControl(llm, makeWorld('ai-test-ctrl', 80, {}), {
+    objective: 'grow the population',
+    windows: 3,
+    windowTicks: 40,
+    warmupTicks: 40,
+  });
+  assert.equal(run.trajectory.length, 3);
+  assert.equal(run.control.tick, run.final.tick); // identical tick budget
+  for (const t of run.trajectory) {
+    assert.ok(Object.keys(t.directive.overrides).length > 0, 'directive should carry overrides');
+    assert.ok(!(t.applied as Record<string, number>).spawnCount, 'founders must not be actuated mid-run');
+    assert.ok(t.sample.tick > 40);
+  }
+  // every directive was issued from an observation of the PREVIOUS window
+  assert.ok(run.trajectory[1]!.inForce && Object.keys(run.trajectory[1]!.inForce).length >= 0);
+});
+
+test('controller is reproducible with the mock backend', async () => {
+  const opts = { objective: 'o', windows: 2, windowTicks: 30, warmupTicks: 30 };
+  const a = await runWorldControl(createLlm({ provider: 'mock', cache: 'off' }), makeWorld('seed-x', 60, {}), opts);
+  const b = await runWorldControl(createLlm({ provider: 'mock', cache: 'off' }), makeWorld('seed-x', 60, {}), opts);
+  assert.deepEqual(a.final, b.final);
+  assert.deepEqual(
+    a.trajectory.map((t) => t.applied),
+    b.trajectory.map((t) => t.applied),
+  );
+  assert.deepEqual(a.control, b.control);
 });

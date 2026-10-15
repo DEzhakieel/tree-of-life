@@ -25,7 +25,7 @@ deterministic, seedable experiments and writes a self-contained report bank to
 | `perturb.ts` | single-axis perturbation engine — one baseline (100 agents / capacity 100 / noise 0.1 / cooperation 0.5) with cooperation removed, noise doubled, 20% culled and communication switched off in turn, each paired on the seed and reported as `deltaY = Y_perturbed - Y_baseline` with across-seed sd, sign-reversal flags and a per-axis channel verdict so an unexercised pathway cannot be mistaken for an inert perturbation → `perturbation.md/json/csv`, `plots/perturbation.svg` |
 | `benchmarks/` | canonical A-Life benchmark suite — ten self-contained deterministic micro-models A–J (`benchRun.ts`) with literature-defined signatures and bootstrap-CI gated checks, plus the known-systems reverse-engineering registry (`knownRun.ts`) → `bench.*`, `known.*`, `plots/bench.svg`, `plots/known.svg` |
 | `benchmarks/rigor/` | research-rigor layer over A–J — verification (impl ≈ analytic, per-key declared tolerance), validation (model → empirical), reproducibility (fingerprints + seed cohort), sensitivity (OAT + Morris elementary-effects screen), ablation (structural/param interventions), significance (one-sided t + Holm–Bonferroni + Bayes factor + Clopper–Pearson), novelty/impact scorecard (`rigorRun.ts`) → `rigor.*`, `rigor-hypotheses.json` |
-| `ai/` | LLM / AI-agent layer over the research stack — content-addressed cached calls to open-source models through Ollama (`qwen2.5:3b` default) with a deterministic `mock` backend for tests/CI: a **world mind** that steers `WorldParams` and issues per-species strategies (`worldAI.ts`), a **phase analyst** that interprets measured critical loci (`phaseAnalyst.ts`), and a **research agent** whose proposals are scored by the real benchmark harness (`researchAgent.ts`) → `aiRun.ts` → `ai-world.*`, `ai-phase.*`, `ai-loop.*` |
+| `ai/` | LLM / AI-agent layer over the research stack — content-addressed cached calls to open-source models through Ollama (`qwen2.5:3b` default) with a deterministic `mock` backend for tests/CI: a **world controller** running a closed observe → direct → actuate → measure loop against an unsteered control (`controller.ts`, `worldAI.ts`), a **phase analyst** that interprets measured critical loci (`phaseAnalyst.ts`), and an iterative **research loop** whose proposals are scored by the real benchmark harness and fed back across rounds (`researchAgent.ts`) → `aiRun.ts` → `ai-world.*`, `ai-phase.*`, `ai-loop.*` |
 
 ## Experiments
 
@@ -575,24 +575,47 @@ abstraction (`client.ts`):
 
 | role | module | what the model may do | what the code still does |
 | --- | --- | --- | --- |
-| world mind | `worldAI.ts` | pick a handful of population-level `WorldParams` overrides per tick-window and a one-line strategy per species | clamp every override to a whitelisted knob + range (`knobs.ts`), then simulate baseline vs directed and report measured deltas |
+| world mind | `worldAI.ts` + `controller.ts` | issue a handful of population-level `WorldParams` overrides between simulation windows, plus a one-line strategy per species | clamp every override to a whitelisted knob + range (`knobs.ts`), actuate it on the running engine, and measure the outcome against an unsteered control run |
 | phase analyst | `phaseAnalyst.ts` | interpret measured order-parameter loci and recommend refinements | run the parameter sweep and compute every locus from real engine statistics |
-| research agent | `researchAgent.ts` | propose falsifiable experiments over A–J | evaluate each proposal with the benchmark harness; `supported`/`refuted` comes from the acceptance checks, not from the model |
+| research agent | `researchAgent.ts` | propose falsifiable experiments over A–J, refining earlier rounds | evaluate every proposal with the benchmark harness; `supported`/`refuted` comes from the acceptance checks, not from the model |
 
-`worldAI` is a **meta/collective** control loop, so the per-agent core stays
-deterministic: no agent's brain is touched, and the directive is applied between
-runs rather than mid-tick.
+#### Closed-loop world controller
+
+`runWorldControl` is a genuine feedback loop, not a one-shot prompt: one engine
+runs the whole experiment, so population history carries forward. An unsteered
+warmup yields the first observation; then each window issues a directive from the
+*current* state, actuates it, and measures the result, which becomes the next
+window's input. A second, unsteered engine over the identical seed and tick
+budget is the control, so "the AI helped" is a measured claim rather than an
+impression — on the shipped demo it is honestly reported as *worse* than doing
+nothing (alive 53 vs 139), with the oscillating overrides that caused it.
+
+Actuation is `engine.params.<knob> = v` between windows — the same mechanism the
+intervention engine uses (`engine.ts`). Only knobs the engine re-reads each tick
+are actuated; `spawnCount` is construction-only, so it is reported as advisory
+rather than silently written. The per-agent core is untouched, so the directive
+is meta/collective control and the simulation stays deterministic.
+
+#### Iterative research loop
+
+`runResearchLoop` repeats **propose → evaluate → feed back**: the verdicts of
+earlier rounds are rendered into the next round's prompt, proposals are
+deduplicated by a stable key (`id|model|params|hypothesis`), and rounds stop
+early when a round contributes nothing new or nothing conclusive. The result
+carries a deduplicated, timestamp-free ledger that is fully derived from the
+cached responses, so re-runs are idempotent.
 
 #### Determinism — cache by default
 
 Every call is hashed (`hash.ts`: key-order-independent SHA-256 over provider +
 model + messages + sampler options) and stored in `research/output/ai-cache/`
 (`cache.ts`). The default mode replays cached bytes, so a re-run reproduces the
-previous world directive bit-for-bit even if the model would answer
-differently. `--live` (`cache: off`) forces a fresh call and leaves the cache
-untouched; `--replay` (`cache: replay`) turns a cache miss into a hard error, for
-CI. The `mock` provider is a deterministic offline stand-in routed by the
-`TASK:` tag each prompt carries, so the whole layer is exercised by
+previous trajectory bit-for-bit even if the model would answer differently.
+`--live` (`cache: refresh`) forces a fresh call and then stores it, `--no-cache`
+(`cache: off`) never reads or writes, and `--replay` (`cache: replay`) turns a
+cache miss into a hard error, for CI. The `mock` provider is a deterministic
+offline stand-in routed by the `TASK:` tag each prompt carries, so the whole
+layer — including the controller and the multi-round loop — is exercised by
 `test/ai.test.ts` with no model and no network.
 
 ## Statistics & probability conventions
@@ -703,10 +726,13 @@ npx tsx apps/simulation/src/research/benchmarks/rigor/rigorRun.ts --quick  # sma
 
 # LLM / AI-agent layer (open-source models via Ollama; default model qwen2.5:3b)
 ollama pull qwen2.5:3b                                                      # once
-npx tsx apps/simulation/src/research/aiRun.ts world                         # world mind steers WorldParams (replays the cache)
+npx tsx apps/simulation/src/research/aiRun.ts world                         # closed-loop controller vs unsteered control (replays the cache)
+npx tsx apps/simulation/src/research/aiRun.ts world --windows 3 --window-ticks 120 --warmup 120
 npx tsx apps/simulation/src/research/aiRun.ts phase                         # sweep + computed critical loci + LLM interpretation
-npx tsx apps/simulation/src/research/aiRun.ts loop                          # proposals scored by the A-J harness
-npx tsx apps/simulation/src/research/aiRun.ts world --live                  # bypass the cache, call the model fresh
+npx tsx apps/simulation/src/research/aiRun.ts loop                          # multi-round proposals scored by the A-J harness
+npx tsx apps/simulation/src/research/aiRun.ts loop --rounds 3               # rounds of propose -> evaluate -> feed back
+npx tsx apps/simulation/src/research/aiRun.ts world --live                  # fresh call, then store it (--no-cache = never touch)
+npx tsx apps/simulation/src/research/aiRun.ts loop --replay                 # cache-only: a miss is a hard error (CI)
 npx tsx apps/simulation/src/research/aiRun.ts world --provider mock         # deterministic offline backend
 
 
@@ -749,9 +775,10 @@ npx tsx --test apps/simulation/test/*.test.ts
 | `plots/known.svg` | replication fidelity of the linked known systems |
 | `rigor.md/json/csv` | research-rigor layer: per-module PASS/WARN/FAIL checks for verification, validation, reproducibility, sensitivity, ablation, significance and novelty, plus the novelty scorecard and signature-space hash |
 | `rigor-hypotheses.json` | deterministic significance ledger: every directional claim with mean/sd/n, one-sided + two-sided p, Holm-adjusted p, minimal Bayes factor and outcome (fully derived ⇒ idempotent re-runs) |
-| `ai-world.md/json` | the world-mind directive (objective, rationale, whitelisted + clamped overrides, per-species strategies) against a simulated baseline and directed world with measured deltas |
+| `ai-world.md/json` | the closed-loop world controller: warmup → observe → directive → actuate → measure windows, each decision's rationale and per-species strategies, the resulting trajectory, and a steered-vs-unsteered control comparison |
 | `ai-phase.md/json` | a parameter sweep with computed order-parameter critical loci (sharpest adjacent change, median-relative sharpness) plus the LLM's interpretation and recommended refinements |
-| `ai-loop.md/json` | research-agent proposals over models A–J with harness-evaluated supported / refuted / inconclusive verdicts |
-| `ai-cache/*.json` | content-addressed LLM call cache (replay-safe determinism); safe to delete, re-populated on the next non-`--live` run |
+| `ai-loop.md/json` | multi-round research-agent proposals over models A–J: per-round tables with harness-evaluated supported / refuted / inconclusive verdicts and the cumulative deduplicated ledger |
+| `ai-loop-ledger.json` | the deduplicated, timestamp-free research ledger (fully derived from cached responses ⇒ idempotent re-runs) |
+| `ai-cache/*.json` | content-addressed LLM call cache (replay-safe determinism); safe to delete, re-populated on the next run without `--no-cache` |
 | `plots/*.svg` | 6 deterministic charts |
 | `*.md/csv/json` (root) | earlier CLI determinism reports (first/second/third-order, conservation) |

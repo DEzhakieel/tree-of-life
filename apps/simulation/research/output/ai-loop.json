@@ -1,85 +1,89 @@
 {
-  "generatedAt": "2026-10-15T13:40:46.807Z",
+  "generatedAt": "2026-10-15T14:28:18.429Z",
   "provider": "ollama",
   "model": "qwen2.5:3b",
-  "cached": false,
+  "cached": true,
   "scale": "quick",
-  "proposals": [
+  "maxRounds": 3,
+  "roundsUsed": 3,
+  "counts": {
+    "total": 5,
+    "supported": 4,
+    "refuted": 0,
+    "inconclusive": 1
+  },
+  "rounds": [
     {
-      "id": "A",
-      "model": "A",
-      "hypothesis": "Changing the diffusion coefficient D will affect the mean squared displacement (MSD) of the random walkers.",
-      "params": {
-        "D": 0.5
-      },
-      "expected": "The log-log plot of MSD against time should show a slope of 1, indicating the expected linear relationship between MSD and time with D = 0.5."
+      "round": 1,
+      "proposals": [
+        "G",
+        "I",
+        "F"
+      ],
+      "records": [
+        {
+          "id": "G",
+          "model": "Iterated Prisoner's Dilemma",
+          "hypothesis": "Introducing varying levels of noise or random mutation rates could affect the outcome of spatial clustering and the sustainability of cooperation.",
+          "params": {},
+          "expected": "Variations in noise rate could lead to different patterns of cooperation and defection, potentially affecting the spatial clustering and the stability of the game.",
+          "verdict": "inconclusive",
+          "detail": "no benchmark model matches \"Iterated Prisoner's Dilemma\""
+        },
+        {
+          "id": "I",
+          "model": "Collective navigation",
+          "hypothesis": "Adding a dynamic environmental factor could enhance the flock's ability to navigate through varying conditions.",
+          "params": {},
+          "expected": "The flock's navigational coherence and speed through different environmental conditions could be improved or degraded depending on the difficulty level.",
+          "verdict": "supported",
+          "detail": "model I PASS (fidelity 1.00)"
+        },
+        {
+          "id": "F",
+          "model": "Reaction–diffusion",
+          "hypothesis": "Changing the reaction rates could lead to different spatial patterns and could affect the stability of the system.",
+          "params": {},
+          "expected": "The system could exhibit different spatial patterns depending on the reaction rates of the two substances involved.",
+          "verdict": "supported",
+          "detail": "model E PASS (fidelity 1.00)"
+        }
+      ],
+      "cached": true
     },
     {
-      "id": "B",
-      "model": "B",
-      "hypothesis": "Adding a small noise to the Boids model should result in a loss of polar order.",
-      "params": {
-        "noise": 0.1
-      },
-      "expected": "The polar order parameter Φ should deviate from 1, indicating a reduction in the ordered behavior of the Boids with added noise."
+      "round": 2,
+      "proposals": [
+        "H",
+        "J"
+      ],
+      "records": [
+        {
+          "id": "H",
+          "model": "Resource competition (R*)",
+          "hypothesis": "Adding a dynamic environmental factor could enhance the species' ability to competitively exclude rivals.",
+          "params": {},
+          "expected": "Dynamic environmental factors could affect the competitive exclusion dynamics and the stability of coexistence.",
+          "verdict": "supported",
+          "detail": "model H PASS (fidelity 1.00)"
+        },
+        {
+          "id": "J",
+          "model": "Fractal-life composite",
+          "hypothesis": "Coupling the Game of Life with a diffusing pheromone field could lead to new emergent behaviors.",
+          "params": {},
+          "expected": "The coupling strength could result in the emergence of new patterns and behaviors in the hybrid system.",
+          "verdict": "supported",
+          "detail": "model J PASS (fidelity 1.00)"
+        }
+      ],
+      "cached": true
     },
     {
-      "id": "F",
-      "model": "F",
-      "hypothesis": "Changing the reaction rates F and k in the Gray-Scott model should alter the spatial patterns.",
-      "params": {
-        "F": 0.03,
-        "k": 0.06
-      },
-      "expected": "The model should produce a new pattern that is different from the original spots/labyrinths, indicating a change in the reaction-diffusion process."
+      "round": 3,
+      "proposals": [],
+      "records": [],
+      "cached": true
     }
-  ],
-  "records": [
-    {
-      "proposal": {
-        "id": "A",
-        "model": "A",
-        "hypothesis": "Changing the diffusion coefficient D will affect the mean squared displacement (MSD) of the random walkers.",
-        "params": {
-          "D": 0.5
-        },
-        "expected": "The log-log plot of MSD against time should show a slope of 1, indicating the expected linear relationship between MSD and time with D = 0.5."
-      },
-      "verdict": "supported",
-      "detail": "model A PASS (fidelity 1.00)"
-    },
-    {
-      "proposal": {
-        "id": "B",
-        "model": "B",
-        "hypothesis": "Adding a small noise to the Boids model should result in a loss of polar order.",
-        "params": {
-          "noise": 0.1
-        },
-        "expected": "The polar order parameter Φ should deviate from 1, indicating a reduction in the ordered behavior of the Boids with added noise."
-      },
-      "verdict": "supported",
-      "detail": "model B PASS (fidelity 1.00)"
-    },
-    {
-      "proposal": {
-        "id": "F",
-        "model": "F",
-        "hypothesis": "Changing the reaction rates F and k in the Gray-Scott model should alter the spatial patterns.",
-        "params": {
-          "F": 0.03,
-          "k": 0.06
-        },
-        "expected": "The model should produce a new pattern that is different from the original spots/labyrinths, indicating a change in the reaction-diffusion process."
-      },
-      "verdict": "refuted",
-      "detail": "model F FAIL (fidelity 0.75); failed gates: inOccFrac"
-    }
-  ],
-  "summary": {
-    "proposed": 3,
-    "supported": 2,
-    "refuted": 1,
-    "inconclusive": 0
-  }
+  ]
 }

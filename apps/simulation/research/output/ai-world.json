@@ -1,75 +1,211 @@
 {
-  "generatedAt": "2026-10-15T13:43:17.399Z",
+  "generatedAt": "2026-10-15T14:25:43.574Z",
   "provider": "ollama",
   "model": "qwen2.5:3b",
   "cached": true,
   "seed": "ai-world-0001",
-  "ticks": 300,
+  "spawn": 200,
   "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
-  "directive": {
-    "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
-    "rationale": "To achieve the objective, we need to set the knobs to values that promote a stable, high-population environment with diverse traits and sustainable energy levels. The strategy for each species will be determined based on their traits and the environment.",
-    "overrides": {
-      "metabolismBase": 0.5,
-      "foodRegenRate": 0.00005,
-      "energyCapacity": 400,
-      "maxPopulation": 4000,
-      "agentMaxAge": 7000,
-      "dayLength": 3000,
-      "seasonLength": 3000,
-      "spawnCount": 200
+  "windows": 3,
+  "windowTicks": 120,
+  "warmupTicks": 120,
+  "control": {
+    "tick": 480,
+    "population": 429,
+    "aliveCount": 139,
+    "speciesCount": 45,
+    "avgEnergy": 45.27770635263159,
+    "cooperation": 0.00029275220424298723,
+    "caComplexity": 0.0007667918352835681,
+    "traitEffectiveDim": 4.642050931618811,
+    "traitTotalVariance": 1.0540004651149426
+  },
+  "trajectory": [
+    {
+      "window": 1,
+      "inForce": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 4000,
+        "metabolismBase": 1.5,
+        "energyCapacity": 400
+      },
+      "applied": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 4000,
+        "metabolismBase": 1.5,
+        "energyCapacity": 400
+      },
+      "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
+      "rationale": "Adjust parameters to ensure a stable, sustainable population with diverse traits and avoid energy collapse",
+      "overrides": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 4000,
+        "metabolismBase": 1.5,
+        "energyCapacity": 400
+      },
+      "species": [
+        {
+          "name": "Herbivore",
+          "strategy": "conserve",
+          "note": "Focus on energy efficiency and resource conservation"
+        },
+        {
+          "name": "Carnivore",
+          "strategy": "compete",
+          "note": "Competitive strategy to secure limited resources"
+        },
+        {
+          "name": "Plankton",
+          "strategy": "explore",
+          "note": "Explore diverse niches to ensure food availability"
+        },
+        {
+          "name": "Herbivore",
+          "strategy": "explore",
+          "note": "Diversify diet to avoid over-reliance on one food source"
+        },
+        {
+          "name": "Carnivore",
+          "strategy": "cooperate",
+          "note": "Form symbiotic relationships to enhance hunting efficiency"
+        },
+        {
+          "name": "Plankton",
+          "strategy": "cooperate",
+          "note": "Form symbiotic relationships to enhance growth and survival"
+        },
+        {
+          "name": "Herbivore",
+          "strategy": "explore",
+          "note": "Diversify diet to avoid over-reliance on one food source"
+        },
+        {
+          "name": "Carnivore",
+          "strategy": "explore",
+          "note": "Diversify diet to avoid over-reliance on one food source"
+        }
+      ],
+      "sample": {
+        "tick": 240,
+        "population": 224,
+        "aliveCount": 50,
+        "speciesCount": 37,
+        "avgEnergy": 72.54082679813955,
+        "cooperation": 0,
+        "caComplexity": 0.00008926408036513332,
+        "traitEffectiveDim": 5.396581534281983,
+        "traitTotalVariance": 1.275343987322032
+      },
+      "cached": true
     },
-    "species": [
-      {
-        "name": "SmallHerbivore",
-        "strategy": "conserve",
-        "note": "To conserve energy and space, SmallHerbivore should reduce its metabolism and increase its energy capacity."
+    {
+      "window": 2,
+      "inForce": {
+        "foodRegenRate": 0.00005,
+        "maxPopulation": 5000,
+        "metabolismBase": 1.2,
+        "energyCapacity": 400
       },
-      {
-        "name": "MediumHerbivore",
-        "strategy": "cooperate",
-        "note": "MediumHerbivore can benefit from cooperative behaviors to ensure food availability and reduce competition."
+      "applied": {
+        "maxPopulation": 5000,
+        "foodRegenRate": 0.00005,
+        "metabolismBase": 1.2
       },
-      {
-        "name": "LargeHerbivore",
-        "strategy": "compete",
-        "note": "LargeHerbivore needs to be competitive to access food resources and prevent overpopulation."
+      "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
+      "rationale": "Current population is at 224 out of 4000, which is about 56%. To sustain a large, healthy population, we need to increase the population cap and possibly adjust the metabolism and food regeneration rates to ensure a stable environment.",
+      "overrides": {
+        "maxPopulation": 5000,
+        "foodRegenRate": 0.00005,
+        "metabolismBase": 1.2
       },
-      {
-        "name": "SmallCarnivore",
-        "strategy": "explore",
-        "note": "SmallCarnivore can explore new areas and niche opportunities to maintain population diversity."
+      "species": [
+        {
+          "name": "SpeciesA",
+          "strategy": "conserve",
+          "note": "SpeciesA is a conservative species that prefers stable environments."
+        },
+        {
+          "name": "SpeciesB",
+          "strategy": "explore",
+          "note": "SpeciesB is an exploratory species that seeks new resources."
+        },
+        {
+          "name": "SpeciesC",
+          "strategy": "compete",
+          "note": "SpeciesC is a competitive species that often competes for resources."
+        }
+      ],
+      "sample": {
+        "tick": 360,
+        "population": 226,
+        "aliveCount": 49,
+        "speciesCount": 34,
+        "avgEnergy": 112.50176914273113,
+        "cooperation": 0,
+        "caComplexity": 0.00004757483904868828,
+        "traitEffectiveDim": 5.338654247194768,
+        "traitTotalVariance": 1.270908375784093
       },
-      {
-        "name": "MediumCarnivore",
-        "strategy": "explore",
-        "note": "MediumCarnivore can also explore and find new sources of food and resources."
+      "cached": true
+    },
+    {
+      "window": 3,
+      "inForce": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 5500,
+        "metabolismBase": 1.2,
+        "energyCapacity": 400
       },
-      {
-        "name": "Predator",
-        "strategy": "explore",
-        "note": "Predators should continue to explore and find new prey or food sources."
-      }
-    ]
-  },
-  "baseline": {
-    "population": 226,
-    "aliveCount": 95,
-    "speciesCount": 41,
-    "avgEnergy": 36.243565099721515,
-    "cooperation": 0.001028133304100074,
-    "caComplexity": 0.0006379315747043851,
-    "traitEffectiveDim": 4.769030541343449,
-    "traitTotalVariance": 1.1806354759179372
-  },
-  "directed": {
-    "population": 344,
-    "aliveCount": 176,
-    "speciesCount": 73,
-    "avgEnergy": 156.1064851557057,
+      "applied": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 5500
+      },
+      "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
+      "rationale": "Current population is stable but low, need to increase food availability and population size to support diversity",
+      "overrides": {
+        "foodRegenRate": 0.0001,
+        "maxPopulation": 5500
+      },
+      "species": [
+        {
+          "name": "Herbivore",
+          "strategy": "cooperate",
+          "note": "promote herbivore cooperation to support plant regrowth"
+        },
+        {
+          "name": "Carnivore",
+          "strategy": "compete",
+          "note": "maintain competitive balance with herbivores"
+        },
+        {
+          "name": "Primary Producer",
+          "strategy": "explore",
+          "note": "increase exploration to find new resources"
+        }
+      ],
+      "sample": {
+        "tick": 480,
+        "population": 236,
+        "aliveCount": 54,
+        "speciesCount": 34,
+        "avgEnergy": 131.6567091378066,
+        "cooperation": 0,
+        "caComplexity": 0.0001863234794203924,
+        "traitEffectiveDim": 5.071955973530158,
+        "traitTotalVariance": 1.2173074493217315
+      },
+      "cached": true
+    }
+  ],
+  "final": {
+    "tick": 480,
+    "population": 236,
+    "aliveCount": 54,
+    "speciesCount": 34,
+    "avgEnergy": 131.6567091378066,
     "cooperation": 0,
-    "caComplexity": 0.001102966739006844,
-    "traitEffectiveDim": 4.716520913834937,
-    "traitTotalVariance": 1.1458632046886155
+    "caComplexity": 0.0001863234794203924,
+    "traitEffectiveDim": 5.071955973530158,
+    "traitTotalVariance": 1.2173074493217315
   }
 }

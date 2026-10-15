@@ -36,7 +36,7 @@ export async function ollamaChat(
     },
   });
 
-  const raw = await postJson(url, body, opts.timeoutMs ?? 120_000);
+    const raw = await postJson(url, body, opts.timeoutMs ?? 300_000);
   const parsed = JSON.parse(raw) as { message?: { content?: string }; model?: string; error?: string };
   if (parsed.error) throw new Error(`ollama: ${parsed.error}`);
   return { content: parsed.message?.content ?? '', model: parsed.model ?? model };

@@ -3,11 +3,14 @@ export type ProviderId = 'ollama' | 'mock';
 
 /**
  * Cache policy:
- *  - `on`     — serve cached responses, write new ones (default; replay-safe)
- *  - `off`    — always call the backend live, never read/write the cache
- *  - `replay` — read-only; a miss is an error (CI / strict reproducibility)
+ *  - `on`      — serve cached responses, write new ones (default; replay-safe)
+ *  - `refresh` — always call the backend live and overwrite the cache entry
+ *                (the `--live` flag: get a fresh answer, then keep it)
+ *  - `off`     — always call the backend live, never read or write (the
+ *                `--no-cache` flag: leave the recorded history untouched)
+ *  - `replay`  — read-only; a miss is an error (CI / strict reproducibility)
  */
-export type CacheMode = 'on' | 'off' | 'replay';
+export type CacheMode = 'on' | 'off' | 'replay' | 'refresh';
 
 export interface LlmMessage {
   role: 'system' | 'user' | 'assistant';
