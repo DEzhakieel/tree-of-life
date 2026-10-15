@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-10-15T13:43:17.399Z",
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "cached": true,
+  "seed": "ai-world-0001",
+  "ticks": 300,
+  "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
+  "directive": {
+    "objective": "sustain a large, healthy population with high trait diversity and no energy collapse",
+    "rationale": "To achieve the objective, we need to set the knobs to values that promote a stable, high-population environment with diverse traits and sustainable energy levels. The strategy for each species will be determined based on their traits and the environment.",
+    "overrides": {
+      "metabolismBase": 0.5,
+      "foodRegenRate": 0.00005,
+      "energyCapacity": 400,
+      "maxPopulation": 4000,
+      "agentMaxAge": 7000,
+      "dayLength": 3000,
+      "seasonLength": 3000,
+      "spawnCount": 200
+    },
+    "species": [
+      {
+        "name": "SmallHerbivore",
+        "strategy": "conserve",
+        "note": "To conserve energy and space, SmallHerbivore should reduce its metabolism and increase its energy capacity."
+      },
+      {
+        "name": "MediumHerbivore",
+        "strategy": "cooperate",
+        "note": "MediumHerbivore can benefit from cooperative behaviors to ensure food availability and reduce competition."
+      },
+      {
+        "name": "LargeHerbivore",
+        "strategy": "compete",
+        "note": "LargeHerbivore needs to be competitive to access food resources and prevent overpopulation."
+      },
+      {
+        "name": "SmallCarnivore",
+        "strategy": "explore",
+        "note": "SmallCarnivore can explore new areas and niche opportunities to maintain population diversity."
+      },
+      {
+        "name": "MediumCarnivore",
+        "strategy": "explore",
+        "note": "MediumCarnivore can also explore and find new sources of food and resources."
+      },
+      {
+        "name": "Predator",
+        "strategy": "explore",
+        "note": "Predators should continue to explore and find new prey or food sources."
+      }
+    ]
+  },
+  "baseline": {
+    "population": 226,
+    "aliveCount": 95,
+    "speciesCount": 41,
+    "avgEnergy": 36.243565099721515,
+    "cooperation": 0.001028133304100074,
+    "caComplexity": 0.0006379315747043851,
+    "traitEffectiveDim": 4.769030541343449,
+    "traitTotalVariance": 1.1806354759179372
+  },
+  "directed": {
+    "population": 344,
+    "aliveCount": 176,
+    "speciesCount": 73,
+    "avgEnergy": 156.1064851557057,
+    "cooperation": 0,
+    "caComplexity": 0.001102966739006844,
+    "traitEffectiveDim": 4.716520913834937,
+    "traitTotalVariance": 1.1458632046886155
+  }
+}

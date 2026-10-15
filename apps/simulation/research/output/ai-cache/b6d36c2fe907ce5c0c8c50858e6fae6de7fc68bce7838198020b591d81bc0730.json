@@ -1,0 +1,29 @@
+{
+  "key": "b6d36c2fe907ce5c0c8c50858e6fae6de7fc68bce7838198020b591d81bc0730",
+  "request": {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the collective \"world mind\" of an artificial-life simulation. You do not control individuals; you steer population-level pressures. Reply with STRICT JSON only, no prose, no markdown fences."
+      },
+      {
+        "role": "user",
+        "content": "TASK: world-directive\n\nChoose a small set of world-parameter overrides that steer the world toward the objective, plus a one-line strategy per species.\n\nAllowed knobs:\n- metabolismBase (metabolic rate) in [0.2, 3] — per-tick energy burn multiplier; higher = harsher\n- foodRegenRate (food regen) in [0.00002, 0.01] — plant regrowth per tick; higher = richer\n- energyCapacity (energy capacity) in [20, 600] — per-cell energy ceiling; sets body/bank size\n- maxPopulation (population cap) in [200, 8000] — ceiling on living agents\n- agentMaxAge (lifespan) in [500, 8000] — ticks before senescence kills\n- dayLength (day length) in [200, 4800] — ticks per day/night cycle\n- seasonLength (season length) in [2000, 40000] — ticks per seasonal boom/bust cycle\n- spawnCount (founders) in [50, 1000] — initial population\n\nWorld context:\nseed=ai-world-0001 ticks=300 founders=150\nsteerable knobs: metabolismBase=0.2..3, foodRegenRate=0.00002..0.01, energyCapacity=20..600, maxPopulation=200..8000, agentMaxAge=500..8000, dayLength=200..4800, seasonLength=2000..40000, spawnCount=50..1000\nbaseline after 300 ticks: pop=226 alive=95 species=41 energy=36.2 coop=0.001 caComplexity=0.001 effDim=4.8\nobjective: sustain a large, healthy population with high trait diversity and no energy collapse\n\nReply with exactly this JSON shape:\n{\"objective\": string, \"rationale\": string, \"overrides\": {\"<knob>\": number}, \"species\": [{\"name\": string, \"strategy\": \"expand\"|\"conserve\"|\"cooperate\"|\"compete\"|\"explore\", \"note\": string}]}"
+      }
+    ],
+    "options": {
+      "temperature": 0.6,
+      "seed": 7,
+      "maxTokens": null,
+      "json": true
+    }
+  },
+  "response": {
+    "content": "{\n  \"objective\": \"sustain a large, healthy population with high trait diversity and no energy collapse\",\n  \"rationale\": \"To achieve the objective, we need to set the knobs to values that promote a stable, high-population environment with diverse traits and sustainable energy levels. The strategy for each species will be determined based on their traits and the environment.\",\n  \"overrides\": {\n    \"metabolismBase\": 0.5,\n    \"foodRegenRate\": 0.00005,\n    \"energyCapacity\": 400,\n    \"maxPopulation\": 4000,\n    \"agentMaxAge\": 7000,\n    \"dayLength\": 3000,\n    \"seasonLength\": 3000,\n    \"spawnCount\": 200\n  },\n  \"species\": [\n    {\n      \"name\": \"SmallHerbivore\",\n      \"strategy\": \"conserve\",\n      \"note\": \"To conserve energy and space, SmallHerbivore should reduce its metabolism and increase its energy capacity.\"\n    },\n    {\n      \"name\": \"MediumHerbivore\",\n      \"strategy\": \"cooperate\",\n      \"note\": \"MediumHerbivore can benefit from cooperative behaviors to ensure food availability and reduce competition.\"\n    },\n    {\n      \"name\": \"LargeHerbivore\",\n      \"strategy\": \"compete\",\n      \"note\": \"LargeHerbivore needs to be competitive to access food resources and prevent overpopulation.\"\n    },\n    {\n      \"name\": \"SmallCarnivore\",\n      \"strategy\": \"explore\",\n      \"note\": \"SmallCarnivore can explore new areas and niche opportunities to maintain population diversity.\"\n    },\n    {\n      \"name\": \"MediumCarnivore\",\n      \"strategy\": \"explore\",\n      \"note\": \"MediumCarnivore can also explore and find new sources of food and resources.\"\n    },\n    {\n      \"name\": \"Predator\",\n      \"strategy\": \"explore\",\n      \"note\": \"Predators should continue to explore and find new prey or food sources.\"\n    }\n  ]\n}",
+    "model": "qwen2.5:3b",
+    "provider": "ollama"
+  },
+  "createdAt": "2026-10-15T13:42:32.678Z"
+}

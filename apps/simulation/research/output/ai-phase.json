@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-15T13:39:42.108Z",
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "cached": false,
+  "seed": "ai-phase-0001",
+  "ticks": 300,
+  "axis": "foodRegenRate",
+  "sweep": [
+    {
+      "value": 0.00002,
+      "sample": {
+        "population": 190,
+        "aliveCount": 49,
+        "speciesCount": 30,
+        "avgEnergy": 46.25502141651141,
+        "cooperation": 0,
+        "caComplexity": 0.00013334582297216252,
+        "traitEffectiveDim": 4.897021113687799,
+        "traitTotalVariance": 1.1230006615249286
+      }
+    },
+    {
+      "value": 0.00006931448431551465,
+      "sample": {
+        "population": 192,
+        "aliveCount": 47,
+        "speciesCount": 30,
+        "avgEnergy": 42.91335588632741,
+        "cooperation": 0,
+        "caComplexity": 0.0001966610629824703,
+        "traitEffectiveDim": 4.873434380197374,
+        "traitTotalVariance": 1.149530779152254
+      }
+    },
+    {
+      "value": 0.0002402248867962863,
+      "sample": {
+        "population": 197,
+        "aliveCount": 48,
+        "speciesCount": 28,
+        "avgEnergy": 45.7290967587951,
+        "cooperation": 0,
+        "caComplexity": 0.00012068514161298477,
+        "traitEffectiveDim": 4.781920058422881,
+        "traitTotalVariance": 1.1344170695638442
+      }
+    },
+    {
+      "value": 0.0008325532074018731,
+      "sample": {
+        "population": 211,
+        "aliveCount": 62,
+        "speciesCount": 34,
+        "avgEnergy": 44.152605723414396,
+        "cooperation": 0,
+        "caComplexity": 0.0001281101691489332,
+        "traitEffectiveDim": 4.638052352444422,
+        "traitTotalVariance": 1.129663575088287
+      }
+    },
+    {
+      "value": 0.002885399811814428,
+      "sample": {
+        "population": 286,
+        "aliveCount": 109,
+        "speciesCount": 49,
+        "avgEnergy": 40.74230781111393,
+        "cooperation": 0,
+        "caComplexity": 0.00032872157006899356,
+        "traitEffectiveDim": 4.274068781304797,
+        "traitTotalVariance": 0.9002570043778855
+      }
+    },
+    {
+      "value": 0.01,
+      "sample": {
+        "population": 624,
+        "aliveCount": 152,
+        "speciesCount": 49,
+        "avgEnergy": 34.820741237123435,
+        "cooperation": 0,
+        "caComplexity": 0.00010615613641327123,
+        "traitEffectiveDim": 4.011557861309127,
+        "traitTotalVariance": 0.4528576435598034
+      }
+    }
+  ],
+  "measuredLoci": [
+    {
+      "metric": "aliveCount",
+      "at": 0.0018589765096081506,
+      "delta": 47,
+      "sharp": true
+    },
+    {
+      "metric": "speciesCount",
+      "at": 0.0018589765096081506,
+      "delta": 15,
+      "sharp": true
+    },
+    {
+      "metric": "avgEnergy",
+      "at": 0.006442699905907214,
+      "delta": 5.921566573990496,
+      "sharp": false
+    },
+    {
+      "metric": "cooperation",
+      "at": 0.00004465724215775732,
+      "delta": 0,
+      "sharp": false
+    },
+    {
+      "metric": "caComplexity",
+      "at": 0.006442699905907214,
+      "delta": 0.00022256543365572232,
+      "sharp": true
+    },
+    {
+      "metric": "traitEffectiveDim",
+      "at": 0.0018589765096081506,
+      "delta": 0.36398357113962554,
+      "sharp": true
+    }
+  ],
+  "analysis": {
+    "loci": [
+      {
+        "axis": "foodRegenRate",
+        "locus": "0.0000200",
+        "sharp": true,
+        "note": "aliveCount: at 0.00186 (|Δ|=47.0, sharp)"
+      }
+    ],
+    "recommendation": "Refine analysis by examining the system's behavior at the locus 0.0000200 to understand the sudden change in population dynamics.",
+    "refine": [
+      {
+        "axis": "foodRegenRate",
+        "around": 0.00002
+      }
+    ]
+  }
+}

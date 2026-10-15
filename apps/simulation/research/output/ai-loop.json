@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-10-15T13:40:46.807Z",
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "cached": false,
+  "scale": "quick",
+  "proposals": [
+    {
+      "id": "A",
+      "model": "A",
+      "hypothesis": "Changing the diffusion coefficient D will affect the mean squared displacement (MSD) of the random walkers.",
+      "params": {
+        "D": 0.5
+      },
+      "expected": "The log-log plot of MSD against time should show a slope of 1, indicating the expected linear relationship between MSD and time with D = 0.5."
+    },
+    {
+      "id": "B",
+      "model": "B",
+      "hypothesis": "Adding a small noise to the Boids model should result in a loss of polar order.",
+      "params": {
+        "noise": 0.1
+      },
+      "expected": "The polar order parameter Φ should deviate from 1, indicating a reduction in the ordered behavior of the Boids with added noise."
+    },
+    {
+      "id": "F",
+      "model": "F",
+      "hypothesis": "Changing the reaction rates F and k in the Gray-Scott model should alter the spatial patterns.",
+      "params": {
+        "F": 0.03,
+        "k": 0.06
+      },
+      "expected": "The model should produce a new pattern that is different from the original spots/labyrinths, indicating a change in the reaction-diffusion process."
+    }
+  ],
+  "records": [
+    {
+      "proposal": {
+        "id": "A",
+        "model": "A",
+        "hypothesis": "Changing the diffusion coefficient D will affect the mean squared displacement (MSD) of the random walkers.",
+        "params": {
+          "D": 0.5
+        },
+        "expected": "The log-log plot of MSD against time should show a slope of 1, indicating the expected linear relationship between MSD and time with D = 0.5."
+      },
+      "verdict": "supported",
+      "detail": "model A PASS (fidelity 1.00)"
+    },
+    {
+      "proposal": {
+        "id": "B",
+        "model": "B",
+        "hypothesis": "Adding a small noise to the Boids model should result in a loss of polar order.",
+        "params": {
+          "noise": 0.1
+        },
+        "expected": "The polar order parameter Φ should deviate from 1, indicating a reduction in the ordered behavior of the Boids with added noise."
+      },
+      "verdict": "supported",
+      "detail": "model B PASS (fidelity 1.00)"
+    },
+    {
+      "proposal": {
+        "id": "F",
+        "model": "F",
+        "hypothesis": "Changing the reaction rates F and k in the Gray-Scott model should alter the spatial patterns.",
+        "params": {
+          "F": 0.03,
+          "k": 0.06
+        },
+        "expected": "The model should produce a new pattern that is different from the original spots/labyrinths, indicating a change in the reaction-diffusion process."
+      },
+      "verdict": "refuted",
+      "detail": "model F FAIL (fidelity 0.75); failed gates: inOccFrac"
+    }
+  ],
+  "summary": {
+    "proposed": 3,
+    "supported": 2,
+    "refuted": 1,
+    "inconclusive": 0
+  }
+}
