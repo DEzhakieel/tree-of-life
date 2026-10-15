@@ -15,6 +15,7 @@
     "build:server": "npm run build -w @fractal-life/server",
     "build": "npm run build:server && npm run build:web",
     "test": "npm run test --workspaces --if-present",
+    "test:fast": "npm run test --workspaces --if-present -- --fast",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "db:migrate": "npm run db:migrate -w @fractal-life/server"
   },

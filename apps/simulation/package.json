@@ -10,6 +10,9 @@
   },
   "scripts": {
     "test": "node ../../scripts/run-tests.mjs",
+    "test:fast": "node ../../scripts/run-tests.mjs --fast",
+    "test:slow": "node ../../scripts/run-tests.mjs --slow",
+    "test:record": "node ../../scripts/run-tests.mjs --record",
     "enrich": "tsx src/research/enrich.ts",
     "research": "tsx src/research/cli.ts",
     "research:events": "tsx src/research/eventRun.ts",
