@@ -29,4 +29,5 @@ export interface Storage {
   listEvents(worldId: string): Promise<SimEvent[]>;
   saveAgents(worldId: string, agents: AgentRecord[]): Promise<void>;
   listAgents(worldId: string): Promise<AgentRecord[]>;
+  deleteWorld?(worldId: string): Promise<void>;
 }

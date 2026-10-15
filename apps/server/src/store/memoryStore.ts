@@ -78,4 +78,11 @@ export class MemoryStore implements Storage {
   async listAgents(worldId: string): Promise<AgentRecord[]> {
     return this.agents.get(worldId) ?? [];
   }
+
+  async deleteWorld(worldId: string): Promise<void> {
+    this.worlds.delete(worldId);
+    this.snapshots.delete(worldId);
+    this.events.delete(worldId);
+    this.agents.delete(worldId);
+  }
 }

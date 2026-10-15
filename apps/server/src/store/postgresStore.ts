@@ -149,4 +149,12 @@ export class PostgresStore implements Storage {
       alive: r.alive,
     }));
   }
+
+  async deleteWorld(worldId: string): Promise<void> {
+    const db = this.db;
+    await db.delete(snapshots).where(eq(snapshots.worldId, worldId) as never);
+    await db.delete(events).where(eq(events.worldId, worldId) as never);
+    await db.delete(worldAgents).where(eq(worldAgents.worldId, worldId) as never);
+    await db.delete(worlds).where(eq(worlds.id, worldId) as never);
+  }
 }

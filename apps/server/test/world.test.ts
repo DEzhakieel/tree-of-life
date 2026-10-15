@@ -43,6 +43,7 @@ class StubStorage implements Storage {
   async listAgents(_worldId: string): Promise<AgentRecord[]> {
     return [];
   }
+  async deleteWorld(_worldId: string): Promise<void> {}
 }
 
 describe('WorldManager.createWorld config forwarding', () => {

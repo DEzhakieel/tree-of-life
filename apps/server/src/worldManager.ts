@@ -166,6 +166,7 @@ export class WorldManager {
     this.flushEvents(rt);
     for (const c of rt.clients) c.close();
     this.worlds.delete(id);
+    await this.storage.deleteWorld?.(id);
   }
 
   /** Persist a world's buffered events as a single storage call. */
@@ -211,9 +212,9 @@ export class WorldManager {
   }
 
   /** Adjust a world's target tick rate (1..120 tps); a live ticker is restarted. */
-  setTickRate(worldId: string, tps: number): void {
+  setTickRate(worldId: string, tps: number): number {
     const rt = this.worlds.get(worldId);
-    if (!rt) return;
+    if (!rt) return this.config.tickRate;
     rt.tps = Math.max(1, Math.min(120, Math.round(Number.isFinite(tps) ? tps : this.config.tickRate)));
     if (rt.ticker) {
       clearInterval(rt.ticker);
@@ -221,6 +222,43 @@ export class WorldManager {
     }
     // the rolling window would otherwise hide the new cadence for minutes
     rt.tickWindow.length = 0;
+    return rt.tps;
+  }
+
+  /** Apply a transport control action (used by the REST control endpoint).
+   *  Returns the resulting world status, or null when the world is unknown. */
+  control(worldId: string, action: 'play' | 'pause' | 'step'): WorldStatus | null {
+    const rt = this.worlds.get(worldId);
+    if (!rt) return null;
+    if (action === 'play') this.setPaused(worldId, false);
+    else if (action === 'pause') this.setPaused(worldId, true);
+    else this.step(rt, true);
+    return rt.engine.worldStatus(rt.paused);
+  }
+
+  /**
+   * Apply an intervention over HTTP (REST parity with the WS `intervene` op).
+   * The server owns the per-world intervention sequence so a replayed log stays
+   * identical regardless of transport. Returns the assigned sequence.
+   */
+  async intervene(worldId: string, input: Record<string, unknown>): Promise<number> {
+    const rt = this.worlds.get(worldId);
+    if (!rt) throw new Error('world not running');
+    const base =
+      input.intervention && typeof input.intervention === 'object'
+        ? (input.intervention as object)
+        : input;
+    const iv = InterventionSchema.parse({ ...base, sequence: rt.sequence }) as unknown as Intervention;
+    rt.engine.applyIntervention(iv);
+    rt.sequence += 1;
+    // Persist a deterministic restore point after state-changing interventions.
+    const frame = rt.engine.encodeSnapshotMessage();
+    await this.storage.saveSnapshot(worldId, {
+      tick: rt.engine.currentTick,
+      stateHash: rt.engine.computeStateHash(),
+      data: frame,
+    });
+    return iv.sequence;
   }
 
   private step(rt: WorldRuntime, manual = false): void {
@@ -352,22 +390,10 @@ export class WorldManager {
 
   private async handleIntervene(client: WsClient, msg: Record<string, unknown>): Promise<void> {
     const worldId = msg.worldId as string;
-    const rt = this.worlds.get(worldId);
-    if (!rt) return;
+    if (!this.worlds.has(worldId)) return;
     try {
-      const iv = InterventionSchema.parse({
-        ...(msg.intervention as object),
-        sequence: rt.sequence++,
-      }) as unknown as Intervention;
-      rt.engine.applyIntervention(iv);
-      client.send(encodeAck(iv.sequence));
-      // Persist a deterministic restore point after state-changing interventions.
-      const frame = rt.engine.encodeSnapshotMessage();
-      await this.storage.saveSnapshot(worldId, {
-        tick: rt.engine.currentTick,
-        stateHash: rt.engine.computeStateHash(),
-        data: frame,
-      });
+      const sequence = await this.intervene(worldId, msg);
+      client.send(encodeAck(sequence));
     } catch (err) {
       console.warn('[worldManager] invalid intervention:', (err as Error).message);
       /* invalid intervention */
