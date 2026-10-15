@@ -1,0 +1,353 @@
+{
+  "provenance": {
+    "tool": "fractal-life research harness",
+    "timestamp": "2026-09-26T08:10:53.769Z",
+    "node": "v18.12.1",
+    "platform": "win32/x64",
+    "simulationPackage": "@fractal-life/simulation@1.0.0",
+    "engineSource": {
+      "path": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\src\\engine.ts",
+      "sha256": "fbc2b2541731a5cc0c31d9365776a8921bc634887326940869d575d2de6ce5d8"
+    },
+    "git": null,
+    "params": {
+      "firstOrderTicks": 60,
+      "secondOrderWindow": 2000,
+      "thirdOrderTicks": 60,
+      "stochTicks": 180,
+      "stochSpawn": 10,
+      "bootstrapSamples": 2000,
+      "permutations": 10000,
+      "analysisSeed": 12648430,
+      "terrainSampling": {
+        "jitterFractionOfWorldScale": 0.6,
+        "perAxis": true
+      }
+    },
+    "seeds": [
+      "research-seed-0001",
+      "research-seed-0002",
+      "research-seed-0003",
+      "research-seed-0004",
+      "research-seed-0005",
+      "research-seed-0006",
+      "research-seed-0007",
+      "research-seed-0008",
+      "research-seed-0009",
+      "research-seed-0010",
+      "research-seed-0011",
+      "research-seed-0012",
+      "research-seed-0013",
+      "research-seed-0014",
+      "research-seed-0015",
+      "research-seed-0016",
+      "research-seed-0017",
+      "research-seed-0018",
+      "research-seed-0019",
+      "research-seed-0020",
+      "research-seed-0021",
+      "research-seed-0022",
+      "research-seed-0023",
+      "research-seed-0024"
+    ],
+    "scenarios": [
+      "first-order",
+      "second-order",
+      "third-order",
+      "conservation",
+      "stochastic"
+    ]
+  },
+  "rows": [
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0001",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0002",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0003",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0004",
+      "control_growth": 2.9597930908203125,
+      "carrion_growth": 3.00225830078125,
+      "growth_delta": 0.0424652099609375,
+      "control_minerals": 1.786903738975525,
+      "carrion_minerals": 12.801726341247559,
+      "mineral_delta": 11.014822602272034,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0005",
+      "control_growth": 2.9590911865234375,
+      "carrion_growth": 3.0015411376953125,
+      "growth_delta": 0.042449951171875,
+      "control_minerals": 1.5789158344268799,
+      "carrion_minerals": 12.59373950958252,
+      "mineral_delta": 11.01482367515564,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0006",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0007",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0008",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0009",
+      "control_growth": 2.9577484130859375,
+      "carrion_growth": 3.0002288818359375,
+      "growth_delta": 0.04248046875,
+      "control_minerals": 1.2139344215393066,
+      "carrion_minerals": 12.228755950927734,
+      "mineral_delta": 11.014821529388428,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0010",
+      "control_growth": 2.9571685791015625,
+      "carrion_growth": 2.9996185302734375,
+      "growth_delta": 0.042449951171875,
+      "control_minerals": 1.051395297050476,
+      "carrion_minerals": 12.066216468811035,
+      "mineral_delta": 11.014821171760559,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0011",
+      "control_growth": 2.9584197998046875,
+      "carrion_growth": 3.0008697509765625,
+      "growth_delta": 0.042449951171875,
+      "control_minerals": 1.3971236944198608,
+      "carrion_minerals": 12.411943435668945,
+      "mineral_delta": 11.014819741249084,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0012",
+      "control_growth": 2.9578704833984375,
+      "carrion_growth": 3.000335693359375,
+      "growth_delta": 0.0424652099609375,
+      "control_minerals": 1.2459778785705566,
+      "carrion_minerals": 12.260799407958984,
+      "mineral_delta": 11.014821529388428,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0013",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0014",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0015",
+      "control_growth": 2.958740234375,
+      "carrion_growth": 3.00128173828125,
+      "growth_delta": 0.04254150390625,
+      "control_minerals": 1.510260820388794,
+      "carrion_minerals": 12.52508544921875,
+      "mineral_delta": 11.014824628829956,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0016",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0017",
+      "control_growth": 2.9590606689453125,
+      "carrion_growth": 3.001495361328125,
+      "growth_delta": 0.0424346923828125,
+      "control_minerals": 1.5699748992919922,
+      "carrion_minerals": 12.584798812866211,
+      "mineral_delta": 11.014823913574219,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0018",
+      "control_growth": 2.953277587890625,
+      "carrion_growth": 2.99493408203125,
+      "growth_delta": 0.041656494140625,
+      "control_minerals": 0.010649451054632664,
+      "carrion_minerals": 10.788555145263672,
+      "mineral_delta": 10.77790569420904,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0019",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0020",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0021",
+      "control_growth": 2.9673309326171875,
+      "carrion_growth": 3.00982666015625,
+      "growth_delta": 0.0424957275390625,
+      "control_minerals": 3.8336822986602783,
+      "carrion_minerals": 14.848503112792969,
+      "mineral_delta": 11.01482081413269,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0022",
+      "control_growth": 2.953277587890625,
+      "carrion_growth": 2.994903564453125,
+      "growth_delta": 0.0416259765625,
+      "control_minerals": 0.010489276610314846,
+      "carrion_minerals": 10.779179573059082,
+      "mineral_delta": 10.768690296448767,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0023",
+      "control_growth": 2.9574737548828125,
+      "carrion_growth": 3.0000152587890625,
+      "growth_delta": 0.04254150390625,
+      "control_minerals": 1.160017967224121,
+      "carrion_minerals": 12.174839973449707,
+      "mineral_delta": 11.014822006225586,
+      "cell_cap": 400
+    },
+    {
+      "scenario": "third-order",
+      "seed": "research-seed-0024",
+      "control_growth": 2.9532623291015625,
+      "carrion_growth": 2.994720458984375,
+      "growth_delta": 0.0414581298828125,
+      "control_minerals": 0.009761925786733627,
+      "carrion_minerals": 10.736599922180176,
+      "mineral_delta": 10.726837996393442,
+      "cell_cap": 400
+    }
+  ],
+  "stats": {
+    "growth_mean": 0.0423736572265625,
+    "growth_sd": 0.00030899969262284543,
+    "growth_median": 0.0424957275390625,
+    "growth_ci95": [
+      0.0422356923421224,
+      0.042484283447265625
+    ],
+    "growth_se": 0.00006208924120068437,
+    "growth_p_permutation": 0.00009999000099990002,
+    "growth_cohens_d": 193.93352863394693,
+    "growth_effect": "large",
+    "growth_frac_positive": 1,
+    "minerals_mean": 10.982695189770311,
+    "minerals_sd": 0.08719637292016595,
+    "minerals_median": 11.01482081413269,
+    "minerals_ci95": [
+      10.943786554283967,
+      11.014821176727613
+    ],
+    "minerals_se": 0.017504309755085958,
+    "minerals_p_permutation": 0.00009999000099990002,
+    "minerals_cohens_d": 178.125258753634,
+    "minerals_effect": "large",
+    "minerals_frac_positive": 1
+  }
+}

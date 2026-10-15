@@ -1,0 +1,163 @@
+{
+  "source": {
+    "mode": "in-process",
+    "seeds": [
+      "event.s1"
+    ],
+    "ticks": 60,
+    "spawn": 100,
+    "invalidLines": 0,
+    "totalEvents": 86
+  },
+  "window": 10,
+  "lag": 10,
+  "censuses": [
+    {
+      "type": "death",
+      "count": 80,
+      "ticks": 15,
+      "ratePer100": 133.33333333333331,
+      "meanSignificance": 0.6000000000000009,
+      "medianGap": 1
+    },
+    {
+      "type": "birth",
+      "count": 4,
+      "ticks": 4,
+      "ratePer100": 6.666666666666667,
+      "meanSignificance": 0.15,
+      "medianGap": 6
+    },
+    {
+      "type": "migration",
+      "count": 2,
+      "ticks": 2,
+      "ratePer100": 3.3333333333333335,
+      "meanSignificance": 0.7840296512028331,
+      "medianGap": 2
+    }
+  ],
+  "observational": {
+    "window": 10,
+    "lag": 10,
+    "totalTicks": 60,
+    "rows": [
+      {
+        "type": "death",
+        "metric": "diversity",
+        "n": 5,
+        "preMean": 0.9676352013225082,
+        "postMean": 0.955182650997396,
+        "meanDelta": -0.012452550325112277,
+        "cohensDz": -3.2463311126629644,
+        "p": 0.001912486867574724,
+        "peakR": 0.6305327451163251,
+        "peakLag": -9,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "cultureCount",
+        "n": 5,
+        "preMean": 17.66,
+        "postMean": 16.119999999999997,
+        "meanDelta": -1.5399999999999998,
+        "cohensDz": -2.2880821856524762,
+        "p": 0.006903821313112353,
+        "peakR": 0.6390464928640884,
+        "peakLag": -9,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "entropy",
+        "n": 5,
+        "preMean": 5.013752184220768,
+        "postMean": 4.48756377180238,
+        "meanDelta": -0.5261884124183878,
+        "cohensDz": -2.193494293230837,
+        "p": 0.00801629247753316,
+        "peakR": 0.6019527537018603,
+        "peakLag": -9,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "avgEnergy",
+        "n": 5,
+        "preMean": 46.69226653793705,
+        "postMean": 50.723309470076046,
+        "meanDelta": 4.031042932138992,
+        "cohensDz": 1.8474075760730266,
+        "p": 0.014482950195887495,
+        "peakR": -0.5969742301251948,
+        "peakLag": -1,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "speciesCount",
+        "n": 5,
+        "preMean": 34.519999999999996,
+        "postMean": 22.52,
+        "meanDelta": -12.000000000000002,
+        "cohensDz": -1.5619360481631321,
+        "p": 0.02506378341462329,
+        "peakR": 0.5470215787129833,
+        "peakLag": -9,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "aliveCount",
+        "n": 5,
+        "preMean": 39.1,
+        "postMean": 22.98,
+        "meanDelta": -16.119999999999997,
+        "cohensDz": -1.5572371800613793,
+        "p": 0.025303934455721794,
+        "peakR": 0.5784900054199752,
+        "peakLag": -9,
+        "significant": true
+      },
+      {
+        "type": "death",
+        "metric": "predatorFraction",
+        "n": 5,
+        "preMean": 0.3925478096323437,
+        "postMean": 0.40676983885679546,
+        "meanDelta": 0.014222029224451671,
+        "cohensDz": 1.134765417160646,
+        "p": 0.06415702412636792,
+        "peakR": -0.4938600911968639,
+        "peakLag": -10,
+        "significant": false
+      },
+      {
+        "type": "death",
+        "metric": "cooperation",
+        "n": 5,
+        "preMean": 0,
+        "postMean": 0,
+        "meanDelta": 0,
+        "cohensDz": 0,
+        "p": 1,
+        "peakR": 0,
+        "peakLag": 0,
+        "significant": false
+      }
+    ],
+    "skipped": [
+      {
+        "type": "birth",
+        "reason": "only 4 occurrence tick(s), below the minimum of 5"
+      },
+      {
+        "type": "migration",
+        "reason": "only 2 occurrence tick(s), below the minimum of 5"
+      }
+    ]
+  },
+  "interventional": null,
+  "plants": []
+}

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="640" height="320" fill="#ffffff"/>
+<text x="320" y="22" text-anchor="middle" font-size="15" font-weight="600" fill="#222">Benchmark fidelity by model (gated checks passed)</text>
+<line x1="56" x2="624" y1="248.6" y2="248.6" stroke="#e6e6e6"/>
+<text x="50" y="252.6" text-anchor="end" font-size="11" fill="#555">0</text>
+<line x1="56" x2="624" y1="152.0" y2="152.0" stroke="#e6e6e6"/>
+<text x="50" y="156.0" text-anchor="end" font-size="11" fill="#555">0.5</text>
+<line x1="56" x2="624" y1="55.4" y2="55.4" stroke="#e6e6e6"/>
+<text x="50" y="59.4" text-anchor="end" font-size="11" fill="#555">1</text>
+<line x1="56" x2="624" y1="248.6" y2="248.6" stroke="#888" stroke-width="1.2"/>
+<line x1="56" x2="56" y1="40" y2="264" stroke="#444"/>
+<line x1="56" x2="624" y1="264" y2="264" stroke="#444"/>
+<text x="14" y="152" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 152)">fidelity</text>
+<rect x="68.8" y="55.4" width="31.2" height="193.1" fill="#f28e2b" opacity="0.9" rx="3"/>
+<line x1="84.4" x2="84.4" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="77.5" x2="91.3" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="77.5" x2="91.3" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="84.4" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="84.4" y="280" text-anchor="middle" font-size="12" fill="#333">A</text>
+<rect x="125.6" y="55.4" width="31.2" height="193.1" fill="#59a14f" opacity="0.9" rx="3"/>
+<line x1="141.2" x2="141.2" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="134.3" x2="148.1" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="134.3" x2="148.1" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="141.2" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="141.2" y="280" text-anchor="middle" font-size="12" fill="#333">B</text>
+<rect x="182.4" y="55.4" width="31.2" height="193.1" fill="#e15759" opacity="0.9" rx="3"/>
+<line x1="198.0" x2="198.0" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="191.1" x2="204.9" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="191.1" x2="204.9" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="198.0" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="198.0" y="280" text-anchor="middle" font-size="12" fill="#333">C</text>
+<rect x="239.2" y="55.4" width="31.2" height="193.1" fill="#b07aa1" opacity="0.9" rx="3"/>
+<line x1="254.8" x2="254.8" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="247.9" x2="261.7" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="247.9" x2="261.7" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="254.8" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="254.8" y="280" text-anchor="middle" font-size="12" fill="#333">D</text>
+<rect x="296.0" y="55.4" width="31.2" height="193.1" fill="#76b7b2" opacity="0.9" rx="3"/>
+<line x1="311.6" x2="311.6" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="304.7" x2="318.5" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="304.7" x2="318.5" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="311.6" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="311.6" y="280" text-anchor="middle" font-size="12" fill="#333">E</text>
+<rect x="352.8" y="55.4" width="31.2" height="193.1" fill="#edc948" opacity="0.9" rx="3"/>
+<line x1="368.4" x2="368.4" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="361.5" x2="375.3" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="361.5" x2="375.3" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="368.4" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="368.4" y="280" text-anchor="middle" font-size="12" fill="#333">F</text>
+<rect x="409.6" y="55.4" width="31.2" height="193.1" fill="#ff9da7" opacity="0.9" rx="3"/>
+<line x1="425.2" x2="425.2" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="418.3" x2="432.1" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="418.3" x2="432.1" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="425.2" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="425.2" y="280" text-anchor="middle" font-size="12" fill="#333">G</text>
+<rect x="466.4" y="55.4" width="31.2" height="193.1" fill="#4e79a7" opacity="0.9" rx="3"/>
+<line x1="482.0" x2="482.0" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="475.1" x2="488.9" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="475.1" x2="488.9" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="482.0" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="482.0" y="280" text-anchor="middle" font-size="12" fill="#333">H</text>
+<rect x="523.2" y="55.4" width="31.2" height="193.1" fill="#f28e2b" opacity="0.9" rx="3"/>
+<line x1="538.8" x2="538.8" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="531.9" x2="545.7" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="531.9" x2="545.7" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="538.8" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="538.8" y="280" text-anchor="middle" font-size="12" fill="#333">I</text>
+<rect x="580.0" y="55.4" width="31.2" height="193.1" fill="#59a14f" opacity="0.9" rx="3"/>
+<line x1="595.6" x2="595.6" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="588.7" x2="602.5" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<line x1="588.7" x2="602.5" y1="55.4" y2="55.4" stroke="#333" stroke-width="1.5"/>
+<text x="595.6" y="49.4" text-anchor="middle" font-size="11" font-weight="600" fill="#333">1</text>
+<text x="595.6" y="280" text-anchor="middle" font-size="12" fill="#333">J</text>
+</svg>

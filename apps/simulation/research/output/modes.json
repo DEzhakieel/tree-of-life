@@ -1,0 +1,248 @@
+{
+  "generatedAt": "2026-09-23T12:42:09.223Z",
+  "name": "scientific-modes",
+  "ladder": {
+    "determinism": {
+      "stochastic": false,
+      "purpose": "prove S(run1) = S(run2) across the seed/timestep/population/parameters axes",
+      "gate": "test/determinism.test.ts"
+    },
+    "debugging": {
+      "stochastic": false,
+      "purpose": "replay a seed with a per-tick trace; any bug reproduces on first sight",
+      "gate": "modes.ts (trace section)"
+    },
+    "reproducibility": {
+      "stochastic": true,
+      "purpose": "a run is its (world, params) fixture; rerun any fixture → identical trajectory",
+      "gate": "modes.ts (fixture table)"
+    },
+    "research": {
+      "stochastic": true,
+      "purpose": "stochastic worlds; sample space = seeds; same-seed control; each run still self-reproducible",
+      "gate": "modes.ts (research table)"
+    }
+  },
+  "determinism": {
+    "pass": true,
+    "cases": [
+      {
+        "id": "baseline",
+        "seed": "modes.d1",
+        "spawn": 8,
+        "ticks": 40,
+        "overrides": {},
+        "fp": "5f8fafc7",
+        "outcome": "16a9bd49",
+        "pass": true,
+        "finalAlive": 1
+      },
+      {
+        "id": "timestep 0.5×",
+        "seed": "modes.d1",
+        "spawn": 8,
+        "ticks": 40,
+        "overrides": {
+          "timeScale": 0.5
+        },
+        "fp": "d82a55a9",
+        "outcome": "7d4f35e3",
+        "pass": true,
+        "finalAlive": 1
+      },
+      {
+        "id": "timestep 2×",
+        "seed": "modes.d1",
+        "spawn": 8,
+        "ticks": 40,
+        "overrides": {
+          "timeScale": 2
+        },
+        "fp": "cee63412",
+        "outcome": "58c72690",
+        "pass": true,
+        "finalAlive": 2
+      },
+      {
+        "id": "population 16",
+        "seed": "modes.d1",
+        "spawn": 16,
+        "ticks": 40,
+        "overrides": {},
+        "fp": "ee1b7e9e",
+        "outcome": "670b13b5",
+        "pass": true,
+        "finalAlive": 3
+      },
+      {
+        "id": "params energy",
+        "seed": "modes.d1",
+        "spawn": 8,
+        "ticks": 40,
+        "overrides": {
+          "energyCapacity": 25,
+          "foodRegenRate": 0.003
+        },
+        "fp": "6456f4b6",
+        "outcome": "8873d635",
+        "pass": true,
+        "finalAlive": 1
+      }
+    ]
+  },
+  "debug": {
+    "pass": true,
+    "steps": [
+      {
+        "t": 0,
+        "alive": 12,
+        "species": 12,
+        "births": 0,
+        "deaths": 0
+      },
+      {
+        "t": 1,
+        "alive": 11,
+        "species": 11,
+        "births": 0,
+        "deaths": 1
+      },
+      {
+        "t": 2,
+        "alive": 9,
+        "species": 9,
+        "births": 0,
+        "deaths": 2
+      },
+      {
+        "t": 3,
+        "alive": 6,
+        "species": 6,
+        "births": 0,
+        "deaths": 3
+      },
+      {
+        "t": 4,
+        "alive": 5,
+        "species": 5,
+        "births": 0,
+        "deaths": 1
+      },
+      {
+        "t": 5,
+        "alive": 5,
+        "species": 5,
+        "births": 0,
+        "deaths": 0
+      },
+      {
+        "t": 6,
+        "alive": 5,
+        "species": 5,
+        "births": 0,
+        "deaths": 0
+      },
+      {
+        "t": 7,
+        "alive": 5,
+        "species": 5,
+        "births": 0,
+        "deaths": 0
+      }
+    ]
+  },
+  "reproducibility": {
+    "pass": true,
+    "fixtures": [
+      {
+        "world": "deterministic twin",
+        "stochastic": false,
+        "ticks": 40,
+        "fp": "ed84eb45",
+        "outcomeA": "7f809f2e",
+        "outcomeB": "7f809f2e",
+        "pass": true
+      },
+      {
+        "world": "stochastic twin",
+        "stochastic": true,
+        "ticks": 40,
+        "fp": "ed84eb45",
+        "outcomeA": "7f809f2e",
+        "outcomeB": "7f809f2e",
+        "pass": true
+      }
+    ]
+  },
+  "research": {
+    "pass": true,
+    "seeds": [
+      {
+        "seed": "modes.r1",
+        "detAlive": 4,
+        "detSpecies": 4,
+        "stochAlive": 4,
+        "stochSpecies": 4,
+        "detFp": "12b365ea",
+        "stochFp": "d88ae966",
+        "divAt": 0,
+        "stochRepro": true
+      },
+      {
+        "seed": "modes.r2",
+        "detAlive": 4,
+        "detSpecies": 4,
+        "stochAlive": 4,
+        "stochSpecies": 4,
+        "detFp": "3b232a47",
+        "stochFp": "c83e4343",
+        "divAt": 0,
+        "stochRepro": true
+      },
+      {
+        "seed": "modes.r3",
+        "detAlive": 2,
+        "detSpecies": 1,
+        "stochAlive": 2,
+        "stochSpecies": 1,
+        "detFp": "4940c08c",
+        "stochFp": "89b96c63",
+        "divAt": 0,
+        "stochRepro": true
+      },
+      {
+        "seed": "modes.r4",
+        "detAlive": 4,
+        "detSpecies": 4,
+        "stochAlive": 4,
+        "stochSpecies": 4,
+        "detFp": "42271692",
+        "stochFp": "fcaf78df",
+        "divAt": 0,
+        "stochRepro": true
+      },
+      {
+        "seed": "modes.r5",
+        "detAlive": 4,
+        "detSpecies": 3,
+        "stochAlive": 4,
+        "stochSpecies": 3,
+        "detFp": "4caa6d41",
+        "stochFp": "bed9d00c",
+        "divAt": 0,
+        "stochRepro": true
+      },
+      {
+        "seed": "modes.r6",
+        "detAlive": 4,
+        "detSpecies": 4,
+        "stochAlive": 4,
+        "stochSpecies": 4,
+        "detFp": "f75b0fd8",
+        "stochFp": "1e181d8a",
+        "divAt": 0,
+        "stochRepro": true
+      }
+    ]
+  }
+}

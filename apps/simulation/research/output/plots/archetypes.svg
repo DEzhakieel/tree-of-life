@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" font-family="ui-monospace,Menlo,Consolas,monospace">
+  <rect width="980" height="560" fill="#15171b"/>
+<text x="60" y="52" font-size="13" fill="#e4e6ea" font-weight="bold">per-individual complexity — within-population heterogeneity (normalised to each metric's own peak)</text>
+<line x1="60" y1="271" x2="60" y2="64" stroke="#262a31"
+<text x="60" y="287" font-size="12" text-anchor="middle" fill="#e4e6ea">T0</text>
+<line x1="300" y1="271" x2="300" y2="64" stroke="#262a31"
+<text x="300" y="287" font-size="12" text-anchor="middle" fill="#e4e6ea">T1</text>
+<line x1="540" y1="271" x2="540" y2="64" stroke="#262a31"
+<text x="540" y="287" font-size="12" text-anchor="middle" fill="#e4e6ea">T2</text>
+<line x1="780" y1="271" x2="780" y2="64" stroke="#262a31"
+<text x="780" y="287" font-size="12" text-anchor="middle" fill="#e4e6ea">T3</text>
+<polyline points="60.0,271.0 300.0,90.9 540.0,88.0 780.0,89.4" fill="none" stroke="#f2a33c" stroke-width="2"/>
+<circle cx="780" cy="89.4" r="3" fill="#f2a33c"/>
+<polyline points="60.0,271.0 300.0,88.0 540.0,109.5 780.0,89.2" fill="none" stroke="#ff7eb6" stroke-width="2"/>
+<circle cx="780" cy="89.2" r="3" fill="#ff7eb6"/>
+<polyline points="60.0,194.1 300.0,117.5 540.0,88.0 780.0,142.8" fill="none" stroke="#8a8f98" stroke-width="2"/>
+<circle cx="780" cy="142.8" r="3" fill="#8a8f98"/>
+<polyline points="60.0,271.0 300.0,271.0 540.0,271.0 780.0,88.0" fill="none" stroke="#c678dd" stroke-width="2"/>
+<circle cx="780" cy="88.0" r="3" fill="#c678dd"/>
+<polyline points="60.0,271.0 300.0,271.0 540.0,106.7 780.0,88.0" fill="none" stroke="#61dafb" stroke-width="2"/>
+<circle cx="780" cy="88.0" r="3" fill="#61dafb"/>
+<circle cx="792" cy="80" r="4" fill="#f2a33c"/>
+<text x="804" y="84" font-size="11" fill="#cfd3da">genomeDist (peak 0.5150)</text>
+<circle cx="792" cy="96" r="4" fill="#ff7eb6"/>
+<text x="804" y="100" font-size="11" fill="#cfd3da">memeCV (peak 0.5364)</text>
+<circle cx="792" cy="112" r="4" fill="#8a8f98"/>
+<text x="804" y="116" font-size="11" fill="#cfd3da">energyCV (peak 0.6785)</text>
+<circle cx="792" cy="128" r="4" fill="#c678dd"/>
+<text x="804" y="132" font-size="11" fill="#cfd3da">proteomeCV (peak 0.0306)</text>
+<circle cx="792" cy="144" r="4" fill="#61dafb"/>
+<text x="804" y="148" font-size="11" fill="#cfd3da">meanSurprise (peak 0.3876)</text>
+<text x="60" y="327" font-size="13" fill="#e4e6ea" font-weight="bold">survival & learning — alive (bars) vs mean surprise (line)</text>
+<rect x="24.0" y="464.7" width="72.0" height="81.3" fill="#3fa4ff" opacity="0.85"/>
+<text x="104" y="464.712" font-size="11" fill="#cfd3da">9.3</text>
+<text x="60" y="562" font-size="12" text-anchor="middle" fill="#e4e6ea">T0</text>
+<rect x="264.0" y="403.7" width="72.0" height="142.3" fill="#3fa4ff" opacity="0.85"/>
+<text x="344" y="403.712" font-size="11" fill="#cfd3da">16.3</text>
+<text x="300" y="562" font-size="12" text-anchor="middle" fill="#e4e6ea">T1</text>
+<rect x="504.0" y="363.0" width="72.0" height="183.0" fill="#3fa4ff" opacity="0.85"/>
+<text x="584" y="363.012" font-size="11" fill="#cfd3da">21.0</text>
+<text x="540" y="562" font-size="12" text-anchor="middle" fill="#e4e6ea">T2</text>
+<rect x="744.0" y="395.0" width="72.0" height="151.0" fill="#3fa4ff" opacity="0.85"/>
+<text x="824" y="395.012" font-size="11" fill="#cfd3da">17.3</text>
+<text x="780" y="562" font-size="12" text-anchor="middle" fill="#e4e6ea">T3</text>
+<polyline points="60.0,546.0 300.0,546.0 540.0,381.7 780.0,363.0" fill="none" stroke="#61dafb" stroke-width="2"/>
+<circle cx="792" cy="343" r="4" fill="#61dafb"/>
+<text x="804" y="347" font-size="11" fill="#cfd3da">meanSurprise (peak 0.3876)</text>
+  <text x="780" y="550" text-anchor="end" font-size="11" fill="#7d828b">archetype ladder · every tier double-run deterministic: true</text>
+</svg>

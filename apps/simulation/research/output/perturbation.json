@@ -1,0 +1,1905 @@
+{
+  "spec": {
+    "agents": 100,
+    "energy": 100,
+    "noise": 0.1,
+    "cooperation": 0.5,
+    "ticks": 200
+  },
+  "seeds": [
+    "perturb.s1",
+    "perturb.s2",
+    "perturb.s3",
+    "perturb.s4",
+    "perturb.s5"
+  ],
+  "doubleRun": true,
+  "outcomeKeys": [
+    "aliveFrac",
+    "meanEnergy",
+    "energyTotal",
+    "cooperationRate",
+    "donorFrac",
+    "foodCv",
+    "spacing",
+    "spacingCv",
+    "polarization",
+    "memeDominance"
+  ],
+  "summaries": [
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "channel": "closed",
+      "channelEvidence": "the donation rule needs an agent above 75% capacity beside one below 30%; rich agent-samples peaked at 713, needy at 0, and agents average 2.80 neighbours",
+      "metrics": [
+        {
+          "key": "aliveFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "energyTotal",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "cooperationRate",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "donorFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "spacing",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "polarization",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "memeDominance",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        }
+      ],
+      "robust": [],
+      "signFlipped": []
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "channel": "exercised",
+      "channelEvidence": "2000 moving agent-samples",
+      "metrics": [
+        {
+          "key": "aliveFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": -0.24691558572912414,
+          "meanAbsDelta": 0.24691558572912414,
+          "minAbsDelta": 0.14410155198606844,
+          "maxAbsDelta": 0.3632045096391465,
+          "stdDelta": 0.0927020675508207,
+          "signConsistent": true,
+          "consistency": 0.6245596758216858,
+          "moved": true
+        },
+        {
+          "key": "energyTotal",
+          "meanDelta": -24.691558572912434,
+          "meanAbsDelta": 24.691558572912434,
+          "minAbsDelta": 14.410155198607754,
+          "maxAbsDelta": 36.32045096391448,
+          "stdDelta": 9.270206755081556,
+          "signConsistent": true,
+          "consistency": 0.6245596758217069,
+          "moved": true
+        },
+        {
+          "key": "cooperationRate",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "donorFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.000014212195652141268,
+          "meanAbsDelta": 0.000017507122987159286,
+          "minAbsDelta": 0.000006036191671832114,
+          "maxAbsDelta": 0.0000296359519189604,
+          "stdDelta": 0.00001525175565377157,
+          "signConsistent": false,
+          "consistency": 0.12882569769127283,
+          "moved": true
+        },
+        {
+          "key": "spacing",
+          "meanDelta": -0.0033951350828276715,
+          "meanAbsDelta": 0.006927084036037634,
+          "minAbsDelta": 0.0028968828443294292,
+          "maxAbsDelta": 0.00899857717402508,
+          "stdDelta": 0.007221210182730391,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": -0.0010363336129804225,
+          "meanAbsDelta": 0.0017999550567195156,
+          "minAbsDelta": 0.00038880203901214827,
+          "maxAbsDelta": 0.006675991549497384,
+          "stdDelta": 0.0031892967602453453,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "polarization",
+          "meanDelta": -0.000019238689299697075,
+          "meanAbsDelta": 0.00009316895635676781,
+          "minAbsDelta": 0.000004329950802711702,
+          "maxAbsDelta": 0.00024838567789420285,
+          "stdDelta": 0.00015051597221221985,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "memeDominance",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        }
+      ],
+      "robust": [
+        {
+          "key": "energyTotal",
+          "meanDelta": -24.691558572912434,
+          "meanAbsDelta": 24.691558572912434,
+          "minAbsDelta": 14.410155198607754,
+          "maxAbsDelta": 36.32045096391448,
+          "stdDelta": 9.270206755081556,
+          "signConsistent": true,
+          "consistency": 0.6245596758217069,
+          "moved": true
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": -0.24691558572912414,
+          "meanAbsDelta": 0.24691558572912414,
+          "minAbsDelta": 0.14410155198606844,
+          "maxAbsDelta": 0.3632045096391465,
+          "stdDelta": 0.0927020675508207,
+          "signConsistent": true,
+          "consistency": 0.6245596758216858,
+          "moved": true
+        }
+      ],
+      "signFlipped": [
+        {
+          "key": "spacing",
+          "meanDelta": -0.0033951350828276715,
+          "meanAbsDelta": 0.006927084036037634,
+          "minAbsDelta": 0.0028968828443294292,
+          "maxAbsDelta": 0.00899857717402508,
+          "stdDelta": 0.007221210182730391,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": -0.0010363336129804225,
+          "meanAbsDelta": 0.0017999550567195156,
+          "minAbsDelta": 0.00038880203901214827,
+          "maxAbsDelta": 0.006675991549497384,
+          "stdDelta": 0.0031892967602453453,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "polarization",
+          "meanDelta": -0.000019238689299697075,
+          "meanAbsDelta": 0.00009316895635676781,
+          "minAbsDelta": 0.000004329950802711702,
+          "maxAbsDelta": 0.00024838567789420285,
+          "stdDelta": 0.00015051597221221985,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.000014212195652141268,
+          "meanAbsDelta": 0.000017507122987159286,
+          "minAbsDelta": 0.000006036191671832114,
+          "maxAbsDelta": 0.0000296359519189604,
+          "stdDelta": 0.00001525175565377157,
+          "signConsistent": false,
+          "consistency": 0.12882569769127283,
+          "moved": true
+        }
+      ]
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "channel": "exercised",
+      "channelEvidence": "20-20 agents removed per run",
+      "metrics": [
+        {
+          "key": "aliveFrac",
+          "meanDelta": -0.19999999999999996,
+          "meanAbsDelta": 0.19999999999999996,
+          "minAbsDelta": 0.19999999999999996,
+          "maxAbsDelta": 0.19999999999999996,
+          "stdDelta": 0,
+          "signConsistent": true,
+          "consistency": 1,
+          "moved": true
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": -0.2231657556479206,
+          "meanAbsDelta": 0.7227089552728216,
+          "minAbsDelta": 0.13452015193273326,
+          "maxAbsDelta": 2.2301666253691224,
+          "stdDelta": 1.1539938146965736,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "energyTotal",
+          "meanDelta": -1591.1809548884517,
+          "meanAbsDelta": 1591.1809548884517,
+          "minAbsDelta": 1488.2271556953747,
+          "maxAbsDelta": 1721.8340272639525,
+          "stdDelta": 97.60998546831246,
+          "signConsistent": true,
+          "consistency": 0.9386556348802231,
+          "moved": true
+        },
+        {
+          "key": "cooperationRate",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "donorFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.00013888539009887513,
+          "meanAbsDelta": 0.00013888539009887513,
+          "minAbsDelta": 0.00009680008748735869,
+          "maxAbsDelta": 0.000172635038427571,
+          "stdDelta": 0.00003598007690647104,
+          "signConsistent": true,
+          "consistency": 0.740936920140728,
+          "moved": true
+        },
+        {
+          "key": "spacing",
+          "meanDelta": 0.38559610206043926,
+          "meanAbsDelta": 0.38559610206043926,
+          "minAbsDelta": 0.15710983026888847,
+          "maxAbsDelta": 0.6254111612409203,
+          "stdDelta": 0.1705820225412026,
+          "signConsistent": true,
+          "consistency": 0.5576147641802012,
+          "moved": true
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": 0.013606675635098098,
+          "meanAbsDelta": 0.03226957577364444,
+          "minAbsDelta": 0.007378122155962175,
+          "maxAbsDelta": 0.0846176994014215,
+          "stdDelta": 0.045567120757665044,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "polarization",
+          "meanDelta": -0.0026632814240281936,
+          "meanAbsDelta": 0.0026632814240281936,
+          "minAbsDelta": 0.002564525938063403,
+          "maxAbsDelta": 0.0028547148422189833,
+          "stdDelta": 0.0001273432708966415,
+          "signConsistent": true,
+          "consistency": 0.9521855746269443,
+          "moved": true
+        },
+        {
+          "key": "memeDominance",
+          "meanDelta": 0.010499999999999999,
+          "meanAbsDelta": 0.010499999999999999,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0.015,
+          "stdDelta": 0.005968668193156661,
+          "signConsistent": false,
+          "consistency": 0.4315554101755561,
+          "moved": true
+        }
+      ],
+      "robust": [
+        {
+          "key": "energyTotal",
+          "meanDelta": -1591.1809548884517,
+          "meanAbsDelta": 1591.1809548884517,
+          "minAbsDelta": 1488.2271556953747,
+          "maxAbsDelta": 1721.8340272639525,
+          "stdDelta": 97.60998546831246,
+          "signConsistent": true,
+          "consistency": 0.9386556348802231,
+          "moved": true
+        },
+        {
+          "key": "spacing",
+          "meanDelta": 0.38559610206043926,
+          "meanAbsDelta": 0.38559610206043926,
+          "minAbsDelta": 0.15710983026888847,
+          "maxAbsDelta": 0.6254111612409203,
+          "stdDelta": 0.1705820225412026,
+          "signConsistent": true,
+          "consistency": 0.5576147641802012,
+          "moved": true
+        },
+        {
+          "key": "aliveFrac",
+          "meanDelta": -0.19999999999999996,
+          "meanAbsDelta": 0.19999999999999996,
+          "minAbsDelta": 0.19999999999999996,
+          "maxAbsDelta": 0.19999999999999996,
+          "stdDelta": 0,
+          "signConsistent": true,
+          "consistency": 1,
+          "moved": true
+        },
+        {
+          "key": "polarization",
+          "meanDelta": -0.0026632814240281936,
+          "meanAbsDelta": 0.0026632814240281936,
+          "minAbsDelta": 0.002564525938063403,
+          "maxAbsDelta": 0.0028547148422189833,
+          "stdDelta": 0.0001273432708966415,
+          "signConsistent": true,
+          "consistency": 0.9521855746269443,
+          "moved": true
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.00013888539009887513,
+          "meanAbsDelta": 0.00013888539009887513,
+          "minAbsDelta": 0.00009680008748735869,
+          "maxAbsDelta": 0.000172635038427571,
+          "stdDelta": 0.00003598007690647104,
+          "signConsistent": true,
+          "consistency": 0.740936920140728,
+          "moved": true
+        }
+      ],
+      "signFlipped": [
+        {
+          "key": "meanEnergy",
+          "meanDelta": -0.2231657556479206,
+          "meanAbsDelta": 0.7227089552728216,
+          "minAbsDelta": 0.13452015193273326,
+          "maxAbsDelta": 2.2301666253691224,
+          "stdDelta": 1.1539938146965736,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": 0.013606675635098098,
+          "meanAbsDelta": 0.03226957577364444,
+          "minAbsDelta": 0.007378122155962175,
+          "maxAbsDelta": 0.0846176994014215,
+          "stdDelta": 0.045567120757665044,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": true
+        },
+        {
+          "key": "memeDominance",
+          "meanDelta": 0.010499999999999999,
+          "meanAbsDelta": 0.010499999999999999,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0.015,
+          "stdDelta": 0.005968668193156661,
+          "signConsistent": false,
+          "consistency": 0.4315554101755561,
+          "moved": true
+        }
+      ]
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "channel": "exercised",
+      "channelEvidence": "signal deposited, max 133.85",
+      "metrics": [
+        {
+          "key": "aliveFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": 0.526357444443778,
+          "meanAbsDelta": 0.526357444443778,
+          "minAbsDelta": 0.48240466591880704,
+          "maxAbsDelta": 0.58906082133214,
+          "stdDelta": 0.041103959110313046,
+          "signConsistent": true,
+          "consistency": 0.9219086581861701,
+          "moved": true
+        },
+        {
+          "key": "energyTotal",
+          "meanDelta": 52.63574444437781,
+          "meanAbsDelta": 52.63574444437781,
+          "minAbsDelta": 48.24046659188025,
+          "maxAbsDelta": 58.90608213321411,
+          "stdDelta": 4.1103959110314205,
+          "signConsistent": true,
+          "consistency": 0.921908658186168,
+          "moved": true
+        },
+        {
+          "key": "cooperationRate",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "donorFrac",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.0000036363704331465742,
+          "meanAbsDelta": 0.0000036363704331465742,
+          "minAbsDelta": 0.000002263291229209763,
+          "maxAbsDelta": 0.000005048200827473259,
+          "stdDelta": 0.000001225307268126777,
+          "signConsistent": true,
+          "consistency": 0.6630411310801163,
+          "moved": true
+        },
+        {
+          "key": "spacing",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "spacingCv",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "polarization",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        },
+        {
+          "key": "memeDominance",
+          "meanDelta": 0,
+          "meanAbsDelta": 0,
+          "minAbsDelta": 0,
+          "maxAbsDelta": 0,
+          "stdDelta": 0,
+          "signConsistent": false,
+          "consistency": 0,
+          "moved": false
+        }
+      ],
+      "robust": [
+        {
+          "key": "energyTotal",
+          "meanDelta": 52.63574444437781,
+          "meanAbsDelta": 52.63574444437781,
+          "minAbsDelta": 48.24046659188025,
+          "maxAbsDelta": 58.90608213321411,
+          "stdDelta": 4.1103959110314205,
+          "signConsistent": true,
+          "consistency": 0.921908658186168,
+          "moved": true
+        },
+        {
+          "key": "meanEnergy",
+          "meanDelta": 0.526357444443778,
+          "meanAbsDelta": 0.526357444443778,
+          "minAbsDelta": 0.48240466591880704,
+          "maxAbsDelta": 0.58906082133214,
+          "stdDelta": 0.041103959110313046,
+          "signConsistent": true,
+          "consistency": 0.9219086581861701,
+          "moved": true
+        },
+        {
+          "key": "foodCv",
+          "meanDelta": -0.0000036363704331465742,
+          "meanAbsDelta": 0.0000036363704331465742,
+          "minAbsDelta": 0.000002263291229209763,
+          "maxAbsDelta": 0.000005048200827473259,
+          "stdDelta": 0.000001225307268126777,
+          "signConsistent": true,
+          "consistency": 0.6630411310801163,
+          "moved": true
+        }
+      ],
+      "signFlipped": []
+    }
+  ],
+  "deltas": [
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "seed": "perturb.s1",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.28891623731934,
+        "energyTotal": 7528.891623731934,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880127312237886,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.28891623731934,
+        "energyTotal": 7528.891623731934,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880127312237886,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 345,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83573820668298,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 533,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83573820668298,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0,
+        "energyTotal": 0,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|75.288916|7528.891624|0.000000|0.000000|0.688013|2.822508|0.542839|0.072548|0.100000->1.000000|75.288916|7528.891624|0.000000|0.000000|0.688013|2.822508|0.542839|0.072548|0.100000"
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "seed": "perturb.s1",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.28891623731934,
+        "energyTotal": 7528.891623731934,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880127312237886,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 74.96507057152128,
+        "energyTotal": 7496.507057152128,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6879926784662633,
+        "spacing": 2.813648988843287,
+        "spacingCv": 0.5435324587959063,
+        "polarization": 0.07255195353196953,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 529,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83308326156407,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 533,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83573820668298,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": -0.3238456657980606,
+        "energyTotal": -32.38456657980532,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.00002005275752525737,
+        "spacing": -0.0088586776695192,
+        "spacingCv": 0.0006938747580832461,
+        "polarization": 0.000004329950802711702,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|75.288916|7528.891624|0.000000|0.000000|0.688013|2.822508|0.542839|0.072548|0.100000->1.000000|74.965071|7496.507057|0.000000|0.000000|0.687993|2.813649|0.543532|0.072552|0.100000"
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "seed": "perturb.s1",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.28891623731934,
+        "energyTotal": 7528.891623731934,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880127312237886,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 0.8,
+        "meanEnergy": 75.50830585045699,
+        "energyTotal": 6040.664468036559,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.687840096185361,
+        "spacing": 2.9796174967816946,
+        "spacingCv": 0.6274562834392445,
+        "polarization": 0.06997353767745354,
+        "memeDominance": 0.1125
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 450,
+        "poorAgentTicks": 0,
+        "signalDeposited": 107.22415295407544,
+        "noiseAgentTicks": 1800,
+        "donations": 0,
+        "culled": 20
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 533,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83573820668298,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": -0.19999999999999996,
+        "meanEnergy": 0.21938961313765049,
+        "energyTotal": -1488.2271556953747,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000172635038427571,
+        "spacing": 0.15710983026888847,
+        "spacingCv": 0.0846176994014215,
+        "polarization": -0.0025740859037132746,
+        "memeDominance": 0.012499999999999997
+      },
+      "fingerprint": "1.000000|75.288916|7528.891624|0.000000|0.000000|0.688013|2.822508|0.542839|0.072548|0.100000->0.800000|75.508306|6040.664468|0.000000|0.000000|0.687840|2.979617|0.627456|0.069974|0.112500"
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "seed": "perturb.s1",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.28891623731934,
+        "energyTotal": 7528.891623731934,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880127312237886,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 75.87797705865148,
+        "energyTotal": 7587.797705865148,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6880097545255152,
+        "spacing": 2.822507666512806,
+        "spacingCv": 0.542838584037823,
+        "polarization": 0.07254762358116681,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 548,
+        "poorAgentTicks": 0,
+        "signalDeposited": 0,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 533,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83573820668298,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0.58906082133214,
+        "energyTotal": 58.90608213321411,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.0000029766982734269476,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|75.288916|7528.891624|0.000000|0.000000|0.688013|2.822508|0.542839|0.072548|0.100000->1.000000|75.877977|7587.797706|0.000000|0.000000|0.688010|2.822508|0.542839|0.072548|0.100000"
+    },
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "seed": "perturb.s2",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.1710348617211,
+        "energyTotal": 7717.10348617211,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940879933514139,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.1710348617211,
+        "energyTotal": 7717.10348617211,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940879933514139,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "channel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 427,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83528426975863,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 598,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83528426975863,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0,
+        "energyTotal": 0,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.171035|7717.103486|0.000000|0.000000|0.694088|2.937719|0.514680|0.072548|0.110000->1.000000|77.171035|7717.103486|0.000000|0.000000|0.694088|2.937719|0.514680|0.072548|0.110000"
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "seed": "perturb.s2",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.1710348617211,
+        "energyTotal": 7717.10348617211,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940879933514139,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 76.80783035208195,
+        "energyTotal": 7680.7830352081955,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940644199559317,
+        "spacing": 2.9287207710804695,
+        "spacingCv": 0.5142650075316283,
+        "polarization": 0.07255628674097327,
+        "memeDominance": 0.11
+      },
+      "channel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 594,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83250982375327,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 598,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83528426975863,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": -0.3632045096391465,
+        "energyTotal": -36.32045096391448,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000023573395482201498,
+        "spacing": -0.00899857717402508,
+        "spacingCv": -0.0004147301247524604,
+        "polarization": 0.000008387059264272634,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.171035|7717.103486|0.000000|0.000000|0.694088|2.937719|0.514680|0.072548|0.110000->1.000000|76.807830|7680.783035|0.000000|0.000000|0.694064|2.928721|0.514265|0.072556|0.110000"
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "seed": "perturb.s2",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.1710348617211,
+        "energyTotal": 7717.10348617211,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940879933514139,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "perturbed": {
+        "aliveFrac": 0.8,
+        "meanEnergy": 74.94086823635197,
+        "energyTotal": 5995.2694589081575,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6939850131707143,
+        "spacing": 3.2583458227831437,
+        "spacingCv": 0.5264355084720349,
+        "polarization": 0.06995882990768652,
+        "memeDominance": 0.125
+      },
+      "channel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 474,
+        "poorAgentTicks": 0,
+        "signalDeposited": 107.21893064131999,
+        "noiseAgentTicks": 1800,
+        "donations": 0,
+        "culled": 20
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 598,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83528426975863,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": -0.19999999999999996,
+        "meanEnergy": -2.2301666253691224,
+        "energyTotal": -1721.8340272639525,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.0001029801806996522,
+        "spacing": 0.3206264745286491,
+        "spacingCv": 0.011755770815654154,
+        "polarization": -0.0025890697740224705,
+        "memeDominance": 0.015
+      },
+      "fingerprint": "1.000000|77.171035|7717.103486|0.000000|0.000000|0.694088|2.937719|0.514680|0.072548|0.110000->0.800000|74.940868|5995.269459|0.000000|0.000000|0.693985|3.258346|0.526436|0.069959|0.125000"
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "seed": "perturb.s2",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.1710348617211,
+        "energyTotal": 7717.10348617211,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940879933514139,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.67975523913809,
+        "energyTotal": 7767.975523913809,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6940857300601847,
+        "spacing": 2.9377193482544945,
+        "spacingCv": 0.5146797376563808,
+        "polarization": 0.072547899681709,
+        "memeDominance": 0.11
+      },
+      "channel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 610,
+        "poorAgentTicks": 0,
+        "signalDeposited": 0,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2,
+        "richAgentTicks": 598,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.83528426975863,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0.5087203774169922,
+        "energyTotal": 50.87203774169939,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000002263291229209763,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.171035|7717.103486|0.000000|0.000000|0.694088|2.937719|0.514680|0.072548|0.110000->1.000000|77.679755|7767.975524|0.000000|0.000000|0.694086|2.937719|0.514680|0.072548|0.110000"
+    },
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "seed": "perturb.s3",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.42696262962374,
+        "energyTotal": 7742.696262962375,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6990026728432944,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.42696262962374,
+        "energyTotal": 7742.696262962375,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6990026728432944,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 410,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82997502508948,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 625,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82997502508948,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0,
+        "energyTotal": 0,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.426963|7742.696263|0.000000|0.000000|0.699003|2.720782|0.479739|0.073133|0.100000->1.000000|77.426963|7742.696263|0.000000|0.000000|0.699003|2.720782|0.479739|0.073133|0.100000"
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "seed": "perturb.s3",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.42696262962374,
+        "energyTotal": 7742.696262962375,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6990026728432944,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.28286107763768,
+        "energyTotal": 7728.286107763767,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.699010910161632,
+        "spacing": 2.723678908148679,
+        "spacingCv": 0.4805657667674793,
+        "polarization": 0.07330535837359305,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 618,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82685503375617,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 625,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82997502508948,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": -0.14410155198606844,
+        "energyTotal": -14.410155198607754,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.000008237318337545041,
+        "spacing": 0.0028968828443294292,
+        "spacingCv": 0.0008263768122523385,
+        "polarization": 0.0001721086575756925,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.426963|7742.696263|0.000000|0.000000|0.699003|2.720782|0.479739|0.073133|0.100000->1.000000|77.282861|7728.286108|0.000000|0.000000|0.699011|2.723679|0.480566|0.073305|0.100000"
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "seed": "perturb.s3",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.42696262962374,
+        "energyTotal": 7742.696262962375,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6990026728432944,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 0.8,
+        "meanEnergy": 77.88670391143724,
+        "energyTotal": 6230.936312914979,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6989058727558071,
+        "spacing": 3.11066031011812,
+        "spacingCv": 0.49805654826000767,
+        "polarization": 0.07027853487379837,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 530,
+        "poorAgentTicks": 0,
+        "signalDeposited": 107.22256777729538,
+        "noiseAgentTicks": 1800,
+        "donations": 0,
+        "culled": 20
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 625,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82997502508948,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": -0.19999999999999996,
+        "meanEnergy": 0.4597412818134927,
+        "energyTotal": -1511.7599500473962,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.00009680008748735869,
+        "spacing": 0.3898782848137703,
+        "spacingCv": 0.0183171583047807,
+        "polarization": -0.0028547148422189833,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.426963|7742.696263|0.000000|0.000000|0.699003|2.720782|0.479739|0.073133|0.100000->0.800000|77.886704|6230.936313|0.000000|0.000000|0.698906|3.110660|0.498057|0.070279|0.100000"
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "seed": "perturb.s3",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.42696262962374,
+        "energyTotal": 7742.696262962375,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6990026728432944,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 77.96983514918418,
+        "energyTotal": 7796.983514918418,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6989995917378699,
+        "spacing": 2.7207820253043495,
+        "spacingCv": 0.47973938995522697,
+        "polarization": 0.07313324971601735,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 633,
+        "poorAgentTicks": 0,
+        "signalDeposited": 0,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 625,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.82997502508948,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0.5428725195604329,
+        "energyTotal": 54.28725195604329,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000003081105424573849,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|77.426963|7742.696263|0.000000|0.000000|0.699003|2.720782|0.479739|0.073133|0.100000->1.000000|77.969835|7796.983515|0.000000|0.000000|0.699000|2.720782|0.479739|0.073133|0.100000"
+    },
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "seed": "perturb.s4",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.1834562652318,
+        "energyTotal": 8218.34562652318,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919423503598012,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.1834562652318,
+        "energyTotal": 8218.34562652318,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919423503598012,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 484,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84581424240451,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 713,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84581424240451,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0,
+        "energyTotal": 0,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|82.183456|8218.345627|0.000000|0.000000|0.691942|2.800993|0.494010|0.072397|0.100000->1.000000|82.183456|8218.345627|0.000000|0.000000|0.691942|2.800993|0.494010|0.072397|0.100000"
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "seed": "perturb.s4",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.1834562652318,
+        "energyTotal": 8218.34562652318,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919423503598012,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.9934923648706,
+        "energyTotal": 8199.34923648706,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919363141681294,
+        "spacing": 2.806925958328456,
+        "spacingCv": 0.4873338003534794,
+        "polarization": 0.07214811779728397,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 710,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84391396053587,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 713,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84581424240451,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": -0.18996390036119237,
+        "energyTotal": -18.99639003611992,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000006036191671832114,
+        "spacing": 0.005932989538695477,
+        "spacingCv": -0.006675991549497384,
+        "polarization": -0.00024838567789420285,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|82.183456|8218.345627|0.000000|0.000000|0.691942|2.800993|0.494010|0.072397|0.100000->1.000000|81.993492|8199.349236|0.000000|0.000000|0.691936|2.806926|0.487334|0.072148|0.100000"
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "seed": "perturb.s4",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.1834562652318,
+        "energyTotal": 8218.34562652318,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919423503598012,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 0.8,
+        "meanEnergy": 82.04893611329906,
+        "energyTotal": 6563.914889063925,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.691780997257787,
+        "spacing": 3.2359477282397284,
+        "spacingCv": 0.4866316697470146,
+        "polarization": 0.06966249281305534,
+        "memeDominance": 0.1125
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 595,
+        "poorAgentTicks": 0,
+        "signalDeposited": 107.23156386392769,
+        "noiseAgentTicks": 1800,
+        "donations": 0,
+        "culled": 20
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 713,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84581424240451,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": -0.19999999999999996,
+        "meanEnergy": -0.13452015193273326,
+        "energyTotal": -1654.4307374592545,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.00016135310201426112,
+        "spacing": 0.4349547594499681,
+        "spacingCv": -0.007378122155962175,
+        "polarization": -0.0027340106621228377,
+        "memeDominance": 0.012499999999999997
+      },
+      "fingerprint": "1.000000|82.183456|8218.345627|0.000000|0.000000|0.691942|2.800993|0.494010|0.072397|0.100000->0.800000|82.048936|6563.914889|0.000000|0.000000|0.691781|3.235948|0.486632|0.069662|0.112500"
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "seed": "perturb.s4",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.1834562652318,
+        "energyTotal": 8218.34562652318,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919423503598012,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 82.6658609311506,
+        "energyTotal": 8266.58609311506,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6919373021589738,
+        "spacing": 2.8009929687897603,
+        "spacingCv": 0.4940097919029768,
+        "polarization": 0.07239650347517818,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 731,
+        "poorAgentTicks": 0,
+        "signalDeposited": 0,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 1,
+        "richAgentTicks": 713,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.84581424240451,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0.48240466591880704,
+        "energyTotal": 48.24046659188025,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.000005048200827473259,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|82.183456|8218.345627|0.000000|0.000000|0.691942|2.800993|0.494010|0.072397|0.100000->1.000000|82.665861|8266.586093|0.000000|0.000000|0.691937|2.800993|0.494010|0.072397|0.100000"
+    },
+    {
+      "perturbation": "no-cooperation",
+      "axis": "cooperation gene 0.5 -> 0",
+      "seed": "perturb.s5",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.26155361525846,
+        "energyTotal": 8126.155361525846,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761747589136042,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.26155361525846,
+        "energyTotal": 8126.155361525846,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761747589136042,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 431,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.85222034571706,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 649,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.85222034571706,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0,
+        "energyTotal": 0,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|81.261554|8126.155362|0.000000|0.000000|0.676175|2.783135|0.590804|0.072510|0.100000->1.000000|81.261554|8126.155362|0.000000|0.000000|0.676175|2.783135|0.590804|0.072510|0.100000"
+    },
+    {
+      "perturbation": "noise-x2",
+      "axis": "pattern-drive noise 0.1 -> 0.2",
+      "seed": "perturb.s5",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.26155361525846,
+        "energyTotal": 8126.155361525846,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761747589136042,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.04809131439731,
+        "energyTotal": 8104.809131439732,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761451229616853,
+        "spacing": 2.775186474511806,
+        "spacingCv": 0.591192435045693,
+        "polarization": 0.07247773846150649,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 2.25,
+        "richAgentTicks": 647,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.8504968375554,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 649,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.85222034571706,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": -0.2134623008611527,
+        "energyTotal": -21.3462300861147,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.0000296359519189604,
+        "spacing": -0.007948292953618985,
+        "spacingCv": 0.00038880203901214827,
+        "polarization": -0.00003263343624695936,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|81.261554|8126.155362|0.000000|0.000000|0.676175|2.783135|0.590804|0.072510|0.100000->1.000000|81.048091|8104.809131|0.000000|0.000000|0.676145|2.775186|0.591192|0.072478|0.100000"
+    },
+    {
+      "perturbation": "cull-20pct",
+      "axis": "20% of live agents killed at the run midpoint",
+      "seed": "perturb.s5",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.26155361525846,
+        "energyTotal": 8126.155361525846,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761747589136042,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 0.8,
+        "meanEnergy": 81.83128071936957,
+        "energyTotal": 6546.502457549565,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6760141003717387,
+        "spacing": 3.4085459287063453,
+        "spacingCv": 0.5515245048162771,
+        "polarization": 0.06994584595969004,
+        "memeDominance": 0.1125
+      },
+      "channel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 562,
+        "poorAgentTicks": 0,
+        "signalDeposited": 107.24113661246201,
+        "noiseAgentTicks": 1800,
+        "donations": 0,
+        "culled": 20
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 649,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.85222034571706,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": -0.19999999999999996,
+        "meanEnergy": 0.5697271041111094,
+        "energyTotal": -1579.6529039762809,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.00016065854186553263,
+        "spacing": 0.6254111612409203,
+        "spacingCv": -0.03927912819040369,
+        "polarization": -0.002564525938063403,
+        "memeDominance": 0.012499999999999997
+      },
+      "fingerprint": "1.000000|81.261554|8126.155362|0.000000|0.000000|0.676175|2.783135|0.590804|0.072510|0.100000->0.800000|81.831281|6546.502458|0.000000|0.000000|0.676014|3.408546|0.551525|0.069946|0.112500"
+    },
+    {
+      "perturbation": "no-communication",
+      "axis": "signal emission off",
+      "seed": "perturb.s5",
+      "baseline": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.26155361525846,
+        "energyTotal": 8126.155361525846,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761747589136042,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "perturbed": {
+        "aliveFrac": 1,
+        "meanEnergy": 81.77028245324898,
+        "energyTotal": 8177.028245324898,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": 0.6761699463571932,
+        "spacing": 2.783134767465425,
+        "spacingCv": 0.5908036330066808,
+        "polarization": 0.07251037189775345,
+        "memeDominance": 0.1
+      },
+      "channel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 659,
+        "poorAgentTicks": 0,
+        "signalDeposited": 0,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "baselineChannel": {
+        "neighboursPerAgent": 2.8,
+        "richAgentTicks": 649,
+        "poorAgentTicks": 0,
+        "signalDeposited": 133.85222034571706,
+        "noiseAgentTicks": 2000,
+        "donations": 0,
+        "culled": 0
+      },
+      "delta": {
+        "aliveFrac": 0,
+        "meanEnergy": 0.5087288379905175,
+        "energyTotal": 50.87288379905203,
+        "cooperationRate": 0,
+        "donorFrac": 0,
+        "foodCv": -0.0000048125564110490515,
+        "spacing": 0,
+        "spacingCv": 0,
+        "polarization": 0,
+        "memeDominance": 0
+      },
+      "fingerprint": "1.000000|81.261554|8126.155362|0.000000|0.000000|0.676175|2.783135|0.590804|0.072510|0.100000->1.000000|81.770282|8177.028245|0.000000|0.000000|0.676170|2.783135|0.590804|0.072510|0.100000"
+    }
+  ]
+}

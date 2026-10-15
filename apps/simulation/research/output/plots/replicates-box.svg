@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="640" height="360" fill="#ffffff"/>
+<text x="320" y="22" text-anchor="middle" font-size="15" font-weight="600" fill="#222">Replicate sweep: Δpop per topology (6 seeds × 3 biomes = 18 runs each)</text>
+<line x1="56" x2="624" y1="228.9" y2="228.9" stroke="#e6e6e6"/>
+<text x="50" y="232.9" text-anchor="end" font-size="11" fill="#555">-20</text>
+<line x1="56" x2="624" y1="153.0" y2="153.0" stroke="#e6e6e6"/>
+<text x="50" y="157.0" text-anchor="end" font-size="11" fill="#555">0</text>
+<line x1="56" x2="624" y1="77.2" y2="77.2" stroke="#e6e6e6"/>
+<text x="50" y="81.2" text-anchor="end" font-size="11" fill="#555">20</text>
+<line x1="56" x2="624" y1="153.0" y2="153.0" stroke="#888" stroke-width="1.2"/>
+<line x1="56" x2="56" y1="40" y2="304" stroke="#444"/>
+<line x1="56" x2="624" y1="304" y2="304" stroke="#444"/>
+<text x="14" y="172" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 172)">Δpop per replicate</text>
+<line x1="112.8" x2="112.8" y1="274.4" y2="274.4" stroke="#555" stroke-width="1.4"/>
+<line x1="112.8" x2="112.8" y1="233.6" y2="191.0" stroke="#555" stroke-width="1.4"/>
+<line x1="95.8" x2="129.8" y1="274.4" y2="274.4" stroke="#555" stroke-width="1.4"/>
+<line x1="95.8" x2="129.84" y1="191.0" y2="191.0" stroke="#555" stroke-width="1.4"/>
+<rect x="84.4" y="233.6" width="56.8" height="40.8" fill="#4e79a7" opacity="0.85" stroke="#333" stroke-width="1" rx="2"/>
+<line x1="84.4" x2="141.2" y1="259.2" y2="259.2" stroke="#222" stroke-width="2"/>
+<text x="112.8" y="320" text-anchor="middle" font-size="12" fill="#333">torus</text>
+<circle cx="112.8" cy="122.7" r="2.6" fill="none" stroke="#c33"/>
+<circle cx="112.8" cy="65.8" r="2.6" fill="none" stroke="#c33"/>
+<text x="112.8" y="185.0" text-anchor="middle" font-size="10" fill="#666">n=18</text>
+<line x1="226.4" x2="226.4" y1="285.8" y2="269.7" stroke="#555" stroke-width="1.4"/>
+<line x1="226.4" x2="226.4" y1="200.4" y2="118.9" stroke="#555" stroke-width="1.4"/>
+<line x1="209.4" x2="243.4" y1="285.8" y2="285.8" stroke="#555" stroke-width="1.4"/>
+<line x1="209.4" x2="243.43999999999997" y1="118.9" y2="118.9" stroke="#555" stroke-width="1.4"/>
+<rect x="198.0" y="200.4" width="56.8" height="69.2" fill="#f28e2b" opacity="0.85" stroke="#333" stroke-width="1" rx="2"/>
+<line x1="198.0" x2="254.8" y1="257.3" y2="257.3" stroke="#222" stroke-width="2"/>
+<text x="226.4" y="320" text-anchor="middle" font-size="12" fill="#333">cylinder</text>
+<circle cx="226.4" cy="58.2" r="2.6" fill="none" stroke="#c33"/>
+<text x="226.4" y="112.9" text-anchor="middle" font-size="10" fill="#666">n=18</text>
+<line x1="340.0" x2="340.0" y1="285.8" y2="269.7" stroke="#555" stroke-width="1.4"/>
+<line x1="340.0" x2="340.0" y1="200.4" y2="118.9" stroke="#555" stroke-width="1.4"/>
+<line x1="323.0" x2="357.0" y1="285.8" y2="285.8" stroke="#555" stroke-width="1.4"/>
+<line x1="323.0" x2="357.04" y1="118.9" y2="118.9" stroke="#555" stroke-width="1.4"/>
+<rect x="311.6" y="200.4" width="56.8" height="69.2" fill="#59a14f" opacity="0.85" stroke="#333" stroke-width="1" rx="2"/>
+<line x1="311.6" x2="368.4" y1="257.3" y2="257.3" stroke="#222" stroke-width="2"/>
+<text x="340.0" y="320" text-anchor="middle" font-size="12" fill="#333">sphere</text>
+<circle cx="340.0" cy="58.2" r="2.6" fill="none" stroke="#c33"/>
+<text x="340.0" y="112.9" text-anchor="middle" font-size="10" fill="#666">n=18</text>
+<line x1="453.6" x2="453.6" y1="282.0" y2="269.7" stroke="#555" stroke-width="1.4"/>
+<line x1="453.6" x2="453.6" y1="215.6" y2="179.6" stroke="#555" stroke-width="1.4"/>
+<line x1="436.6" x2="470.6" y1="282.0" y2="282.0" stroke="#555" stroke-width="1.4"/>
+<line x1="436.6" x2="470.64" y1="179.6" y2="179.6" stroke="#555" stroke-width="1.4"/>
+<rect x="425.2" y="215.6" width="56.8" height="54.1" fill="#e15759" opacity="0.85" stroke="#333" stroke-width="1" rx="2"/>
+<line x1="425.2" x2="482.0" y1="257.3" y2="257.3" stroke="#222" stroke-width="2"/>
+<text x="453.6" y="320" text-anchor="middle" font-size="12" fill="#333">mobius</text>
+<circle cx="453.6" cy="88.6" r="2.6" fill="none" stroke="#c33"/>
+<text x="453.6" y="173.6" text-anchor="middle" font-size="10" fill="#666">n=18</text>
+<line x1="567.2" x2="567.2" y1="278.2" y2="276.3" stroke="#555" stroke-width="1.4"/>
+<line x1="567.2" x2="567.2" y1="229.8" y2="168.2" stroke="#555" stroke-width="1.4"/>
+<line x1="550.2" x2="584.2" y1="278.2" y2="278.2" stroke="#555" stroke-width="1.4"/>
+<line x1="550.2" x2="584.24" y1="168.2" y2="168.2" stroke="#555" stroke-width="1.4"/>
+<rect x="538.8" y="229.8" width="56.8" height="46.5" fill="#b07aa1" opacity="0.85" stroke="#333" stroke-width="1" rx="2"/>
+<line x1="538.8" x2="595.6" y1="257.3" y2="257.3" stroke="#222" stroke-width="2"/>
+<text x="567.2" y="320" text-anchor="middle" font-size="12" fill="#333">kleinBottle</text>
+<circle cx="567.2" cy="134.1" r="2.6" fill="none" stroke="#c33"/>
+<circle cx="567.2" cy="88.6" r="2.6" fill="none" stroke="#c33"/>
+<text x="567.2" y="162.2" text-anchor="middle" font-size="10" fill="#666">n=18</text>
+</svg>

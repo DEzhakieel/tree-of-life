@@ -1,0 +1,1147 @@
+{
+  "generatedAt": "2026-10-15T12:50:02.150Z",
+  "repo": "fractallife2",
+  "studies": [
+    {
+      "id": "verification",
+      "title": "Verification (implementation ≈ mathematics, per-key declared tolerance)",
+      "summary": "analytic checks: 16/16 within the model-declared tolerance (strict, per-key)",
+      "checks": [
+        {
+          "module": "verification",
+          "key": "A-alpha",
+          "label": "A alpha |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0.001503,
+          "threshold": "range ±0.020000000000000018 (tol=0.02)",
+          "detail": "obs=1.001503 ref=1 absErr=1.50e-3 ci=[0.99337,1.00664] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "A-dRelErr",
+          "label": "A dRelErr |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0.022911,
+          "threshold": "lte≤0.03 (tol=0.03)",
+          "detail": "obs=0.022911 ref=0 absErr=2.29e-2 ci=[0.01266,0.03444] ciCoversRef=false"
+        },
+        {
+          "module": "verification",
+          "key": "C-gliderShiftX",
+          "label": "C gliderShiftX |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=10.000000 ref=10 absErr=0.00e+0 ci=[10.00000,10.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "C-blinkerPeriod",
+          "label": "C blinkerPeriod |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=2.000000 ref=2 absErr=0.00e+0 ci=[2.00000,2.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "C-blockPeriod",
+          "label": "C blockPeriod |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=1.000000 ref=1 absErr=0.00e+0 ci=[1.00000,1.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "C-pulsarPeriod",
+          "label": "C pulsarPeriod |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=3.000000 ref=3 absErr=0.00e+0 ci=[3.00000,3.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "C-gunPeriod",
+          "label": "C gunPeriod |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=30.000000 ref=30 absErr=0.00e+0 ci=[30.00000,30.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "C-gunDeltaSpread",
+          "label": "C gunDeltaSpread |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=0.000000 ref=0 absErr=0.00e+0 ci=[0.00000,0.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "D-periodRelErr",
+          "label": "D periodRelErr |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0.000212,
+          "threshold": "lte≤0.02 (tol=0.02)",
+          "detail": "obs=0.000212 ref=0 absErr=2.12e-4 ci=[0.00012,0.00034] ciCoversRef=false"
+        },
+        {
+          "module": "verification",
+          "key": "D-phaseLagNorm",
+          "label": "D phaseLagNorm |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0.020377,
+          "threshold": "range ±0.04999999999999999 (tol=0.05)",
+          "detail": "obs=0.244906 ref=0.25 absErr=5.09e-3 ci=[0.24352,0.24610] ciCoversRef=false"
+        },
+        {
+          "module": "verification",
+          "key": "D-invariantDriftPerPeriod",
+          "label": "D invariantDriftPerPeriod |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "lte≤0.005 (tol=0.005)",
+          "detail": "obs=0.000000 ref=0 absErr=4.83e-18 ci=[0.00000,0.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "E-relL2",
+          "label": "E relL2 |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0.000418,
+          "threshold": "lte≤0.001 (tol=0.001)",
+          "detail": "obs=0.000418 ref=0 absErr=4.18e-4 ci=[0.00042,0.00042] ciCoversRef=false"
+        },
+        {
+          "module": "verification",
+          "key": "E-massRelErr",
+          "label": "E massRelErr |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "lte≤0.000001 (tol=0.000001)",
+          "detail": "obs=0.000000 ref=0 absErr=5.55e-15 ci=[0.00000,0.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "E-msdRelErr",
+          "label": "E msdRelErr |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "lte≤0.01 (tol=0.01)",
+          "detail": "obs=0.000000 ref=0 absErr=6.86e-8 ci=[0.00000,0.00000] ciCoversRef=false"
+        },
+        {
+          "module": "verification",
+          "key": "H-winnerCorrect",
+          "label": "H winnerCorrect |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "eqAbs tol=0 (tol=0)",
+          "detail": "obs=1.000000 ref=1 absErr=0.00e+0 ci=[1.00000,1.00000] ciCoversRef=true"
+        },
+        {
+          "module": "verification",
+          "key": "H-loserFrac",
+          "label": "H loserFrac |obs−analytic|",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "lte≤0.05 (tol=0.05)",
+          "detail": "obs=0.000000 ref=0 absErr=0.00e+0 ci=[0.00000,0.00000] ciCoversRef=true"
+        }
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "Validation (model → empirical/known systems)",
+      "summary": "empirical linkage: 10/10 linked; 14/26 known-systems replicated at 1.00 (separately reported)",
+      "checks": [
+        {
+          "module": "validation",
+          "key": "A-emp",
+          "label": "A → random-walk-pearson",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Brownian MSD grows linearly in time with slope 2σ² (Einstein/Pearson 1905)."
+        },
+        {
+          "module": "validation",
+          "key": "B-emp",
+          "label": "B → reynolds-boids",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Three local steering rules (alignment/cohesion/separation) produce a polarised, non-overlapping flock."
+        },
+        {
+          "module": "validation",
+          "key": "C-emp",
+          "label": "C → conway-life",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Life’s canonical oscillator/glider/gun facts: glider +1/+1 per 4 gens, pulsar p3, Gosper gun p30."
+        },
+        {
+          "module": "validation",
+          "key": "D-emp",
+          "label": "D → lotka-volterra",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Neutral predator–prey cycles about (γ/δ, α/β) with period 2π/√(αγ) and a quarter-period phase lag."
+        },
+        {
+          "module": "validation",
+          "key": "E-emp",
+          "label": "E → diffusion-fick",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Explicit FTCS reproduces the analytic Gaussian spread, conserved mass, and ⟨r²⟩ = 4Dt."
+        },
+        {
+          "module": "validation",
+          "key": "F-emp",
+          "label": "F → turing-reaction-diffusion",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "Gray–Scott (0.16, 0.08) at F=0.0545, k=0.062 self-organises spots/labyrinths; F<k relaxes to uniform."
+        },
+        {
+          "module": "validation",
+          "key": "G-emp",
+          "label": "G → spatial-ipd-nowak-may",
+          "outcome": "PASS",
+          "value": 0,
+          "detail": "Spatial lattice enables cooperation to persist for mild temptation b; well-mixed matching drives defection."
+        },
+        {
+          "module": "validation",
+          "key": "H-emp",
+          "label": "H → tilman-chemostat",
+          "outcome": "PASS",
+          "value": 0,
+          "detail": "In a chemostat the species with the lowest break-even resource R* competitively excludes the rival; equal R* yields coexistence."
+        },
+        {
+          "module": "validation",
+          "key": "I-emp",
+          "label": "I → vicsek-coordination",
+          "outcome": "PASS",
+          "value": 0,
+          "detail": "Local alignment generates a polarised flock that can collectively navigate toward a goal."
+        },
+        {
+          "module": "validation",
+          "key": "J-emp",
+          "label": "J → stochastic-search-composite",
+          "outcome": "PASS",
+          "value": 0,
+          "detail": "Coupling agents to an autogenic field generates spatial coherence and measurable agent–field cross-correlation."
+        }
+      ]
+    },
+    {
+      "id": "reproducibility",
+      "title": "Reproducibility (fingerprints + seed cohort)",
+      "summary": "determinism: 10/10 pass (double-run fingerprint gate)",
+      "checks": [
+        {
+          "module": "reproducibility",
+          "key": "A-det",
+          "label": "A determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "B-det",
+          "label": "B determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "C-det",
+          "label": "C determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "D-det",
+          "label": "D determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "E-det",
+          "label": "E determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "F-det",
+          "label": "F determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "G-det",
+          "label": "G determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "H-det",
+          "label": "H determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "I-det",
+          "label": "I determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        },
+        {
+          "module": "reproducibility",
+          "key": "J-det",
+          "label": "J determinism (double-run fingerprint)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "verdict=PASS"
+        }
+      ]
+    },
+    {
+      "id": "sensitivity",
+      "title": "Sensitivity (OAT sweep + Morris elementary-effects screening)",
+      "summary": "sensitivity: 9/9 models respond to ≥1 declared knob (Morris μ* screening + OAT)",
+      "checks": [
+        {
+          "module": "sensitivity",
+          "key": "A-oat-sigma",
+          "label": "A OAT sigma",
+          "outcome": "PASS",
+          "value": 0.000008,
+          "detail": "readout alpha: def=1.0016 [min=1.0015, max=1.0015] rel-span=8.49e-6"
+        },
+        {
+          "module": "sensitivity",
+          "key": "A-oat-stride",
+          "label": "A OAT stride",
+          "outcome": "PASS",
+          "value": 0.001639,
+          "detail": "readout alpha: def=1.0016 [min=1.0015, max=0.9999] rel-span=1.64e-3"
+        },
+        {
+          "module": "sensitivity",
+          "key": "A-morris-sigma",
+          "label": "A Morris sigma",
+          "outcome": "WARN",
+          "value": 0,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout alpha: μ=2.22e-16 μ*=2.22e-16 σ=3.85e-16 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "A-morris-stride",
+          "label": "A Morris stride",
+          "outcome": "PASS",
+          "value": 1.031527,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout alpha: μ=2.78e-2 μ*=1.03e+0 σ=1.55e+0 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "A-morris-walkers",
+          "label": "A Morris walkers",
+          "outcome": "PASS",
+          "value": 1.031527,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout alpha: μ=-2.78e-2 μ*=1.03e+0 σ=1.55e+0 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-oat-wAli",
+          "label": "B OAT wAli",
+          "outcome": "PASS",
+          "value": 0.96151,
+          "detail": "readout phiOn: def=0.9444 [min=0.0363, max=0.9857] rel-span=9.62e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-oat-wCoh",
+          "label": "B OAT wCoh",
+          "outcome": "PASS",
+          "value": 0.926836,
+          "detail": "readout phiOn: def=0.9444 [min=0.9999, max=0.0691] rel-span=9.27e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-morris-wAli",
+          "label": "B Morris wAli",
+          "outcome": "PASS",
+          "value": 1.161664,
+          "threshold": "μ* ≥ 1.94e-6",
+          "detail": "readout phiOn: μ=1.16e+0 μ*=1.16e+0 σ=2.58e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-morris-wCoh",
+          "label": "B Morris wCoh",
+          "outcome": "PASS",
+          "value": 0.452758,
+          "threshold": "μ* ≥ 1.94e-6",
+          "detail": "readout phiOn: μ=-4.38e-1 μ*=4.53e-1 σ=4.71e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-morris-wSep",
+          "label": "B Morris wSep",
+          "outcome": "PASS",
+          "value": 0.130236,
+          "threshold": "μ* ≥ 1.94e-6",
+          "detail": "readout phiOn: μ=1.30e-1 μ*=1.30e-1 σ=2.21e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-morris-sepR",
+          "label": "B Morris sepR",
+          "outcome": "PASS",
+          "value": 0.063594,
+          "threshold": "μ* ≥ 1.94e-6",
+          "detail": "readout phiOn: μ=-4.71e-2 μ*=6.36e-2 σ=1.04e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "B-morris-r",
+          "label": "B Morris r",
+          "outcome": "PASS",
+          "value": 0.066794,
+          "threshold": "μ* ≥ 1.94e-6",
+          "detail": "readout phiOn: μ=6.68e-2 μ*=6.68e-2 σ=1.08e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "D-oat-alpha",
+          "label": "D OAT alpha",
+          "outcome": "PASS",
+          "value": 0.243437,
+          "detail": "readout periodRelErr: def=0.0002 [min=0.0003, max=0.0003] rel-span=2.43e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "D-oat-gamma",
+          "label": "D OAT gamma",
+          "outcome": "PASS",
+          "value": 0.243439,
+          "detail": "readout periodRelErr: def=0.0002 [min=0.0003, max=0.0003] rel-span=2.43e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "D-morris-alpha",
+          "label": "D Morris alpha",
+          "outcome": "PASS",
+          "value": 0.000154,
+          "threshold": "μ* ≥ 1.00e-6",
+          "detail": "readout periodRelErr: μ=-4.09e-5 μ*=1.54e-4 σ=2.25e-4 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "D-morris-gamma",
+          "label": "D Morris gamma",
+          "outcome": "PASS",
+          "value": 0.000154,
+          "threshold": "μ* ≥ 1.00e-6",
+          "detail": "readout periodRelErr: μ=4.09e-5 μ*=1.54e-4 σ=2.25e-4 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "E-oat-D",
+          "label": "E OAT D",
+          "outcome": "PASS",
+          "value": 7.822433,
+          "detail": "readout relL2: def=0.0004 [min=0.0003, max=0.0037] rel-span=7.82e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "E-oat-nx",
+          "label": "E OAT nx",
+          "outcome": "PASS",
+          "value": 6.186615,
+          "detail": "readout relL2: def=0.0004 [min=0.0030, max=0.0001] rel-span=6.19e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "E-morris-D",
+          "label": "E Morris D",
+          "outcome": "PASS",
+          "value": 0.000315,
+          "threshold": "μ* ≥ 1.00e-6",
+          "detail": "readout relL2: μ=3.15e-4 μ*=3.15e-4 σ=2.30e-4 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "E-morris-nx",
+          "label": "E Morris nx",
+          "outcome": "PASS",
+          "value": 0.001044,
+          "threshold": "μ* ≥ 1.00e-6",
+          "detail": "readout relL2: μ=-1.04e-3 μ*=1.04e-3 σ=2.30e-4 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "F-oat-F",
+          "label": "F OAT F",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "readout inOccFrac: def=0.3398 [min=0.0000, max=0.0000] rel-span=1.00e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "F-oat-k",
+          "label": "F OAT k",
+          "outcome": "PASS",
+          "value": 1.942529,
+          "detail": "readout inOccFrac: def=0.3398 [min=1.0000, max=0.0000] rel-span=1.94e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "F-morris-F",
+          "label": "F Morris F",
+          "outcome": "PASS",
+          "value": 0.5,
+          "threshold": "μ* ≥ 1.34e-6",
+          "detail": "readout inOccFrac: μ=5.00e-1 μ*=5.00e-1 σ=8.66e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "F-morris-k",
+          "label": "F Morris k",
+          "outcome": "PASS",
+          "value": 0.5,
+          "threshold": "μ* ≥ 1.34e-6",
+          "detail": "readout inOccFrac: μ=-5.00e-1 μ*=5.00e-1 σ=8.66e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "G-oat-b",
+          "label": "G OAT b",
+          "outcome": "PASS",
+          "value": 0.040441,
+          "detail": "readout coopSpatial: def=0.9340 [min=0.9464, max=0.8962] rel-span=4.04e-2"
+        },
+        {
+          "module": "sensitivity",
+          "key": "G-morris-b",
+          "label": "G Morris b",
+          "outcome": "PASS",
+          "value": 0.028945,
+          "threshold": "μ* ≥ 1.93e-6",
+          "detail": "readout coopSpatial: μ=-2.89e-2 μ*=2.89e-2 σ=8.95e-3 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "H-oat-Ka",
+          "label": "H OAT Ka",
+          "outcome": "WARN",
+          "value": 0,
+          "detail": "readout winnerCorrect: def=1.0000 [min=1.0000, max=1.0000] rel-span=0.00e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "H-oat-Kb",
+          "label": "H OAT Kb",
+          "outcome": "WARN",
+          "value": 0,
+          "detail": "readout winnerCorrect: def=1.0000 [min=1.0000, max=1.0000] rel-span=0.00e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "H-morris-Ka",
+          "label": "H Morris Ka",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout winnerCorrect: μ=-1.00e+0 μ*=1.00e+0 σ=8.66e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "H-morris-Kb",
+          "label": "H Morris Kb",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout winnerCorrect: μ=1.00e+0 μ*=1.00e+0 σ=8.66e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "H-morris-muMax",
+          "label": "H Morris muMax",
+          "outcome": "WARN",
+          "value": 0,
+          "threshold": "μ* ≥ 2.00e-6",
+          "detail": "readout winnerCorrect: μ=0.00e+0 μ*=0.00e+0 σ=0.00e+0 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "I-oat-wAlign",
+          "label": "I OAT wAlign",
+          "outcome": "PASS",
+          "value": 0.663208,
+          "detail": "readout consensus: def=0.9262 [min=0.3119, max=0.9309] rel-span=6.63e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "I-oat-wTarget",
+          "label": "I OAT wTarget",
+          "outcome": "PASS",
+          "value": 0.135282,
+          "detail": "readout consensus: def=0.9262 [min=0.9766, max=0.8009] rel-span=1.35e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "I-morris-wAlign",
+          "label": "I Morris wAlign",
+          "outcome": "PASS",
+          "value": 1.096653,
+          "threshold": "μ* ≥ 1.93e-6",
+          "detail": "readout consensus: μ=1.10e+0 μ*=1.10e+0 σ=3.50e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "I-morris-wTarget",
+          "label": "I Morris wTarget",
+          "outcome": "PASS",
+          "value": 0.269081,
+          "threshold": "μ* ≥ 1.93e-6",
+          "detail": "readout consensus: μ=9.13e-2 μ*=2.69e-1 σ=3.89e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "I-morris-noise",
+          "label": "I Morris noise",
+          "outcome": "PASS",
+          "value": 0.032066,
+          "threshold": "μ* ≥ 1.93e-6",
+          "detail": "readout consensus: μ=-3.13e-2 μ*=3.21e-2 σ=2.94e-2 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-oat-coupling",
+          "label": "J OAT coupling",
+          "outcome": "PASS",
+          "value": 0.754108,
+          "detail": "readout moranCoupled: def=0.3493 [min=0.6127, max=0.1979] rel-span=7.54e-1"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-oat-diffusion",
+          "label": "J OAT diffusion",
+          "outcome": "PASS",
+          "value": 1.002909,
+          "detail": "readout moranCoupled: def=0.3493 [min=-0.0005, max=-0.0010] rel-span=1.00e+0"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-morris-coupling",
+          "label": "J Morris coupling",
+          "outcome": "PASS",
+          "value": 0.091465,
+          "threshold": "μ* ≥ 1.35e-6",
+          "detail": "readout moranCoupled: μ=-6.62e-2 μ*=9.15e-2 σ=1.48e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-morris-diffusion",
+          "label": "J Morris diffusion",
+          "outcome": "PASS",
+          "value": 0.512987,
+          "threshold": "μ* ≥ 1.35e-6",
+          "detail": "readout moranCoupled: μ=1.80e-1 μ*=5.13e-1 σ=5.92e-1 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-morris-decay",
+          "label": "J Morris decay",
+          "outcome": "PASS",
+          "value": 0.040568,
+          "threshold": "μ* ≥ 1.35e-6",
+          "detail": "readout moranCoupled: μ=3.00e-2 μ*=4.06e-2 σ=6.58e-2 (r=3 trajectories)"
+        },
+        {
+          "module": "sensitivity",
+          "key": "J-morris-crowding",
+          "label": "J Morris crowding",
+          "outcome": "PASS",
+          "value": 0.323637,
+          "threshold": "μ* ≥ 1.35e-6",
+          "detail": "readout moranCoupled: μ=3.24e-1 μ*=3.24e-1 σ=1.25e-1 (r=3 trajectories)"
+        }
+      ]
+    },
+    {
+      "id": "ablation",
+      "title": "Ablation (causal/structure removal)",
+      "summary": "ablation: 13 interventions across 7 models",
+      "checks": [
+        {
+          "module": "ablation",
+          "key": "B-abl-align",
+          "label": "B alignment off (wAli = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "B-abl-cohesion",
+          "label": "B cohesion off (wCoh = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "B-abl-separation",
+          "label": "B separation off (wSep = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "B-abl-relax",
+          "label": "B positional relaxation off",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "D-abl-predation",
+          "label": "D predation off (β = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects partial/mixed"
+        },
+        {
+          "module": "ablation",
+          "key": "F-abl-out-of-regime",
+          "label": "F push out of the Turing regime (F=0.02, k=0.05)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "G-abl-lattice",
+          "label": "G remove spatial structure (well-mixed)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects partial/mixed"
+        },
+        {
+          "module": "ablation",
+          "key": "H-abl-symmetric",
+          "label": "H set K_A = K_B (neutral coexistence)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects partial/mixed"
+        },
+        {
+          "module": "ablation",
+          "key": "H-abl-no-limitation",
+          "label": "H remove resource limitation (theoretical boundary)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "I-abl-target",
+          "label": "I remove target bias (wTarget = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "I-abl-align",
+          "label": "I remove alignment (wAlign = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        },
+        {
+          "module": "ablation",
+          "key": "J-abl-coupling",
+          "label": "J uncouple agents from pheromone (coupling = 0)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects partial/mixed"
+        },
+        {
+          "module": "ablation",
+          "key": "J-abl-pheromone",
+          "label": "J remove pheromone dynamics (diffusion=0, decay=1)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "predicted effects matched"
+        }
+      ]
+    },
+    {
+      "id": "significance",
+      "title": "Statistical significance (one-sided t + Holm–Bonferroni + Bayes factors)",
+      "summary": "significance: 8/9 model families supported (Holm FWER 0.05) across 20 directional claims",
+      "checks": [
+        {
+          "module": "significance",
+          "key": "sig-A-dRelErr",
+          "label": "A dRelErr ≤ 0.03",
+          "outcome": "WARN",
+          "value": 0.15572,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0230 sd=0.0136 n=5 t=-1.16 raw p₁=1.56e-1 Holm p=1.56e-1 BF≤1.01"
+        },
+        {
+          "module": "significance",
+          "key": "sig-A-consistency",
+          "label": "A per-seed gate consistency",
+          "outcome": "WARN",
+          "value": 0.8,
+          "threshold": "k/n = 1",
+          "detail": "4/5 seeds clear all gates; exact 95% CI [0.284, 0.995]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-B-phiOn",
+          "label": "B phiOn ≥ 0.8",
+          "outcome": "PASS",
+          "value": 0.00004,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.9444 sd=0.0146 n=5 t=22.05 raw p₁=1.25e-5 Holm p=3.76e-5 BF≤1385.76"
+        },
+        {
+          "module": "significance",
+          "key": "sig-B-phiOff",
+          "label": "B phiOff ≤ 0.15",
+          "outcome": "PASS",
+          "value": 0.00315,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0741 sd=0.0323 n=5 t=-5.25 raw p₁=3.15e-3 Holm p=3.15e-3 BF≤11.54"
+        },
+        {
+          "module": "significance",
+          "key": "sig-B-minDistOn",
+          "label": "B minDistOn ≥ 5.6",
+          "outcome": "PASS",
+          "value": 0.00034,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=6.4667 sd=0.1703 n=5 t=11.38 raw p₁=1.70e-4 Holm p=3.40e-4 BF≤135.37"
+        },
+        {
+          "module": "significance",
+          "key": "sig-B-consistency",
+          "label": "B per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-D-periodRelErr",
+          "label": "D periodRelErr ≤ 0.02",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0002 sd=0.0001 n=5 t=-296.31 raw p₁=3.89e-10 Holm p=3.89e-10 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-D-invariantDriftPerPeriod",
+          "label": "D invariantDriftPerPeriod ≤ 0.005",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0000 sd=0.0000 n=5 t=-1014576819481129.75 raw p₁=2.83e-60 Holm p=5.66e-60 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-D-consistency",
+          "label": "D per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-E-relL2",
+          "label": "E relL2 ≤ 0.001",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0004 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-E-massRelErr",
+          "label": "E massRelErr ≤ 0.000001",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-E-msdRelErr",
+          "label": "E msdRelErr ≤ 0.01",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-E-consistency",
+          "label": "E per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-F-inVVar",
+          "label": "F inVVar ≥ 0.01",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0171 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-F-inBlobs",
+          "label": "F inBlobs ≥ 3",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=9.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-F-outVMax",
+          "label": "F outVMax ≤ 0.05",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0000 sd=0.0000 n=5 t=-4.0524901223323173e+86 raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-F-consistency",
+          "label": "F per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-G-coopSpatial",
+          "label": "G coopSpatial ≥ 0.9",
+          "outcome": "PASS",
+          "value": 0.0001,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.9339 sd=0.0058 n=5 t=13.11 raw p₁=9.79e-5 Holm p=9.79e-5 BF≤220.12"
+        },
+        {
+          "module": "significance",
+          "key": "sig-G-coopWellMixed",
+          "label": "G coopWellMixed ≤ 0.05",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0001 sd=0.0001 n=5 t=-1358.49 raw p₁=8.81e-13 Holm p=1.76e-12 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-G-consistency",
+          "label": "G per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-H-loserFrac",
+          "label": "H loserFrac ≤ 0.05",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-H-consistency",
+          "label": "H per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-I-consensus",
+          "label": "I consensus ≥ 0.8",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.9262 sd=0.0067 n=5 t=41.85 raw p₁=9.74e-7 Holm p=9.74e-7 BF≤14361.45"
+        },
+        {
+          "module": "significance",
+          "key": "sig-I-arrival",
+          "label": "I arrival ≥ 0.9",
+          "outcome": "PASS",
+          "value": 0,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=1.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00"
+        },
+        {
+          "module": "significance",
+          "key": "sig-I-consistency",
+          "label": "I per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        },
+        {
+          "module": "significance",
+          "key": "sig-J-moranCoupled",
+          "label": "J moranCoupled ≥ 0.2",
+          "outcome": "PASS",
+          "value": 0.0012,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.3492 sd=0.0489 n=5 t=6.83 raw p₁=1.20e-3 Holm p=1.20e-3 BF≤25.34"
+        },
+        {
+          "module": "significance",
+          "key": "sig-J-selfOrgGain",
+          "label": "J selfOrgGain ≥ 0.05",
+          "outcome": "PASS",
+          "value": 0.00019,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.3490 sd=0.0458 n=5 t=14.59 raw p₁=6.42e-5 Holm p=1.93e-4 BF≤319.54"
+        },
+        {
+          "module": "significance",
+          "key": "sig-J-crossCorr",
+          "label": "J crossCorr ≥ 0.3",
+          "outcome": "PASS",
+          "value": 0.00097,
+          "threshold": "Holm p < 0.05",
+          "detail": "mean=0.4059 sd=0.0273 n=5 t=8.67 raw p₁=4.86e-4 Holm p=9.73e-4 BF≤54.53"
+        },
+        {
+          "module": "significance",
+          "key": "sig-J-consistency",
+          "label": "J per-seed gate consistency",
+          "outcome": "PASS",
+          "value": 1,
+          "threshold": "k/n = 1",
+          "detail": "5/5 seeds clear all gates; exact 95% CI [0.478, 1.000]"
+        }
+      ]
+    },
+    {
+      "id": "novelty",
+      "title": "Novelty & impact measurement (signature-space distinctiveness + scorecard)",
+      "summary": "novelty/impact scorecard: 0.933; signature-space 95a2a6f6...",
+      "checks": [
+        {
+          "module": "novelty",
+          "key": "novel-coverage",
+          "label": "coverage (gated models)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "10/10"
+        },
+        {
+          "module": "novelty",
+          "key": "novel-disc",
+          "label": "discrimination (reference kinds)",
+          "outcome": "PASS",
+          "value": 0.67,
+          "detail": "kinds=2"
+        },
+        {
+          "module": "novelty",
+          "key": "novel-fid",
+          "label": "fidelity (gated checks)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "all PASS at 1.00"
+        },
+        {
+          "module": "novelty",
+          "key": "novel-ground",
+          "label": "grounding (known-systems)",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "26/26"
+        },
+        {
+          "module": "novelty",
+          "key": "novel-repro",
+          "label": "reproducibility",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "double-run fingerprints"
+        },
+        {
+          "module": "novelty",
+          "key": "novel-score",
+          "label": "scorecard aggregate",
+          "outcome": "PASS",
+          "value": 0.933,
+          "detail": "signature-space distinctiveness proxy"
+        },
+        {
+          "module": "novelty",
+          "key": "sigspace-hash",
+          "label": "signature-space hash",
+          "outcome": "PASS",
+          "value": 1,
+          "detail": "95a2a6f6a2ecbce8"
+        }
+      ]
+    }
+  ],
+  "overall": "PASS",
+  "summary": "rigor modules: 7; scale=full (alwaysFull=true)",
+  "plotsDir": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\research\\output\\plots",
+  "jsonPath": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\research\\output\\rigor.json",
+  "mdPath": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\research\\output\\rigor.md",
+  "csvPath": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\research\\output\\rigor.csv"
+}

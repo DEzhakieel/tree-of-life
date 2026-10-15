@@ -1,0 +1,909 @@
+{
+  "generatedAt": "2026-09-23T10:39:25.022Z",
+  "meta": [
+    "Replicate sweep: 6 seeds × 3 biomes × 5 topologies = 90 edge-seeded runs @ 240 ticks.",
+    "Each seed draws a new habitat window (habitat = seed + biome), so replicate variance is across-habitat variability."
+  ],
+  "runs": [
+    {
+      "seed": "rep-1",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "12",
+      "dPop": "-28",
+      "births": "0",
+      "fitness": "0.471",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.498",
+      "edgeHits": "233"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.498",
+      "edgeHits": "233"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.507",
+      "edgeHits": "122"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.472",
+      "edgeHits": "120"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.490",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.507",
+      "edgeHits": "223"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.507",
+      "edgeHits": "223"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "11",
+      "dPop": "-29",
+      "births": "0",
+      "fitness": "0.491",
+      "edgeHits": "134"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.493",
+      "edgeHits": "110"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.523",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.505",
+      "edgeHits": "231"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.505",
+      "edgeHits": "231"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "12",
+      "dPop": "-28",
+      "births": "0",
+      "fitness": "0.524",
+      "edgeHits": "138"
+    },
+    {
+      "seed": "rep-1",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.509",
+      "edgeHits": "120"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "29",
+      "dPop": "-11",
+      "births": "0",
+      "fitness": "0.538",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "44",
+      "dPop": "4",
+      "births": "1",
+      "fitness": "0.545",
+      "edgeHits": "312"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "44",
+      "dPop": "4",
+      "births": "1",
+      "fitness": "0.545",
+      "edgeHits": "312"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "27",
+      "dPop": "-13",
+      "births": "0",
+      "fitness": "0.547",
+      "edgeHits": "366"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "19",
+      "dPop": "-21",
+      "births": "0",
+      "fitness": "0.539",
+      "edgeHits": "61"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "48",
+      "dPop": "8",
+      "births": "0",
+      "fitness": "0.548",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "49",
+      "dPop": "9",
+      "births": "0",
+      "fitness": "0.542",
+      "edgeHits": "270"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "49",
+      "dPop": "9",
+      "births": "0",
+      "fitness": "0.542",
+      "edgeHits": "270"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "33",
+      "dPop": "-7",
+      "births": "0",
+      "fitness": "0.525",
+      "edgeHits": "105"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "45",
+      "dPop": "5",
+      "births": "1",
+      "fitness": "0.540",
+      "edgeHits": "59"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "63",
+      "dPop": "23",
+      "births": "1",
+      "fitness": "0.553",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "65",
+      "dPop": "25",
+      "births": "0",
+      "fitness": "0.554",
+      "edgeHits": "340"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "65",
+      "dPop": "25",
+      "births": "0",
+      "fitness": "0.554",
+      "edgeHits": "340"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "57",
+      "dPop": "17",
+      "births": "0",
+      "fitness": "0.546",
+      "edgeHits": "331"
+    },
+    {
+      "seed": "rep-2",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "57",
+      "dPop": "17",
+      "births": "0",
+      "fitness": "0.561",
+      "edgeHits": "41"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "16",
+      "dPop": "-24",
+      "births": "0",
+      "fitness": "0.491",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "14",
+      "dPop": "-26",
+      "births": "0",
+      "fitness": "0.490",
+      "edgeHits": "260"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "14",
+      "dPop": "-26",
+      "births": "0",
+      "fitness": "0.490",
+      "edgeHits": "260"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "14",
+      "dPop": "-26",
+      "births": "0",
+      "fitness": "0.506",
+      "edgeHits": "144"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "18",
+      "dPop": "-22",
+      "births": "1",
+      "fitness": "0.487",
+      "edgeHits": "70"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "30",
+      "dPop": "-10",
+      "births": "0",
+      "fitness": "0.552",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "23",
+      "dPop": "-17",
+      "births": "0",
+      "fitness": "0.519",
+      "edgeHits": "275"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "23",
+      "dPop": "-17",
+      "births": "0",
+      "fitness": "0.519",
+      "edgeHits": "275"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "29",
+      "dPop": "-11",
+      "births": "0",
+      "fitness": "0.547",
+      "edgeHits": "227"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "30",
+      "dPop": "-10",
+      "births": "0",
+      "fitness": "0.538",
+      "edgeHits": "87"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "19",
+      "dPop": "-21",
+      "births": "0",
+      "fitness": "0.523",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "15",
+      "dPop": "-25",
+      "births": "0",
+      "fitness": "0.513",
+      "edgeHits": "280"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "15",
+      "dPop": "-25",
+      "births": "0",
+      "fitness": "0.513",
+      "edgeHits": "280"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "15",
+      "dPop": "-25",
+      "births": "0",
+      "fitness": "0.510",
+      "edgeHits": "186"
+    },
+    {
+      "seed": "rep-3",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "16",
+      "dPop": "-24",
+      "births": "0",
+      "fitness": "0.501",
+      "edgeHits": "83"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.462",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.456",
+      "edgeHits": "129"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.456",
+      "edgeHits": "129"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "6",
+      "dPop": "-34",
+      "births": "0",
+      "fitness": "0.456",
+      "edgeHits": "53"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.457",
+      "edgeHits": "47"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.474",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "5",
+      "dPop": "-35",
+      "births": "0",
+      "fitness": "0.435",
+      "edgeHits": "151"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "5",
+      "dPop": "-35",
+      "births": "0",
+      "fitness": "0.435",
+      "edgeHits": "151"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.428",
+      "edgeHits": "95"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.450",
+      "edgeHits": "56"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.447",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.506",
+      "edgeHits": "155"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.506",
+      "edgeHits": "155"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.492",
+      "edgeHits": "100"
+    },
+    {
+      "seed": "rep-4",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.492",
+      "edgeHits": "47"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "18",
+      "dPop": "-22",
+      "births": "0",
+      "fitness": "0.523",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "30",
+      "dPop": "-10",
+      "births": "0",
+      "fitness": "0.537",
+      "edgeHits": "528"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "30",
+      "dPop": "-10",
+      "births": "0",
+      "fitness": "0.537",
+      "edgeHits": "528"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "26",
+      "dPop": "-14",
+      "births": "0",
+      "fitness": "0.538",
+      "edgeHits": "326"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "20",
+      "dPop": "-20",
+      "births": "0",
+      "fitness": "0.514",
+      "edgeHits": "145"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "18",
+      "dPop": "-22",
+      "births": "0",
+      "fitness": "0.532",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "29",
+      "dPop": "-11",
+      "births": "0",
+      "fitness": "0.552",
+      "edgeHits": "542"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "29",
+      "dPop": "-11",
+      "births": "0",
+      "fitness": "0.552",
+      "edgeHits": "542"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "13",
+      "dPop": "-27",
+      "births": "0",
+      "fitness": "0.504",
+      "edgeHits": "141"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "36",
+      "dPop": "-4",
+      "births": "1",
+      "fitness": "0.545",
+      "edgeHits": "81"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "12",
+      "dPop": "-28",
+      "births": "0",
+      "fitness": "0.486",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "16",
+      "dPop": "-24",
+      "births": "0",
+      "fitness": "0.513",
+      "edgeHits": "378"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "16",
+      "dPop": "-24",
+      "births": "0",
+      "fitness": "0.513",
+      "edgeHits": "378"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "16",
+      "dPop": "-24",
+      "births": "0",
+      "fitness": "0.499",
+      "edgeHits": "211"
+    },
+    {
+      "seed": "rep-5",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "14",
+      "dPop": "-26",
+      "births": "0",
+      "fitness": "0.489",
+      "edgeHits": "73"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "calm",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.486",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "calm",
+      "topology": "cylinder",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.466",
+      "edgeHits": "224"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "calm",
+      "topology": "sphere",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.466",
+      "edgeHits": "224"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "calm",
+      "topology": "mobius",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.456",
+      "edgeHits": "53"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "calm",
+      "topology": "kleinBottle",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.481",
+      "edgeHits": "47"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "sodaLake",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.438",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "sodaLake",
+      "topology": "cylinder",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.448",
+      "edgeHits": "228"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "sodaLake",
+      "topology": "sphere",
+      "alive": "9",
+      "dPop": "-31",
+      "births": "0",
+      "fitness": "0.448",
+      "edgeHits": "228"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "sodaLake",
+      "topology": "mobius",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.462",
+      "edgeHits": "125"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "sodaLake",
+      "topology": "kleinBottle",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.435",
+      "edgeHits": "55"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "hyperthermal",
+      "topology": "torus",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.483",
+      "edgeHits": "0"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "hyperthermal",
+      "topology": "cylinder",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.527",
+      "edgeHits": "275"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "hyperthermal",
+      "topology": "sphere",
+      "alive": "8",
+      "dPop": "-32",
+      "births": "0",
+      "fitness": "0.527",
+      "edgeHits": "275"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "hyperthermal",
+      "topology": "mobius",
+      "alive": "10",
+      "dPop": "-30",
+      "births": "0",
+      "fitness": "0.508",
+      "edgeHits": "206"
+    },
+    {
+      "seed": "rep-6",
+      "biome": "hyperthermal",
+      "topology": "kleinBottle",
+      "alive": "7",
+      "dPop": "-33",
+      "births": "0",
+      "fitness": "0.486",
+      "edgeHits": "38"
+    }
+  ]
+}

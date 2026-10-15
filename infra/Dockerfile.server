@@ -1,0 +1,27 @@
+# ---- build stage ----
+FROM node:20-alpine AS build
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+COPY apps ./apps
+COPY packages ./packages
+RUN npm ci
+
+# Bundle the server (tsup: ESM, node18, workspace deps inlined)
+RUN npm run build:server
+
+# Drop dev dependencies so the runtime image is lean
+RUN npm prune --omit=dev
+
+# ---- runtime stage ----
+FROM node:20-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/apps/server/package.json ./apps/server/package.json
+COPY --from=build /app/apps/server/dist ./apps/server/dist
+COPY --from=build /app/node_modules ./node_modules
+
+EXPOSE 8080
+CMD ["node", "apps/server/dist/index.js"]

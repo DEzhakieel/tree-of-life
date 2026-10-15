@@ -1,0 +1,11 @@
+id,name,family,stochastic,seeds,verdict,determinism,fidelity,elapsedMs,sig.alpha,sig.msdSlope,sig.dRelErr,sig.phiOn,sig.phiOff,sig.minDistOn,sig.gliderShiftX,sig.gliderShiftY,sig.blinkerPeriod,sig.blockPeriod,sig.pulsarPeriod,sig.gunPeriod,sig.gunDelta,sig.gunDeltaSpread,sig.rpAlive,sig.periodRelErr,sig.phaseLagNorm,sig.invariantDriftPerPeriod,sig.relL2,sig.massRelErr,sig.msdRelErr,sig.inOccFrac,sig.inVVar,sig.inBlobs,sig.outVMax,sig.coopSpatial,sig.coopWellMixed,sig.winnerCorrect,sig.loserFrac,sig.coexistFA,sig.coexistFB,sig.consensus,sig.arrival,sig.moranCoupled,sig.moranBaseline,sig.selfOrgGain,sig.crossCorr
+A,"Random walkers","diffusion",0,1,PASS,1,1,107,0.9871564284520563,2.028234119127643,0.014117059563821588,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+B,"Boids","collective motion",1,5,PASS,1,1,5280,,,,0.9461494189751471,0.06836340695880047,6.350123032180649,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+C,"Game of Life","cellular automaton",0,1,PASS,1,1,858,,,,,,,10,10,2,1,3,30,5,0,148,,,,,,,,,,,,,,,,,,,,,,
+D,"Predator–prey","population dynamics",1,5,PASS,1,1,51,,,,,,,,,,,,,,,,0.000214895760234202,0.24489708130472654,1.8775532106122382e-17,,,,,,,,,,,,,,,,,,,
+E,"Diffusion","continuum transport",0,1,PASS,1,1,69,,,,,,,,,,,,,,,,,,,0.0007402520427137075,6.661338147750842e-16,5.800922187049196e-9,,,,,,,,,,,,,,,,
+F,"Reaction–diffusion (Gray–Scott)","pattern formation",1,5,PASS,1,1,2271,,,,,,,,,,,,,,,,,,,,,,0.3349609375,0.01546675324527323,9,4.6985172044962163e-67,,,,,,,,,,,,
+G,"Iterated Prisoner’s Dilemma","evolutionary game theory",1,5,PASS,1,1,3004,,,,,,,,,,,,,,,,,,,,,,,,,,0.9312711415816284,0.00012818877551020241,,,,,,,,,,
+H,"Resource competition (R*)","community ecology",1,5,PASS,1,1,159,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,0,0.5027224949976233,0.4972816928069669,,,,,,
+I,"Collective navigation","swarm intelligence",1,5,PASS,1,1,388,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0.9123906711039903,1,,,,
+J,"Fractal-life composite","novel hybrid",1,5,PASS,1,1,3022,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0.3839867864227607,0.001026684401821876,0.3835440525519237,0.4679669482158541

@@ -1,0 +1,128 @@
+module,key,label,outcome,value,detail
+verification,A-alpha,A alpha |obs−analytic|,PASS,0.001503,obs=1.001503 ref=1 absErr=1.50e-3 ci=[0.99337;1.00664] ciCoversRef=true
+verification,A-dRelErr,A dRelErr |obs−analytic|,PASS,0.022911,obs=0.022911 ref=0 absErr=2.29e-2 ci=[0.01266;0.03444] ciCoversRef=false
+verification,C-gliderShiftX,C gliderShiftX |obs−analytic|,PASS,0,obs=10.000000 ref=10 absErr=0.00e+0 ci=[10.00000;10.00000] ciCoversRef=true
+verification,C-blinkerPeriod,C blinkerPeriod |obs−analytic|,PASS,0,obs=2.000000 ref=2 absErr=0.00e+0 ci=[2.00000;2.00000] ciCoversRef=true
+verification,C-blockPeriod,C blockPeriod |obs−analytic|,PASS,0,obs=1.000000 ref=1 absErr=0.00e+0 ci=[1.00000;1.00000] ciCoversRef=true
+verification,C-pulsarPeriod,C pulsarPeriod |obs−analytic|,PASS,0,obs=3.000000 ref=3 absErr=0.00e+0 ci=[3.00000;3.00000] ciCoversRef=true
+verification,C-gunPeriod,C gunPeriod |obs−analytic|,PASS,0,obs=30.000000 ref=30 absErr=0.00e+0 ci=[30.00000;30.00000] ciCoversRef=true
+verification,C-gunDeltaSpread,C gunDeltaSpread |obs−analytic|,PASS,0,obs=0.000000 ref=0 absErr=0.00e+0 ci=[0.00000;0.00000] ciCoversRef=true
+verification,D-periodRelErr,D periodRelErr |obs−analytic|,PASS,0.000212,obs=0.000212 ref=0 absErr=2.12e-4 ci=[0.00012;0.00034] ciCoversRef=false
+verification,D-phaseLagNorm,D phaseLagNorm |obs−analytic|,PASS,0.020377,obs=0.244906 ref=0.25 absErr=5.09e-3 ci=[0.24352;0.24610] ciCoversRef=false
+verification,D-invariantDriftPerPeriod,D invariantDriftPerPeriod |obs−analytic|,PASS,0,obs=0.000000 ref=0 absErr=4.83e-18 ci=[0.00000;0.00000] ciCoversRef=true
+verification,E-relL2,E relL2 |obs−analytic|,PASS,0.000418,obs=0.000418 ref=0 absErr=4.18e-4 ci=[0.00042;0.00042] ciCoversRef=false
+verification,E-massRelErr,E massRelErr |obs−analytic|,PASS,0,obs=0.000000 ref=0 absErr=5.55e-15 ci=[0.00000;0.00000] ciCoversRef=true
+verification,E-msdRelErr,E msdRelErr |obs−analytic|,PASS,0,obs=0.000000 ref=0 absErr=6.86e-8 ci=[0.00000;0.00000] ciCoversRef=false
+verification,H-winnerCorrect,H winnerCorrect |obs−analytic|,PASS,0,obs=1.000000 ref=1 absErr=0.00e+0 ci=[1.00000;1.00000] ciCoversRef=true
+verification,H-loserFrac,H loserFrac |obs−analytic|,PASS,0,obs=0.000000 ref=0 absErr=0.00e+0 ci=[0.00000;0.00000] ciCoversRef=true
+validation,A-emp,A → random-walk-pearson,PASS,1,Brownian MSD grows linearly in time with slope 2σ² (Einstein/Pearson 1905).
+validation,B-emp,B → reynolds-boids,PASS,1,Three local steering rules (alignment/cohesion/separation) produce a polarised; non-overlapping flock.
+validation,C-emp,C → conway-life,PASS,1,Life’s canonical oscillator/glider/gun facts: glider +1/+1 per 4 gens; pulsar p3; Gosper gun p30.
+validation,D-emp,D → lotka-volterra,PASS,1,Neutral predator–prey cycles about (γ/δ; α/β) with period 2π/√(αγ) and a quarter-period phase lag.
+validation,E-emp,E → diffusion-fick,PASS,1,Explicit FTCS reproduces the analytic Gaussian spread; conserved mass; and ⟨r²⟩ = 4Dt.
+validation,F-emp,F → turing-reaction-diffusion,PASS,1,Gray–Scott (0.16; 0.08) at F=0.0545; k=0.062 self-organises spots/labyrinths; F<k relaxes to uniform.
+validation,G-emp,G → spatial-ipd-nowak-may,PASS,0,Spatial lattice enables cooperation to persist for mild temptation b; well-mixed matching drives defection.
+validation,H-emp,H → tilman-chemostat,PASS,0,In a chemostat the species with the lowest break-even resource R* competitively excludes the rival; equal R* yields coexistence.
+validation,I-emp,I → vicsek-coordination,PASS,0,Local alignment generates a polarised flock that can collectively navigate toward a goal.
+validation,J-emp,J → stochastic-search-composite,PASS,0,Coupling agents to an autogenic field generates spatial coherence and measurable agent–field cross-correlation.
+reproducibility,A-det,A determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,B-det,B determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,C-det,C determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,D-det,D determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,E-det,E determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,F-det,F determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,G-det,G determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,H-det,H determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,I-det,I determinism (double-run fingerprint),PASS,1,verdict=PASS
+reproducibility,J-det,J determinism (double-run fingerprint),PASS,1,verdict=PASS
+sensitivity,A-oat-sigma,A OAT sigma,PASS,0.000008,readout alpha: def=1.0016 [min=1.0015; max=1.0015] rel-span=8.49e-6
+sensitivity,A-oat-stride,A OAT stride,PASS,0.001639,readout alpha: def=1.0016 [min=1.0015; max=0.9999] rel-span=1.64e-3
+sensitivity,A-morris-sigma,A Morris sigma,WARN,0,readout alpha: μ=2.22e-16 μ*=2.22e-16 σ=3.85e-16 (r=3 trajectories)
+sensitivity,A-morris-stride,A Morris stride,PASS,1.031527,readout alpha: μ=2.78e-2 μ*=1.03e+0 σ=1.55e+0 (r=3 trajectories)
+sensitivity,A-morris-walkers,A Morris walkers,PASS,1.031527,readout alpha: μ=-2.78e-2 μ*=1.03e+0 σ=1.55e+0 (r=3 trajectories)
+sensitivity,B-oat-wAli,B OAT wAli,PASS,0.96151,readout phiOn: def=0.9444 [min=0.0363; max=0.9857] rel-span=9.62e-1
+sensitivity,B-oat-wCoh,B OAT wCoh,PASS,0.926836,readout phiOn: def=0.9444 [min=0.9999; max=0.0691] rel-span=9.27e-1
+sensitivity,B-morris-wAli,B Morris wAli,PASS,1.161664,readout phiOn: μ=1.16e+0 μ*=1.16e+0 σ=2.58e-1 (r=3 trajectories)
+sensitivity,B-morris-wCoh,B Morris wCoh,PASS,0.452758,readout phiOn: μ=-4.38e-1 μ*=4.53e-1 σ=4.71e-1 (r=3 trajectories)
+sensitivity,B-morris-wSep,B Morris wSep,PASS,0.130236,readout phiOn: μ=1.30e-1 μ*=1.30e-1 σ=2.21e-1 (r=3 trajectories)
+sensitivity,B-morris-sepR,B Morris sepR,PASS,0.063594,readout phiOn: μ=-4.71e-2 μ*=6.36e-2 σ=1.04e-1 (r=3 trajectories)
+sensitivity,B-morris-r,B Morris r,PASS,0.066794,readout phiOn: μ=6.68e-2 μ*=6.68e-2 σ=1.08e-1 (r=3 trajectories)
+sensitivity,D-oat-alpha,D OAT alpha,PASS,0.243437,readout periodRelErr: def=0.0002 [min=0.0003; max=0.0003] rel-span=2.43e-1
+sensitivity,D-oat-gamma,D OAT gamma,PASS,0.243439,readout periodRelErr: def=0.0002 [min=0.0003; max=0.0003] rel-span=2.43e-1
+sensitivity,D-morris-alpha,D Morris alpha,PASS,0.000154,readout periodRelErr: μ=-4.09e-5 μ*=1.54e-4 σ=2.25e-4 (r=3 trajectories)
+sensitivity,D-morris-gamma,D Morris gamma,PASS,0.000154,readout periodRelErr: μ=4.09e-5 μ*=1.54e-4 σ=2.25e-4 (r=3 trajectories)
+sensitivity,E-oat-D,E OAT D,PASS,7.822433,readout relL2: def=0.0004 [min=0.0003; max=0.0037] rel-span=7.82e+0
+sensitivity,E-oat-nx,E OAT nx,PASS,6.186615,readout relL2: def=0.0004 [min=0.0030; max=0.0001] rel-span=6.19e+0
+sensitivity,E-morris-D,E Morris D,PASS,0.000315,readout relL2: μ=3.15e-4 μ*=3.15e-4 σ=2.30e-4 (r=3 trajectories)
+sensitivity,E-morris-nx,E Morris nx,PASS,0.001044,readout relL2: μ=-1.04e-3 μ*=1.04e-3 σ=2.30e-4 (r=3 trajectories)
+sensitivity,F-oat-F,F OAT F,PASS,1,readout inOccFrac: def=0.3398 [min=0.0000; max=0.0000] rel-span=1.00e+0
+sensitivity,F-oat-k,F OAT k,PASS,1.942529,readout inOccFrac: def=0.3398 [min=1.0000; max=0.0000] rel-span=1.94e+0
+sensitivity,F-morris-F,F Morris F,PASS,0.5,readout inOccFrac: μ=5.00e-1 μ*=5.00e-1 σ=8.66e-1 (r=3 trajectories)
+sensitivity,F-morris-k,F Morris k,PASS,0.5,readout inOccFrac: μ=-5.00e-1 μ*=5.00e-1 σ=8.66e-1 (r=3 trajectories)
+sensitivity,G-oat-b,G OAT b,PASS,0.040441,readout coopSpatial: def=0.9340 [min=0.9464; max=0.8962] rel-span=4.04e-2
+sensitivity,G-morris-b,G Morris b,PASS,0.028945,readout coopSpatial: μ=-2.89e-2 μ*=2.89e-2 σ=8.95e-3 (r=3 trajectories)
+sensitivity,H-oat-Ka,H OAT Ka,WARN,0,readout winnerCorrect: def=1.0000 [min=1.0000; max=1.0000] rel-span=0.00e+0
+sensitivity,H-oat-Kb,H OAT Kb,WARN,0,readout winnerCorrect: def=1.0000 [min=1.0000; max=1.0000] rel-span=0.00e+0
+sensitivity,H-morris-Ka,H Morris Ka,PASS,1,readout winnerCorrect: μ=-1.00e+0 μ*=1.00e+0 σ=8.66e-1 (r=3 trajectories)
+sensitivity,H-morris-Kb,H Morris Kb,PASS,1,readout winnerCorrect: μ=1.00e+0 μ*=1.00e+0 σ=8.66e-1 (r=3 trajectories)
+sensitivity,H-morris-muMax,H Morris muMax,WARN,0,readout winnerCorrect: μ=0.00e+0 μ*=0.00e+0 σ=0.00e+0 (r=3 trajectories)
+sensitivity,I-oat-wAlign,I OAT wAlign,PASS,0.663208,readout consensus: def=0.9262 [min=0.3119; max=0.9309] rel-span=6.63e-1
+sensitivity,I-oat-wTarget,I OAT wTarget,PASS,0.135282,readout consensus: def=0.9262 [min=0.9766; max=0.8009] rel-span=1.35e-1
+sensitivity,I-morris-wAlign,I Morris wAlign,PASS,1.096653,readout consensus: μ=1.10e+0 μ*=1.10e+0 σ=3.50e-1 (r=3 trajectories)
+sensitivity,I-morris-wTarget,I Morris wTarget,PASS,0.269081,readout consensus: μ=9.13e-2 μ*=2.69e-1 σ=3.89e-1 (r=3 trajectories)
+sensitivity,I-morris-noise,I Morris noise,PASS,0.032066,readout consensus: μ=-3.13e-2 μ*=3.21e-2 σ=2.94e-2 (r=3 trajectories)
+sensitivity,J-oat-coupling,J OAT coupling,PASS,0.754108,readout moranCoupled: def=0.3493 [min=0.6127; max=0.1979] rel-span=7.54e-1
+sensitivity,J-oat-diffusion,J OAT diffusion,PASS,1.002909,readout moranCoupled: def=0.3493 [min=-0.0005; max=-0.0010] rel-span=1.00e+0
+sensitivity,J-morris-coupling,J Morris coupling,PASS,0.091465,readout moranCoupled: μ=-6.62e-2 μ*=9.15e-2 σ=1.48e-1 (r=3 trajectories)
+sensitivity,J-morris-diffusion,J Morris diffusion,PASS,0.512987,readout moranCoupled: μ=1.80e-1 μ*=5.13e-1 σ=5.92e-1 (r=3 trajectories)
+sensitivity,J-morris-decay,J Morris decay,PASS,0.040568,readout moranCoupled: μ=3.00e-2 μ*=4.06e-2 σ=6.58e-2 (r=3 trajectories)
+sensitivity,J-morris-crowding,J Morris crowding,PASS,0.323637,readout moranCoupled: μ=3.24e-1 μ*=3.24e-1 σ=1.25e-1 (r=3 trajectories)
+ablation,B-abl-align,B alignment off (wAli = 0),PASS,1,predicted effects matched
+ablation,B-abl-cohesion,B cohesion off (wCoh = 0),PASS,1,predicted effects matched
+ablation,B-abl-separation,B separation off (wSep = 0),PASS,1,predicted effects matched
+ablation,B-abl-relax,B positional relaxation off,PASS,1,predicted effects matched
+ablation,D-abl-predation,D predation off (β = 0),PASS,1,predicted effects partial/mixed
+ablation,F-abl-out-of-regime,F push out of the Turing regime (F=0.02, k=0.05),PASS,1,predicted effects matched
+ablation,G-abl-lattice,G remove spatial structure (well-mixed),PASS,1,predicted effects partial/mixed
+ablation,H-abl-symmetric,H set K_A = K_B (neutral coexistence),PASS,1,predicted effects partial/mixed
+ablation,H-abl-no-limitation,H remove resource limitation (theoretical boundary),PASS,1,predicted effects matched
+ablation,I-abl-target,I remove target bias (wTarget = 0),PASS,1,predicted effects matched
+ablation,I-abl-align,I remove alignment (wAlign = 0),PASS,1,predicted effects matched
+ablation,J-abl-coupling,J uncouple agents from pheromone (coupling = 0),PASS,1,predicted effects partial/mixed
+ablation,J-abl-pheromone,J remove pheromone dynamics (diffusion=0, decay=1),PASS,1,predicted effects matched
+significance,sig-A-dRelErr,A dRelErr ≤ 0.03,WARN,0.15572,mean=0.0230 sd=0.0136 n=5 t=-1.16 raw p₁=1.56e-1 Holm p=1.56e-1 BF≤1.01
+significance,sig-A-consistency,A per-seed gate consistency,WARN,0.8,4/5 seeds clear all gates; exact 95% CI [0.284; 0.995]
+significance,sig-B-phiOn,B phiOn ≥ 0.8,PASS,0.00004,mean=0.9444 sd=0.0146 n=5 t=22.05 raw p₁=1.25e-5 Holm p=3.76e-5 BF≤1385.76
+significance,sig-B-phiOff,B phiOff ≤ 0.15,PASS,0.00315,mean=0.0741 sd=0.0323 n=5 t=-5.25 raw p₁=3.15e-3 Holm p=3.15e-3 BF≤11.54
+significance,sig-B-minDistOn,B minDistOn ≥ 5.6,PASS,0.00034,mean=6.4667 sd=0.1703 n=5 t=11.38 raw p₁=1.70e-4 Holm p=3.40e-4 BF≤135.37
+significance,sig-B-consistency,B per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-D-periodRelErr,D periodRelErr ≤ 0.02,PASS,0,mean=0.0002 sd=0.0001 n=5 t=-296.31 raw p₁=3.89e-10 Holm p=3.89e-10 BF≤1000000.00
+significance,sig-D-invariantDriftPerPeriod,D invariantDriftPerPeriod ≤ 0.005,PASS,0,mean=0.0000 sd=0.0000 n=5 t=-1014576819481129.75 raw p₁=2.83e-60 Holm p=5.66e-60 BF≤1000000.00
+significance,sig-D-consistency,D per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-E-relL2,E relL2 ≤ 0.001,PASS,0,mean=0.0004 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-E-massRelErr,E massRelErr ≤ 0.000001,PASS,0,mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-E-msdRelErr,E msdRelErr ≤ 0.01,PASS,0,mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-E-consistency,E per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-F-inVVar,F inVVar ≥ 0.01,PASS,0,mean=0.0171 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-F-inBlobs,F inBlobs ≥ 3,PASS,0,mean=9.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-F-outVMax,F outVMax ≤ 0.05,PASS,0,mean=0.0000 sd=0.0000 n=5 t=-4.0524901223323173e+86 raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-F-consistency,F per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-G-coopSpatial,G coopSpatial ≥ 0.9,PASS,0.0001,mean=0.9339 sd=0.0058 n=5 t=13.11 raw p₁=9.79e-5 Holm p=9.79e-5 BF≤220.12
+significance,sig-G-coopWellMixed,G coopWellMixed ≤ 0.05,PASS,0,mean=0.0001 sd=0.0001 n=5 t=-1358.49 raw p₁=8.81e-13 Holm p=1.76e-12 BF≤1000000.00
+significance,sig-G-consistency,G per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-H-loserFrac,H loserFrac ≤ 0.05,PASS,0,mean=0.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-H-consistency,H per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-I-consensus,I consensus ≥ 0.8,PASS,0,mean=0.9262 sd=0.0067 n=5 t=41.85 raw p₁=9.74e-7 Holm p=9.74e-7 BF≤14361.45
+significance,sig-I-arrival,I arrival ≥ 0.9,PASS,0,mean=1.0000 sd=0.0000 n=5 t=∞ raw p₁=0.00e+0 Holm p=0.00e+0 BF≤1000000.00
+significance,sig-I-consistency,I per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+significance,sig-J-moranCoupled,J moranCoupled ≥ 0.2,PASS,0.0012,mean=0.3492 sd=0.0489 n=5 t=6.83 raw p₁=1.20e-3 Holm p=1.20e-3 BF≤25.34
+significance,sig-J-selfOrgGain,J selfOrgGain ≥ 0.05,PASS,0.00019,mean=0.3490 sd=0.0458 n=5 t=14.59 raw p₁=6.42e-5 Holm p=1.93e-4 BF≤319.54
+significance,sig-J-crossCorr,J crossCorr ≥ 0.3,PASS,0.00097,mean=0.4059 sd=0.0273 n=5 t=8.67 raw p₁=4.86e-4 Holm p=9.73e-4 BF≤54.53
+significance,sig-J-consistency,J per-seed gate consistency,PASS,1,5/5 seeds clear all gates; exact 95% CI [0.478; 1.000]
+novelty,novel-coverage,coverage (gated models),PASS,1,10/10
+novelty,novel-disc,discrimination (reference kinds),PASS,0.67,kinds=2
+novelty,novel-fid,fidelity (gated checks),PASS,1,all PASS at 1.00
+novelty,novel-ground,grounding (known-systems),PASS,1,26/26
+novelty,novel-repro,reproducibility,PASS,1,double-run fingerprints
+novelty,novel-score,scorecard aggregate,PASS,0.933,signature-space distinctiveness proxy
+novelty,sigspace-hash,signature-space hash,PASS,1,95a2a6f6a2ecbce8

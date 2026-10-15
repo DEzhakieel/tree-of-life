@@ -1,0 +1,341 @@
+{
+  "provenance": {
+    "tool": "fractal-life research harness",
+    "timestamp": "2026-09-26T08:10:53.769Z",
+    "node": "v18.12.1",
+    "platform": "win32/x64",
+    "simulationPackage": "@fractal-life/simulation@1.0.0",
+    "engineSource": {
+      "path": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\src\\engine.ts",
+      "sha256": "fbc2b2541731a5cc0c31d9365776a8921bc634887326940869d575d2de6ce5d8"
+    },
+    "git": null,
+    "params": {
+      "firstOrderTicks": 60,
+      "secondOrderWindow": 2000,
+      "thirdOrderTicks": 60,
+      "stochTicks": 180,
+      "stochSpawn": 10,
+      "bootstrapSamples": 2000,
+      "permutations": 10000,
+      "analysisSeed": 12648430,
+      "terrainSampling": {
+        "jitterFractionOfWorldScale": 0.6,
+        "perAxis": true
+      }
+    },
+    "seeds": [
+      "research-seed-0001",
+      "research-seed-0002",
+      "research-seed-0003",
+      "research-seed-0004",
+      "research-seed-0005",
+      "research-seed-0006",
+      "research-seed-0007",
+      "research-seed-0008",
+      "research-seed-0009",
+      "research-seed-0010",
+      "research-seed-0011",
+      "research-seed-0012",
+      "research-seed-0013",
+      "research-seed-0014",
+      "research-seed-0015",
+      "research-seed-0016",
+      "research-seed-0017",
+      "research-seed-0018",
+      "research-seed-0019",
+      "research-seed-0020",
+      "research-seed-0021",
+      "research-seed-0022",
+      "research-seed-0023",
+      "research-seed-0024"
+    ],
+    "scenarios": [
+      "first-order",
+      "second-order",
+      "third-order",
+      "conservation",
+      "stochastic"
+    ]
+  },
+  "rows": [
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0001",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0002",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0003",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0004",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049959998577833176,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000040001422166827116
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0005",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0006",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0007",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0008",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0009",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0010",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049959998577833176,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000040001422166827116
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0011",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0012",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049959998577833176,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000040001422166827116
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0013",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0014",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0015",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049959998577833176,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000040001422166827116
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0016",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0017",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049959998577833176,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000040001422166827116
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0018",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.0499600013718009,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.00003999862819910327
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0019",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0020",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0021",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0022",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.04995999950915575,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.0000400004908442525
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0023",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    },
+    {
+      "scenario": "conservation",
+      "seed": "research-seed-0024",
+      "injected": 50,
+      "meat_decayed": 0.09999847412109375,
+      "expected_decay": 0.1,
+      "mineral_gained": 0.049960002303123474,
+      "expected_mineral_gain": 0.05,
+      "meat_error": -0.0000015258789062555511,
+      "mineral_error": -0.000039997696876528654
+    }
+  ],
+  "stats": {
+    "meat_error_mean": -0.0000015258789062555511,
+    "meat_error_ci95": [
+      -0.0000015258789062555511,
+      -0.0000015258789062555511
+    ],
+    "meat_error_max_abs": 0.0000015258789062555511,
+    "mineral_error_mean": -0.00003999862794687002,
+    "mineral_error_ci95": [
+      -0.00003999928788592696,
+      -0.000039998046122494135
+    ],
+    "mineral_error_max_abs": 0.000040001422166827116
+  }
+}

@@ -1,0 +1,5589 @@
+{
+  "generatedAt": "2026-10-04T18:21:44.745Z",
+  "senseRadius": 36,
+  "separationRadius": 4,
+  "senseToSeparationRatio": 9,
+  "deterministic": true,
+  "thresholds": {
+    "moverFloor": 4,
+    "cohesiveSpreadFrac": 1,
+    "dispersedSpreadFrac": 1.6,
+    "latticeNeighbourCv": 1,
+    "flockPolarization": 0.6,
+    "millRotationalOrder": 0.25,
+    "separationRadius": 4,
+    "senseRadius": 36
+  },
+  "thresholdProbes": [
+    {
+      "threshold": "millRotationalOrder",
+      "label": "milling rotational order",
+      "nominal": 0.25,
+      "factors": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.25
+      ],
+      "changedFraction": [
+        0.0375,
+        0.0125,
+        0,
+        0,
+        0.0125
+      ],
+      "transitions": [
+        {
+          "pair": "cohesive->milling",
+          "count": 5,
+          "at": 1
+        },
+        {
+          "pair": "flocking->milling",
+          "count": 3,
+          "at": 1
+        },
+        {
+          "pair": "milling->dispersed",
+          "count": 2,
+          "at": 4
+        }
+      ],
+      "labelsEntered": [
+        "dispersed",
+        "milling"
+      ]
+    },
+    {
+      "threshold": "latticeNeighbourCv",
+      "label": "lattice neighbour CV",
+      "nominal": 1,
+      "factors": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.25
+      ],
+      "changedFraction": [
+        0.10625,
+        0.025,
+        0,
+        0.01875,
+        0.03125
+      ],
+      "transitions": [
+        {
+          "pair": "flocking->cohesive",
+          "count": 21,
+          "at": 1
+        },
+        {
+          "pair": "cohesive->flocking",
+          "count": 8,
+          "at": 4
+        }
+      ],
+      "labelsEntered": [
+        "cohesive",
+        "flocking"
+      ]
+    },
+    {
+      "threshold": "flockPolarization",
+      "label": "flocking polarization floor",
+      "nominal": 0.6,
+      "factors": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.25
+      ],
+      "changedFraction": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "transitions": [],
+      "labelsEntered": []
+    },
+    {
+      "threshold": "cohesiveSpreadFrac",
+      "label": "cohesive spread (fraction of arena)",
+      "nominal": 1,
+      "factors": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.25
+      ],
+      "changedFraction": [
+        0.00625,
+        0,
+        0,
+        0.00625,
+        0.00625
+      ],
+      "transitions": [
+        {
+          "pair": "cohesive->flocking",
+          "count": 2,
+          "at": 4
+        },
+        {
+          "pair": "flocking->cohesive",
+          "count": 1,
+          "at": 0
+        }
+      ],
+      "labelsEntered": [
+        "cohesive",
+        "flocking"
+      ]
+    },
+    {
+      "threshold": "dispersedSpreadFrac",
+      "label": "dispersed spread (fraction of arena)",
+      "nominal": 1.6,
+      "factors": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.25
+      ],
+      "changedFraction": [
+        0.00625,
+        0,
+        0,
+        0,
+        0.0125
+      ],
+      "transitions": [
+        {
+          "pair": "dispersed->cohesive",
+          "count": 2,
+          "at": 4
+        },
+        {
+          "pair": "cohesive->dispersed",
+          "count": 1,
+          "at": 0
+        }
+      ],
+      "labelsEntered": [
+        "cohesive",
+        "dispersed"
+      ]
+    }
+  ],
+  "background": {
+    "name": "double-size",
+    "rationale": "body size 1.0, halving the sense/separation mismatch to 4.5x",
+    "gene6": -0.5,
+    "senseRadius": 36,
+    "separationRadius": 8,
+    "dense": {
+      "robustFlocking": [
+        "cohesion+separation",
+        "separation+circulation",
+        "alignment+cohesion+separation",
+        "cohesion+separation+circulation",
+        "alignment+cohesion+separation+circulation"
+      ],
+      "inert": [
+        "none",
+        "separation"
+      ],
+      "neverFlocking": [
+        "none",
+        "cohesion",
+        "separation",
+        "alignment+cohesion",
+        "cohesion+circulation",
+        "alignment+cohesion+circulation"
+      ],
+      "unstable": [
+        "alignment",
+        "circulation",
+        "alignment+circulation",
+        "alignment+separation",
+        "alignment+cohesion+circulation",
+        "alignment+separation+circulation"
+      ]
+    },
+    "sparse": {
+      "robustFlocking": [
+        "cohesion+separation",
+        "cohesion+separation+circulation",
+        "alignment+cohesion+separation+circulation"
+      ],
+      "inert": [
+        "none",
+        "separation"
+      ],
+      "neverFlocking": [
+        "none",
+        "alignment",
+        "circulation",
+        "cohesion",
+        "separation",
+        "alignment+cohesion",
+        "cohesion+circulation",
+        "alignment+cohesion+circulation",
+        "alignment+cohesion+separation"
+      ],
+      "unstable": [
+        "alignment",
+        "circulation",
+        "cohesion",
+        "alignment+circulation",
+        "alignment+cohesion",
+        "alignment+separation",
+        "separation+circulation",
+        "alignment+cohesion+separation",
+        "alignment+separation+circulation"
+      ]
+    }
+  },
+  "densitySweep": [
+    {
+      "arena": 220,
+      "spawn": 60,
+      "triad": "cohesive",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 0,
+      "meanNearestNeighbour": 17.40032504068144,
+      "meanNearestNeighbourCv": 4.95025036858451,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 4.35008126017036
+    },
+    {
+      "arena": 160,
+      "spawn": 60,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 5.937592407916521,
+      "meanNearestNeighbourCv": 0.6012965812351605,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.4843981019791304
+    },
+    {
+      "arena": 120,
+      "spawn": 60,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 5.4526049121958104,
+      "meanNearestNeighbourCv": 0.5163637316910997,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.3631512280489526
+    },
+    {
+      "arena": 90,
+      "spawn": 60,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 4.567057505580283,
+      "meanNearestNeighbourCv": 0.469477805466675,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.1417643763950707
+    },
+    {
+      "arena": 70,
+      "spawn": 60,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 4.600438370158716,
+      "meanNearestNeighbourCv": 0.5367149235406726,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.150109592539679
+    },
+    {
+      "arena": 90,
+      "spawn": 24,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 6.887739512325418,
+      "meanNearestNeighbourCv": 0.6554811561606475,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.7219348780813546
+    },
+    {
+      "arena": 60,
+      "spawn": 24,
+      "triad": "flocking",
+      "triadAgreement": 1,
+      "triadFlockingFraction": 1,
+      "meanNearestNeighbour": 5.3867823265833605,
+      "meanNearestNeighbourCv": 0.4532637479195736,
+      "separationRadius": 4,
+      "spacingInSeparationRadii": 1.3466955816458401
+    }
+  ],
+  "replication": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "targetDense": "flocking",
+    "targetSparse": "cohesive",
+    "unstableDense": [
+      "alignment",
+      "circulation",
+      "cohesion",
+      "alignment+circulation",
+      "alignment+cohesion",
+      "alignment+separation",
+      "cohesion+circulation",
+      "separation+circulation",
+      "alignment+cohesion+circulation",
+      "alignment+separation+circulation",
+      "alignment+cohesion+separation+circulation"
+    ],
+    "unstableSparse": [
+      "alignment",
+      "circulation",
+      "cohesion",
+      "alignment+cohesion",
+      "alignment+separation",
+      "cohesion+circulation",
+      "cohesion+separation",
+      "separation+circulation",
+      "alignment+cohesion+circulation",
+      "alignment+cohesion+separation",
+      "alignment+separation+circulation",
+      "alignment+cohesion+separation+circulation"
+    ],
+    "robustSufficientDense": [
+      "cohesion+separation",
+      "alignment+cohesion+separation",
+      "cohesion+separation+circulation"
+    ],
+    "robustSufficientSparse": [
+      "alignment+circulation"
+    ],
+    "robustFlockingDense": [
+      "cohesion+separation",
+      "alignment+cohesion+separation",
+      "cohesion+separation+circulation"
+    ],
+    "robustFlockingSparse": [
+      "cohesion+separation+circulation"
+    ],
+    "dense": [
+      {
+        "key": "none",
+        "set": [],
+        "modal": "inert",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 5,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 40.027408411299916,
+              "neighbourMean": 7.75,
+              "densityCv": 0.33225329862184655,
+              "nearestNeighbour": 10.777089414892373,
+              "nearestNeighbourCv": 0.562992246660085,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 37.528146633927285,
+              "neighbourMean": 7.25,
+              "densityCv": 0.42513200020475683,
+              "nearestNeighbour": 12.100707784598914,
+              "nearestNeighbourCv": 0.4845471391247108,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 32.686941762183,
+              "neighbourMean": 8.75,
+              "densityCv": 0.3506363843096928,
+              "nearestNeighbour": 9.530084188280727,
+              "nearestNeighbourCv": 0.46803116932257655,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 39.29043971840651,
+              "neighbourMean": 6.666666666666666,
+              "densityCv": 0.4525291246932647,
+              "nearestNeighbour": 13.426768189535732,
+              "nearestNeighbourCv": 0.5160974303845886,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 36.77135226459121,
+              "neighbourMean": 7.833333333333333,
+              "densityCv": 0.47567639623207303,
+              "nearestNeighbour": 10.12360317308686,
+              "nearestNeighbourCv": 0.509500793342726,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          }
+        ]
+      },
+      {
+        "key": "alignment",
+        "set": [
+          "alignment"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 1,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 2,
+          "milling": 1
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.8754732389856873,
+              "rotationalOrder": 0.1320663074759921,
+              "spread": 310.9004132195416,
+              "neighbourMean": 5.824999999999999,
+              "densityCv": 0.6090783573186909,
+              "nearestNeighbour": 12.198909841628474,
+              "nearestNeighbourCv": 0.6523947611902551,
+              "meanSpeed": 2.310988612211653
+            },
+            "drift": 1.794489762994761
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999955825265487,
+              "rotationalOrder": 0.04036760057976058,
+              "spread": 71.55680175592406,
+              "neighbourMean": 6.916666666666667,
+              "densityCv": 0.31591640059431525,
+              "nearestNeighbour": 10.39310600347999,
+              "nearestNeighbourCv": 0.41994591318352603,
+              "meanSpeed": 2.2088278052584696
+            },
+            "drift": 2.0110341400202274
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 24,
+              "movers": 22,
+              "polarization": 0.9512045832991216,
+              "rotationalOrder": 0.4251454176098992,
+              "spread": 234.63372108646936,
+              "neighbourMean": 6.308333333333334,
+              "densityCv": 0.5804834094138951,
+              "nearestNeighbour": 14.606850192492667,
+              "nearestNeighbourCv": 0.7604006955999524,
+              "meanSpeed": 2.1871412314036043
+            },
+            "drift": 1.807686689102324
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 22,
+              "polarization": 0.9999999999995796,
+              "rotationalOrder": 0.06049486845612356,
+              "spread": 115.8616852116578,
+              "neighbourMean": 10.783333333333335,
+              "densityCv": 0.4708724596368875,
+              "nearestNeighbour": 25.055850062010553,
+              "nearestNeighbourCv": 2.4368427452105257,
+              "meanSpeed": 2.3322645930933157
+            },
+            "drift": 2.032415635941332
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999999999991033,
+              "rotationalOrder": 0.006092541060086007,
+              "spread": 32.93576541040933,
+              "neighbourMean": 11.25,
+              "densityCv": 0.30694254522088127,
+              "nearestNeighbour": 8.636866171560753,
+              "nearestNeighbourCv": 0.44110929903116886,
+              "meanSpeed": 2.0658351201259224
+            },
+            "drift": 1.890864783327976
+          }
+        ]
+      },
+      {
+        "key": "circulation",
+        "set": [
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.8,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 4,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9981296060229032,
+              "rotationalOrder": 0.02955642838632954,
+              "spread": 47.133627412065955,
+              "neighbourMean": 7.3083333333333345,
+              "densityCv": 0.41536662297299215,
+              "nearestNeighbour": 9.460367351917558,
+              "nearestNeighbourCv": 0.7274103443519417,
+              "meanSpeed": 1.962634766225689
+            },
+            "drift": 1.7764388729657352
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9978019872005136,
+              "rotationalOrder": 0.08571236338906932,
+              "spread": 41.28902949067704,
+              "neighbourMean": 8.875,
+              "densityCv": 0.40031795560449035,
+              "nearestNeighbour": 9.030619694784232,
+              "nearestNeighbourCv": 0.7799281525741519,
+              "meanSpeed": 1.9628983271175386
+            },
+            "drift": 1.7673016926360845
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9975156757143802,
+              "rotationalOrder": 0.043631441747920295,
+              "spread": 37.55272487538305,
+              "neighbourMean": 9.675,
+              "densityCv": 0.35154306133268476,
+              "nearestNeighbour": 5.039708981872481,
+              "nearestNeighbourCv": 0.7765113916392395,
+              "meanSpeed": 1.9585650219400381
+            },
+            "drift": 1.7760026738522614
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9479813940129047,
+              "rotationalOrder": 0.03638476270339221,
+              "spread": 73.84457049293,
+              "neighbourMean": 6.85,
+              "densityCv": 0.4593627732571567,
+              "nearestNeighbour": 19.770497586020102,
+              "nearestNeighbourCv": 2.1036747549366632,
+              "meanSpeed": 1.9634347221290327
+            },
+            "drift": 1.7204434671013982
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9979493461347877,
+              "rotationalOrder": 0.10008174343359251,
+              "spread": 41.81979450805113,
+              "neighbourMean": 7.924999999999999,
+              "densityCv": 0.4678580275614167,
+              "nearestNeighbour": 10.077515468645734,
+              "nearestNeighbourCv": 0.7884095442160974,
+              "meanSpeed": 1.9425115874050616
+            },
+            "drift": 1.761588275068663
+          }
+        ]
+      },
+      {
+        "key": "cohesion",
+        "set": [
+          "cohesion"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 3,
+          "clumped": 2,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9996587071910292,
+              "rotationalOrder": 0.06949560097851963,
+              "spread": 57.419532087502226,
+              "neighbourMean": 7.633333333333333,
+              "densityCv": 0.29248867518832067,
+              "nearestNeighbour": 5.7068984342358675,
+              "nearestNeighbourCv": 1.3461058604619633,
+              "meanSpeed": 2.3433672278578985
+            },
+            "drift": 2.1147052152537724
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999402234946098,
+              "rotationalOrder": 0.17579880441027407,
+              "spread": 52.31248887595624,
+              "neighbourMean": 12.658333333333335,
+              "densityCv": 0.399363007225512,
+              "nearestNeighbour": 3.5941690345713275,
+              "nearestNeighbourCv": 1.0170914192226022,
+              "meanSpeed": 2.3198807268378463
+            },
+            "drift": 2.103174140333281
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999987120485876,
+              "rotationalOrder": 0.0012392134047280537,
+              "spread": 23.533685269220694,
+              "neighbourMean": 16.075,
+              "densityCv": 0.2549106949350707,
+              "nearestNeighbour": 1.932689866795764,
+              "nearestNeighbourCv": 1.254203835535281,
+              "meanSpeed": 2.3405101493009273
+            },
+            "drift": 2.113318534206607
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.999970345565826,
+              "rotationalOrder": 0.0365287421561439,
+              "spread": 49.59512991006393,
+              "neighbourMean": 7.991666666666669,
+              "densityCv": 0.39184656916496136,
+              "nearestNeighbour": 5.110889164760152,
+              "nearestNeighbourCv": 1.7588956473673285,
+              "meanSpeed": 2.3295552759384845
+            },
+            "drift": 2.105331444529112
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9997397250672584,
+              "rotationalOrder": 0.07728896640279045,
+              "spread": 55.749835758501966,
+              "neighbourMean": 8.575,
+              "densityCv": 0.5192874110072617,
+              "nearestNeighbour": 4.924919550272141,
+              "nearestNeighbourCv": 1.3002938045892611,
+              "meanSpeed": 2.3204866543179548
+            },
+            "drift": 2.1021819075176578
+          }
+        ]
+      },
+      {
+        "key": "separation",
+        "set": [
+          "separation"
+        ],
+        "modal": "inert",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 5,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 40.0480792900497,
+              "neighbourMean": 7.75,
+              "densityCv": 0.33006739792607037,
+              "nearestNeighbour": 11.818458024903917,
+              "nearestNeighbourCv": 0.4518466470295227,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 37.574695566515516,
+              "neighbourMean": 7.25,
+              "densityCv": 0.42513200020475683,
+              "nearestNeighbour": 12.211141789365058,
+              "nearestNeighbourCv": 0.45142707290811784,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 32.83198592624746,
+              "neighbourMean": 8.666666666666668,
+              "densityCv": 0.3379747183052784,
+              "nearestNeighbour": 10.083043255403087,
+              "nearestNeighbourCv": 0.4171398298564811,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 39.507503422561676,
+              "neighbourMean": 6.583333333333334,
+              "densityCv": 0.4477382558047071,
+              "nearestNeighbour": 13.474820057237096,
+              "nearestNeighbourCv": 0.4727242487461155,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 24,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 37.34441009317123,
+              "neighbourMean": 7.916666666666667,
+              "densityCv": 0.4636153347443771,
+              "nearestNeighbour": 10.674006193287,
+              "nearestNeighbourCv": 0.47228059842691106,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          }
+        ]
+      },
+      {
+        "key": "alignment+circulation",
+        "set": [
+          "alignment",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 1,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.968794996884089,
+              "rotationalOrder": 0.1030910780439088,
+              "spread": 62.64338993143709,
+              "neighbourMean": 6.916666666666666,
+              "densityCv": 0.34722799244111824,
+              "nearestNeighbour": 13.768581903083057,
+              "nearestNeighbourCv": 1.4351706122775711,
+              "meanSpeed": 4.335425061672713
+            },
+            "drift": 3.6858504972234694
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9971613539996854,
+              "rotationalOrder": 0.034460469858705496,
+              "spread": 37.16988317585756,
+              "neighbourMean": 7.8,
+              "densityCv": 0.46271444533628053,
+              "nearestNeighbour": 9.108287791747621,
+              "nearestNeighbourCv": 0.7110980726375716,
+              "meanSpeed": 4.369565413227183
+            },
+            "drift": 3.747416631450506
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.96522351307565,
+              "rotationalOrder": 0.052606594118347304,
+              "spread": 63.59874308629181,
+              "neighbourMean": 7.45,
+              "densityCv": 0.39348464434793573,
+              "nearestNeighbour": 14.381523594096047,
+              "nearestNeighbourCv": 1.790173899897627,
+              "meanSpeed": 4.323498773376234
+            },
+            "drift": 3.677199931172388
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.903787994910237,
+              "rotationalOrder": 0.1999872499967786,
+              "spread": 166.41573612452936,
+              "neighbourMean": 7.758333333333333,
+              "densityCv": 0.4710177791260414,
+              "nearestNeighbour": 33.389947411537996,
+              "nearestNeighbourCv": 3.489163375213574,
+              "meanSpeed": 4.069011795119461
+            },
+            "drift": 3.636939675809484
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9958185421010579,
+              "rotationalOrder": 0.09156299261282005,
+              "spread": 34.60979431859465,
+              "neighbourMean": 9.516666666666667,
+              "densityCv": 0.3838209948619761,
+              "nearestNeighbour": 7.787540702793715,
+              "nearestNeighbourCv": 0.6684345636830586,
+              "meanSpeed": 4.375142513616936
+            },
+            "drift": 3.7520322958829873
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion",
+        "set": [
+          "alignment",
+          "cohesion"
+        ],
+        "modal": "clumped",
+        "modalFraction": 0.8,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 1,
+          "clumped": 4,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9894110482868108,
+              "rotationalOrder": 0.08597994641088828,
+              "spread": 42.05121396809333,
+              "neighbourMean": 9.891666666666667,
+              "densityCv": 0.3038689172684171,
+              "nearestNeighbour": 3.5600315626699213,
+              "nearestNeighbourCv": 1.2953203274749037,
+              "meanSpeed": 4.358503790116136
+            },
+            "drift": 3.866143764266694
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999889066429744,
+              "rotationalOrder": 0.020737226525841486,
+              "spread": 43.00702478951714,
+              "neighbourMean": 14.266666666666666,
+              "densityCv": 0.3895446864810342,
+              "nearestNeighbour": 3.443642442658865,
+              "nearestNeighbourCv": 1.4968673856234131,
+              "meanSpeed": 4.512418180231107
+            },
+            "drift": 4.0538540392926885
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9952818169967264,
+              "rotationalOrder": 0.09796620030303439,
+              "spread": 25.93249582642992,
+              "neighbourMean": 15.566666666666668,
+              "densityCv": 0.2842542658647227,
+              "nearestNeighbour": 2.5586946290550947,
+              "nearestNeighbourCv": 1.3143587695360008,
+              "meanSpeed": 4.3252615251936675
+            },
+            "drift": 3.8599435219971228
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9987109519629094,
+              "rotationalOrder": 0.013458986152950662,
+              "spread": 28.11451265251234,
+              "neighbourMean": 14.583333333333332,
+              "densityCv": 0.2569504056459268,
+              "nearestNeighbour": 3.7266482323238117,
+              "nearestNeighbourCv": 1.4275603405490067,
+              "meanSpeed": 4.318281764229278
+            },
+            "drift": 3.8944506858025774
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9968544212844334,
+              "rotationalOrder": 0.01605472570221691,
+              "spread": 64.57047388016466,
+              "neighbourMean": 8.641666666666666,
+              "densityCv": 0.4406474942899516,
+              "nearestNeighbour": 4.680816650722556,
+              "nearestNeighbourCv": 1.6623978134606214,
+              "meanSpeed": 4.446412446050298
+            },
+            "drift": 3.97024263530321
+          }
+        ]
+      },
+      {
+        "key": "alignment+separation",
+        "set": [
+          "alignment",
+          "separation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 1,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 2,
+          "milling": 1
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.8431315912475181,
+              "rotationalOrder": 0.09625962165592133,
+              "spread": 331.71871818103784,
+              "neighbourMean": 5.591666666666667,
+              "densityCv": 0.5203790880914114,
+              "nearestNeighbour": 14.256881598808556,
+              "nearestNeighbourCv": 0.4956963615050299,
+              "meanSpeed": 2.273048131025496
+            },
+            "drift": 1.6984872836129785
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9989149277288772,
+              "rotationalOrder": 0.03573518419682883,
+              "spread": 73.18968005468535,
+              "neighbourMean": 6.808333333333333,
+              "densityCv": 0.33655042420665815,
+              "nearestNeighbour": 12.104810170154312,
+              "nearestNeighbourCv": 0.43290911167992324,
+              "meanSpeed": 2.2236543662739
+            },
+            "drift": 2.020691279196101
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 24,
+              "movers": 22,
+              "polarization": 0.9451515680143482,
+              "rotationalOrder": 0.4194543705750416,
+              "spread": 239.3954789109378,
+              "neighbourMean": 6.341666666666667,
+              "densityCv": 0.6021819868934182,
+              "nearestNeighbour": 15.627735760134948,
+              "nearestNeighbourCv": 0.6598395648263798,
+              "meanSpeed": 2.1572739539719135
+            },
+            "drift": 1.768571277638268
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 23,
+              "polarization": 0.9999999999999385,
+              "rotationalOrder": 0.04025856023538259,
+              "spread": 103.98268133322483,
+              "neighbourMean": 9.525,
+              "densityCv": 0.38571063016183904,
+              "nearestNeighbour": 27.509320100604025,
+              "nearestNeighbourCv": 3.1292793080819927,
+              "meanSpeed": 2.331249121167013
+            },
+            "drift": 2.089485229774464
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9999999999735241,
+              "rotationalOrder": 0.01027091858465945,
+              "spread": 31.153349601691286,
+              "neighbourMean": 11.658333333333333,
+              "densityCv": 0.30888247877493324,
+              "nearestNeighbour": 8.9194167331577,
+              "nearestNeighbourCv": 0.3870957361492281,
+              "meanSpeed": 2.0676701478300417
+            },
+            "drift": 1.8923263453734485
+          }
+        ]
+      },
+      {
+        "key": "cohesion+circulation",
+        "set": [
+          "cohesion",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 1,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9832289731216732,
+              "rotationalOrder": 0.10392149135207789,
+              "spread": 35.7711092584558,
+              "neighbourMean": 10.391666666666667,
+              "densityCv": 0.3004224023527919,
+              "nearestNeighbour": 4.556711328389186,
+              "nearestNeighbourCv": 0.7169956104264572,
+              "meanSpeed": 3.284246400724225
+            },
+            "drift": 2.7972022335889815
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9784811745004675,
+              "rotationalOrder": 0.07231263953709198,
+              "spread": 39.45386777170113,
+              "neighbourMean": 9.908333333333333,
+              "densityCv": 0.396376941269189,
+              "nearestNeighbour": 5.62588539013426,
+              "nearestNeighbourCv": 1.0367398824734337,
+              "meanSpeed": 3.2722260160068557
+            },
+            "drift": 2.8080412809115445
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9813828130652549,
+              "rotationalOrder": 0.09385733118731568,
+              "spread": 35.46885606808946,
+              "neighbourMean": 11.091666666666665,
+              "densityCv": 0.27892564880162346,
+              "nearestNeighbour": 4.635797268816582,
+              "nearestNeighbourCv": 0.7683211121243572,
+              "meanSpeed": 3.2923057433995915
+            },
+            "drift": 2.7993789475299007
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9803264598509246,
+              "rotationalOrder": 0.11267913673784997,
+              "spread": 39.48243981134039,
+              "neighbourMean": 9.783333333333333,
+              "densityCv": 0.3405258716419614,
+              "nearestNeighbour": 6.2370951040438145,
+              "nearestNeighbourCv": 1.657843167915905,
+              "meanSpeed": 3.293239555425842
+            },
+            "drift": 2.804282387963027
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9744813518744369,
+              "rotationalOrder": 0.1673158300252023,
+              "spread": 38.21293492904397,
+              "neighbourMean": 9.691666666666666,
+              "densityCv": 0.46660274252117,
+              "nearestNeighbour": 3.8721601456036696,
+              "nearestNeighbourCv": 0.9319085079052103,
+              "meanSpeed": 3.2667235064296727
+            },
+            "drift": 2.8066160437208323
+          }
+        ]
+      },
+      {
+        "key": "cohesion+separation",
+        "set": [
+          "cohesion",
+          "separation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 5,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9993637520018274,
+              "rotationalOrder": 0.07386388674573129,
+              "spread": 57.079871370531706,
+              "neighbourMean": 6.958333333333333,
+              "densityCv": 0.26992393804297615,
+              "nearestNeighbour": 7.421967967949598,
+              "nearestNeighbourCv": 0.7060634342403679,
+              "meanSpeed": 2.3525608976318124
+            },
+            "drift": 2.12278186439055
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9995815057516395,
+              "rotationalOrder": 0.14244687691678176,
+              "spread": 52.15103111057923,
+              "neighbourMean": 10.808333333333334,
+              "densityCv": 0.4155790843346338,
+              "nearestNeighbour": 6.267922527870067,
+              "nearestNeighbourCv": 0.5229912301658601,
+              "meanSpeed": 2.3475194106429127
+            },
+            "drift": 2.1176954774533625
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9995412406281392,
+              "rotationalOrder": 0.015112689733183856,
+              "spread": 31.17855942320251,
+              "neighbourMean": 12.575,
+              "densityCv": 0.2723439825863014,
+              "nearestNeighbour": 5.3171648178994975,
+              "nearestNeighbourCv": 0.2650391520967799,
+              "meanSpeed": 2.386344000945396
+            },
+            "drift": 2.1568089772603845
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9995079894065402,
+              "rotationalOrder": 0.021611595473495566,
+              "spread": 49.502394643066076,
+              "neighbourMean": 8.05,
+              "densityCv": 0.37392972879055286,
+              "nearestNeighbour": 8.064047106379203,
+              "nearestNeighbourCv": 0.8949880137161917,
+              "meanSpeed": 2.3266416567250063
+            },
+            "drift": 2.1026848600468977
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9994885554465984,
+              "rotationalOrder": 0.042683552510220005,
+              "spread": 54.258150705338686,
+              "neighbourMean": 7.833333333333333,
+              "densityCv": 0.5750760027274732,
+              "nearestNeighbour": 8.055550276821407,
+              "nearestNeighbourCv": 0.856302986546476,
+              "meanSpeed": 2.3442007355357846
+            },
+            "drift": 2.1212315891553373
+          }
+        ]
+      },
+      {
+        "key": "separation+circulation",
+        "set": [
+          "separation",
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.8,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 4,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9981283085649046,
+              "rotationalOrder": 0.027425716531808288,
+              "spread": 44.858849299993366,
+              "neighbourMean": 7.6916666666666655,
+              "densityCv": 0.4073841316356016,
+              "nearestNeighbour": 10.332314209430155,
+              "nearestNeighbourCv": 0.5857579564402486,
+              "meanSpeed": 1.9629056082075622
+            },
+            "drift": 1.779134105487118
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.995177520968768,
+              "rotationalOrder": 0.04607517786919419,
+              "spread": 41.76329785434997,
+              "neighbourMean": 8.866666666666667,
+              "densityCv": 0.40004829507519746,
+              "nearestNeighbour": 10.849697354899757,
+              "nearestNeighbourCv": 0.49064345449455915,
+              "meanSpeed": 1.9592113861546232
+            },
+            "drift": 1.7620390709947054
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9974858942677413,
+              "rotationalOrder": 0.05532725275256463,
+              "spread": 38.293697556796296,
+              "neighbourMean": 9.391666666666666,
+              "densityCv": 0.34619885105602155,
+              "nearestNeighbour": 7.755049266496835,
+              "nearestNeighbourCv": 0.33091133202882367,
+              "meanSpeed": 1.9756588135053579
+            },
+            "drift": 1.7897533666736296
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9480890918645457,
+              "rotationalOrder": 0.026508446998372424,
+              "spread": 74.03317313803643,
+              "neighbourMean": 6.925,
+              "densityCv": 0.4630068583127166,
+              "nearestNeighbour": 21.21878880315823,
+              "nearestNeighbourCv": 1.9310864218179435,
+              "meanSpeed": 1.9629013238632502
+            },
+            "drift": 1.719441037336929
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9980988939869523,
+              "rotationalOrder": 0.09017136417289011,
+              "spread": 42.19544442214252,
+              "neighbourMean": 7.775000000000001,
+              "densityCv": 0.43564973298269977,
+              "nearestNeighbour": 10.825539823004108,
+              "nearestNeighbourCv": 0.619392878111084,
+              "meanSpeed": 1.9506486202764102
+            },
+            "drift": 1.7676431919743323
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+circulation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 1,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9693533942800917,
+              "rotationalOrder": 0.10913088306939991,
+              "spread": 77.96640060798161,
+              "neighbourMean": 5.2250000000000005,
+              "densityCv": 0.41341638984475415,
+              "nearestNeighbour": 15.14706153688032,
+              "nearestNeighbourCv": 2.3879435955376063,
+              "meanSpeed": 4.741436194426127
+            },
+            "drift": 3.4888936229645435
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9896263432862764,
+              "rotationalOrder": 0.07737896966263158,
+              "spread": 43.18550096901775,
+              "neighbourMean": 9.033333333333335,
+              "densityCv": 0.250174718876734,
+              "nearestNeighbour": 4.968366494027217,
+              "nearestNeighbourCv": 0.8660345514948654,
+              "meanSpeed": 4.810841193546995
+            },
+            "drift": 3.524522883312037
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9913182714191355,
+              "rotationalOrder": 0.11418652138039694,
+              "spread": 36.326240309024946,
+              "neighbourMean": 11.291666666666666,
+              "densityCv": 0.3430798194185884,
+              "nearestNeighbour": 3.7827205265380917,
+              "nearestNeighbourCv": 0.9468686672533637,
+              "meanSpeed": 4.79672413567903
+            },
+            "drift": 3.522508041163801
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9910773150297431,
+              "rotationalOrder": 0.08403280471524166,
+              "spread": 39.285639306210584,
+              "neighbourMean": 10.241666666666669,
+              "densityCv": 0.3339934025126595,
+              "nearestNeighbour": 4.986842800197484,
+              "nearestNeighbourCv": 0.8869750173972994,
+              "meanSpeed": 4.807957768469153
+            },
+            "drift": 3.5181440577978673
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9362530052059401,
+              "rotationalOrder": 0.19195274451321334,
+              "spread": 85.19913771791869,
+              "neighbourMean": 7.375,
+              "densityCv": 0.6092435675929695,
+              "nearestNeighbour": 13.972720330526915,
+              "nearestNeighbourCv": 2.026880812570718,
+              "meanSpeed": 4.69608041828701
+            },
+            "drift": 3.433911424789088
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+separation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 5,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9446916232961635,
+              "rotationalOrder": 0.07268839555056661,
+              "spread": 50.56830507935821,
+              "neighbourMean": 8.191666666666666,
+              "densityCv": 0.29600370564851397,
+              "nearestNeighbour": 6.8053320646235065,
+              "nearestNeighbourCv": 0.5162048324375844,
+              "meanSpeed": 4.297924368340462
+            },
+            "drift": 3.737445714360344
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9682650959437294,
+              "rotationalOrder": 0.039418417873392085,
+              "spread": 51.11000818712192,
+              "neighbourMean": 12.3,
+              "densityCv": 0.463105570559134,
+              "nearestNeighbour": 6.979327215940342,
+              "nearestNeighbourCv": 0.8527599948299421,
+              "meanSpeed": 4.328312929061435
+            },
+            "drift": 3.808344644537733
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9728567101934941,
+              "rotationalOrder": 0.060094000476741995,
+              "spread": 38.53066037179288,
+              "neighbourMean": 11.3,
+              "densityCv": 0.39300155340860765,
+              "nearestNeighbour": 6.290853921397603,
+              "nearestNeighbourCv": 0.8129416335599023,
+              "meanSpeed": 4.363664568377185
+            },
+            "drift": 3.8646876344519865
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9617769191981516,
+              "rotationalOrder": 0.020471132350646806,
+              "spread": 38.72869459187122,
+              "neighbourMean": 11.508333333333333,
+              "densityCv": 0.33820904641497973,
+              "nearestNeighbour": 6.285715543008757,
+              "nearestNeighbourCv": 0.7599537331642204,
+              "meanSpeed": 4.247650124229963
+            },
+            "drift": 3.718590546749345
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9883852454993498,
+              "rotationalOrder": 0.04062200921913654,
+              "spread": 66.43960118073775,
+              "neighbourMean": 7.3,
+              "densityCv": 0.38708223076877474,
+              "nearestNeighbour": 7.5670325509551475,
+              "nearestNeighbourCv": 0.6372970024844556,
+              "meanSpeed": 4.4889133266071015
+            },
+            "drift": 3.9859434864633148
+          }
+        ]
+      },
+      {
+        "key": "alignment+separation+circulation",
+        "set": [
+          "alignment",
+          "separation",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 1,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9687690499477352,
+              "rotationalOrder": 0.07929138976333402,
+              "spread": 62.95345125050176,
+              "neighbourMean": 7.008333333333333,
+              "densityCv": 0.3625306223466175,
+              "nearestNeighbour": 14.160333871257691,
+              "nearestNeighbourCv": 1.394152038412181,
+              "meanSpeed": 4.33548930133313
+            },
+            "drift": 3.6878556937185816
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9969510610707919,
+              "rotationalOrder": 0.035401261794619415,
+              "spread": 37.26814243129358,
+              "neighbourMean": 8.075,
+              "densityCv": 0.44086223785832124,
+              "nearestNeighbour": 10.330816051133038,
+              "nearestNeighbourCv": 0.47672231397603254,
+              "meanSpeed": 4.369379710102855
+            },
+            "drift": 3.7453335124210914
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9655493729832584,
+              "rotationalOrder": 0.07747736003659167,
+              "spread": 63.99297679175519,
+              "neighbourMean": 6.9416666666666655,
+              "densityCv": 0.38994388369918975,
+              "nearestNeighbour": 14.921518930567212,
+              "nearestNeighbourCv": 1.6561484548711598,
+              "meanSpeed": 4.318936750640103
+            },
+            "drift": 3.673729019059772
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.916281072945438,
+              "rotationalOrder": 0.19394211725197602,
+              "spread": 167.17031269421864,
+              "neighbourMean": 7.1833333333333345,
+              "densityCv": 0.4525119074259962,
+              "nearestNeighbour": 35.94625305107101,
+              "nearestNeighbourCv": 3.2598809596134712,
+              "meanSpeed": 4.056557974377277
+            },
+            "drift": 3.6327198927652105
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9949525775461987,
+              "rotationalOrder": 0.06433187401428025,
+              "spread": 33.58482526906778,
+              "neighbourMean": 9.658333333333335,
+              "densityCv": 0.3061482571988785,
+              "nearestNeighbour": 10.00610249563133,
+              "nearestNeighbourCv": 0.46231283941528273,
+              "meanSpeed": 4.371907325291246
+            },
+            "drift": 3.7484005747487164
+          }
+        ]
+      },
+      {
+        "key": "cohesion+separation+circulation",
+        "set": [
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 5,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9764606192960338,
+              "rotationalOrder": 0.09148590052659317,
+              "spread": 36.19230919464546,
+              "neighbourMean": 9.583333333333334,
+              "densityCv": 0.2974924422323518,
+              "nearestNeighbour": 7.708971088592618,
+              "nearestNeighbourCv": 0.5489179872849645,
+              "meanSpeed": 3.290877258107603
+            },
+            "drift": 2.8039301537870482
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9715975970832826,
+              "rotationalOrder": 0.09454230402205115,
+              "spread": 40.31119726028983,
+              "neighbourMean": 9.875000000000002,
+              "densityCv": 0.3728598372416871,
+              "nearestNeighbour": 7.064842679426002,
+              "nearestNeighbourCv": 0.6438057178259462,
+              "meanSpeed": 3.2731618131662534
+            },
+            "drift": 2.79933345149967
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.982766795905848,
+              "rotationalOrder": 0.1352574799104717,
+              "spread": 36.32010895500276,
+              "neighbourMean": 10.45,
+              "densityCv": 0.2926899570892597,
+              "nearestNeighbour": 6.830300919641866,
+              "nearestNeighbourCv": 0.5824881034291616,
+              "meanSpeed": 3.292211501246206
+            },
+            "drift": 2.792800027409159
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9852793921368903,
+              "rotationalOrder": 0.15155583489232216,
+              "spread": 39.08701316291185,
+              "neighbourMean": 9.3,
+              "densityCv": 0.3492783015960593,
+              "nearestNeighbour": 7.740745932114645,
+              "nearestNeighbourCv": 0.8149716246503438,
+              "meanSpeed": 3.276895467726198
+            },
+            "drift": 2.7896340578373624
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9750407669857175,
+              "rotationalOrder": 0.23740376362814555,
+              "spread": 40.23275443768354,
+              "neighbourMean": 9.55,
+              "densityCv": 0.47381628952967647,
+              "nearestNeighbour": 8.268241237932795,
+              "nearestNeighbourCv": 0.9540779970445559,
+              "meanSpeed": 3.297230194458659
+            },
+            "drift": 2.819508680271223
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+separation+circulation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 3,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9705066149424157,
+              "rotationalOrder": 0.1339627344209751,
+              "spread": 71.19942445182394,
+              "neighbourMean": 5.883333333333334,
+              "densityCv": 0.44037392043257995,
+              "nearestNeighbour": 13.852418888446582,
+              "nearestNeighbourCv": 1.9643234998592356,
+              "meanSpeed": 4.736325437803817
+            },
+            "drift": 3.486518247276556
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9888701692272166,
+              "rotationalOrder": 0.0842716314965394,
+              "spread": 44.13791136221404,
+              "neighbourMean": 8.908333333333335,
+              "densityCv": 0.2301926426099115,
+              "nearestNeighbour": 6.438167525740087,
+              "nearestNeighbourCv": 0.39794563955730006,
+              "meanSpeed": 4.814921019634978
+            },
+            "drift": 3.520715518150195
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9913761571172856,
+              "rotationalOrder": 0.11934368310372852,
+              "spread": 36.37933229340175,
+              "neighbourMean": 11.1,
+              "densityCv": 0.35763504974241167,
+              "nearestNeighbour": 5.4679932475519015,
+              "nearestNeighbourCv": 0.3015209349252284,
+              "meanSpeed": 4.791361327491184
+            },
+            "drift": 3.5149986965887887
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9886599835770158,
+              "rotationalOrder": 0.11545085709004448,
+              "spread": 42.7916924500559,
+              "neighbourMean": 9.458333333333334,
+              "densityCv": 0.3137150405698908,
+              "nearestNeighbour": 7.197773781735084,
+              "nearestNeighbourCv": 0.4653353393625411,
+              "meanSpeed": 4.78569732830913
+            },
+            "drift": 3.5026360154528073
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 24,
+              "movers": 24,
+              "polarization": 0.9659270546081791,
+              "rotationalOrder": 0.15855323158691495,
+              "spread": 69.54727834705193,
+              "neighbourMean": 6.058333333333334,
+              "densityCv": 0.5509279633914357,
+              "nearestNeighbour": 14.63313623472302,
+              "nearestNeighbourCv": 1.7245148886469974,
+              "meanSpeed": 4.7101154718660405
+            },
+            "drift": 3.4640750116417602
+          }
+        ]
+      }
+    ],
+    "sparse": [
+      {
+        "key": "none",
+        "set": [],
+        "modal": "inert",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 5,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 59.08180170423255,
+              "neighbourMean": 8.533333333333333,
+              "densityCv": 0.3400982116457224,
+              "nearestNeighbour": 9.718742511191435,
+              "nearestNeighbourCv": 0.5634881335044019,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 57.25445059358253,
+              "neighbourMean": 8.466666666666667,
+              "densityCv": 0.3040275106603607,
+              "nearestNeighbour": 10.317923121569534,
+              "nearestNeighbourCv": 0.5237053285830323,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 51.06540830583471,
+              "neighbourMean": 10.966666666666667,
+              "densityCv": 0.4084726426099049,
+              "nearestNeighbour": 9.844301278485348,
+              "nearestNeighbourCv": 0.6556763958581603,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 58.69214390326658,
+              "neighbourMean": 8.133333333333331,
+              "densityCv": 0.3923905773260833,
+              "nearestNeighbour": 10.056841080808853,
+              "nearestNeighbourCv": 0.5387302437654224,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 57.63787269741566,
+              "neighbourMean": 9.666666666666668,
+              "densityCv": 0.5105943440456288,
+              "nearestNeighbour": 10.48524097059884,
+              "nearestNeighbourCv": 0.570735947066953,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          }
+        ]
+      },
+      {
+        "key": "alignment",
+        "set": [
+          "alignment"
+        ],
+        "modal": "dispersed",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 2,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 2
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 60,
+              "movers": 58,
+              "polarization": 0.7284958049499946,
+              "rotationalOrder": 0.12290581625883963,
+              "spread": 447.86154889821273,
+              "neighbourMean": 4.423333333333334,
+              "densityCv": 0.5833568155213649,
+              "nearestNeighbour": 16.47350789224776,
+              "nearestNeighbourCv": 1.0491404458903975,
+              "meanSpeed": 2.112214807149125
+            },
+            "drift": 2.3997464150410384
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 59,
+              "polarization": 0.9999612405889966,
+              "rotationalOrder": 0.07638058096297953,
+              "spread": 77.15902693894694,
+              "neighbourMean": 17.776666666666667,
+              "densityCv": 0.34982562643284076,
+              "nearestNeighbour": 13.62864290422093,
+              "nearestNeighbourCv": 4.020402129268345,
+              "meanSpeed": 2.1620936198946623
+            },
+            "drift": 1.9710034052850833
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 60,
+              "movers": 59,
+              "polarization": 0.6915819324602677,
+              "rotationalOrder": 0.11537986988876396,
+              "spread": 476.20588952945235,
+              "neighbourMean": 4.319999999999999,
+              "densityCv": 0.5501940675881698,
+              "nearestNeighbour": 21.96745641167957,
+              "nearestNeighbourCv": 2.886234179732114,
+              "meanSpeed": 2.299922065041913
+            },
+            "drift": 4.993584887147633
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 60,
+              "movers": 58,
+              "polarization": 0.910227291088936,
+              "rotationalOrder": 0.44092504372104635,
+              "spread": 297.2593119122165,
+              "neighbourMean": 13.423333333333336,
+              "densityCv": 0.573783117445024,
+              "nearestNeighbour": 9.33842778291675,
+              "nearestNeighbourCv": 1.2755379105492877,
+              "meanSpeed": 2.286054600833503
+            },
+            "drift": 2.2772942753715895
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 60,
+              "movers": 59,
+              "polarization": 0.94964303246502,
+              "rotationalOrder": 0.2768888659880687,
+              "spread": 237.6821500063786,
+              "neighbourMean": 5.08,
+              "densityCv": 0.5342594051720739,
+              "nearestNeighbour": 19.613625353856698,
+              "nearestNeighbourCv": 2.788202348888359,
+              "meanSpeed": 2.3148558551892884
+            },
+            "drift": 2.0561690898164375
+          }
+        ]
+      },
+      {
+        "key": "circulation",
+        "set": [
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 3,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9975855431459811,
+              "rotationalOrder": 0.09833450011208235,
+              "spread": 58.450634955863976,
+              "neighbourMean": 10.276666666666667,
+              "densityCv": 0.48123220361800934,
+              "nearestNeighbour": 8.394393139399563,
+              "nearestNeighbourCv": 0.8683807986267128,
+              "meanSpeed": 1.9982101412057056
+            },
+            "drift": 1.798560655812532
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9978705247850386,
+              "rotationalOrder": 0.017480627136728738,
+              "spread": 60.097505544754064,
+              "neighbourMean": 9.739999999999998,
+              "densityCv": 0.4599005335974226,
+              "nearestNeighbour": 8.484851648537235,
+              "nearestNeighbourCv": 0.8443434433718477,
+              "meanSpeed": 1.9753878343849955
+            },
+            "drift": 1.7772463700272658
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9971125733173771,
+              "rotationalOrder": 0.06343832959628048,
+              "spread": 51.19660679218064,
+              "neighbourMean": 13.283333333333335,
+              "densityCv": 0.370174226991531,
+              "nearestNeighbour": 6.864078588085374,
+              "nearestNeighbourCv": 0.939706574519368,
+              "meanSpeed": 1.9921410824227315
+            },
+            "drift": 1.7959453133755678
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9791331365280325,
+              "rotationalOrder": 0.13165765998050288,
+              "spread": 112.36165305079153,
+              "neighbourMean": 10.76,
+              "densityCv": 0.5349710706291516,
+              "nearestNeighbour": 20.765609605841643,
+              "nearestNeighbourCv": 4.14799389767346,
+              "meanSpeed": 1.956777969932255
+            },
+            "drift": 1.7713708914609025
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9759404250384505,
+              "rotationalOrder": 0.13432598549018931,
+              "spread": 67.18210767689433,
+              "neighbourMean": 12.173333333333332,
+              "densityCv": 0.47248305274955127,
+              "nearestNeighbour": 10.935214036520863,
+              "nearestNeighbourCv": 1.7768442984679549,
+              "meanSpeed": 1.9900670103344402
+            },
+            "drift": 1.7641815925836835
+          }
+        ]
+      },
+      {
+        "key": "cohesion",
+        "set": [
+          "cohesion"
+        ],
+        "modal": "clumped",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 3,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9993922447646444,
+              "rotationalOrder": 0.12336481375419459,
+              "spread": 68.37382232152206,
+              "neighbourMean": 16.173333333333332,
+              "densityCv": 0.38358823305276635,
+              "nearestNeighbour": 3.4946353983337795,
+              "nearestNeighbourCv": 1.4519117564221868,
+              "meanSpeed": 2.3311997495836794
+            },
+            "drift": 2.107226715088702
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9826513508667138,
+              "rotationalOrder": 0.062160498826511854,
+              "spread": 116.42327690001684,
+              "neighbourMean": 15.14333333333333,
+              "densityCv": 0.3653830646402974,
+              "nearestNeighbour": 13.259316278869212,
+              "nearestNeighbourCv": 6.216488063759632,
+              "meanSpeed": 2.3241932984040465
+            },
+            "drift": 2.1203858914013516
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9986656538834978,
+              "rotationalOrder": 0.08413787791081044,
+              "spread": 57.68088985800824,
+              "neighbourMean": 20.62666666666667,
+              "densityCv": 0.3333371086588855,
+              "nearestNeighbour": 2.6462530029718843,
+              "nearestNeighbourCv": 1.7127900671720706,
+              "meanSpeed": 2.344011330430665
+            },
+            "drift": 2.1133053998317934
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9987053806362736,
+              "rotationalOrder": 0.04438534463084038,
+              "spread": 69.5424194729552,
+              "neighbourMean": 14.283333333333331,
+              "densityCv": 0.3767793438583502,
+              "nearestNeighbour": 4.091600832195171,
+              "nearestNeighbourCv": 1.3767928706262287,
+              "meanSpeed": 2.3299311632579083
+            },
+            "drift": 2.1034634347750405
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9993345036410677,
+              "rotationalOrder": 0.07040263482485178,
+              "spread": 84.52796965456406,
+              "neighbourMean": 14.02,
+              "densityCv": 0.46985997721203476,
+              "nearestNeighbour": 2.370471344526295,
+              "nearestNeighbourCv": 1.0741982804235024,
+              "meanSpeed": 2.2799470813793445
+            },
+            "drift": 2.0689259624321163
+          }
+        ]
+      },
+      {
+        "key": "separation",
+        "set": [
+          "separation"
+        ],
+        "modal": "inert",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 5,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 58.988218477674096,
+              "neighbourMean": 8.700000000000001,
+              "densityCv": 0.3388004999186825,
+              "nearestNeighbour": 10.562510714945601,
+              "nearestNeighbourCv": 0.42803673306579604,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 57.25978526649161,
+              "neighbourMean": 8.633333333333331,
+              "densityCv": 0.3119489607527478,
+              "nearestNeighbour": 11.276478139222785,
+              "nearestNeighbourCv": 0.3849501307912025,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 51.34047861320887,
+              "neighbourMean": 11.200000000000001,
+              "densityCv": 0.4099173761564535,
+              "nearestNeighbour": 10.171064215057116,
+              "nearestNeighbourCv": 0.562220346847372,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 58.93460721757607,
+              "neighbourMean": 8.099999999999998,
+              "densityCv": 0.3855439602641501,
+              "nearestNeighbour": 10.677590105484514,
+              "nearestNeighbourCv": 0.4632884232542442,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "inert",
+            "settled": {
+              "alive": 60,
+              "movers": 0,
+              "polarization": 0,
+              "rotationalOrder": 0,
+              "spread": 57.77044448520975,
+              "neighbourMean": 9.433333333333335,
+              "densityCv": 0.48140047714616674,
+              "nearestNeighbour": 10.804896620114516,
+              "nearestNeighbourCv": 0.49595088890311223,
+              "meanSpeed": 0
+            },
+            "drift": 0
+          }
+        ]
+      },
+      {
+        "key": "alignment+circulation",
+        "set": [
+          "alignment",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 5,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.984596725658489,
+              "rotationalOrder": 0.09712087834936507,
+              "spread": 72.9249080347914,
+              "neighbourMean": 10.88,
+              "densityCv": 0.4202858821419757,
+              "nearestNeighbour": 8.51705075477024,
+              "nearestNeighbourCv": 2.0374609451254844,
+              "meanSpeed": 4.3663034351634025
+            },
+            "drift": 3.745334168413594
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9466798252304329,
+              "rotationalOrder": 0.10690236863735977,
+              "spread": 146.2784851889066,
+              "neighbourMean": 10.876666666666665,
+              "densityCv": 0.5572960173275462,
+              "nearestNeighbour": 10.416741965582947,
+              "nearestNeighbourCv": 1.8290741239528792,
+              "meanSpeed": 4.274785942807984
+            },
+            "drift": 3.7669793648883223
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9546797407624746,
+              "rotationalOrder": 0.03725421255964385,
+              "spread": 78.4264972469364,
+              "neighbourMean": 13.273333333333332,
+              "densityCv": 0.40615298084482543,
+              "nearestNeighbour": 9.782550006578514,
+              "nearestNeighbourCv": 1.1852984839162772,
+              "meanSpeed": 4.316758642255047
+            },
+            "drift": 3.66628290380228
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9595799434395934,
+              "rotationalOrder": 0.2070807252905685,
+              "spread": 145.43149190850846,
+              "neighbourMean": 15.159999999999997,
+              "densityCv": 0.4283213674238146,
+              "nearestNeighbour": 24.718048331940093,
+              "nearestNeighbourCv": 4.94730683365889,
+              "meanSpeed": 4.309468684985954
+            },
+            "drift": 3.7669782011589077
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9622479658570906,
+              "rotationalOrder": 0.12619854428410496,
+              "spread": 123.49091236628146,
+              "neighbourMean": 18.016666666666666,
+              "densityCv": 0.4594810722939594,
+              "nearestNeighbour": 18.84922878143032,
+              "nearestNeighbourCv": 4.752401506566673,
+              "meanSpeed": 4.311505747419104
+            },
+            "drift": 3.7379733916445694
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion",
+        "set": [
+          "alignment",
+          "cohesion"
+        ],
+        "modal": "clumped",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 3,
+          "flocking": 0,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9873870428327896,
+              "rotationalOrder": 0.06490239327134607,
+              "spread": 61.07199824205229,
+              "neighbourMean": 20.473333333333336,
+              "densityCv": 0.28655191821566994,
+              "nearestNeighbour": 2.15957979928522,
+              "nearestNeighbourCv": 1.1047752642471704,
+              "meanSpeed": 4.419236549234448
+            },
+            "drift": 3.9015047979712265
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9700378748112237,
+              "rotationalOrder": 0.23741217552419905,
+              "spread": 120.13543027793136,
+              "neighbourMean": 21.150000000000002,
+              "densityCv": 0.3973817432833535,
+              "nearestNeighbour": 14.951756876076876,
+              "nearestNeighbourCv": 6.649723334001779,
+              "meanSpeed": 4.39624815347677
+            },
+            "drift": 3.9310383122060086
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9745395696485784,
+              "rotationalOrder": 0.16283883570132757,
+              "spread": 117.81994975816853,
+              "neighbourMean": 19.79,
+              "densityCv": 0.2924007524617161,
+              "nearestNeighbour": 14.718503071431579,
+              "nearestNeighbourCv": 6.610763733436333,
+              "meanSpeed": 4.281590159172037
+            },
+            "drift": 3.9004560697223623
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9996553094558933,
+              "rotationalOrder": 0.03482213469668173,
+              "spread": 54.99542834398437,
+              "neighbourMean": 25.636666666666667,
+              "densityCv": 0.3695266086391761,
+              "nearestNeighbour": 2.168851437542718,
+              "nearestNeighbourCv": 2.030369976069971,
+              "meanSpeed": 4.495248651797448
+            },
+            "drift": 4.034683413462119
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9885681965996909,
+              "rotationalOrder": 0.03098514243550714,
+              "spread": 75.76556695601849,
+              "neighbourMean": 18.223333333333336,
+              "densityCv": 0.42816941938727054,
+              "nearestNeighbour": 2.733330798371367,
+              "nearestNeighbourCv": 1.1589021476956847,
+              "meanSpeed": 4.406809785737067
+            },
+            "drift": 3.932706764892593
+          }
+        ]
+      },
+      {
+        "key": "alignment+separation",
+        "set": [
+          "alignment",
+          "separation"
+        ],
+        "modal": "dispersed",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 2,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 0,
+          "milling": 2
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.7772914906538883,
+              "rotationalOrder": 0.06573482863922941,
+              "spread": 407.77467266929426,
+              "neighbourMean": 5,
+              "densityCv": 0.4388075477087015,
+              "nearestNeighbour": 14.226284367652713,
+              "nearestNeighbourCv": 0.48753389365536337,
+              "meanSpeed": 2.1090765102175526
+            },
+            "drift": 2.0991779636153365
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 59,
+              "polarization": 0.999662628952701,
+              "rotationalOrder": 0.022845703054400632,
+              "spread": 84.59048177396623,
+              "neighbourMean": 13.91,
+              "densityCv": 0.3572019776696901,
+              "nearestNeighbour": 15.665539476911755,
+              "nearestNeighbourCv": 3.4238124495471105,
+              "meanSpeed": 2.225460753493165
+            },
+            "drift": 2.020846827072648
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "dispersed",
+            "settled": {
+              "alive": 60,
+              "movers": 56,
+              "polarization": 0.6451561852592071,
+              "rotationalOrder": 0.13671545256425327,
+              "spread": 517.4050193554526,
+              "neighbourMean": 4.716666666666667,
+              "densityCv": 0.6412688508139288,
+              "nearestNeighbour": 22.540344710317154,
+              "nearestNeighbourCv": 1.5712144426434542,
+              "meanSpeed": 2.317072916957868
+            },
+            "drift": 5.098896781811642
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 60,
+              "movers": 58,
+              "polarization": 0.898074373773078,
+              "rotationalOrder": 0.4045777794084717,
+              "spread": 311.70578901774286,
+              "neighbourMean": 12.556666666666668,
+              "densityCv": 0.6610577664277983,
+              "nearestNeighbour": 10.957682502765437,
+              "nearestNeighbourCv": 0.827753400204313,
+              "meanSpeed": 2.2811451630404163
+            },
+            "drift": 2.258653023701454
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "milling",
+            "settled": {
+              "alive": 60,
+              "movers": 58,
+              "polarization": 0.9483791991414371,
+              "rotationalOrder": 0.29943758760767814,
+              "spread": 244.31815048322323,
+              "neighbourMean": 4.543333333333333,
+              "densityCv": 0.48879686063865735,
+              "nearestNeighbour": 21.119613719429125,
+              "nearestNeighbourCv": 2.010076604030471,
+              "meanSpeed": 2.315026382241196
+            },
+            "drift": 2.0145289485271958
+          }
+        ]
+      },
+      {
+        "key": "cohesion+circulation",
+        "set": [
+          "cohesion",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.4,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 1,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9738491760871778,
+              "rotationalOrder": 0.11568436134795398,
+              "spread": 58.77400904493103,
+              "neighbourMean": 13.826666666666668,
+              "densityCv": 0.4042298214274932,
+              "nearestNeighbour": 4.449442692199893,
+              "nearestNeighbourCv": 1.1968688836553683,
+              "meanSpeed": 3.2784833112468164
+            },
+            "drift": 2.8300624676982578
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9651758031378963,
+              "rotationalOrder": 0.07825611243275651,
+              "spread": 59.448986958834475,
+              "neighbourMean": 13.133333333333331,
+              "densityCv": 0.3732380145252538,
+              "nearestNeighbour": 4.337616438063362,
+              "nearestNeighbourCv": 0.8930862508599343,
+              "meanSpeed": 3.2559606835255557
+            },
+            "drift": 2.8056087904032823
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9654288033717056,
+              "rotationalOrder": 0.13369139948166125,
+              "spread": 58.472183592233556,
+              "neighbourMean": 11.706666666666667,
+              "densityCv": 0.39803598427272585,
+              "nearestNeighbour": 4.677564095503164,
+              "nearestNeighbourCv": 0.9803898635479023,
+              "meanSpeed": 3.2706915895167348
+            },
+            "drift": 2.813620584683223
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9729414760629524,
+              "rotationalOrder": 0.0855210121532159,
+              "spread": 53.68180876648464,
+              "neighbourMean": 14.036666666666667,
+              "densityCv": 0.32930730063681946,
+              "nearestNeighbour": 3.9404251076197574,
+              "nearestNeighbourCv": 1.078373023794692,
+              "meanSpeed": 3.260973043721581
+            },
+            "drift": 2.7998712255806755
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9633171749002507,
+              "rotationalOrder": 0.19353542981502075,
+              "spread": 60.08960198416622,
+              "neighbourMean": 13.983333333333334,
+              "densityCv": 0.5258230355463361,
+              "nearestNeighbour": 5.130433338424228,
+              "nearestNeighbourCv": 1.2551475839061086,
+              "meanSpeed": 3.258680593301539
+            },
+            "drift": 2.8321506269258685
+          }
+        ]
+      },
+      {
+        "key": "cohesion+separation",
+        "set": [
+          "cohesion",
+          "separation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.8,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 1,
+          "clumped": 0,
+          "flocking": 4,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9979893770439284,
+              "rotationalOrder": 0.15579640895644298,
+              "spread": 69.84218011022992,
+              "neighbourMean": 14.866666666666665,
+              "densityCv": 0.3021321699442193,
+              "nearestNeighbour": 5.741382622077123,
+              "nearestNeighbourCv": 0.506633054607996,
+              "meanSpeed": 2.381616563126607
+            },
+            "drift": 2.1508051225693317
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.981261730225708,
+              "rotationalOrder": 0.015033771018755202,
+              "spread": 119.89726411976346,
+              "neighbourMean": 14.86,
+              "densityCv": 0.2982925289622742,
+              "nearestNeighbour": 16.10402840879984,
+              "nearestNeighbourCv": 5.23776553867953,
+              "meanSpeed": 2.392332263859245
+            },
+            "drift": 2.1770627874149455
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9969771593403026,
+              "rotationalOrder": 0.0748254877328535,
+              "spread": 58.13666553021424,
+              "neighbourMean": 18.846666666666668,
+              "densityCv": 0.29587720943602075,
+              "nearestNeighbour": 5.238563581891278,
+              "nearestNeighbourCv": 0.39791161984811596,
+              "meanSpeed": 2.4612170110948504
+            },
+            "drift": 2.2205875485204087
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9978247365498321,
+              "rotationalOrder": 0.08486169254143615,
+              "spread": 71.05009901575322,
+              "neighbourMean": 14.293333333333333,
+              "densityCv": 0.291524535397346,
+              "nearestNeighbour": 5.775134918599781,
+              "nearestNeighbourCv": 0.5580446392236796,
+              "meanSpeed": 2.3949387964598685
+            },
+            "drift": 2.1587496511464432
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9984142538257703,
+              "rotationalOrder": 0.1266018928358728,
+              "spread": 76.82843483204249,
+              "neighbourMean": 12.636666666666667,
+              "densityCv": 0.35211534492807023,
+              "nearestNeighbour": 5.490095556927458,
+              "nearestNeighbourCv": 0.3394848842253547,
+              "meanSpeed": 2.3532708107004856
+            },
+            "drift": 2.129825246036813
+          }
+        ]
+      },
+      {
+        "key": "separation+circulation",
+        "set": [
+          "separation",
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 3,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9978301476302305,
+              "rotationalOrder": 0.08838962079489911,
+              "spread": 59.700479396655396,
+              "neighbourMean": 9.653333333333332,
+              "densityCv": 0.4838057092882891,
+              "nearestNeighbour": 10.315148979125443,
+              "nearestNeighbourCv": 0.5756874799750251,
+              "meanSpeed": 1.9993897900444104
+            },
+            "drift": 1.7991395728412385
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9976951184559292,
+              "rotationalOrder": 0.016006579931277076,
+              "spread": 59.62161347199371,
+              "neighbourMean": 10.169999999999998,
+              "densityCv": 0.4657731235645951,
+              "nearestNeighbour": 10.073949278188852,
+              "nearestNeighbourCv": 0.5756773237887006,
+              "meanSpeed": 1.9843622222563198
+            },
+            "drift": 1.7854589144448172
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9951605336604041,
+              "rotationalOrder": 0.10311038006627112,
+              "spread": 51.459933015317326,
+              "neighbourMean": 14.286666666666665,
+              "densityCv": 0.37697693180340164,
+              "nearestNeighbour": 8.01132043194158,
+              "nearestNeighbourCv": 0.6237734272020408,
+              "meanSpeed": 2.00369300372556
+            },
+            "drift": 1.8081686702546742
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9791755055540436,
+              "rotationalOrder": 0.12358061840815646,
+              "spread": 112.4392393619119,
+              "neighbourMean": 10.706666666666667,
+              "densityCv": 0.5324464939332337,
+              "nearestNeighbour": 21.493672577852234,
+              "nearestNeighbourCv": 4.004750753710143,
+              "meanSpeed": 1.9613731143681914
+            },
+            "drift": 1.776718791939843
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.975276686666918,
+              "rotationalOrder": 0.13393079122610155,
+              "spread": 67.46646078199707,
+              "neighbourMean": 12.043333333333333,
+              "densityCv": 0.49732262259981097,
+              "nearestNeighbour": 12.191567652483958,
+              "nearestNeighbourCv": 1.5601803376905008,
+              "meanSpeed": 1.9969458911457487
+            },
+            "drift": 1.7735425854744893
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+circulation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 3,
+          "clumped": 1,
+          "flocking": 1,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9728609119127203,
+              "rotationalOrder": 0.1633385410169285,
+              "spread": 73.40319695535209,
+              "neighbourMean": 12.246666666666666,
+              "densityCv": 0.43574318743422297,
+              "nearestNeighbour": 6.613874581432441,
+              "nearestNeighbourCv": 2.1010547043501226,
+              "meanSpeed": 4.750555675378919
+            },
+            "drift": 3.476977220699742
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9755636298645424,
+              "rotationalOrder": 0.2070932242751653,
+              "spread": 74.91585058969014,
+              "neighbourMean": 15.383333333333335,
+              "densityCv": 0.4208041306223735,
+              "nearestNeighbour": 4.021688359924688,
+              "nearestNeighbourCv": 1.0637139949811139,
+              "meanSpeed": 4.786396131939062
+            },
+            "drift": 3.5034164976798245
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9773373635428099,
+              "rotationalOrder": 0.18055116647821073,
+              "spread": 68.3843324800272,
+              "neighbourMean": 12.226666666666667,
+              "densityCv": 0.38107883226076256,
+              "nearestNeighbour": 4.1848743256674386,
+              "nearestNeighbourCv": 0.9678317614288456,
+              "meanSpeed": 4.79818348210296
+            },
+            "drift": 3.51389935608299
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9722625836968094,
+              "rotationalOrder": 0.13887000922198633,
+              "spread": 73.62015151284581,
+              "neighbourMean": 16.393333333333334,
+              "densityCv": 0.3080794629468381,
+              "nearestNeighbour": 7.367080400456382,
+              "nearestNeighbourCv": 3.6695320629085737,
+              "meanSpeed": 4.759690473301498
+            },
+            "drift": 3.4845805435761723
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "clumped",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9754325114933884,
+              "rotationalOrder": 0.12600355168060895,
+              "spread": 71.63221386492273,
+              "neighbourMean": 17.833333333333336,
+              "densityCv": 0.48615549953937814,
+              "nearestNeighbour": 3.783659815731876,
+              "nearestNeighbourCv": 1.3340202100834375,
+              "meanSpeed": 4.778225925423266
+            },
+            "drift": 3.505446602017244
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+separation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 2,
+          "clumped": 0,
+          "flocking": 3,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9519586138057502,
+              "rotationalOrder": 0.03653266841550101,
+              "spread": 67.31555224061442,
+              "neighbourMean": 17.860000000000003,
+              "densityCv": 0.3441049164467421,
+              "nearestNeighbour": 4.970807631347178,
+              "nearestNeighbourCv": 0.4598597672755009,
+              "meanSpeed": 4.318849494118133
+            },
+            "drift": 3.7000107472710027
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9646441470212466,
+              "rotationalOrder": 0.032443323628293365,
+              "spread": 101.74074216109682,
+              "neighbourMean": 17.023333333333333,
+              "densityCv": 0.363923160067231,
+              "nearestNeighbour": 13.767746913321343,
+              "nearestNeighbourCv": 4.799506814720353,
+              "meanSpeed": 4.36076301982709
+            },
+            "drift": 3.801753576315171
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9483293649518296,
+              "rotationalOrder": 0.1145238937956862,
+              "spread": 124.94428235670323,
+              "neighbourMean": 15.040000000000001,
+              "densityCv": 0.3187021728852931,
+              "nearestNeighbour": 17.907171451380805,
+              "nearestNeighbourCv": 5.250653079358194,
+              "meanSpeed": 4.267741696255049
+            },
+            "drift": 3.7529235653768156
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.948209548456945,
+              "rotationalOrder": 0.04995278342982262,
+              "spread": 57.21778791887691,
+              "neighbourMean": 19.470000000000002,
+              "densityCv": 0.3007227354173613,
+              "nearestNeighbour": 5.65638416093954,
+              "nearestNeighbourCv": 0.815676301724312,
+              "meanSpeed": 4.295494512208103
+            },
+            "drift": 3.6756144858870634
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9640380380053204,
+              "rotationalOrder": 0.03794628336730417,
+              "spread": 79.55660114671312,
+              "neighbourMean": 15.366666666666665,
+              "densityCv": 0.41547853683717123,
+              "nearestNeighbour": 6.168581505008546,
+              "nearestNeighbourCv": 0.6044599685017131,
+              "meanSpeed": 4.328580997454086
+            },
+            "drift": 3.786034276354619
+          }
+        ]
+      },
+      {
+        "key": "alignment+separation+circulation",
+        "set": [
+          "alignment",
+          "separation",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.8,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 4,
+          "clumped": 0,
+          "flocking": 1,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9717084286677176,
+              "rotationalOrder": 0.08070185126920501,
+              "spread": 83.30401203042197,
+              "neighbourMean": 9.606666666666666,
+              "densityCv": 0.46222619308309615,
+              "nearestNeighbour": 9.195129254254754,
+              "nearestNeighbourCv": 0.8059950569063092,
+              "meanSpeed": 4.3479545054577144
+            },
+            "drift": 3.726868750093277
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.935340601188939,
+              "rotationalOrder": 0.10767105540379654,
+              "spread": 147.9386425700115,
+              "neighbourMean": 11.44,
+              "densityCv": 0.5638477306240015,
+              "nearestNeighbour": 11.025616357588746,
+              "nearestNeighbourCv": 0.9875711396336208,
+              "meanSpeed": 4.252009191965439
+            },
+            "drift": 3.722795142425901
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9546616140147899,
+              "rotationalOrder": 0.06652476977134639,
+              "spread": 78.33954530020023,
+              "neighbourMean": 14.093333333333334,
+              "densityCv": 0.4421176042092124,
+              "nearestNeighbour": 10.829470807441751,
+              "nearestNeighbourCv": 1.0874574181416612,
+              "meanSpeed": 4.309140047499012
+            },
+            "drift": 3.664037637384538
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9588848248561114,
+              "rotationalOrder": 0.21325458346919005,
+              "spread": 146.01064408203484,
+              "neighbourMean": 14.613333333333333,
+              "densityCv": 0.4358525256345397,
+              "nearestNeighbour": 25.50812612654542,
+              "nearestNeighbourCv": 4.7479833718977735,
+              "meanSpeed": 4.310807921094831
+            },
+            "drift": 3.781191655840782
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9524310311899076,
+              "rotationalOrder": 0.12915477887191892,
+              "spread": 128.5127759494107,
+              "neighbourMean": 16.286666666666665,
+              "densityCv": 0.4922100068318936,
+              "nearestNeighbour": 19.266887725560892,
+              "nearestNeighbourCv": 4.489983664135401,
+              "meanSpeed": 4.305782004191624
+            },
+            "drift": 3.736355294863137
+          }
+        ]
+      },
+      {
+        "key": "cohesion+separation+circulation",
+        "set": [
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "modal": "flocking",
+        "modalFraction": 1,
+        "stable": true,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 0,
+          "clumped": 0,
+          "flocking": 5,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9724581582375261,
+              "rotationalOrder": 0.11663241199718086,
+              "spread": 60.25343393043386,
+              "neighbourMean": 12.856666666666666,
+              "densityCv": 0.395657020971466,
+              "nearestNeighbour": 6.689868984964678,
+              "nearestNeighbourCv": 0.6316068062727734,
+              "meanSpeed": 3.2973524098905287
+            },
+            "drift": 2.8314175207667374
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9649534189058567,
+              "rotationalOrder": 0.13221408697572917,
+              "spread": 58.6090793476496,
+              "neighbourMean": 15.196666666666667,
+              "densityCv": 0.32498115727545784,
+              "nearestNeighbour": 6.286629979810348,
+              "nearestNeighbourCv": 0.585499166824213,
+              "meanSpeed": 3.2908046500459323
+            },
+            "drift": 2.82689117694878
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.966730512762242,
+              "rotationalOrder": 0.12750564859566565,
+              "spread": 61.954391089726904,
+              "neighbourMean": 11.49,
+              "densityCv": 0.3608007628552786,
+              "nearestNeighbour": 6.312620996347918,
+              "nearestNeighbourCv": 0.4536807482601037,
+              "meanSpeed": 3.295499118558877
+            },
+            "drift": 2.8298586969691772
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9621516323335662,
+              "rotationalOrder": 0.12771582680291654,
+              "spread": 54.83425543863909,
+              "neighbourMean": 14.439999999999998,
+              "densityCv": 0.3488886064601352,
+              "nearestNeighbour": 6.406363817565287,
+              "nearestNeighbourCv": 0.4817226891218155,
+              "meanSpeed": 3.282681636318803
+            },
+            "drift": 2.801207999687394
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9655865225302233,
+              "rotationalOrder": 0.21220236339672902,
+              "spread": 62.33646109988695,
+              "neighbourMean": 12.930000000000001,
+              "densityCv": 0.47994967026077323,
+              "nearestNeighbour": 7.66878881571557,
+              "nearestNeighbourCv": 0.8174593382924303,
+              "meanSpeed": 3.284322577861402
+            },
+            "drift": 2.832541254643686
+          }
+        ]
+      },
+      {
+        "key": "alignment+cohesion+separation+circulation",
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "modal": "cohesive",
+        "modalFraction": 0.6,
+        "stable": false,
+        "counts": {
+          "inert": 0,
+          "dispersed": 0,
+          "cohesive": 3,
+          "clumped": 0,
+          "flocking": 2,
+          "milling": 0
+        },
+        "perSeed": [
+          {
+            "rngSeed": 101,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9782224799957847,
+              "rotationalOrder": 0.11771082592989275,
+              "spread": 69.16189647711397,
+              "neighbourMean": 12.453333333333333,
+              "densityCv": 0.44098045827484444,
+              "nearestNeighbour": 7.77180000276699,
+              "nearestNeighbourCv": 0.6850032969864968,
+              "meanSpeed": 4.780429478878479
+            },
+            "drift": 3.486294608460259
+          },
+          {
+            "rngSeed": 202,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9664445656627663,
+              "rotationalOrder": 0.1634513429663303,
+              "spread": 81.21501970182337,
+              "neighbourMean": 14.316666666666666,
+              "densityCv": 0.44730674551171756,
+              "nearestNeighbour": 8.204964436162602,
+              "nearestNeighbourCv": 1.6308291518082079,
+              "meanSpeed": 4.783375030301091
+            },
+            "drift": 3.4795433449555513
+          },
+          {
+            "rngSeed": 303,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9719431040565254,
+              "rotationalOrder": 0.16031404922292153,
+              "spread": 75.49923798530077,
+              "neighbourMean": 12.036666666666667,
+              "densityCv": 0.42988769091930834,
+              "nearestNeighbour": 7.6929437845617965,
+              "nearestNeighbourCv": 1.4776135389226597,
+              "meanSpeed": 4.785615343055629
+            },
+            "drift": 3.4952179821732976
+          },
+          {
+            "rngSeed": 404,
+            "behaviour": "cohesive",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9691491748038421,
+              "rotationalOrder": 0.13364765741654847,
+              "spread": 71.33418625515102,
+              "neighbourMean": 14.50333333333333,
+              "densityCv": 0.332031176161948,
+              "nearestNeighbour": 7.860950188052341,
+              "nearestNeighbourCv": 1.4944904679727322,
+              "meanSpeed": 4.779729190766405
+            },
+            "drift": 3.467774851480507
+          },
+          {
+            "rngSeed": 505,
+            "behaviour": "flocking",
+            "settled": {
+              "alive": 60,
+              "movers": 60,
+              "polarization": 0.9752264311501092,
+              "rotationalOrder": 0.11397225343750783,
+              "spread": 73.53881635240509,
+              "neighbourMean": 15.446666666666669,
+              "densityCv": 0.39713225412581854,
+              "nearestNeighbour": 6.113350439360287,
+              "nearestNeighbourCv": 0.6707624968051904,
+              "meanSpeed": 4.778167958448513
+            },
+            "drift": 3.4841890970664933
+          }
+        ]
+      }
+    ]
+  },
+  "dense": {
+    "target": "flocking",
+    "minimalSufficient": [
+      "alignment",
+      "circulation",
+      "cohesion+separation"
+    ],
+    "necessary": [
+      "cohesion"
+    ],
+    "dispensable": [
+      "alignment",
+      "separation",
+      "circulation"
+    ],
+    "arms": [
+      {
+        "set": [],
+        "key": "none",
+        "behaviour": "inert",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0,
+        "drift": 0,
+        "settled": {
+          "alive": 24,
+          "movers": 0,
+          "polarization": 0,
+          "rotationalOrder": 0,
+          "spread": 36.89293426245358,
+          "neighbourMean": 7.75,
+          "densityCv": 0.35541200659322175,
+          "nearestNeighbour": 10.560157694310051,
+          "nearestNeighbourCv": 0.6174208377430276,
+          "meanSpeed": 0
+        },
+        "polarizationTrace": [
+          0.28702128610757305,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "set": [
+          "alignment"
+        ],
+        "key": "alignment",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.10243758142818812,
+        "drift": 1.8773604511135318,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9991856573379618,
+          "rotationalOrder": 0.047647753087023806,
+          "spread": 66.46858084363372,
+          "neighbourMean": 5.258333333333332,
+          "densityCv": 0.5332882666375223,
+          "nearestNeighbour": 11.85369452978379,
+          "nearestNeighbourCv": 0.640803393578133,
+          "meanSpeed": 2.0781712818867315
+        },
+        "polarizationTrace": [
+          0.9880031323505589,
+          0.9949666140189583,
+          0.9971879981605607,
+          0.9983294142082028,
+          0.998775913371797,
+          0.9989142958250121,
+          0.9989839191430646,
+          0.9990349118812328,
+          0.9990661817594666,
+          0.9990768523008025,
+          0.9991312603481752,
+          0.9991536084091317,
+          0.9991627751392281,
+          0.9991761790500119,
+          0.999187170418968,
+          0.9991960738475248,
+          0.9992036570110203,
+          0.9992101914717925,
+          0.9992155325983929,
+          0.9992201250853722
+        ]
+      },
+      {
+        "set": [
+          "circulation"
+        ],
+        "key": "circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.08735697709245345,
+        "drift": 1.800858968008286,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9984837553525882,
+          "rotationalOrder": 0.05112814628127889,
+          "spread": 44.91383373373728,
+          "neighbourMean": 7.033333333333333,
+          "densityCv": 0.3887623545057811,
+          "nearestNeighbour": 8.506766860088197,
+          "nearestNeighbourCv": 0.7816436745205798,
+          "meanSpeed": 1.9815416320606114
+        },
+        "polarizationTrace": [
+          0.9973817993880632,
+          0.9985451424084419,
+          0.9986399121266948,
+          0.9984443337808296,
+          0.9983268901749858,
+          0.9984184827377676,
+          0.9983707514464225,
+          0.9976374943604139,
+          0.997813409252693,
+          0.9976968555531668,
+          0.9980721903075619,
+          0.9978665015614129,
+          0.9980625677756029,
+          0.9985767308170225,
+          0.9987173966374443,
+          0.998677442848943,
+          0.9986456042715735,
+          0.998641603502612,
+          0.9987472292821168,
+          0.9988302865215926
+        ]
+      },
+      {
+        "set": [
+          "cohesion"
+        ],
+        "key": "cohesion",
+        "behaviour": "cohesive",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.04444811659403164,
+        "drift": 2.1168462615378125,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9999639036110215,
+          "rotationalOrder": 0.14847431451608234,
+          "spread": 50.77256448507853,
+          "neighbourMean": 9.408333333333333,
+          "densityCv": 0.4499647392456896,
+          "nearestNeighbour": 5.439684855464718,
+          "nearestNeighbourCv": 1.0678965235064575,
+          "meanSpeed": 2.3470808634780167
+        },
+        "polarizationTrace": [
+          0.9980786999443172,
+          0.9977881640149079,
+          0.9961178604884573,
+          0.995518680949525,
+          0.9951216111548672,
+          0.997039003930671,
+          0.9985839117455478,
+          0.99959310976972,
+          0.9998654372942029,
+          0.9999386694868324,
+          0.9999552307063043,
+          0.9999609511769513,
+          0.9999634077938171,
+          0.9999645779869523,
+          0.999965211465613,
+          0.9999656046815154,
+          0.9999658427115765,
+          0.9999659947402164,
+          0.9999660853146223,
+          0.9999661295326484
+        ]
+      },
+      {
+        "set": [
+          "separation"
+        ],
+        "key": "separation",
+        "behaviour": "inert",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0,
+        "drift": 0,
+        "settled": {
+          "alive": 24,
+          "movers": 0,
+          "polarization": 0,
+          "rotationalOrder": 0,
+          "spread": 36.805294929192875,
+          "neighbourMean": 7.833333333333333,
+          "densityCv": 0.34842588079286335,
+          "nearestNeighbour": 11.121416560870085,
+          "nearestNeighbourCv": 0.5460620660673037,
+          "meanSpeed": 0
+        },
+        "polarizationTrace": [
+          0.3252139107254624,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "circulation"
+        ],
+        "key": "alignment+circulation",
+        "behaviour": "cohesive",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 2.3961448576616284,
+        "drift": 3.676846439085915,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9594012034913085,
+          "rotationalOrder": 0.07665029515441377,
+          "spread": 60.48200716157739,
+          "neighbourMean": 9.591666666666667,
+          "densityCv": 0.4029017447803532,
+          "nearestNeighbour": 14.439123021069758,
+          "nearestNeighbourCv": 2.0070869060139214,
+          "meanSpeed": 4.311723618454571
+        },
+        "polarizationTrace": [
+          0.9984219365609045,
+          0.9992391069573724,
+          0.999318612474429,
+          0.9994389808560936,
+          0.9995777304753298,
+          0.9993932132513147,
+          0.9993774846104225,
+          0.9994885862622317,
+          0.9994282689677075,
+          0.999342908682212,
+          0.9993117179258754,
+          0.9992108171106643,
+          0.9992116493018558,
+          0.9192344753379098,
+          0.9807717659366033,
+          0.9315520821586959,
+          0.936355174304006,
+          0.9397522088692272,
+          0.9428208556598254,
+          0.9457912883084231
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion"
+        ],
+        "key": "alignment+cohesion",
+        "behaviour": "clumped",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.31852463393231156,
+        "drift": 4.095753019683214,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9998992692194258,
+          "rotationalOrder": 0.005318210489602369,
+          "spread": 35.73148301846786,
+          "neighbourMean": 11.416666666666664,
+          "densityCv": 0.33423687370321786,
+          "nearestNeighbour": 3.0587740742273306,
+          "nearestNeighbourCv": 1.806999016196622,
+          "meanSpeed": 4.5427925626769134
+        },
+        "polarizationTrace": [
+          0.9991251292290063,
+          0.9988713517753913,
+          0.9980500094757637,
+          0.9985879431074509,
+          0.9993984784141162,
+          0.9997499777451749,
+          0.9998501521595394,
+          0.9999134060168764,
+          0.9999432680361794,
+          0.9999585273962155,
+          0.9999677150454523,
+          0.9999744086243338,
+          0.9999812933717004,
+          0.9999881617413706,
+          0.999995369725431,
+          0.9995940292619446,
+          0.9994952081289293,
+          0.9999994936874012,
+          0.9999982340245043,
+          0.9999987785831902
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "separation"
+        ],
+        "key": "alignment+separation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.06947047987942356,
+        "drift": 1.8998843150481373,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9996933725529091,
+          "rotationalOrder": 0.07961587832500246,
+          "spread": 60.306955875195264,
+          "neighbourMean": 5.541666666666666,
+          "densityCv": 0.541842335321138,
+          "nearestNeighbour": 13.638016226813964,
+          "nearestNeighbourCv": 0.46610088336016187,
+          "meanSpeed": 2.1027230033263837
+        },
+        "polarizationTrace": [
+          0.9877549187451393,
+          0.9955505116205852,
+          0.9975291105256613,
+          0.9986068362241437,
+          0.9991034175275887,
+          0.9994020090891089,
+          0.9994937384550329,
+          0.9995251007395245,
+          0.9995426484274316,
+          0.9995668216959267,
+          0.9995878227219336,
+          0.9994704142137846,
+          0.9996705870843261,
+          0.9996945717270863,
+          0.9997161579691327,
+          0.9997338054883916,
+          0.9997486306365287,
+          0.9997610907392681,
+          0.9997710964355654,
+          0.9997795485130738
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "circulation"
+        ],
+        "key": "cohesion+circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.06688801476969745,
+        "drift": 2.801355247474873,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9846508038316859,
+          "rotationalOrder": 0.10810714268554307,
+          "spread": 40.77813293958916,
+          "neighbourMean": 9.516666666666667,
+          "densityCv": 0.31323057073693866,
+          "nearestNeighbour": 5.979079924590131,
+          "nearestNeighbourCv": 0.8924281130837356,
+          "meanSpeed": 3.2871040255723294
+        },
+        "polarizationTrace": [
+          0.9978685786573163,
+          0.9977078737620731,
+          0.9968894845753841,
+          0.9955531116303703,
+          0.9936906530993973,
+          0.99190187419943,
+          0.9956131404649463,
+          0.9987507574784876,
+          0.9991262790334573,
+          0.9992221406626213,
+          0.9993139980937386,
+          0.9993571987650687,
+          0.9993358242320948,
+          0.9992973301534925,
+          0.9992609397362604,
+          0.9991702107508723,
+          0.9990593060323635,
+          0.9959752105453629,
+          0.8577461278520304,
+          0.997991892155575
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "separation"
+        ],
+        "key": "cohesion+separation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.06399717314310213,
+        "drift": 2.1299630675210235,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9997235925372095,
+          "rotationalOrder": 0.1047882260904723,
+          "spread": 51.00012343079301,
+          "neighbourMean": 8.941666666666666,
+          "densityCv": 0.4116695900222795,
+          "nearestNeighbour": 7.010052401411277,
+          "nearestNeighbourCv": 0.5389729995863777,
+          "meanSpeed": 2.3654760642551866
+        },
+        "polarizationTrace": [
+          0.9945083854147311,
+          0.9977740679867142,
+          0.996507587661942,
+          0.9953651666899174,
+          0.9959212787371542,
+          0.9975696615677756,
+          0.9988863465135078,
+          0.999626306959989,
+          0.9991682959591173,
+          0.9995417560847547,
+          0.9997619870424405,
+          0.9998107740924299,
+          0.9997036583134705,
+          0.9995474312143436,
+          0.9996617083405788,
+          0.9998606044875852,
+          0.9998752485130806,
+          0.9998223402462735,
+          0.9994036328653148,
+          0.9997885402565784
+        ]
+      },
+      {
+        "set": [
+          "separation",
+          "circulation"
+        ],
+        "key": "separation+circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.08871629289581467,
+        "drift": 1.7969715121479184,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9984117399027133,
+          "rotationalOrder": 0.03439771085498469,
+          "spread": 43.655884879068495,
+          "neighbourMean": 7.2333333333333325,
+          "densityCv": 0.4036352116652827,
+          "nearestNeighbour": 10.543451082831867,
+          "nearestNeighbourCv": 0.47463031946012507,
+          "meanSpeed": 1.9770681353321318
+        },
+        "polarizationTrace": [
+          0.9969135326665715,
+          0.9986439088480962,
+          0.998677980885751,
+          0.9985528988949626,
+          0.9983405600292473,
+          0.9979583997523677,
+          0.9981282915309365,
+          0.9980624095622859,
+          0.9978263461200174,
+          0.9977708365592274,
+          0.9978599413632393,
+          0.9976226170851685,
+          0.9977215286587467,
+          0.998687608314668,
+          0.9986316689839163,
+          0.9985285362306805,
+          0.9986065481309478,
+          0.9987055148606209,
+          0.9988370240463956,
+          0.9989164113527483
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "circulation"
+        ],
+        "key": "alignment+cohesion+circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.18473729627149907,
+        "drift": 3.5254274205940077,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9871265691534802,
+          "rotationalOrder": 0.10439125093547727,
+          "spread": 46.791659908359875,
+          "neighbourMean": 8.691666666666666,
+          "densityCv": 0.3164536240416832,
+          "nearestNeighbour": 4.641732789493718,
+          "nearestNeighbourCv": 0.625414212850339,
+          "meanSpeed": 4.79601298900836
+        },
+        "polarizationTrace": [
+          0.9968119619288128,
+          0.9972373784207003,
+          0.9965619559044825,
+          0.9948837841802356,
+          0.995806218746869,
+          0.9976810972374502,
+          0.9991946240019584,
+          0.9994867421738943,
+          0.9995828987226627,
+          0.9996288001533048,
+          0.9996309043628071,
+          0.9996158004113264,
+          0.9996031915249176,
+          0.9932143015306033,
+          0.8828754687642929,
+          0.9968413116058875,
+          0.9999502988228771,
+          0.9998782770573681,
+          0.9998430428645877,
+          0.9998130945901336
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation"
+        ],
+        "key": "alignment+cohesion+separation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.3942702194114593,
+        "drift": 3.9541803783028353,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9953508483889841,
+          "rotationalOrder": 0.06706132131139901,
+          "spread": 38.90006975789957,
+          "neighbourMean": 10.591666666666665,
+          "densityCv": 0.2793931129797745,
+          "nearestNeighbour": 6.010196153628079,
+          "nearestNeighbourCv": 0.6905280641433456,
+          "meanSpeed": 4.467555073970612
+        },
+        "polarizationTrace": [
+          0.998782104230539,
+          0.9987651171773467,
+          0.9979333145996013,
+          0.9986164242831125,
+          0.9989483162985149,
+          0.9994997702787206,
+          0.9993068141343743,
+          0.9997009488298594,
+          0.9994218990626665,
+          0.9995177179465449,
+          0.9997729948666243,
+          0.9995648352815558,
+          0.9997494433688424,
+          0.9995789088086825,
+          0.9995142978624446,
+          0.9900270219973472,
+          0.9823785292429351,
+          0.9832028595226654,
+          0.9998257981271766,
+          0.9998937948115665
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "separation",
+          "circulation"
+        ],
+        "key": "alignment+separation+circulation",
+        "behaviour": "cohesive",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 2.3532679795275615,
+        "drift": 3.6841385962749866,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9672926868048656,
+          "rotationalOrder": 0.06914826134705285,
+          "spread": 62.06404452563663,
+          "neighbourMean": 8.783333333333333,
+          "densityCv": 0.45506730660867645,
+          "nearestNeighbour": 15.536264928497996,
+          "nearestNeighbourCv": 1.7175758230361802,
+          "meanSpeed": 4.320394955062206
+        },
+        "polarizationTrace": [
+          0.9982223318289022,
+          0.999350359909628,
+          0.9993271867688537,
+          0.9995067867527209,
+          0.9996143569644323,
+          0.9994157737561672,
+          0.9994151207450229,
+          0.9995101709779423,
+          0.9994452344361293,
+          0.9994003935016705,
+          0.999290809765573,
+          0.9992024393052913,
+          0.9990655365920661,
+          0.9977974768706819,
+          0.9810561088165469,
+          0.9315968168070491,
+          0.9364526959136453,
+          0.939841550661086,
+          0.9428289544394248,
+          0.9457944788772914
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "key": "cohesion+separation+circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.07575610082876505,
+        "drift": 2.7914776970274056,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9709741560071619,
+          "rotationalOrder": 0.08401202439198795,
+          "spread": 43.51060189956606,
+          "neighbourMean": 9.075,
+          "densityCv": 0.3415401083468467,
+          "nearestNeighbour": 8.053802163603304,
+          "nearestNeighbourCv": 0.6567249291610724,
+          "meanSpeed": 3.2788732747687113
+        },
+        "polarizationTrace": [
+          0.9977838986679765,
+          0.9976519479284699,
+          0.9969556975161367,
+          0.9944458209488766,
+          0.9918068375980492,
+          0.9911031855791452,
+          0.9942325059946179,
+          0.9980881989796612,
+          0.998958761872183,
+          0.9991331365470623,
+          0.9990459651256693,
+          0.9991503094639715,
+          0.9987506881533346,
+          0.9991926666662679,
+          0.9989328445976303,
+          0.9985375374621351,
+          0.9985585035895942,
+          0.9832726626725053,
+          0.7743390703616945,
+          0.9599613119788154
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "key": "alignment+cohesion+separation+circulation",
+        "behaviour": "flocking",
+        "alive": 24,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.22930325066672358,
+        "drift": 3.5155805391191848,
+        "settled": {
+          "alive": 24,
+          "movers": 24,
+          "polarization": 0.9886009693212653,
+          "rotationalOrder": 0.07193731311164911,
+          "spread": 47.64147747137362,
+          "neighbourMean": 8.591666666666667,
+          "densityCv": 0.29165959493095894,
+          "nearestNeighbour": 6.9872728163918865,
+          "nearestNeighbourCv": 0.4571182920521408,
+          "meanSpeed": 4.7890899931733175
+        },
+        "polarizationTrace": [
+          0.9955594716392598,
+          0.9967256329939739,
+          0.9968699269632287,
+          0.9944262549636648,
+          0.995897293969355,
+          0.9979320723250796,
+          0.9988038412323922,
+          0.9990190974206872,
+          0.9992764060718585,
+          0.9992639572661705,
+          0.9994232070957523,
+          0.9996029685015575,
+          0.9995577614119124,
+          0.9960497740057104,
+          0.8962582040506933,
+          0.995858628786023,
+          0.9999330829128789,
+          0.9999126096476229,
+          0.9997630271092671,
+          0.9996504296912351
+        ]
+      }
+    ],
+    "ablations": [
+      {
+        "component": "alignment",
+        "behaviourWithout": "flocking",
+        "behaviourWith": "flocking",
+        "behaviourChanged": false,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.01762681331410343,
+          "rotationalOrder": -0.012074711280338837,
+          "spread": 4.130875571807557,
+          "neighbourMean": -0.4833333333333325,
+          "densityCv": -0.049880513415887784,
+          "nearestNeighbour": -1.066529347211418,
+          "nearestNeighbourCv": -0.19960663710893162,
+          "meanSpeed": 1.5102167184046063,
+          "drift": 0.7241028420917792
+        }
+      },
+      {
+        "component": "cohesion",
+        "behaviourWithout": "cohesive",
+        "behaviourWith": "flocking",
+        "behaviourChanged": true,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.021308282516399712,
+          "rotationalOrder": 0.002789051764596262,
+          "spread": -14.422567054263013,
+          "neighbourMean": -0.19166666666666643,
+          "densityCv": -0.1634077116777175,
+          "nearestNeighbour": -8.54899211210611,
+          "nearestNeighbourCv": -1.2604575309840393,
+          "meanSpeed": 0.4686950381111119,
+          "drift": -0.16855805715580185
+        }
+      },
+      {
+        "component": "separation",
+        "behaviourWithout": "flocking",
+        "behaviourWith": "flocking",
+        "behaviourChanged": false,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.001474400167785106,
+          "rotationalOrder": -0.03245393782382816,
+          "spread": 0.8498175630137439,
+          "neighbourMean": -0.09999999999999964,
+          "densityCv": -0.02479402911072426,
+          "nearestNeighbour": 2.3455400268981688,
+          "nearestNeighbourCv": -0.16829592079819827,
+          "meanSpeed": -0.0069229958350423,
+          "drift": -0.009846881474822933
+        }
+      },
+      {
+        "component": "circulation",
+        "behaviourWithout": "flocking",
+        "behaviourWith": "flocking",
+        "behaviourChanged": false,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": -0.006749879067718845,
+          "rotationalOrder": 0.0048759918002500985,
+          "spread": 8.741407713474047,
+          "neighbourMean": -1.9999999999999982,
+          "densityCv": 0.01226648195118446,
+          "nearestNeighbour": 0.9770766627638077,
+          "nearestNeighbourCv": -0.23340977209120478,
+          "meanSpeed": 0.3215349192027057,
+          "drift": -0.43859983918365053
+        }
+      }
+    ],
+    "interactions": [
+      {
+        "pair": [
+          "alignment",
+          "cohesion"
+        ],
+        "baseline": "inert",
+        "onlyA": "flocking",
+        "onlyB": "cohesive",
+        "both": "clumped",
+        "synergistic": true,
+        "note": "clumped appears only when alignment and cohesion are enabled together"
+      },
+      {
+        "pair": [
+          "alignment",
+          "separation"
+        ],
+        "baseline": "inert",
+        "onlyA": "flocking",
+        "onlyB": "inert",
+        "both": "flocking",
+        "synergistic": false,
+        "note": "flocking is already reachable from the single-component arms"
+      },
+      {
+        "pair": [
+          "alignment",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "flocking",
+        "onlyB": "flocking",
+        "both": "cohesive",
+        "synergistic": true,
+        "note": "cohesive appears only when alignment and circulation are enabled together"
+      },
+      {
+        "pair": [
+          "cohesion",
+          "separation"
+        ],
+        "baseline": "inert",
+        "onlyA": "cohesive",
+        "onlyB": "inert",
+        "both": "flocking",
+        "synergistic": true,
+        "note": "flocking appears only when cohesion and separation are enabled together"
+      },
+      {
+        "pair": [
+          "cohesion",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "cohesive",
+        "onlyB": "flocking",
+        "both": "flocking",
+        "synergistic": false,
+        "note": "flocking is already reachable from the single-component arms"
+      },
+      {
+        "pair": [
+          "separation",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "inert",
+        "onlyB": "flocking",
+        "both": "flocking",
+        "synergistic": false,
+        "note": "flocking is already reachable from the single-component arms"
+      }
+    ]
+  },
+  "sparse": {
+    "target": "flocking",
+    "minimalSufficient": [
+      "circulation"
+    ],
+    "necessary": [
+      "cohesion",
+      "circulation"
+    ],
+    "dispensable": [
+      "alignment",
+      "separation"
+    ],
+    "arms": [
+      {
+        "set": [],
+        "key": "none",
+        "behaviour": "inert",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0,
+        "drift": 0,
+        "settled": {
+          "alive": 60,
+          "movers": 0,
+          "polarization": 0,
+          "rotationalOrder": 0,
+          "spread": 57.02952137576436,
+          "neighbourMean": 9.933333333333335,
+          "densityCv": 0.46665179387286393,
+          "nearestNeighbour": 9.54937184680895,
+          "nearestNeighbourCv": 0.6143905772887363,
+          "meanSpeed": 0
+        },
+        "polarizationTrace": [
+          0.12394642707612753,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "set": [
+          "alignment"
+        ],
+        "key": "alignment",
+        "behaviour": "dispersed",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 1.3840828045424725,
+        "drift": 3.1053787589785293,
+        "settled": {
+          "alive": 60,
+          "movers": 59,
+          "polarization": 0.2924376201640687,
+          "rotationalOrder": 0.1612779890457084,
+          "spread": 419.8814298649504,
+          "neighbourMean": 7.409999999999998,
+          "densityCv": 0.6222939793173713,
+          "nearestNeighbour": 16.553455761828864,
+          "nearestNeighbourCv": 2.7782233429564984,
+          "meanSpeed": 2.1378795723049224
+        },
+        "polarizationTrace": [
+          0.25595568342848735,
+          0.2690410962170863,
+          0.27265276722240434,
+          0.27330298041514745,
+          0.2736059431600618,
+          0.2736814996141043,
+          0.27365589424162656,
+          0.29245056311820977,
+          0.29244280781821785,
+          0.2924417500684966,
+          0.2924414743910479,
+          0.2924398632003049,
+          0.29243809045021985,
+          0.29243725089245576,
+          0.2924368773109501,
+          0.2924366761561466,
+          0.2924365779974525,
+          0.2924365130835569,
+          0.29243645775133636,
+          0.29243642040721624
+        ]
+      },
+      {
+        "set": [
+          "circulation"
+        ],
+        "key": "circulation",
+        "behaviour": "flocking",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.07889462345672593,
+        "drift": 1.7822552519636803,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9945621569652252,
+          "rotationalOrder": 0.06287888831728723,
+          "spread": 56.83799523406746,
+          "neighbourMean": 11.85,
+          "densityCv": 0.5298049020744638,
+          "nearestNeighbour": 7.611614343241787,
+          "nearestNeighbourCv": 0.8709124454329633,
+          "meanSpeed": 1.9853690817984024
+        },
+        "polarizationTrace": [
+          0.9974624807101011,
+          0.9979813270783979,
+          0.998041158813423,
+          0.9980366156792376,
+          0.9981956931994029,
+          0.9981238548690264,
+          0.9981633414229465,
+          0.9976921388665875,
+          0.9972857615823759,
+          0.9967026917507459,
+          0.9963797964985796,
+          0.9944233690066152,
+          0.9860064393976663,
+          0.9961538233212702,
+          0.9972178559250984,
+          0.9972748738589927,
+          0.997562354454717,
+          0.9978536234802725,
+          0.9980187880500465,
+          0.984730645658993
+        ]
+      },
+      {
+        "set": [
+          "cohesion"
+        ],
+        "key": "cohesion",
+        "behaviour": "cohesive",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.6588986084003503,
+        "drift": 2.132179047229588,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9827150567202526,
+          "rotationalOrder": 0.14830723799911044,
+          "spread": 115.5512836020526,
+          "neighbourMean": 22.833333333333336,
+          "densityCv": 0.4748760799931581,
+          "nearestNeighbour": 13.914606911631946,
+          "nearestNeighbourCv": 6.155430287487772,
+          "meanSpeed": 2.336332798328453
+        },
+        "polarizationTrace": [
+          0.9978550466246914,
+          0.9862763232230382,
+          0.9804457562508017,
+          0.9793845734901122,
+          0.9795470032667534,
+          0.9758871531795648,
+          0.9568577381937832,
+          0.9582550997600532,
+          0.9722709614600841,
+          0.9803677773433631,
+          0.9805870551209599,
+          0.9827204167210203,
+          0.982946861174162,
+          0.9829846701620849,
+          0.9829882415598329,
+          0.9829877036824987,
+          0.9829875090049031,
+          0.9829862597276104,
+          0.982982378179518,
+          0.9829794718699378
+        ]
+      },
+      {
+        "set": [
+          "separation"
+        ],
+        "key": "separation",
+        "behaviour": "inert",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0,
+        "drift": 0,
+        "settled": {
+          "alive": 60,
+          "movers": 0,
+          "polarization": 0,
+          "rotationalOrder": 0,
+          "spread": 56.88375690008725,
+          "neighbourMean": 9.799999999999999,
+          "densityCv": 0.4604981378165157,
+          "nearestNeighbour": 10.370384254215269,
+          "nearestNeighbourCv": 0.48116769897006784,
+          "meanSpeed": 0
+        },
+        "polarizationTrace": [
+          0.18438226530728452,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "circulation"
+        ],
+        "key": "alignment+circulation",
+        "behaviour": "cohesive",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.26713492185381704,
+        "drift": 3.7704272045025027,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9660863872792238,
+          "rotationalOrder": 0.07511232769434223,
+          "spread": 117.87429468397644,
+          "neighbourMean": 12.636666666666667,
+          "densityCv": 0.45824286711400103,
+          "nearestNeighbour": 19.31142063837148,
+          "nearestNeighbourCv": 4.5239462007364875,
+          "meanSpeed": 4.326933410172727
+        },
+        "polarizationTrace": [
+          0.9989075723207982,
+          0.9988059001010526,
+          0.9987718557690269,
+          0.9990755468734356,
+          0.9993937122224809,
+          0.9988557112948233,
+          0.9988961720908226,
+          0.9808414170476535,
+          0.9768302320850236,
+          0.9765274516634385,
+          0.976218872205283,
+          0.9757098250202684,
+          0.9751158355570628,
+          0.9692902692020849,
+          0.936659368506856,
+          0.9601992576898662,
+          0.9643058733746289,
+          0.9661807975604869,
+          0.9678106918966588,
+          0.9693730817790415
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion"
+        ],
+        "key": "alignment+cohesion",
+        "behaviour": "milling",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.20888411959318937,
+        "drift": 3.8815298957134803,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9761677426154547,
+          "rotationalOrder": 0.2637209526239191,
+          "spread": 122.80363562154727,
+          "neighbourMean": 31.153333333333336,
+          "densityCv": 0.30914872494723655,
+          "nearestNeighbour": 15.862998701732215,
+          "nearestNeighbourCv": 7.155662007009984,
+          "meanSpeed": 4.283187305002171
+        },
+        "polarizationTrace": [
+          0.9981556330780484,
+          0.9837174138263978,
+          0.980964482661114,
+          0.9809401123611117,
+          0.9810831385433066,
+          0.9817895323613345,
+          0.9814893314718922,
+          0.9796227077229838,
+          0.9814752144928948,
+          0.9823969606314901,
+          0.9827615652536411,
+          0.9829782209942091,
+          0.9830841440368859,
+          0.9830961757687526,
+          0.983047235465884,
+          0.982877890630008,
+          0.981327363932516,
+          0.9600120387074013,
+          0.961161121945546,
+          0.9613316694197009
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "separation"
+        ],
+        "key": "alignment+separation",
+        "behaviour": "dispersed",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 1.4840832887061444,
+        "drift": 3.0450212064195483,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.3139220806741218,
+          "rotationalOrder": 0.044344331434978054,
+          "spread": 412.8261363812327,
+          "neighbourMean": 7.2333333333333325,
+          "densityCv": 0.6002370549304706,
+          "nearestNeighbour": 12.526123152220949,
+          "nearestNeighbourCv": 0.5538979815831291,
+          "meanSpeed": 2.1597322276133815
+        },
+        "polarizationTrace": [
+          0.2956738774535216,
+          0.30722626966130073,
+          0.30964064630329985,
+          0.31014024411847935,
+          0.3104398317605488,
+          0.31089698581178904,
+          0.31348134079249923,
+          0.3177437446950452,
+          0.3176396473108344,
+          0.317694705283606,
+          0.3143557811405236,
+          0.3141301017964367,
+          0.3139339735964708,
+          0.3138631748383745,
+          0.31383809755731323,
+          0.3138266087249823,
+          0.31382108421664895,
+          0.3138184463420164,
+          0.3138170687506973,
+          0.3138164697777544
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "circulation"
+        ],
+        "key": "cohesion+circulation",
+        "behaviour": "clumped",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.04996388045343425,
+        "drift": 2.8123600311307917,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9747867825876148,
+          "rotationalOrder": 0.09656180712431951,
+          "spread": 56.4816778840292,
+          "neighbourMean": 11.446666666666669,
+          "densityCv": 0.3478991565640938,
+          "nearestNeighbour": 3.960989615439341,
+          "nearestNeighbourCv": 0.8324742620803656,
+          "meanSpeed": 3.277911044753791
+        },
+        "polarizationTrace": [
+          0.9978621108702709,
+          0.9973659421175348,
+          0.9963405726108611,
+          0.9941724555826801,
+          0.9943136625386231,
+          0.9936896055798436,
+          0.993979798621632,
+          0.9972335849560905,
+          0.9985317120288095,
+          0.9987873773794858,
+          0.9988243373505252,
+          0.9988159849026749,
+          0.9987535117670973,
+          0.9986944380612699,
+          0.9985838722558419,
+          0.998444807330221,
+          0.9982668686839458,
+          0.956071501499827,
+          0.858310714702732,
+          0.9431017893220125
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "separation"
+        ],
+        "key": "cohesion+separation",
+        "behaviour": "cohesive",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.9166857334156893,
+        "drift": 2.238530653358856,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9807150463883095,
+          "rotationalOrder": 0.0724293105612611,
+          "spread": 115.81325186754245,
+          "neighbourMean": 16.946666666666665,
+          "densityCv": 0.32486655160594,
+          "nearestNeighbour": 16.66668222575483,
+          "nearestNeighbourCv": 5.127737790402702,
+          "meanSpeed": 2.4646464330272346
+        },
+        "polarizationTrace": [
+          0.9975364348475791,
+          0.9861204828630707,
+          0.9797897270386817,
+          0.9788876251723512,
+          0.9782338301601519,
+          0.9792000642547477,
+          0.9763618916204345,
+          0.9699613772897736,
+          0.9718338919470555,
+          0.9803958309364933,
+          0.9795287235325062,
+          0.9806060652383729,
+          0.9815325753128404,
+          0.9807626586946647,
+          0.9785315508698663,
+          0.9809318069489634,
+          0.9815049769821298,
+          0.9819028817534179,
+          0.9811238267148561,
+          0.9807253978354783
+        ]
+      },
+      {
+        "set": [
+          "separation",
+          "circulation"
+        ],
+        "key": "separation+circulation",
+        "behaviour": "flocking",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.05977957426465608,
+        "drift": 1.7931773329647966,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9968422730879712,
+          "rotationalOrder": 0.044486653775635085,
+          "spread": 56.823491588549224,
+          "neighbourMean": 12.21,
+          "densityCv": 0.5003215668912729,
+          "nearestNeighbour": 8.848448486222441,
+          "nearestNeighbourCv": 0.5662725397453172,
+          "meanSpeed": 1.9981959745768478
+        },
+        "polarizationTrace": [
+          0.9973082323594888,
+          0.9978540658111948,
+          0.9977255735747872,
+          0.9979946928065789,
+          0.9981028340219041,
+          0.9980313926274478,
+          0.9979873872654696,
+          0.9975181839428021,
+          0.9964553796329217,
+          0.9960885641801398,
+          0.9960898840810807,
+          0.9946442621167899,
+          0.9960851920122002,
+          0.996516749533828,
+          0.9970675061314194,
+          0.9971541040477888,
+          0.9972199776809227,
+          0.9975875438831607,
+          0.9980419593815676,
+          0.9980155520109547
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "circulation"
+        ],
+        "key": "alignment+cohesion+circulation",
+        "behaviour": "flocking",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.13752593309164107,
+        "drift": 3.5210908376117622,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9762961910046473,
+          "rotationalOrder": 0.12070286732746054,
+          "spread": 72.74219776235631,
+          "neighbourMean": 10.040000000000001,
+          "densityCv": 0.31084308572064,
+          "nearestNeighbour": 4.114476571405051,
+          "nearestNeighbourCv": 0.8795287862484402,
+          "meanSpeed": 4.796516076651303
+        },
+        "polarizationTrace": [
+          0.9968237887846328,
+          0.995926940551204,
+          0.9935497617023772,
+          0.9915632606586614,
+          0.9935371378141995,
+          0.9967645743291895,
+          0.9978684177537595,
+          0.9982091372813796,
+          0.9985176051747895,
+          0.9987390862250544,
+          0.998908491106429,
+          0.9990069111734589,
+          0.9990535760943889,
+          0.9766551326534177,
+          0.8574956776498561,
+          0.9334992238425758,
+          0.999471946380259,
+          0.9997675219460486,
+          0.9996068413388614,
+          0.9994965878611769
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation"
+        ],
+        "key": "alignment+cohesion+separation",
+        "behaviour": "cohesive",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 1.2921297359531252,
+        "drift": 3.760233957813678,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9360626330457393,
+          "rotationalOrder": 0.17602659859551456,
+          "spread": 133.51634262958066,
+          "neighbourMean": 17.836666666666666,
+          "densityCv": 0.3406083439279991,
+          "nearestNeighbour": 19.180780671691146,
+          "nearestNeighbourCv": 5.524219407306445,
+          "meanSpeed": 4.322993385589566
+        },
+        "polarizationTrace": [
+          0.9981878362415866,
+          0.9835250591710216,
+          0.9806163466894587,
+          0.981047209004845,
+          0.9816313191190514,
+          0.9819090993215599,
+          0.9821018880242992,
+          0.9809234526828293,
+          0.9798658534829704,
+          0.9796815570322877,
+          0.978812492990254,
+          0.9812717622574224,
+          0.9803390662697865,
+          0.9816820741860164,
+          0.980136076671588,
+          0.9770899212073427,
+          0.9134679473161336,
+          0.8386756980470587,
+          0.8612972423462009,
+          0.867854049165591
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "separation",
+          "circulation"
+        ],
+        "key": "alignment+separation+circulation",
+        "behaviour": "cohesive",
+        "alive": 60,
+        "deterministic": true,
+        "converged": false,
+        "convergenceError": 0.27166609421313787,
+        "drift": 3.758403749127086,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9658933820631855,
+          "rotationalOrder": 0.08908216905572004,
+          "spread": 117.48529034412415,
+          "neighbourMean": 12.59,
+          "densityCv": 0.4496304951671225,
+          "nearestNeighbour": 20.931742501722262,
+          "nearestNeighbourCv": 4.169755523074597,
+          "meanSpeed": 4.317052801679479
+        },
+        "polarizationTrace": [
+          0.998354657229181,
+          0.9988425611825346,
+          0.9987500236145416,
+          0.9990519615460779,
+          0.9993377161199002,
+          0.9988460343754356,
+          0.9988818905531559,
+          0.9809744578353923,
+          0.9769743235730451,
+          0.9767297889269303,
+          0.9761226518987591,
+          0.9757517442468319,
+          0.974838547879696,
+          0.9698833078175774,
+          0.9355947023792065,
+          0.9597341538297605,
+          0.9639339146125416,
+          0.9659676156478962,
+          0.967768823479225,
+          0.9693383588403608
+        ]
+      },
+      {
+        "set": [
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "key": "cohesion+separation+circulation",
+        "behaviour": "flocking",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.10727277369862546,
+        "drift": 2.794219146085486,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9643068007331171,
+          "rotationalOrder": 0.08705096423276591,
+          "spread": 56.43150054492914,
+          "neighbourMean": 11.886666666666667,
+          "densityCv": 0.33407467126790397,
+          "nearestNeighbour": 6.337062058265284,
+          "nearestNeighbourCv": 0.4824820402052679,
+          "meanSpeed": 3.263343127701007
+        },
+        "polarizationTrace": [
+          0.996120737159118,
+          0.9972728374377587,
+          0.9964534094957549,
+          0.9957008819094687,
+          0.9941269893035488,
+          0.9944587383067361,
+          0.9944539306447143,
+          0.9963569431910202,
+          0.9976218347514452,
+          0.9967915644632972,
+          0.9988057933955813,
+          0.9988123623780728,
+          0.9985064394976493,
+          0.9984468537413299,
+          0.9984878356122056,
+          0.9976173186958015,
+          0.996055155199413,
+          0.9267310781981831,
+          0.7762776515781884,
+          0.9533275190347469
+        ]
+      },
+      {
+        "set": [
+          "alignment",
+          "cohesion",
+          "separation",
+          "circulation"
+        ],
+        "key": "alignment+cohesion+separation+circulation",
+        "behaviour": "flocking",
+        "alive": 60,
+        "deterministic": true,
+        "converged": true,
+        "convergenceError": 0.08619609771282166,
+        "drift": 3.511582556105205,
+        "settled": {
+          "alive": 60,
+          "movers": 60,
+          "polarization": 0.9772298558683363,
+          "rotationalOrder": 0.12636659230778532,
+          "spread": 71.01050695051941,
+          "neighbourMean": 10.326666666666666,
+          "densityCv": 0.3180157713611716,
+          "nearestNeighbour": 6.118946897209279,
+          "nearestNeighbourCv": 0.4573085601987984,
+          "meanSpeed": 4.78819092317372
+        },
+        "polarizationTrace": [
+          0.9962249512439902,
+          0.9953050920635639,
+          0.9945021472436548,
+          0.9914526738124423,
+          0.9917290463563396,
+          0.996477678791903,
+          0.9980180541056857,
+          0.9977870841342268,
+          0.9980032910970793,
+          0.9986154781665547,
+          0.998910733462075,
+          0.9989290172723263,
+          0.9989293195411626,
+          0.979069683128283,
+          0.8617414113442081,
+          0.9370672789025355,
+          0.9990938604626063,
+          0.9997003734603223,
+          0.9994640868484421,
+          0.9993927942614037
+        ]
+      }
+    ],
+    "ablations": [
+      {
+        "component": "alignment",
+        "behaviourWithout": "flocking",
+        "behaviourWith": "flocking",
+        "behaviourChanged": false,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.012923055135219186,
+          "rotationalOrder": 0.03931562807501941,
+          "spread": 14.57900640559027,
+          "neighbourMean": -1.5600000000000005,
+          "densityCv": -0.01605889990673237,
+          "nearestNeighbour": -0.21811516105600504,
+          "nearestNeighbourCv": -0.025173480006469517,
+          "meanSpeed": 1.5248477954727129,
+          "drift": 0.7173634100197193
+        }
+      },
+      {
+        "component": "cohesion",
+        "behaviourWithout": "cohesive",
+        "behaviourWith": "flocking",
+        "behaviourChanged": true,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.011336473805150793,
+          "rotationalOrder": 0.03728442325206528,
+          "spread": -46.47478339360474,
+          "neighbourMean": -2.2633333333333336,
+          "densityCv": -0.1316147238059509,
+          "nearestNeighbour": -14.812795604512983,
+          "nearestNeighbourCv": -3.712446962875799,
+          "meanSpeed": 0.47113812149424117,
+          "drift": -0.24682119302188088
+        }
+      },
+      {
+        "component": "separation",
+        "behaviourWithout": "flocking",
+        "behaviourWith": "flocking",
+        "behaviourChanged": false,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.0009336648636890654,
+          "rotationalOrder": 0.0056637249803247885,
+          "spread": -1.7316908118368985,
+          "neighbourMean": 0.2866666666666653,
+          "densityCv": 0.007172685640531584,
+          "nearestNeighbour": 2.0044703258042276,
+          "nearestNeighbourCv": -0.4222202260496418,
+          "meanSpeed": -0.00832515347758278,
+          "drift": -0.009508281506557026
+        }
+      },
+      {
+        "component": "circulation",
+        "behaviourWithout": "cohesive",
+        "behaviourWith": "flocking",
+        "behaviourChanged": true,
+        "deltas": {
+          "alive": 0,
+          "movers": 0,
+          "polarization": 0.041167222822596994,
+          "rotationalOrder": -0.049660006287729236,
+          "spread": -62.50583567906125,
+          "neighbourMean": -7.51,
+          "densityCv": -0.022592572566827507,
+          "nearestNeighbour": -13.061833774481867,
+          "nearestNeighbourCv": -5.066910847107646,
+          "meanSpeed": 0.46519753758415394,
+          "drift": -0.24865140170847289
+        }
+      }
+    ],
+    "interactions": [
+      {
+        "pair": [
+          "alignment",
+          "cohesion"
+        ],
+        "baseline": "inert",
+        "onlyA": "dispersed",
+        "onlyB": "cohesive",
+        "both": "milling",
+        "synergistic": true,
+        "note": "milling appears only when alignment and cohesion are enabled together"
+      },
+      {
+        "pair": [
+          "alignment",
+          "separation"
+        ],
+        "baseline": "inert",
+        "onlyA": "dispersed",
+        "onlyB": "inert",
+        "both": "dispersed",
+        "synergistic": false,
+        "note": "dispersed is already reachable from the single-component arms"
+      },
+      {
+        "pair": [
+          "alignment",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "dispersed",
+        "onlyB": "flocking",
+        "both": "cohesive",
+        "synergistic": true,
+        "note": "cohesive appears only when alignment and circulation are enabled together"
+      },
+      {
+        "pair": [
+          "cohesion",
+          "separation"
+        ],
+        "baseline": "inert",
+        "onlyA": "cohesive",
+        "onlyB": "inert",
+        "both": "cohesive",
+        "synergistic": false,
+        "note": "cohesive is already reachable from the single-component arms"
+      },
+      {
+        "pair": [
+          "cohesion",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "cohesive",
+        "onlyB": "flocking",
+        "both": "clumped",
+        "synergistic": true,
+        "note": "clumped appears only when cohesion and circulation are enabled together"
+      },
+      {
+        "pair": [
+          "separation",
+          "circulation"
+        ],
+        "baseline": "inert",
+        "onlyA": "inert",
+        "onlyB": "flocking",
+        "both": "flocking",
+        "synergistic": false,
+        "note": "flocking is already reachable from the single-component arms"
+      }
+    ]
+  }
+}

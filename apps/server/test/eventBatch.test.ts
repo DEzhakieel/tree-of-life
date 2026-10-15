@@ -1,0 +1,111 @@
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import type { AddressInfo } from 'node:net';
+import express from 'express';
+import { encodeEventBatch, type SimEvent } from '@fractal-life/shared';
+import { createApi } from '../src/api/index.js';
+import { WorldManager } from '../src/worldManager.js';
+import { MemoryStore } from '../src/store/memoryStore.js';
+import { config } from '../src/config.js';
+import { GroundingService } from '../src/data/groundingService.js';
+import type { Gateway, WsClient } from '../src/gateway/types.js';
+
+class StubGateway implements Gateway {
+  readonly kind = 'ws' as const;
+  onConnect(_cb: (client: WsClient) => void): void {}
+  onMessage(_cb: (client: WsClient, data: Uint8Array | string) => void): void {}
+  onDisconnect(_cb: (client: WsClient) => void): void {}
+  async start(): Promise<void> {}
+  async stop(): Promise<void> {}
+}
+
+function mkEvent(worldId: string, tick: number): SimEvent {
+  return { worldId, tick, type: 'discovery', significance: 0.2, data: { agentId: 7, novelty: 0.4 } };
+}
+
+describe('POST /worlds/:id/events/batch', () => {
+  let server: http.Server;
+  let base: string;
+  const store = new MemoryStore();
+
+  before(async () => {
+    const app = express();
+    app.use(express.json({ limit: '4mb' }));
+    const gateway = new StubGateway();
+    const grounding = new GroundingService();
+    const wm = new WorldManager(gateway, store, config, grounding);
+    app.use('/api', createApi(wm, store, gateway, grounding));
+    await new Promise<void>((resolve) => {
+      server = app.listen(0, '127.0.0.1', () => resolve());
+    });
+    const addr = server.address() as AddressInfo;
+    base = `http://127.0.0.1:${addr.port}/api`;
+  });
+
+  after(async () => {
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+  });
+
+  it('accepts NDJSON batches, counts invalid lines, stamps the path worldId', async () => {
+    const body = encodeEventBatch([mkEvent('ignored-a', 1), mkEvent('ignored-b', 2), mkEvent('ignored-c', 3)]);
+    const res = await fetch(`${base}/worlds/local-ndjson/events/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-ndjson' },
+      body: `${body}\nthis-is-not-json`,
+    });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { accepted: 3, invalid: 1 });
+
+    const listed = (await (await fetch(`${base}/worlds/local-ndjson/events`)).json()) as SimEvent[];
+    assert.equal(listed.length, 3);
+    assert.ok(listed.every((e) => e.worldId === 'local-ndjson'), 'path world id must override payload ids');
+    assert.ok(listed.every((e) => e.type === 'discovery'));
+    assert.deepEqual(listed.map((e) => e.tick), [1, 2, 3]);
+  });
+
+  it('accepts a plain JSON array body', async () => {
+    const res = await fetch(`${base}/worlds/local-array/events/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify([mkEvent('x', 10), { junk: true }, mkEvent('x', 11)]),
+    });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { accepted: 2, invalid: 1 });
+    const listed = (await (await fetch(`${base}/worlds/local-array/events`)).json()) as SimEvent[];
+    assert.equal(listed.length, 2);
+  });
+
+  it('accepts structurally valid but unknown-shaped objects as invalid, not crash', async () => {
+    const res = await fetch(`${base}/worlds/local-bad/events/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-ndjson' },
+      body: ['{"worldId":1}', '"string"', '{"tick":1,"type":"nonsense","significance":0,"data":{}}'].join('\n'),
+    });
+    assert.deepEqual(await res.json(), { accepted: 0, invalid: 3 });
+  });
+
+  it('returns zero counts for an empty body', async () => {
+    const res = await fetch(`${base}/worlds/local-empty/events/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-ndjson' },
+      body: '',
+    });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { accepted: 0, invalid: 0 });
+    const listed = (await (await fetch(`${base}/worlds/local-empty/events`)).json()) as SimEvent[];
+    assert.deepEqual(listed, []);
+  });
+
+  it('does not require the world to exist server-side (browser-local worlds)', async () => {
+    const worlds = (await (await fetch(`${base}/worlds`)).json()) as unknown[];
+    assert.ok(Array.isArray(worlds));
+    const res = await fetch(`${base}/worlds/local-never-registered/events/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-ndjson' },
+      body: encodeEventBatch([mkEvent('local-never-registered', 1)]),
+    });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { accepted: 1, invalid: 0 });
+  });
+});

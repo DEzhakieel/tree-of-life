@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="548" viewBox="0 0 430 548" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="430" height="548" fill="#ffffff"/>
+<text x="215" y="22" text-anchor="middle" font-size="15" font-weight="600" fill="#222">Fractal-dimension sweep: Δpop by regime × biome</text>
+<rect x="96.0" y="64.0" width="157.0" height="22.9" fill="rgb(177,197,221)" rx="2"/>
+<text x="174.5" y="80.4" text-anchor="middle" font-size="11" fill="#333">-8</text>
+<rect x="255.0" y="64.0" width="157.0" height="22.9" fill="rgb(70,120,180)" rx="2"/>
+<text x="333.5" y="80.4" text-anchor="middle" font-size="11" fill="#fff">-20</text>
+<text x="88" y="80.4" text-anchor="end" font-size="12" fill="#333">mandelbrot·i32·s2</text>
+<text x="8" y="80.4" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="88.9" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="174.5" y="105.3" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<rect x="255.0" y="88.9" width="157.0" height="22.9" fill="rgb(212,222,234)" rx="2"/>
+<text x="333.5" y="105.3" text-anchor="middle" font-size="11" fill="#333">-4</text>
+<text x="88" y="105.3" text-anchor="end" font-size="12" fill="#333">mandelbrot·i32·s4</text>
+<text x="8" y="105.3" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="113.8" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="174.5" y="130.2" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<rect x="255.0" y="113.8" width="157.0" height="22.9" fill="rgb(70,120,180)" rx="2"/>
+<text x="333.5" y="130.2" text-anchor="middle" font-size="11" fill="#fff">-20</text>
+<text x="88" y="130.2" text-anchor="end" font-size="12" fill="#333">mandelbrot·i256·s2</text>
+<text x="8" y="130.2" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="138.7" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="174.5" y="155.1" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<rect x="255.0" y="138.7" width="157.0" height="22.9" fill="rgb(195,210,228)" rx="2"/>
+<text x="333.5" y="155.1" text-anchor="middle" font-size="11" fill="#333">-6</text>
+<text x="88" y="155.1" text-anchor="end" font-size="12" fill="#333">mandelbrot·i256·s4</text>
+<text x="8" y="155.1" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="163.6" width="157.0" height="22.9" fill="rgb(195,210,228)" rx="2"/>
+<text x="174.5" y="180.0" text-anchor="middle" font-size="11" fill="#333">-6</text>
+<rect x="255.0" y="163.6" width="157.0" height="22.9" fill="rgb(70,120,180)" rx="2"/>
+<text x="333.5" y="180.0" text-anchor="middle" font-size="11" fill="#fff">-20</text>
+<text x="88" y="180.0" text-anchor="end" font-size="12" fill="#333">mandelbrot·i1024·s2</text>
+<text x="8" y="180.0" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="188.4" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="174.5" y="204.9" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<rect x="255.0" y="188.4" width="157.0" height="22.9" fill="rgb(186,203,224)" rx="2"/>
+<text x="333.5" y="204.9" text-anchor="middle" font-size="11" fill="#333">-7</text>
+<text x="88" y="204.9" text-anchor="end" font-size="12" fill="#333">mandelbrot·i1024·s4</text>
+<text x="8" y="204.9" text-anchor="start" font-size="10" font-weight="600" fill="#888">mandelbrot</text>
+<rect x="96.0" y="213.3" width="157.0" height="22.9" fill="rgb(195,210,228)" rx="2"/>
+<text x="174.5" y="229.8" text-anchor="middle" font-size="11" fill="#333">-6</text>
+<rect x="255.0" y="213.3" width="157.0" height="22.9" fill="rgb(123,158,200)" rx="2"/>
+<text x="333.5" y="229.8" text-anchor="middle" font-size="11" fill="#fff">-14</text>
+<text x="88" y="229.8" text-anchor="end" font-size="12" fill="#333">julia·i32·s2</text>
+<text x="8" y="229.8" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="238.2" width="157.0" height="22.9" fill="rgb(203,224,209)" rx="2"/>
+<text x="174.5" y="254.7" text-anchor="middle" font-size="11" fill="#333">5</text>
+<rect x="255.0" y="238.2" width="157.0" height="22.9" fill="rgb(195,210,228)" rx="2"/>
+<text x="333.5" y="254.7" text-anchor="middle" font-size="11" fill="#333">-6</text>
+<text x="88" y="254.7" text-anchor="end" font-size="12" fill="#333">julia·i32·s4</text>
+<text x="8" y="254.7" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="263.1" width="157.0" height="22.9" fill="rgb(123,158,200)" rx="2"/>
+<text x="174.5" y="279.6" text-anchor="middle" font-size="11" fill="#fff">-14</text>
+<rect x="255.0" y="263.1" width="157.0" height="22.9" fill="rgb(123,158,200)" rx="2"/>
+<text x="333.5" y="279.6" text-anchor="middle" font-size="11" fill="#fff">-14</text>
+<text x="88" y="279.6" text-anchor="end" font-size="12" fill="#333">julia·i256·s2</text>
+<text x="8" y="279.6" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="288.0" width="157.0" height="22.9" fill="rgb(239,242,245)" rx="2"/>
+<text x="174.5" y="304.4" text-anchor="middle" font-size="11" fill="#333">-1</text>
+<rect x="255.0" y="288.0" width="157.0" height="22.9" fill="rgb(186,203,224)" rx="2"/>
+<text x="333.5" y="304.4" text-anchor="middle" font-size="11" fill="#333">-7</text>
+<text x="88" y="304.4" text-anchor="end" font-size="12" fill="#333">julia·i256·s4</text>
+<text x="8" y="304.4" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="312.9" width="157.0" height="22.9" fill="rgb(141,171,207)" rx="2"/>
+<text x="174.5" y="329.3" text-anchor="middle" font-size="11" fill="#fff">-12</text>
+<rect x="255.0" y="312.9" width="157.0" height="22.9" fill="rgb(132,165,204)" rx="2"/>
+<text x="333.5" y="329.3" text-anchor="middle" font-size="11" fill="#fff">-13</text>
+<text x="88" y="329.3" text-anchor="end" font-size="12" fill="#333">julia·i1024·s2</text>
+<text x="8" y="329.3" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="337.8" width="157.0" height="22.9" fill="rgb(221,229,238)" rx="2"/>
+<text x="174.5" y="354.2" text-anchor="middle" font-size="11" fill="#333">-3</text>
+<rect x="255.0" y="337.8" width="157.0" height="22.9" fill="rgb(195,210,228)" rx="2"/>
+<text x="333.5" y="354.2" text-anchor="middle" font-size="11" fill="#333">-6</text>
+<text x="88" y="354.2" text-anchor="end" font-size="12" fill="#333">julia·i1024·s4</text>
+<text x="8" y="354.2" text-anchor="start" font-size="10" font-weight="600" fill="#888">julia</text>
+<rect x="96.0" y="362.7" width="157.0" height="22.9" fill="rgb(159,184,214)" rx="2"/>
+<text x="174.5" y="379.1" text-anchor="middle" font-size="11" fill="#333">-10</text>
+<rect x="255.0" y="362.7" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="333.5" y="379.1" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<text x="88" y="379.1" text-anchor="end" font-size="12" fill="#333">perlin·i32·s2</text>
+<text x="8" y="379.1" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<rect x="96.0" y="387.6" width="157.0" height="22.9" fill="rgb(123,158,200)" rx="2"/>
+<text x="174.5" y="404.0" text-anchor="middle" font-size="11" fill="#fff">-14</text>
+<rect x="255.0" y="387.6" width="157.0" height="22.9" fill="rgb(177,197,221)" rx="2"/>
+<text x="333.5" y="404.0" text-anchor="middle" font-size="11" fill="#333">-8</text>
+<text x="88" y="404.0" text-anchor="end" font-size="12" fill="#333">perlin·i32·s4</text>
+<text x="8" y="404.0" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<rect x="96.0" y="412.4" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="174.5" y="428.9" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<rect x="255.0" y="412.4" width="157.0" height="22.9" fill="rgb(168,190,217)" rx="2"/>
+<text x="333.5" y="428.9" text-anchor="middle" font-size="11" fill="#333">-9</text>
+<text x="88" y="428.9" text-anchor="end" font-size="12" fill="#333">perlin·i256·s2</text>
+<text x="8" y="428.9" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<rect x="96.0" y="437.3" width="157.0" height="22.9" fill="rgb(115,152,197)" rx="2"/>
+<text x="174.5" y="453.8" text-anchor="middle" font-size="11" fill="#fff">-15</text>
+<rect x="255.0" y="437.3" width="157.0" height="22.9" fill="rgb(115,152,197)" rx="2"/>
+<text x="333.5" y="453.8" text-anchor="middle" font-size="11" fill="#fff">-15</text>
+<text x="88" y="453.8" text-anchor="end" font-size="12" fill="#333">perlin·i256·s4</text>
+<text x="8" y="453.8" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<rect x="96.0" y="462.2" width="157.0" height="22.9" fill="rgb(123,158,200)" rx="2"/>
+<text x="174.5" y="478.7" text-anchor="middle" font-size="11" fill="#fff">-14</text>
+<rect x="255.0" y="462.2" width="157.0" height="22.9" fill="rgb(221,229,238)" rx="2"/>
+<text x="333.5" y="478.7" text-anchor="middle" font-size="11" fill="#333">-3</text>
+<text x="88" y="478.7" text-anchor="end" font-size="12" fill="#333">perlin·i1024·s2</text>
+<text x="8" y="478.7" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<rect x="96.0" y="487.1" width="157.0" height="22.9" fill="rgb(115,152,197)" rx="2"/>
+<text x="174.5" y="503.6" text-anchor="middle" font-size="11" fill="#fff">-15</text>
+<rect x="255.0" y="487.1" width="157.0" height="22.9" fill="rgb(177,197,221)" rx="2"/>
+<text x="333.5" y="503.6" text-anchor="middle" font-size="11" fill="#333">-8</text>
+<text x="88" y="503.6" text-anchor="end" font-size="12" fill="#333">perlin·i1024·s4</text>
+<text x="8" y="503.6" text-anchor="start" font-size="10" font-weight="600" fill="#888">perlin</text>
+<text x="175.5" y="534" text-anchor="middle" font-size="10" fill="#444">calm</text>
+<text x="175.5" y="56" text-anchor="middle" font-size="10" font-weight="600" fill="#888">control</text>
+<text x="334.5" y="534" text-anchor="middle" font-size="10" fill="#444">hyperthermal</text>
+<text x="334.5" y="56" text-anchor="middle" font-size="10" font-weight="600" fill="#888">extreme</text>
+</svg>

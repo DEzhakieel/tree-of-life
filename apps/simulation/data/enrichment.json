@@ -1,0 +1,966 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-02T11:29:09.736Z",
+  "toolchain": "node-v18.12.1",
+  "sources": [
+    {
+      "name": "PubChem PUG REST",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/",
+      "accessedAt": "2026-09-02T11:29:09.736Z",
+      "license": "Public Domain (NIH)"
+    },
+    {
+      "name": "GBIF Species API + Occurrence Search",
+      "url": "https://api.gbif.org/v1/",
+      "accessedAt": "2026-09-02T11:29:09.736Z",
+      "license": "CC BY 4.0 (GBIF)"
+    },
+    {
+      "name": "Kazusa Codon Usage Database",
+      "url": "https://www.kazusa.or.jp/codon/",
+      "accessedAt": "2026-09-02T11:29:09.736Z",
+      "license": "Public Domain (Kazusa DNA Research Institute)"
+    }
+  ],
+  "fetchedAt": {
+    "pubchem": "2026-09-02T11:29:09.736Z",
+    "gbif": "2026-09-02T11:29:09.736Z",
+    "kazusa": "2026-09-02T11:29:09.736Z"
+  },
+  "chemistry": {
+    "elements": [
+      {
+        "index": 0,
+        "symbol": "C",
+        "atomicMass": 12.011,
+        "electronegativity": 2.55
+      },
+      {
+        "index": 1,
+        "symbol": "H",
+        "atomicMass": 1.008,
+        "electronegativity": 2.2
+      },
+      {
+        "index": 2,
+        "symbol": "O",
+        "atomicMass": 15.999,
+        "electronegativity": 3.44
+      },
+      {
+        "index": 3,
+        "symbol": "N",
+        "atomicMass": 14.007,
+        "electronegativity": 3.04
+      },
+      {
+        "index": 4,
+        "symbol": "P",
+        "atomicMass": 30.974,
+        "electronegativity": 2.19
+      },
+      {
+        "index": 5,
+        "symbol": "S",
+        "atomicMass": 32.065,
+        "electronegativity": 2.58
+      },
+      {
+        "index": 6,
+        "symbol": "Fe",
+        "atomicMass": 55.845,
+        "electronegativity": 1.83
+      },
+      {
+        "index": 7,
+        "symbol": "K",
+        "atomicMass": 39.098,
+        "electronegativity": 0.82
+      }
+    ],
+    "molecules": [
+      {
+        "index": 0,
+        "name": "glucose",
+        "role": "glucose",
+        "pubchemCid": 5793,
+        "molecularFormula": "C6H12O6",
+        "molecularWeight": 180.16,
+        "iupacName": "(3R,4S,5S,6R)-6-(hydroxymethyl)oxane-2,3,4,5-tetrol",
+        "elementCounts": [
+          6,
+          12,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 1,
+        "name": "adenosine triphosphate",
+        "role": "atp",
+        "pubchemCid": 5957,
+        "molecularFormula": "C10H16N5O13P3",
+        "molecularWeight": 507.18,
+        "iupacName": "[[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-3,4-dihydroxyoxolan-2-yl]methoxy-hydroxyphosphoryl] phosphono hydrogen phosphate",
+        "elementCounts": [
+          10,
+          16,
+          13,
+          5,
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 2,
+        "name": "glycine",
+        "role": "aminoAcid",
+        "pubchemCid": 750,
+        "molecularFormula": "C2H5NO2",
+        "molecularWeight": 75.07,
+        "iupacName": "2-aminoacetic acid",
+        "elementCounts": [
+          2,
+          5,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 3,
+        "name": "palmitic acid",
+        "role": "lipid",
+        "pubchemCid": 985,
+        "molecularFormula": "C16H32O2",
+        "molecularWeight": 256.42,
+        "iupacName": "hexadecanoic acid",
+        "elementCounts": [
+          16,
+          32,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 4,
+        "name": "adenosine monophosphate",
+        "role": "nucleotide",
+        "pubchemCid": 6083,
+        "molecularFormula": "C10H14N5O7P",
+        "molecularWeight": 347.22,
+        "iupacName": "[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-3,4-dihydroxyoxolan-2-yl]methyl dihydrogen phosphate",
+        "elementCounts": [
+          10,
+          14,
+          7,
+          5,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 5,
+        "name": "enzyme",
+        "role": "enzyme",
+        "elementCounts": [
+          5,
+          9.900855657231226,
+          2.5057421939549602,
+          1.3913196474713154,
+          0,
+          0.04591468595912366,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 6,
+        "name": "insulin",
+        "role": "protein",
+        "pubchemCid": 118984375,
+        "molecularFormula": "C257H383N65O77S6",
+        "molecularWeight": 5808,
+        "iupacName": "(4S)-4-[[2-[[(1R,6R,12S,15S,18S,21S,24S,27S,30S,33S,36S,39S,42R,47R,50S,53S,56S,59S,62S,65S,68S,71S,74R,77S,80S,83S,88R)-88-[[(2S)-5-amino-2-[[(2S)-2-[[(2S)-2-[[(2S,3S)-2-[(2-aminoacetyl)amino]-3-methylpentanoyl]amino]-3-methylbutanoyl]amino]-4-carboxybutanoyl]amino]-5-oxopentanoyl]amino]-6-[[(2S)-2-[[(2S)-2-[[(2S)-5-amino-2-[[(2S)-4-amino-2-[[(2S)-2-[[(2S)-2-amino-3-phenylpropanoyl]amino]-3-methylbutanoyl]amino]-4-oxobutanoyl]amino]-5-oxopentanoyl]amino]-3-(1H-imidazol-4-yl)propanoyl]amino]-4-methylpentanoyl]amino]-47-[[(1S)-3-amino-1-carboxy-3-oxopropyl]carbamoyl]-53-(2-amino-2-oxoethyl)-62-(3-amino-3-oxopropyl)-77-[(2S)-butan-2-yl]-24,56-bis(2-carboxyethyl)-83-[(1R)-1-hydroxyethyl]-12,71,80-tris(hydroxymethyl)-33,50,65-tris[(4-hydroxyphenyl)methyl]-15-(1H-imidazol-4-ylmethyl)-27-methyl-18,30,36,59,68-pentakis(2-methylpropyl)-7,10,13,16,19,22,25,28,31,34,37,40,49,52,55,58,61,64,67,70,73,76,79,82,85,87-hexacosaoxo-21,39-di(propan-2-yl)-3,4,44,45,90,91-hexathia-8,11,14,17,20,23,26,29,32,35,38,41,48,51,54,57,60,63,66,69,72,75,78,81,84,86-hexacosazabicyclo[72.11.7]dononacontane-42-carbonyl]amino]acetyl]amino]-5-[[(2S)-1-[[2-[[(2S)-1-[[(2S)-1-[[(2S)-1-[[(2S,3R)-1-[(2S)-2-[[(2S)-6-amino-1-[[(1S,2R)-1-carboxy-2-hydroxypropyl]amino]-1-oxohexan-2-yl]carbamoyl]pyrrolidin-1-yl]-3-hydroxy-1-oxobutan-2-yl]amino]-3-(4-hydroxyphenyl)-1-oxopropan-2-yl]amino]-1-oxo-3-phenylpropan-2-yl]amino]-1-oxo-3-phenylpropan-2-yl]amino]-2-oxoethyl]amino]-5-carbamimidamido-1-oxopentan-2-yl]amino]-5-oxopentanoic acid",
+        "elementCounts": [
+          257,
+          383,
+          77,
+          65,
+          0,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 7,
+        "name": "tetrodotoxin",
+        "role": "toxin",
+        "pubchemCid": 11174599,
+        "molecularFormula": "C11H17N3O8",
+        "molecularWeight": 319.27,
+        "iupacName": "(1R,5R,6R,7R,9S,11S,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+        "elementCounts": [
+          11,
+          17,
+          8,
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 8,
+        "name": "acetylcholine",
+        "role": "signal",
+        "pubchemCid": 187,
+        "molecularFormula": "C7H16NO2+",
+        "molecularWeight": 146.21,
+        "iupacName": "2-acetyloxyethyl(trimethyl)azanium",
+        "elementCounts": [
+          7,
+          16,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 9,
+        "name": "sucrose",
+        "role": "sugar",
+        "pubchemCid": 5988,
+        "molecularFormula": "C12H22O11",
+        "molecularWeight": 342.3,
+        "iupacName": "(2R,3R,4S,5S,6R)-2-[(2S,3S,4S,5R)-3,4-dihydroxy-2,5-bis(hydroxymethyl)oxolan-2-yl]oxy-6-(hydroxymethyl)oxane-3,4,5-triol",
+        "elementCounts": [
+          12,
+          22,
+          11,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 10,
+        "name": "oleic acid",
+        "role": "fattyAcid",
+        "pubchemCid": 445639,
+        "molecularFormula": "C18H34O2",
+        "molecularWeight": 282.5,
+        "iupacName": "(Z)-octadec-9-enoic acid",
+        "elementCounts": [
+          18,
+          34,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "index": 11,
+        "name": "glycine betaine",
+        "role": "osmolyte",
+        "pubchemCid": 247,
+        "molecularFormula": "C5H11NO2",
+        "molecularWeight": 117.15,
+        "iupacName": "2-(trimethylazaniumyl)acetate",
+        "elementCounts": [
+          5,
+          11,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "stoichiometry": {
+      "plant": [
+        6,
+        12,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "meat": [
+        5,
+        7.45136186770428,
+        1.4980544747081712,
+        1.264591439688716,
+        0,
+        0.11673151750972763,
+        0,
+        0
+      ],
+      "aminoAcid": [
+        3,
+        7.5,
+        3,
+        1.5,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fattyAcid": [
+        2,
+        3.7777777777777777,
+        0.2222222222222222,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sugar": [
+        5,
+        9.166666666666668,
+        4.583333333333334,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "glucose": [
+        3,
+        6,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "ecology": {
+    "taxa": [
+      {
+        "level": 0,
+        "role": "producer",
+        "scientificName": "Lolium perenne",
+        "commonName": "perennial ryegrass",
+        "gbifUsageKey": 2706241,
+        "kingdom": "Plantae",
+        "phylum": "Tracheophyta",
+        "order": "Poales",
+        "family": "Poaceae",
+        "genus": "Lolium",
+        "occurrenceCount": 1077130
+      },
+      {
+        "level": 0,
+        "role": "producer",
+        "scientificName": "Poa annua",
+        "commonName": "annual meadow grass",
+        "gbifUsageKey": 2704179,
+        "kingdom": "Plantae",
+        "phylum": "Tracheophyta",
+        "order": "Poales",
+        "family": "Poaceae",
+        "genus": "Poa",
+        "occurrenceCount": 972637
+      },
+      {
+        "level": 1,
+        "role": "herbivore",
+        "scientificName": "Oryctolagus cuniculus",
+        "commonName": "European rabbit",
+        "gbifUsageKey": 2436940,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Lagomorpha",
+        "family": "Leporidae",
+        "genus": "Oryctolagus",
+        "occurrenceCount": 763375
+      },
+      {
+        "level": 1,
+        "role": "herbivore",
+        "scientificName": "Cervus elaphus",
+        "commonName": "red deer",
+        "gbifUsageKey": 2440958,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Artiodactyla",
+        "family": "Cervidae",
+        "genus": "Cervus",
+        "occurrenceCount": 685588
+      },
+      {
+        "level": 2,
+        "role": "carnivore",
+        "scientificName": "Vulpes vulpes",
+        "commonName": "red fox",
+        "gbifUsageKey": 5219243,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Vulpes",
+        "occurrenceCount": 2016735
+      },
+      {
+        "level": 2,
+        "role": "carnivore",
+        "scientificName": "Buteo jamaicensis",
+        "commonName": "red-tailed hawk",
+        "gbifUsageKey": 2480542,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Accipitriformes",
+        "family": "Accipitridae",
+        "genus": "Buteo",
+        "occurrenceCount": 12462813
+      },
+      {
+        "level": 3,
+        "role": "apex",
+        "scientificName": "Canis lupus",
+        "commonName": "grey wolf",
+        "gbifUsageKey": 5219173,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Canis",
+        "occurrenceCount": 253275
+      },
+      {
+        "level": 3,
+        "role": "apex",
+        "scientificName": "Puma concolor",
+        "commonName": "mountain lion",
+        "gbifUsageKey": 2435099,
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Puma",
+        "occurrenceCount": 29954
+      },
+      {
+        "level": 4,
+        "role": "decomposer",
+        "scientificName": "Pleurotus ostreatus",
+        "commonName": "oyster mushroom",
+        "gbifUsageKey": 2526530,
+        "kingdom": "Fungi",
+        "phylum": "Basidiomycota",
+        "order": "Agaricales",
+        "family": "Pleurotaceae",
+        "genus": "Pleurotus",
+        "occurrenceCount": 50903
+      }
+    ],
+    "priors": [
+      {
+        "level": 0,
+        "role": "producer",
+        "carryingCapacityScale": 1,
+        "occurrenceCount": 2049767,
+        "occurrenceFraction": 0.11193321905745884
+      },
+      {
+        "level": 1,
+        "role": "herbivore",
+        "carryingCapacityScale": 0.7068915637728581,
+        "occurrenceCount": 1448963,
+        "occurrenceFraction": 0.07912464825765697
+      },
+      {
+        "level": 2,
+        "role": "carnivore",
+        "carryingCapacityScale": 7.063997029906326,
+        "occurrenceCount": 14479548,
+        "occurrenceFraction": 0.7906959269697434
+      },
+      {
+        "level": 3,
+        "role": "apex",
+        "carryingCapacityScale": 0.13817619270873227,
+        "occurrenceCount": 283229,
+        "occurrenceFraction": 0.015466506046992177
+      },
+      {
+        "level": 4,
+        "role": "decomposer",
+        "carryingCapacityScale": 0.024833554252751654,
+        "occurrenceCount": 50903,
+        "occurrenceFraction": 0.0027796996681485396
+      }
+    ],
+    "totalOccurrences": 18312410
+  },
+  "genetics": {
+    "codons": [
+      {
+        "codon": "UUU",
+        "aminoAcid": "F",
+        "fraction": 0.46,
+        "perThousand": 17.6,
+        "count": 714298
+      },
+      {
+        "codon": "UCU",
+        "aminoAcid": "S",
+        "fraction": 0.19,
+        "perThousand": 15.2,
+        "count": 618711
+      },
+      {
+        "codon": "UAU",
+        "aminoAcid": "Y",
+        "fraction": 0.44,
+        "perThousand": 12.2,
+        "count": 495699
+      },
+      {
+        "codon": "UGU",
+        "aminoAcid": "C",
+        "fraction": 0.46,
+        "perThousand": 10.6,
+        "count": 430311
+      },
+      {
+        "codon": "UUC",
+        "aminoAcid": "F",
+        "fraction": 0.54,
+        "perThousand": 20.3,
+        "count": 824692
+      },
+      {
+        "codon": "UCC",
+        "aminoAcid": "S",
+        "fraction": 0.22,
+        "perThousand": 17.7,
+        "count": 718892
+      },
+      {
+        "codon": "UAC",
+        "aminoAcid": "Y",
+        "fraction": 0.56,
+        "perThousand": 15.3,
+        "count": 622407
+      },
+      {
+        "codon": "UGC",
+        "aminoAcid": "C",
+        "fraction": 0.54,
+        "perThousand": 12.6,
+        "count": 513028
+      },
+      {
+        "codon": "UUA",
+        "aminoAcid": "L",
+        "fraction": 0.08,
+        "perThousand": 7.7,
+        "count": 311881
+      },
+      {
+        "codon": "UCA",
+        "aminoAcid": "S",
+        "fraction": 0.15,
+        "perThousand": 12.2,
+        "count": 496448
+      },
+      {
+        "codon": "UUG",
+        "aminoAcid": "L",
+        "fraction": 0.13,
+        "perThousand": 12.9,
+        "count": 525688
+      },
+      {
+        "codon": "UCG",
+        "aminoAcid": "S",
+        "fraction": 0.05,
+        "perThousand": 4.4,
+        "count": 179419
+      },
+      {
+        "codon": "UGG",
+        "aminoAcid": "W",
+        "fraction": 1,
+        "perThousand": 13.2,
+        "count": 535595
+      },
+      {
+        "codon": "CUU",
+        "aminoAcid": "L",
+        "fraction": 0.13,
+        "perThousand": 13.2,
+        "count": 536515
+      },
+      {
+        "codon": "CCU",
+        "aminoAcid": "P",
+        "fraction": 0.29,
+        "perThousand": 17.5,
+        "count": 713233
+      },
+      {
+        "codon": "CAU",
+        "aminoAcid": "H",
+        "fraction": 0.42,
+        "perThousand": 10.9,
+        "count": 441711
+      },
+      {
+        "codon": "CGU",
+        "aminoAcid": "R",
+        "fraction": 0.08,
+        "perThousand": 4.5,
+        "count": 184609
+      },
+      {
+        "codon": "CUC",
+        "aminoAcid": "L",
+        "fraction": 0.2,
+        "perThousand": 19.6,
+        "count": 796638
+      },
+      {
+        "codon": "CCC",
+        "aminoAcid": "P",
+        "fraction": 0.32,
+        "perThousand": 19.8,
+        "count": 804620
+      },
+      {
+        "codon": "CAC",
+        "aminoAcid": "H",
+        "fraction": 0.58,
+        "perThousand": 15.1,
+        "count": 613713
+      },
+      {
+        "codon": "CGC",
+        "aminoAcid": "R",
+        "fraction": 0.18,
+        "perThousand": 10.4,
+        "count": 423516
+      },
+      {
+        "codon": "CUA",
+        "aminoAcid": "L",
+        "fraction": 0.07,
+        "perThousand": 7.2,
+        "count": 290751
+      },
+      {
+        "codon": "CCA",
+        "aminoAcid": "P",
+        "fraction": 0.28,
+        "perThousand": 16.9,
+        "count": 688038
+      },
+      {
+        "codon": "CAA",
+        "aminoAcid": "Q",
+        "fraction": 0.27,
+        "perThousand": 12.3,
+        "count": 501911
+      },
+      {
+        "codon": "CGA",
+        "aminoAcid": "R",
+        "fraction": 0.11,
+        "perThousand": 6.2,
+        "count": 250760
+      },
+      {
+        "codon": "CUG",
+        "aminoAcid": "L",
+        "fraction": 0.4,
+        "perThousand": 39.6,
+        "count": 1611801
+      },
+      {
+        "codon": "CCG",
+        "aminoAcid": "P",
+        "fraction": 0.11,
+        "perThousand": 6.9,
+        "count": 281570
+      },
+      {
+        "codon": "CAG",
+        "aminoAcid": "Q",
+        "fraction": 0.73,
+        "perThousand": 34.2,
+        "count": 1391973
+      },
+      {
+        "codon": "CGG",
+        "aminoAcid": "R",
+        "fraction": 0.2,
+        "perThousand": 11.4,
+        "count": 464485
+      },
+      {
+        "codon": "AUU",
+        "aminoAcid": "I",
+        "fraction": 0.36,
+        "perThousand": 16,
+        "count": 650473
+      },
+      {
+        "codon": "ACU",
+        "aminoAcid": "T",
+        "fraction": 0.25,
+        "perThousand": 13.1,
+        "count": 533609
+      },
+      {
+        "codon": "AAU",
+        "aminoAcid": "N",
+        "fraction": 0.47,
+        "perThousand": 17,
+        "count": 689701
+      },
+      {
+        "codon": "AGU",
+        "aminoAcid": "S",
+        "fraction": 0.15,
+        "perThousand": 12.1,
+        "count": 493429
+      },
+      {
+        "codon": "AUC",
+        "aminoAcid": "I",
+        "fraction": 0.47,
+        "perThousand": 20.8,
+        "count": 846466
+      },
+      {
+        "codon": "ACC",
+        "aminoAcid": "T",
+        "fraction": 0.36,
+        "perThousand": 18.9,
+        "count": 768147
+      },
+      {
+        "codon": "AAC",
+        "aminoAcid": "N",
+        "fraction": 0.53,
+        "perThousand": 19.1,
+        "count": 776603
+      },
+      {
+        "codon": "AGC",
+        "aminoAcid": "S",
+        "fraction": 0.24,
+        "perThousand": 19.5,
+        "count": 791383
+      },
+      {
+        "codon": "AUA",
+        "aminoAcid": "I",
+        "fraction": 0.17,
+        "perThousand": 7.5,
+        "count": 304565
+      },
+      {
+        "codon": "ACA",
+        "aminoAcid": "T",
+        "fraction": 0.28,
+        "perThousand": 15.1,
+        "count": 614523
+      },
+      {
+        "codon": "AAA",
+        "aminoAcid": "K",
+        "fraction": 0.43,
+        "perThousand": 24.4,
+        "count": 993621
+      },
+      {
+        "codon": "AGA",
+        "aminoAcid": "R",
+        "fraction": 0.21,
+        "perThousand": 12.2,
+        "count": 494682
+      },
+      {
+        "codon": "AUG",
+        "aminoAcid": "M",
+        "fraction": 1,
+        "perThousand": 22,
+        "count": 896005
+      },
+      {
+        "codon": "ACG",
+        "aminoAcid": "T",
+        "fraction": 0.11,
+        "perThousand": 6.1,
+        "count": 246105
+      },
+      {
+        "codon": "AAG",
+        "aminoAcid": "K",
+        "fraction": 0.57,
+        "perThousand": 31.9,
+        "count": 1295568
+      },
+      {
+        "codon": "AGG",
+        "aminoAcid": "R",
+        "fraction": 0.21,
+        "perThousand": 12,
+        "count": 486463
+      },
+      {
+        "codon": "GUU",
+        "aminoAcid": "V",
+        "fraction": 0.18,
+        "perThousand": 11,
+        "count": 448607
+      },
+      {
+        "codon": "GCU",
+        "aminoAcid": "A",
+        "fraction": 0.27,
+        "perThousand": 18.4,
+        "count": 750096
+      },
+      {
+        "codon": "GAU",
+        "aminoAcid": "D",
+        "fraction": 0.46,
+        "perThousand": 21.8,
+        "count": 885429
+      },
+      {
+        "codon": "GGU",
+        "aminoAcid": "G",
+        "fraction": 0.16,
+        "perThousand": 10.8,
+        "count": 437126
+      },
+      {
+        "codon": "GUC",
+        "aminoAcid": "V",
+        "fraction": 0.24,
+        "perThousand": 14.5,
+        "count": 588138
+      },
+      {
+        "codon": "GCC",
+        "aminoAcid": "A",
+        "fraction": 0.4,
+        "perThousand": 27.7,
+        "count": 1127679
+      },
+      {
+        "codon": "GAC",
+        "aminoAcid": "D",
+        "fraction": 0.54,
+        "perThousand": 25.1,
+        "count": 1020595
+      },
+      {
+        "codon": "GGC",
+        "aminoAcid": "G",
+        "fraction": 0.34,
+        "perThousand": 22.2,
+        "count": 903565
+      },
+      {
+        "codon": "GUA",
+        "aminoAcid": "V",
+        "fraction": 0.12,
+        "perThousand": 7.1,
+        "count": 287712
+      },
+      {
+        "codon": "GCA",
+        "aminoAcid": "A",
+        "fraction": 0.23,
+        "perThousand": 15.8,
+        "count": 643471
+      },
+      {
+        "codon": "GAA",
+        "aminoAcid": "E",
+        "fraction": 0.42,
+        "perThousand": 29,
+        "count": 1177632
+      },
+      {
+        "codon": "GGA",
+        "aminoAcid": "G",
+        "fraction": 0.25,
+        "perThousand": 16.5,
+        "count": 669873
+      },
+      {
+        "codon": "GUG",
+        "aminoAcid": "V",
+        "fraction": 0.46,
+        "perThousand": 28.1,
+        "count": 1143534
+      },
+      {
+        "codon": "GCG",
+        "aminoAcid": "A",
+        "fraction": 0.11,
+        "perThousand": 7.4,
+        "count": 299495
+      },
+      {
+        "codon": "GAG",
+        "aminoAcid": "E",
+        "fraction": 0.58,
+        "perThousand": 39.6,
+        "count": 1609975
+      },
+      {
+        "codon": "GGG",
+        "aminoAcid": "G",
+        "fraction": 0.25,
+        "perThousand": 16.5,
+        "count": 669768
+      }
+    ],
+    "prior": {
+      "organism": "Homo sapiens",
+      "gcContent": 0.5236738551258561,
+      "avgHydrophobicity": -0.16983796634491444,
+      "codonCount": 61
+    }
+  }
+}

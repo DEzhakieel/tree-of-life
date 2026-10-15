@@ -1,0 +1,371 @@
+{
+  "generatedAt": "2026-09-24T12:23:03.673Z",
+  "name": "agent-archetypes",
+  "tierLadder": [
+    {
+      "idx": 0,
+      "name": "T0 · simple rules",
+      "summary": "identical reflex agents on a plain fractal world",
+      "faculty": "fixed genome-reflex (forwardGenome); no diversity, chemistry or learning",
+      "brain": false,
+      "clones": true,
+      "env": null
+    },
+    {
+      "idx": 1,
+      "name": "T1 · constraints",
+      "summary": "heritable genomes coupled to a calm biome",
+      "faculty": "genome mutation + biome chemistry reinjection (O2, pH, toxin, water)",
+      "brain": false,
+      "clones": false,
+      "env": "calm"
+    },
+    {
+      "idx": 2,
+      "name": "T2 · cognition",
+      "summary": "per-agent learned policy instead of the fixed reflex",
+      "faculty": "plastic MLP brain (backprop + surprise-modulated learning)",
+      "brain": true,
+      "clones": false,
+      "env": "calm"
+    },
+    {
+      "idx": 3,
+      "name": "T3 · systems",
+      "summary": "intracellular omics on top of the learned brain",
+      "faculty": "stochastic expression, combinatorial chemistry, recombination, cell biochemistry",
+      "brain": true,
+      "clones": false,
+      "env": "calm",
+      "flags": {
+        "omics": true,
+        "omicsStochastic": true,
+        "combinatorial": true,
+        "recombination": true,
+        "cellBio": true
+      }
+    }
+  ],
+  "baselineOverrides": {
+    "foodRegenRate": 0.003,
+    "metabolismBase": 0.5,
+    "energyCapacity": 150
+  },
+  "spawn": 40,
+  "ticks": 240,
+  "pass": true,
+  "worlds": [
+    {
+      "tier": 0,
+      "seed": "archetypes.s1",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 8,
+        "species": 8,
+        "births": 0,
+        "deaths": 32,
+        "selectionEntropy": 0.9002560512685369,
+        "traitDim": 4.661137334496745
+      },
+      "metrics": {
+        "genomeDist": 0,
+        "memeCV": 0,
+        "energyCV": 0.21798376773578168,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "27f26c56",
+      "outcome": "ee3939a7"
+    },
+    {
+      "tier": 0,
+      "seed": "archetypes.s2",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 5,
+        "species": 5,
+        "births": 0,
+        "deaths": 35,
+        "selectionEntropy": 0,
+        "traitDim": 3.3301195797879
+      },
+      "metrics": {
+        "genomeDist": 0,
+        "memeCV": 0,
+        "energyCV": 0.3612402546666162,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "d726b6ee",
+      "outcome": "af69b029"
+    },
+    {
+      "tier": 0,
+      "seed": "archetypes.s3",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 15,
+        "species": 15,
+        "births": 0,
+        "deaths": 25,
+        "selectionEntropy": 0,
+        "traitDim": 4.911512484624343
+      },
+      "metrics": {
+        "genomeDist": 0,
+        "memeCV": 0,
+        "energyCV": 0.2758034213889006,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "a683811a",
+      "outcome": "f9289dc4"
+    },
+    {
+      "tier": 1,
+      "seed": "archetypes.s1",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 11,
+        "species": 9,
+        "births": 3,
+        "deaths": 32,
+        "selectionEntropy": 0.47413931305783735,
+        "traitDim": 4.420505749784983
+      },
+      "metrics": {
+        "genomeDist": 0.622040268268544,
+        "memeCV": 0.8115644697290254,
+        "energyCV": 0.7220137153347107,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "88e8b3e5",
+      "outcome": "9d01b2f9"
+    },
+    {
+      "tier": 1,
+      "seed": "archetypes.s2",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 19,
+        "species": 9,
+        "births": 15,
+        "deaths": 36,
+        "selectionEntropy": 0,
+        "traitDim": 3.0897940556855636
+      },
+      "metrics": {
+        "genomeDist": 0.254804379826419,
+        "memeCV": 0.26075547007883976,
+        "energyCV": 0.4663152386341057,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "c0845a92",
+      "outcome": "a2e6be8c"
+    },
+    {
+      "tier": 1,
+      "seed": "archetypes.s3",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 19,
+        "species": 17,
+        "births": 5,
+        "deaths": 26,
+        "selectionEntropy": 0,
+        "traitDim": 5.130012040032889
+      },
+      "metrics": {
+        "genomeDist": 0.6432250542985571,
+        "memeCV": 0.5367944531606835,
+        "energyCV": 0.5186208237951911,
+        "proteomeCV": 0,
+        "plasticAgents": 0,
+        "meanPlasticity": 0,
+        "meanSurprise": 0
+      },
+      "deterministic": true,
+      "worldFp16": "97ed5070",
+      "outcome": "19e3dcdc"
+    },
+    {
+      "tier": 2,
+      "seed": "archetypes.s1",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 10,
+        "species": 9,
+        "births": 2,
+        "deaths": 32,
+        "selectionEntropy": 0.5004024235381879,
+        "traitDim": 4.5456360850279145
+      },
+      "metrics": {
+        "genomeDist": 0.6403255438291898,
+        "memeCV": 0.7217032787020228,
+        "energyCV": 0.6503606331382419,
+        "proteomeCV": 0,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.0512750679895169,
+        "meanSurprise": 0.12051364862338397
+      },
+      "deterministic": true,
+      "worldFp16": "5f1a1f0c",
+      "outcome": "af751ff2"
+    },
+    {
+      "tier": 2,
+      "seed": "archetypes.s2",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 12,
+        "species": 10,
+        "births": 7,
+        "deaths": 35,
+        "selectionEntropy": 0,
+        "traitDim": 3.14853277899266
+      },
+      "metrics": {
+        "genomeDist": 0.372377292278828,
+        "memeCV": 0.33524985452158457,
+        "energyCV": 0.6965141906987887,
+        "proteomeCV": 0,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.06073805590651692,
+        "meanSurprise": 0.31144009454534305
+      },
+      "deterministic": true,
+      "worldFp16": "a3f30821",
+      "outcome": "42db998d"
+    },
+    {
+      "tier": 2,
+      "seed": "archetypes.s3",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 41,
+        "species": 25,
+        "births": 75,
+        "deaths": 74,
+        "selectionEntropy": 0,
+        "traitDim": 3.8413175088533635
+      },
+      "metrics": {
+        "genomeDist": 0.5322714340351585,
+        "memeCV": 0.3632987591933572,
+        "energyCV": 0.6887157090727751,
+        "proteomeCV": 0,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.06565854714210391,
+        "meanSurprise": 0.612394905670251
+      },
+      "deterministic": true,
+      "worldFp16": "8e69482e",
+      "outcome": "aa4db15c"
+    },
+    {
+      "tier": 3,
+      "seed": "archetypes.s1",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 11,
+        "species": 9,
+        "births": 3,
+        "deaths": 32,
+        "selectionEntropy": 0.5859526183035508,
+        "traitDim": 4.409704159678497
+      },
+      "metrics": {
+        "genomeDist": 0.6335188041087264,
+        "memeCV": 0.7489275678714722,
+        "energyCV": 0.5832685618702698,
+        "proteomeCV": 0.04296799126853417,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.04744998397261992,
+        "meanSurprise": 0.13042429931052751
+      },
+      "deterministic": true,
+      "worldFp16": "c5b128cf",
+      "outcome": "b077d137"
+    },
+    {
+      "tier": 3,
+      "seed": "archetypes.s2",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 23,
+        "species": 14,
+        "births": 19,
+        "deaths": 36,
+        "selectionEntropy": 0,
+        "traitDim": 3.5322260322856653
+      },
+      "metrics": {
+        "genomeDist": 0.2615021831465303,
+        "memeCV": 0.23549082868323773,
+        "energyCV": 0.3582880351922627,
+        "proteomeCV": 0.017861602565121038,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.09208142932805653,
+        "meanSurprise": 0.45101780242610967
+      },
+      "deterministic": true,
+      "worldFp16": "d43c363e",
+      "outcome": "51b0f3e5"
+    },
+    {
+      "tier": 3,
+      "seed": "archetypes.s3",
+      "spawn": 40,
+      "ticks": 240,
+      "census": {
+        "alive": 18,
+        "species": 14,
+        "births": 105,
+        "deaths": 127,
+        "selectionEntropy": 0,
+        "traitDim": 4.54279828675204
+      },
+      "metrics": {
+        "genomeDist": 0.6379730585262773,
+        "memeCV": 0.613854224790187,
+        "energyCV": 0.4842633757674375,
+        "proteomeCV": 0.031094486552633697,
+        "plasticAgents": 1,
+        "meanPlasticity": 0.04705173336427435,
+        "meanSurprise": 0.581436283723362
+      },
+      "deterministic": true,
+      "worldFp16": "a7c7084d",
+      "outcome": "15d5ed22"
+    }
+  ]
+}

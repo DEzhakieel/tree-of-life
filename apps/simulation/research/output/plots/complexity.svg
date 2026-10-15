@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1400" font-family="ui-monospace,Menlo,Consolas,monospace">
+  <rect width="1040" height="1400" fill="#15171b"/>
+<text x="74" y="52" font-size="12" fill="#e4e6ea" font-weight="bold">phase scan — alive fraction vs cell capacity (order parameter)</text>
+<polyline points="70.0,9.3 106.2,-3.8 142.3,-6.7 178.5,-5.3 214.6,-6.7 250.8,-11.1 286.9,-11.1 323.1,-11.1 359.2,-12.6 395.4,-14.0 431.5,-14.0 467.7,-14.0 503.8,-15.5 540.0,-15.5" fill="none" stroke="#8a8f98" stroke-width="2" opacity="0.9"/>
+<polyline points="70.0,9.3 106.2,-3.8 142.3,-6.7 178.5,-5.3 214.6,-6.7 250.8,-11.1 286.9,-11.1 323.1,-11.1 359.2,-12.6 395.4,-14.0 431.5,-14.0 467.7,-14.0 503.8,-15.5 540.0,-15.5" fill="none" stroke="#f2a33c" stroke-width="2" opacity="0.9"/>
+<polyline points="70.0,9.3 106.2,-3.8 142.3,-6.7 178.5,-5.3 214.6,-6.7 250.8,-11.1 286.9,-11.1 323.1,-11.1 359.2,-12.6 395.4,-14.0 431.5,-14.0 467.7,-14.0 503.8,-15.5 540.0,-15.5" fill="none" stroke="#61dafb" stroke-width="2" opacity="0.9"/>
+<polyline points="70.0,9.3 106.2,-3.8 142.3,-6.7 178.5,-5.3 214.6,-6.7 250.8,-11.1 286.9,-11.1 323.1,-11.1 359.2,-12.6 395.4,-14.0 431.5,-14.0 467.7,-14.0 503.8,-15.5 540.0,-15.5" fill="none" stroke="#c678dd" stroke-width="2" opacity="0.9"/>
+<line x1="350" y1="86" x2="380" y2="86" stroke="#8a8f98" stroke-width="2"/><text x="390" y="90" font-size="10" fill="#cfd3da">T0 · simple rules</text>
+<line x1="350" y1="102" x2="380" y2="102" stroke="#f2a33c" stroke-width="2"/><text x="390" y="106" font-size="10" fill="#cfd3da">T1 · constraints</text>
+<line x1="350" y1="118" x2="380" y2="118" stroke="#61dafb" stroke-width="2"/><text x="390" y="122" font-size="10" fill="#cfd3da">T2 · cognition</text>
+<line x1="350" y1="134" x2="380" y2="134" stroke="#c678dd" stroke-width="2"/><text x="390" y="138" font-size="10" fill="#cfd3da">T3 · systems</text>
+<text x="544" y="52" font-size="12" fill="#e4e6ea" font-weight="bold">attractors — per-seed final alive fraction (capacity axis)</text>
+<circle cx="70.0" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="70.0" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="70.0" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="106.2" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="106.2" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="106.2" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="142.3" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="142.3" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="142.3" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="178.5" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="178.5" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="178.5" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="214.6" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="214.6" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="214.6" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="250.8" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="250.8" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="250.8" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="286.9" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="286.9" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="286.9" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="323.1" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="323.1" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="323.1" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="359.2" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="359.2" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="359.2" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="395.4" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="395.4" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="395.4" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="431.5" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="431.5" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="431.5" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="467.7" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="467.7" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="467.7" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="503.8" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="503.8" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="503.8" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="540.0" cy="31.1" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="540.0" cy="-3.8" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="540.0" cy="-21.3" r="1.6" fill="#8a8f98" opacity="0.5"/>
+<circle cx="70.0" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="70.0" cy="-3.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="70.0" cy="-3.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="106.2" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="106.2" cy="-21.3" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="106.2" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="142.3" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="142.3" cy="-21.3" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="142.3" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="178.5" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="178.5" cy="-21.3" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="178.5" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="214.6" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="214.6" cy="-21.3" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="214.6" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="250.8" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="286.9" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="323.1" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="359.2" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="359.2" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="359.2" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="395.4" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="395.4" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="395.4" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="431.5" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="431.5" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="431.5" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="467.7" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="467.7" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="467.7" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="503.8" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="503.8" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="503.8" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="540.0" cy="31.1" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="540.0" cy="-38.8" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="540.0" cy="-56.2" r="1.6" fill="#f2a33c" opacity="0.5"/>
+<circle cx="70.0" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="70.0" cy="13.6" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="70.0" cy="-3.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="106.2" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="106.2" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="106.2" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="142.3" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="142.3" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="142.3" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="178.5" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="178.5" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="178.5" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="214.6" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="214.6" cy="-21.3" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="214.6" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="250.8" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="286.9" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="323.1" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="359.2" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="359.2" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="359.2" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="395.4" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="395.4" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="395.4" cy="-56.2" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="431.5" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="431.5" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="431.5" cy="-56.2" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="467.7" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="467.7" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="467.7" cy="-56.2" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="503.8" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="503.8" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="503.8" cy="-56.2" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="540.0" cy="31.1" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="540.0" cy="-38.8" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="540.0" cy="-56.2" r="1.6" fill="#61dafb" opacity="0.5"/>
+<circle cx="70.0" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="70.0" cy="13.6" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="70.0" cy="-3.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="106.2" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="106.2" cy="-3.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="106.2" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="142.3" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="142.3" cy="-21.3" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="142.3" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="178.5" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="178.5" cy="-21.3" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="178.5" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="214.6" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="214.6" cy="-21.3" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="214.6" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="250.8" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="250.8" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="286.9" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="286.9" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="323.1" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="323.1" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="359.2" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="359.2" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="359.2" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="395.4" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="395.4" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="395.4" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="431.5" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="431.5" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="431.5" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="467.7" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="467.7" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="467.7" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="503.8" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="503.8" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="503.8" cy="-56.2" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="540.0" cy="31.1" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="540.0" cy="-38.8" r="1.6" fill="#c678dd" opacity="0.5"/>
+<circle cx="540.0" cy="-56.2" r="1.6" fill="#c678dd" opacity="0.5"/>
+<text x="74" y="387.3333333333333" font-size="12" fill="#e4e6ea" font-weight="bold">partial differentiation — ∂(aliveFrac)/∂(lg p)   [supply | capacity]</text>
+<polyline points="70.0,261.7 102.4,258.5 134.9,258.5 167.3,258.5 199.7,258.5 232.1,258.5 264.6,258.5 297.0,261.7" fill="none" stroke="#8a8f98" stroke-width="1.5" opacity="0.85"/>
+<polyline points="313.0,122.0 330.5,176.3 347.9,253.9 365.4,261.7 382.8,230.6 400.3,238.4 417.8,261.7 435.2,253.9 452.7,246.1 470.2,253.9 487.6,261.7 505.1,253.9 522.5,253.9 540.0,261.7" fill="none" stroke="#8a8f98" stroke-width="2"/>
+<polyline points="70.0,261.7 102.4,258.5 134.9,258.5 167.3,258.5 199.7,258.5 232.1,258.5 264.6,258.5 297.0,261.7" fill="none" stroke="#f2a33c" stroke-width="1.5" opacity="0.85"/>
+<polyline points="313.0,122.0 330.5,176.3 347.9,253.9 365.4,261.7 382.8,230.6 400.3,238.4 417.8,261.7 435.2,253.9 452.7,246.1 470.2,253.9 487.6,261.7 505.1,253.9 522.5,253.9 540.0,261.7" fill="none" stroke="#f2a33c" stroke-width="2"/>
+<polyline points="70.0,261.7 102.4,258.5 134.9,258.5 167.3,258.5 199.7,258.5 232.1,258.5 264.6,258.5 297.0,261.7" fill="none" stroke="#61dafb" stroke-width="1.5" opacity="0.85"/>
+<polyline points="313.0,122.0 330.5,176.3 347.9,253.9 365.4,261.7 382.8,230.6 400.3,238.4 417.8,261.7 435.2,253.9 452.7,246.1 470.2,253.9 487.6,261.7 505.1,253.9 522.5,253.9 540.0,261.7" fill="none" stroke="#61dafb" stroke-width="2"/>
+<polyline points="70.0,261.7 102.4,258.5 134.9,258.5 167.3,258.5 199.7,258.5 232.1,258.5 264.6,258.5 297.0,261.7" fill="none" stroke="#c678dd" stroke-width="1.5" opacity="0.85"/>
+<polyline points="313.0,122.0 330.5,176.3 347.9,253.9 365.4,261.7 382.8,230.6 400.3,238.4 417.8,261.7 435.2,253.9 452.7,246.1 470.2,253.9 487.6,261.7 505.1,253.9 522.5,253.9 540.0,261.7" fill="none" stroke="#c678dd" stroke-width="2"/>
+<line x1="70" y1="261.7" x2="540" y2="261.7" stroke="#3a3f47" stroke-dasharray="3 3"/>
+<line x1="305" y1="391.3333333333333" x2="305" y2="736.6666666666666" stroke="#5b6068" stroke-dasharray="6 4"/><text x="309" y="419.3333333333333" font-size="9" fill="#7d828b">supply (−5…−1.5)</text><text x="313" y="433.3333333333333" font-size="9" fill="#7d828b">capacity (1…2.78)</text>
+<text x="544" y="387.3333333333333" font-size="12" fill="#e4e6ea" font-weight="bold">feedback loops — ρ(births, alive[t−1]) per log-decade (capacity)</text>
+<polyline points="70.0,261.7 106.2,268.7 142.3,268.0 178.5,269.0 214.6,268.3 250.8,268.7 286.9,268.8 323.1,268.8 359.2,270.3 395.4,270.6 431.5,268.4 467.7,268.5 503.8,268.5 540.0,268.6" fill="none" stroke="#f2a33c" stroke-width="2"/>
+<polyline points="70.0,261.7 106.2,268.8 142.3,265.9 178.5,269.0 214.6,268.1 250.8,268.8 286.9,268.9 323.1,268.9 359.2,269.0 395.4,269.0 431.5,269.0 467.7,269.1 503.8,270.2 540.0,270.3" fill="none" stroke="#c678dd" stroke-width="2"/>
+<line x1="70" y1="261.7" x2="540" y2="261.7" stroke="#3a3f47" stroke-dasharray="3 3"/>
+<text x="74" y="722.6666666666666" font-size="12" fill="#e4e6ea" font-weight="bold">path dependence & hysteresis — rich-lineage vs naive founders (capacity)</text>
+<rect x="130" y="806.6666666666667" width="100" height="225.33333333333331" fill="#f2a33c" opacity="0.85"/>
+<text x="180" y="1046" font-size="11" text-anchor="middle" fill="#cfd3da">T1 · constraints · loop 0.094</text>
+<text x="180" y="800.6666666666666" font-size="10" text-anchor="middle" fill="#7d828b">max Δ 0.063 · path 1.00</text>
+<rect x="320" y="1032" width="100" height="2" fill="#c678dd" opacity="0.85"/>
+<text x="370" y="1046" font-size="11" text-anchor="middle" fill="#cfd3da">T3 · systems · loop 0.000</text>
+<text x="370" y="800.6666666666666" font-size="10" text-anchor="middle" fill="#7d828b">max Δ 0.000 · path 0.00</text>
+<text x="544" y="722.6666666666666" font-size="12" fill="#e4e6ea" font-weight="bold">scaling laws — capacity → alive fraction (log–log fit) & group per-capita</text>
+<line x1="116.5" y1="700.4" x2="519.1" y2="679.3" stroke="#3a3f47" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="116.5" cy="700.4" r="3" fill="#61dafb"/>
+<circle cx="175.2" cy="697.9" r="3" fill="#61dafb"/>
+<circle cx="242.7" cy="694.8" r="3" fill="#61dafb"/>
+<circle cx="308.7" cy="691.5" r="3" fill="#61dafb"/>
+<circle cx="380.9" cy="687.7" r="3" fill="#61dafb"/>
+<circle cx="460.4" cy="683.0" r="3" fill="#61dafb"/>
+<circle cx="519.1" cy="679.3" r="3" fill="#61dafb"/>
+<text x="78" y="796.6666666666666" font-size="11" fill="#7d828b">cap→alive b = 0.13 (R² 0.78) · per-capita group T3 b = 0.57 (R² 0.73)</text>
+<text x="70" y="1088" font-size="12" fill="#e4e6ea" font-weight="bold">interaction surface — mean alive fraction O(capacity, supply) · [T1 constraints | T3 systems]</text>
+<rect x="114.0" y="1240.7" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="164.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="114.0" y="1177.3" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="164.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="114.0" y="1114.0" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="164.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="214.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="264.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="214.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="264.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="214.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="264.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="314.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="364.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="314.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="364.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="314.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="364.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="414.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="464.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="414.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="464.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="414.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="464.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<text x="164.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 20</text>
+<text x="264.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 60</text>
+<text x="364.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 180</text>
+<text x="464.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 500</text>
+<text x="108.0" y="1275.3" font-size="9" text-anchor="end" fill="#cfd3da">g 1e-5</text>
+<text x="108.0" y="1212.0" font-size="9" text-anchor="end" fill="#cfd3da">g 3e-3</text>
+<text x="108.0" y="1148.7" font-size="9" text-anchor="end" fill="#cfd3da">g 3e-2</text>
+<rect x="584.0" y="1240.7" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="634.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="584.0" y="1177.3" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="634.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="584.0" y="1114.0" width="98.0" height="61.3" fill="rgb(68,188,95)" rx="2"/><text x="634.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.22</text>
+<rect x="684.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="734.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="684.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="734.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="684.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="734.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="784.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="834.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="784.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="834.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="784.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="834.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="884.0" y="1240.7" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="934.0" y="1275.3" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="884.0" y="1177.3" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="934.0" y="1212.0" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<rect x="884.0" y="1114.0" width="98.0" height="61.3" fill="rgb(69,198,95)" rx="2"/><text x="934.0" y="1148.7" font-size="9" text-anchor="middle" fill="#fff">0.25</text>
+<text x="634.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 20</text>
+<text x="734.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 60</text>
+<text x="834.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 180</text>
+<text x="934.0" y="1317.0" font-size="9" text-anchor="middle" fill="#cfd3da">cap 500</text>
+<text x="578.0" y="1275.3" font-size="9" text-anchor="end" fill="#cfd3da">g 1e-5</text>
+<text x="578.0" y="1212.0" font-size="9" text-anchor="end" fill="#cfd3da">g 3e-3</text>
+<text x="578.0" y="1148.7" font-size="9" text-anchor="end" fill="#cfd3da">g 3e-2</text>
+<text x="70" y="1324" font-size="10" fill="#7d828b">rows = supply flux g (lower → starved), columns = cell capacity; a surface dependent on g AMPLIFIES/SUPPRESSES the capacity response (see ∂²O/∂lg(cap)·∂lg(g)).</text>
+  <text x="1010" y="1390" text-anchor="end" font-size="11" fill="#7d828b">complexity lab · 624 deterministic experiments · determinism PASS</text>
+</svg>

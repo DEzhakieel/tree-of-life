@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="392" viewBox="0 0 900 392">
+<rect width="900" height="392" fill="#0e1116"/>
+<text x="24" y="32" fill="#e6edf3" font-family="monospace" font-size="15">robust deltas (sign-consistent on every seed)</text>
+<text x="24" y="64" fill="#8b949e" font-family="monospace" font-size="11">noise-x2</text>
+<rect x="250.99970124184074" y="52" width="9.00029875815927" height="14" fill="#f85149"/>
+<line x1="260" y1="48" x2="260" y2="70" stroke="#30363d"/>
+<text x="700" y="64" fill="#e6edf3" font-family="monospace" font-size="11">energyTotal -24.692</text>
+<text x="24" y="98" fill="#8b949e" font-family="monospace" font-size="11">noise-x2</text>
+<rect x="259.9099970124184" y="86" width="1" height="14" fill="#f85149"/>
+<line x1="260" y1="82" x2="260" y2="104" stroke="#30363d"/>
+<text x="700" y="98" fill="#e6edf3" font-family="monospace" font-size="11">meanEnergy -0.247</text>
+<text x="24" y="132" fill="#8b949e" font-family="monospace" font-size="11">cull-20pct</text>
+<rect x="-320" y="120" width="580" height="14" fill="#f85149"/>
+<line x1="260" y1="116" x2="260" y2="138" stroke="#30363d"/>
+<text x="700" y="132" fill="#e6edf3" font-family="monospace" font-size="11">energyTotal -1591.181</text>
+<text x="24" y="166" fill="#8b949e" font-family="monospace" font-size="11">cull-20pct</text>
+<rect x="260" y="154" width="1" height="14" fill="#3fb950"/>
+<line x1="260" y1="150" x2="260" y2="172" stroke="#30363d"/>
+<text x="700" y="166" fill="#e6edf3" font-family="monospace" font-size="11">spacing 0.386</text>
+<text x="24" y="200" fill="#8b949e" font-family="monospace" font-size="11">cull-20pct</text>
+<rect x="259.92709817218235" y="188" width="1" height="14" fill="#f85149"/>
+<line x1="260" y1="184" x2="260" y2="206" stroke="#30363d"/>
+<text x="700" y="200" fill="#e6edf3" font-family="monospace" font-size="11">aliveFrac -0.200</text>
+<text x="24" y="234" fill="#8b949e" font-family="monospace" font-size="11">no-communication</text>
+<rect x="260" y="222" width="19.186209892688996" height="14" fill="#3fb950"/>
+<line x1="260" y1="218" x2="260" y2="240" stroke="#30363d"/>
+<text x="700" y="234" fill="#e6edf3" font-family="monospace" font-size="11">energyTotal 52.636</text>
+<text x="24" y="268" fill="#8b949e" font-family="monospace" font-size="11">no-communication</text>
+<rect x="260" y="256" width="1" height="14" fill="#3fb950"/>
+<line x1="260" y1="252" x2="260" y2="274" stroke="#30363d"/>
+<text x="700" y="268" fill="#e6edf3" font-family="monospace" font-size="11">meanEnergy 0.526</text>
+<text x="24" y="302" fill="#8b949e" font-family="monospace" font-size="11">no-communication</text>
+<rect x="259.99999867450975" y="290" width="1" height="14" fill="#f85149"/>
+<line x1="260" y1="286" x2="260" y2="308" stroke="#30363d"/>
+<text x="700" y="302" fill="#e6edf3" font-family="monospace" font-size="11">foodCv -3.6e-6</text>
+</svg>

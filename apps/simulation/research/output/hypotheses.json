@@ -1,0 +1,319 @@
+{
+  "generatedAt": "2026-09-23T11:27:24.085Z",
+  "method": "Sellke–Berger–Pericchi minimal Bayes factor: BF = 1/(-e·p·ln p) for p < 1/e, else 1; binomial LR for recovery claims; directional claims credit only sign-consistent effects; null claims update with the reciprocal BF (maximal support for the null). Sequential updates multiply odds; same-data re-runs are idempotent (evidence IDs absorb once).",
+  "hypotheses": {
+    "H-BANK": {
+      "claim": "Shrinking the energy bank (capacity 100 → 25) lowers standing population across habitats.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.7193292363907515,
+      "posterior": 0.7193292363907515,
+      "qualitative": "The energy bank is the only buffer against an unlucky sequence of metabolic costs; a 4× smaller reservoir converts ordinary cost jitter into die-offs, so colonies lose agents before they can offset losses with births.",
+      "absorbed": [
+        {
+          "id": "cosmos.bank",
+          "bf": 2.562893359966078,
+          "detail": "paired n=4: Δmean=-12.00, t=-3.27, df=3, p=0.047, BF≤2.56",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.bank"
+          ],
+          "posterior": 0.7193292363907515
+        }
+      ]
+    },
+    "H-META": {
+      "claim": "Raising basal metabolism (1.0 → 1.5) shifts standing populations down.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.6179400749199789,
+      "posterior": 0.6179400749199789,
+      "qualitative": "Higher basal charge spends the same income faster: every agent pays more per tick, growth margins shrink, and (at this energy-rich baseline) the cost never converts into extra activity that could pay it back.",
+      "absorbed": [
+        {
+          "id": "cosmos.meta",
+          "bf": 1.6173904520097304,
+          "detail": "paired n=4: Δmean=-4.50, t=-2.38, df=3, p=0.098, BF≤1.62",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.meta"
+          ],
+          "posterior": 0.6179400749199789
+        }
+      ]
+    },
+    "H-SUPPLY": {
+      "claim": "Raising food regeneration (supply) raises colony growth.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.5,
+      "posterior": 0.5,
+      "qualitative": "Supply elasticity is live: regen feeds the standing resource pool that populations graze on, so a 10× higher regen should convert into more headcount — the effect is expected to be noisy across habitats because barren windows constrain how much supply can be captured.",
+      "absorbed": [
+        {
+          "id": "cosmos.supply",
+          "bf": 1,
+          "detail": "paired n=4: Δmean=16.00, t=0.98, df=3, p=0.401, BF≤1.00",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        },
+        {
+          "id": "cosmos.supply.low",
+          "bf": 1,
+          "detail": "paired n=4: Δmean=-0.75, t=-3.00, df=3, p=0.058, BF≤1.00 (sign opposes claim → BF=1)",
+          "absorbedAt": "2026-09-23T11:27:03.693Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.supply"
+          ],
+          "posterior": 0.5
+        },
+        {
+          "at": "2026-09-23T11:27:03.693Z",
+          "newIds": [
+            "cosmos.supply.low"
+          ],
+          "posterior": 0.5
+        }
+      ]
+    },
+    "H-FAMINE": {
+      "claim": "Supply destruction (catastrophic food loss) depresses standing population on every habitat.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.5318811404504126,
+      "posterior": 0.5318811404504127,
+      "qualitative": "Food is the shared public capital: wiping it out at a fixed tick removes the population's only growth margin for the rest of the window, so the standing population after a famine tracks the famine, not the habitat.",
+      "absorbed": [
+        {
+          "id": "cosmos.famine",
+          "bf": 1.1362095963452008,
+          "detail": "paired n=4: Δmean=-10.75, t=-1.62, df=3, p=0.203, BF≤1.14",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.famine"
+          ],
+          "posterior": 0.5318811404504126
+        }
+      ]
+    },
+    "H-BOUNTY": {
+      "claim": "A one-shot resource pulse (bounty) raises population when the habitat can absorb it.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.5,
+      "posterior": 0.5,
+      "qualitative": "A pulse is an option, not a floor: it only converts into headcount where the window already supports reproduction; on barren windows the pulse is consumed and forgotten within a few ticks.",
+      "absorbed": [
+        {
+          "id": "cosmos.bounty",
+          "bf": 1,
+          "detail": "paired n=4: Δmean=21.00, t=1.00, df=3, p=0.391, BF≤1.00",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.bounty"
+          ],
+          "posterior": 0.5
+        }
+      ]
+    },
+    "H-NUKE-IRRECOVERABLE": {
+      "claim": "A total-cull event is NOT recoverable within 4× the developmental horizon (no recolonization).",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.8852691218130313,
+      "posterior": 0.8852691218130313,
+      "qualitative": "With no immigration and no founder seed, an empty world has no mechanism to re-seed itself: extinction is absorbing at this horizon because recovery requires births from survivors, and a true cull leaves none.",
+      "absorbed": [
+        {
+          "id": "cosmos.nuke.rec",
+          "bf": 7.716049382716052,
+          "detail": "binomial: 0/4 recovered, θ̂=0.17, LR=7.72 → BF=7.72 (vs chance 0.5)",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.nuke.rec"
+          ],
+          "posterior": 0.8852691218130313
+        }
+      ]
+    },
+    "H-METEOR-SURVIVABLE": {
+      "claim": "A spatially-localized impact (meteor at the colony centroid) is survivable — colonies persist.",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.8852691218130313,
+      "posterior": 0.8852691218130313,
+      "qualitative": "A localized shock removes agents only inside its radius; the colony's spatial spread and the surviving out-of-radius agents provide both the population floor and the reproduction needed to recover within ticks.",
+      "absorbed": [
+        {
+          "id": "cosmos.meteor.rec",
+          "bf": 7.716049382716051,
+          "detail": "binomial: 4/4 recovered, θ̂=0.83, LR=7.72 → BF=7.72 (vs chance 0.5)",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.meteor.rec"
+          ],
+          "posterior": 0.8852691218130312
+        }
+      ]
+    },
+    "H-EARTH-CALIBRATED": {
+      "claim": "Earth-like physics laws are indistinguishable from legacy physics (calibration tie-out, no effect).",
+      "kind": "null",
+      "prior0": 0.5,
+      "prior": 0.5,
+      "posterior": 0.5,
+      "qualitative": "The engine's legacy climb cost was calibrated to Earth gravity (4.0 ≈ 9.81 × 0.408), so Earth-like law should reproduce legacy dynamics — a null result here is a *calibration confirmation*, not a trivial non-effect.",
+      "absorbed": [
+        {
+          "id": "cosmos.earth",
+          "bf": 1,
+          "detail": "paired n=4: Δmean=-0.50, t=-0.77, df=3, p=0.495, BF≤1.00",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.earth"
+          ],
+          "posterior": 0.5
+        }
+      ]
+    },
+    "H-ESCAPE": {
+      "claim": "The escape-window (universe constant) materially changes growth outcomes.",
+      "kind": "twosided",
+      "prior0": 0.5,
+      "prior": 0.5,
+      "posterior": 0.5,
+      "qualitative": "The escape radius shapes the fractal iteration texture (hazard/energy terrain) rather than actual escape dynamics at these speeds; changing it re-samples the growth surface, so the sign of the effect can flip by habitat.",
+      "absorbed": [
+        {
+          "id": "cosmos.escape",
+          "bf": 1,
+          "detail": "paired n=4: Δmean=12.00, t=1.03, df=3, p=0.380, BF≤1.00",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "cosmos.escape"
+          ],
+          "posterior": 0.5
+        }
+      ]
+    },
+    "H-KLEIN": {
+      "claim": "The klein bottle boundary (non-orientable cap loop) differs from the torus in cap-growth.",
+      "kind": "twosided",
+      "prior0": 0.5,
+      "prior": 0.5,
+      "posterior": 0.5,
+      "qualitative": "Edge-seeded founders engage the boundary immediately; if the flipped cap-loop reorganises dispersal, Δpop distributions should separate — but between-biome variance is large, so this needs the 17-biome paired panel to even be visible.",
+      "absorbed": [
+        {
+          "id": "topo.klein",
+          "bf": 1,
+          "detail": "paired n=17: Δmean=2.29, t=0.86, p=0.405, BF≤1.00",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "topo.klein"
+          ],
+          "posterior": 0.5
+        }
+      ]
+    },
+    "H-JULIA": {
+      "claim": "Julia-set terrain outgrows perlin terrain at matched biome/resolution (terrain complexity pays).",
+      "kind": "directional",
+      "prior0": 0.5,
+      "prior": 0.5702036863518636,
+      "posterior": 0.5702036863518636,
+      "qualitative": "Julia windows concentrate resource structure into coherent patches that colonies can exploit, while perlin noise spreads the same resource thinly; the advantage should appear as higher Δpop at matched zoom/resolution.",
+      "absorbed": [
+        {
+          "id": "dim.julia",
+          "bf": 1.3266835201817835,
+          "detail": "welch n=12/12: Δmean=3.17, t=1.53, p=0.142, BF≤1.33",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "dim.julia"
+          ],
+          "posterior": 0.5702036863518636
+        }
+      ]
+    },
+    "H-LATTICE-1D": {
+      "claim": "1D lattices bottleneck colonization relative to 2D (dimensional phase change).",
+      "kind": "twosided",
+      "prior0": 0.5,
+      "prior": 0.999999000001,
+      "posterior": 0.999999000001,
+      "qualitative": "At fixed volume, a 1D chain has only 2 neighbours per cell: any blockage severs the network, while 2D+ give the colony alternate routes around poor cells — the prediction is a hard phase change between 1D and 2D, not a smooth gradient.",
+      "absorbed": [
+        {
+          "id": "lattice.1d2d",
+          "bf": 1000000,
+          "detail": "two-proportion z=-68.19, p=0.00e+0, BF≤1000000",
+          "absorbedAt": "2026-09-23T11:11:34.556Z"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-23T11:11:34.556Z",
+          "newIds": [
+            "lattice.1d2d"
+          ],
+          "posterior": 0.999999000001
+        }
+      ]
+    }
+  }
+}

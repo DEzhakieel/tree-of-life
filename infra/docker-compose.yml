@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.web
+    container_name: fls-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.server
+    container_name: fls-server
+    environment:
+      PORT: 8080
+      WS_PORT: 8081
+      TICK_RATE: 60
+      SNAPSHOT_EVERY_TICKS: 30
+      STATS_EVERY_TICKS: 30
+      MAX_WORLDS: 32
+      UWS_DISABLE: "1"
+      DATABASE_URL: postgres://fls:fls@postgres:5432/fractallife
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: fls-postgres
+    environment:
+      POSTGRES_USER: fls
+      POSTGRES_PASSWORD: fls
+      POSTGRES_DB: fractallife
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fls -d fractallife"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: fls-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  # Optional analytics warehouse for event time-series.
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.3-alpine
+    container_name: fls-clickhouse
+    ports:
+      - "8123:8123"
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - chdata:/var/lib/clickhouse
+
+volumes:
+  pgdata:
+  redisdata:
+  chdata:

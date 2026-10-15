@@ -1,0 +1,12 @@
+mode,seed,spawn,ticks,worldFp,outcome,pass,finalAlive,detAlive,stochAlive,divergenceTick,stochRepro
+determinism,modes.d1,8,40,5f8fafc7,16a9bd49,true,1,,,,
+determinism,modes.d1,8,40,d82a55a9,7d4f35e3,true,1,,,,
+determinism,modes.d1,8,40,cee63412,58c72690,true,2,,,,
+determinism,modes.d1,16,40,ee1b7e9e,670b13b5,true,3,,,,
+determinism,modes.d1,8,40,6456f4b6,8873d635,true,1,,,,
+research,modes.r1,16,120,,,true,,4,4,0,true
+research,modes.r2,16,120,,,true,,4,4,0,true
+research,modes.r3,16,120,,,true,,2,2,0,true
+research,modes.r4,16,120,,,true,,4,4,0,true
+research,modes.r5,16,120,,,true,,4,4,0,true
+research,modes.r6,16,120,,,true,,4,4,0,true

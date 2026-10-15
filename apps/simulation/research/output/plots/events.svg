@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="434" viewBox="0 0 960 434">
+<rect width="960" height="434" fill="#0e1116"/>
+<text x="24" y="34" fill="#e6edf3" font-family="monospace" font-size="15">event causality: event.s1</text>
+<text x="24" y="54" fill="#8b949e" font-family="monospace" font-size="11">86 events, window 10 ticks, lag ±10 (* p&lt;0.05; d_z clamped to ±2.5 for drawing)</text>
+<text x="24" y="70" fill="#e6edf3" font-family="monospace" font-size="13" font-weight="600">observational attribution: paired Cohen d_z (pre -> post)</text>
+<text x="24" y="96" fill="#8b949e" font-family="monospace" font-size="11">death -> diversity</text>
+<line x1="560" y1="84" x2="560" y2="100" stroke="#30363d"/>
+<rect x="360" y="85" width="200.0" height="13" fill="#f85149" opacity="0.9" rx="2"/>
+<text x="936" y="96" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">-3.25*</text>
+<text x="24" y="120" fill="#8b949e" font-family="monospace" font-size="11">death -> cultureCount</text>
+<line x1="560" y1="108" x2="560" y2="124" stroke="#30363d"/>
+<rect x="376.9534251478019" y="109" width="183.0" height="13" fill="#f85149" opacity="0.9" rx="2"/>
+<text x="936" y="120" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">-2.29*</text>
+<text x="24" y="144" fill="#8b949e" font-family="monospace" font-size="11">death -> entropy</text>
+<line x1="560" y1="132" x2="560" y2="148" stroke="#30363d"/>
+<rect x="384.52045654153306" y="133" width="175.5" height="13" fill="#f85149" opacity="0.9" rx="2"/>
+<text x="936" y="144" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">-2.19*</text>
+<text x="24" y="168" fill="#8b949e" font-family="monospace" font-size="11">death -> avgEnergy</text>
+<line x1="560" y1="156" x2="560" y2="172" stroke="#30363d"/>
+<rect x="560" y="157" width="147.8" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="168" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">1.85*</text>
+<text x="24" y="192" fill="#8b949e" font-family="monospace" font-size="11">death -> speciesCount</text>
+<line x1="560" y1="180" x2="560" y2="196" stroke="#30363d"/>
+<rect x="435.04511614694945" y="181" width="125.0" height="13" fill="#f85149" opacity="0.9" rx="2"/>
+<text x="936" y="192" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">-1.56*</text>
+<text x="24" y="216" fill="#8b949e" font-family="monospace" font-size="11">death -> aliveCount</text>
+<line x1="560" y1="204" x2="560" y2="220" stroke="#30363d"/>
+<rect x="435.42102559508965" y="205" width="124.6" height="13" fill="#f85149" opacity="0.9" rx="2"/>
+<text x="936" y="216" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">-1.56*</text>
+<text x="24" y="240" fill="#8b949e" font-family="monospace" font-size="11">death -> predatorFraction</text>
+<line x1="560" y1="228" x2="560" y2="244" stroke="#30363d"/>
+<rect x="560" y="229" width="90.8" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="240" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">1.13</text>
+<text x="24" y="264" fill="#8b949e" font-family="monospace" font-size="11">death -> cooperation</text>
+<line x1="560" y1="252" x2="560" y2="268" stroke="#30363d"/>
+<rect x="560" y="253" width="1.0" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="264" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">0.00</text>
+<text x="24" y="312" fill="#e6edf3" font-family="monospace" font-size="13" font-weight="600">event census: occurrence ticks per type</text>
+<text x="24" y="338" fill="#8b949e" font-family="monospace" font-size="11">death</text>
+<rect x="420" y="327" width="340.0" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="338" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">15 (80 events)</text>
+<text x="24" y="362" fill="#8b949e" font-family="monospace" font-size="11">birth</text>
+<rect x="420" y="351" width="90.7" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="362" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">4 (4 events)</text>
+<text x="24" y="386" fill="#8b949e" font-family="monospace" font-size="11">migration</text>
+<rect x="420" y="375" width="45.3" height="13" fill="#3fb950" opacity="0.9" rx="2"/>
+<text x="936" y="386" text-anchor="end" fill="#e6edf3" font-family="monospace" font-size="11">2 (2 events)</text>
+</svg>

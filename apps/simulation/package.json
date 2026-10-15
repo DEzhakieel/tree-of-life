@@ -1,0 +1,27 @@
+{
+  "name": "@fractal-life/simulation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node ../../scripts/run-tests.mjs",
+    "enrich": "tsx src/research/enrich.ts",
+    "research": "tsx src/research/cli.ts",
+    "research:events": "tsx src/research/eventRun.ts",
+    "research:atlas": "tsx src/research/atlasRun.ts",
+    "research:radar": "tsx src/research/radarRun.ts",
+    "research:ladder": "tsx src/research/ladderCli.ts",
+    "research:bench": "tsx src/research/benchmarks/benchRun.ts",
+    "research:known": "tsx src/research/benchmarks/knownRun.ts",
+    "research:rigor": "tsx src/research/benchmarks/rigor/rigorRun.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fractal-life/shared": "1.0.0"
+  }
+}

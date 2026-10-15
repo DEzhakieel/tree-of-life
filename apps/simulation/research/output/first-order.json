@@ -1,0 +1,345 @@
+{
+  "provenance": {
+    "tool": "fractal-life research harness",
+    "timestamp": "2026-09-26T08:10:53.769Z",
+    "node": "v18.12.1",
+    "platform": "win32/x64",
+    "simulationPackage": "@fractal-life/simulation@1.0.0",
+    "engineSource": {
+      "path": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\src\\engine.ts",
+      "sha256": "fbc2b2541731a5cc0c31d9365776a8921bc634887326940869d575d2de6ce5d8"
+    },
+    "git": null,
+    "params": {
+      "firstOrderTicks": 60,
+      "secondOrderWindow": 2000,
+      "thirdOrderTicks": 60,
+      "stochTicks": 180,
+      "stochSpawn": 10,
+      "bootstrapSamples": 2000,
+      "permutations": 10000,
+      "analysisSeed": 12648430,
+      "terrainSampling": {
+        "jitterFractionOfWorldScale": 0.6,
+        "perAxis": true
+      }
+    },
+    "seeds": [
+      "research-seed-0001",
+      "research-seed-0002",
+      "research-seed-0003",
+      "research-seed-0004",
+      "research-seed-0005",
+      "research-seed-0006",
+      "research-seed-0007",
+      "research-seed-0008",
+      "research-seed-0009",
+      "research-seed-0010",
+      "research-seed-0011",
+      "research-seed-0012",
+      "research-seed-0013",
+      "research-seed-0014",
+      "research-seed-0015",
+      "research-seed-0016",
+      "research-seed-0017",
+      "research-seed-0018",
+      "research-seed-0019",
+      "research-seed-0020",
+      "research-seed-0021",
+      "research-seed-0022",
+      "research-seed-0023",
+      "research-seed-0024"
+    ],
+    "scenarios": [
+      "first-order",
+      "second-order",
+      "third-order",
+      "conservation",
+      "stochastic"
+    ]
+  },
+  "rows": [
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0001",
+      "a_energy": 33.22580342672674,
+      "b_energy": 11.081258168901707,
+      "gap": 22.144545257825037,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 4.87784234337596e-7
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0002",
+      "a_energy": 33.082618466152056,
+      "b_energy": 12.120369307655421,
+      "gap": 20.962249158496633,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00002650115311553236
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0003",
+      "a_energy": 33.60560130268254,
+      "b_energy": 5.14864210760213,
+      "gap": 28.456959195080408,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.000008050726137298625
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0004",
+      "a_energy": 34.77332372998875,
+      "b_energy": 10.417673998547265,
+      "gap": 24.35564973144149,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.000011371124855941162
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0005",
+      "a_energy": 33.20851420496607,
+      "b_energy": 11.281761380221836,
+      "gap": 21.926752824744234,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.000001552901380819094
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0006",
+      "a_energy": 33.2154295381224,
+      "b_energy": 11.74042112705164,
+      "gap": 21.47500841107076,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 8.621630342986464e-8
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0007",
+      "a_energy": 33.23178327172458,
+      "b_energy": 5.578270537359185,
+      "gap": 27.653512734365396,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00030286103719845414
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0008",
+      "a_energy": 37.962994204286666,
+      "b_energy": 10.180541036767302,
+      "gap": 27.782453167519364,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00003138277679681778
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0009",
+      "a_energy": 33.20525642421896,
+      "b_energy": 12.28543046903213,
+      "gap": 20.91982595518683,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 4.465620122573455e-7
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0010",
+      "a_energy": 33.20794079876518,
+      "b_energy": 11.74324094806047,
+      "gap": 21.46469985070471,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0004026637179777026
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0011",
+      "a_energy": 33.19885203593357,
+      "b_energy": 6.179830993293053,
+      "gap": 27.019021042640517,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.000030823255656287074
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0012",
+      "a_energy": 37.329827697990105,
+      "b_energy": 11.905925888625525,
+      "gap": 25.42390180936458,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00010354036930948496
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0013",
+      "a_energy": 33.20949608565407,
+      "b_energy": 12.452484938295807,
+      "gap": 20.75701114735826,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00003446522168815136
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0014",
+      "a_energy": 33.20028711681568,
+      "b_energy": 12.020744851288573,
+      "gap": 21.179542265527108,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.000008083173270279076
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0015",
+      "a_energy": 38.07834368391359,
+      "b_energy": 12.198859467028399,
+      "gap": 25.87948421688519,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0003251839953009039
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0016",
+      "a_energy": 33.21064835521482,
+      "b_energy": 11.783981842426291,
+      "gap": 21.42666651278853,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00005924876677454449
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0017",
+      "a_energy": 33.675638128726206,
+      "b_energy": 12.38213581810059,
+      "gap": 21.293502310625616,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0001205470907734707
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0018",
+      "a_energy": 37.55606862188172,
+      "b_energy": 12.548469272411067,
+      "gap": 25.007599349470652,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 1.7158496845581794e-9
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0019",
+      "a_energy": 35.69338710186125,
+      "b_energy": 12.475407789084922,
+      "gap": 23.217979312776325,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00033556835842318833
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0020",
+      "a_energy": 33.202431786565306,
+      "b_energy": 11.966916794414415,
+      "gap": 21.23551499215089,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0001438623439753428
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0021",
+      "a_energy": 33.21341896337186,
+      "b_energy": 12.420968189127574,
+      "gap": 20.792450774244283,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.00043136629392392933
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0022",
+      "a_energy": 33.212598845934,
+      "b_energy": 10.35258466169509,
+      "gap": 22.860014184238906,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0010409869719296694
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0023",
+      "a_energy": 33.2036627584694,
+      "b_energy": 12.391393588969452,
+      "gap": 20.81226916949995,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0002955751260742545
+    },
+    {
+      "scenario": "first-order",
+      "seed": "research-seed-0024",
+      "a_energy": 37.22525382488787,
+      "b_energy": 11.871055829334196,
+      "gap": 25.354197995553676,
+      "a_alive": 1,
+      "b_alive": 1,
+      "rich_cap": 400,
+      "poor_cap": 0.0001581726100994274
+    }
+  ],
+  "stats": {
+    "gap_mean": 23.308367140398307,
+    "gap_sd": 2.5990928314782664,
+    "gap_median": 22.035649041284636,
+    "gap_ci95": [
+      22.302038082059397,
+      24.35770030544321
+    ],
+    "gap_se": 0.5219310335798306,
+    "gap_p_permutation": 0.00009999000099990002,
+    "gap_cohens_d": 12.682505421699217,
+    "gap_effect": "large",
+    "gap_frac_positive": 1,
+    "gap_positive_ci95": [
+      0.8715425118532758,
+      0.990481283471744
+    ]
+  }
+}

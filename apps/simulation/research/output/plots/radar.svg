@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600">
+<rect width="1040" height="600" fill="#0e1116"/>
+<text x="24" y="40" fill="#e6edf3" font-family="monospace" font-size="15">emergence radar: radar.s1, radar.s2, radar.s3</text>
+<text x="24" y="60" fill="#8b949e" font-family="monospace" font-size="11">300 ticks, spawn 50 · seed radar.s1 · run-relative scores, hysteresis on>=0.6 / off<0.4</text>
+<text x="24" y="100" fill="#e6edf3" font-family="monospace" font-size="11">L0 Particle</text>
+<rect x="210" y="87" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="87" width="560.0" height="14" fill="#34d399"/>
+<text x="778" y="99" fill="#8b949e" font-family="monospace" font-size="10">EMERGENT peak 1.00 · onset t190</text>
+<text x="24" y="130" fill="#e6edf3" font-family="monospace" font-size="11">L1 Agent</text>
+<rect x="210" y="117" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="117" width="510.8" height="14" fill="#34d399"/>
+<text x="728.7752241706576" y="129" fill="#8b949e" font-family="monospace" font-size="10">EMERGENT peak 0.91 · onset t120</text>
+<text x="24" y="160" fill="#e6edf3" font-family="monospace" font-size="11">L2 Adaptive agent</text>
+<rect x="210" y="147" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="147" width="506.5" height="14" fill="#fbbf24"/>
+<text x="724.5454974452402" y="159" fill="#8b949e" font-family="monospace" font-size="10">PARTIAL peak 0.90 · onset t60</text>
+<text x="24" y="190" fill="#e6edf3" font-family="monospace" font-size="11">L3 Learning agent</text>
+<rect x="210" y="177" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="177" width="487.6" height="14" fill="#34d399"/>
+<text x="705.5920276580798" y="189" fill="#8b949e" font-family="monospace" font-size="10">EMERGENT peak 0.87 · onset t90</text>
+<text x="24" y="220" fill="#e6edf3" font-family="monospace" font-size="11">L4 Ecosystem</text>
+<rect x="210" y="207" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="207" width="474.9" height="14" fill="#71717a"/>
+<text x="692.9444793565385" y="219" fill="#8b949e" font-family="monospace" font-size="10">ABSENT peak 0.85 · onset t10</text>
+<text x="24" y="250" fill="#e6edf3" font-family="monospace" font-size="11">L5 Evolution</text>
+<rect x="210" y="237" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="237" width="560.0" height="14" fill="#71717a"/>
+<text x="778" y="249" fill="#8b949e" font-family="monospace" font-size="10">ABSENT peak 1.00 · onset t10</text>
+<text x="24" y="280" fill="#e6edf3" font-family="monospace" font-size="11">L6 Self-replication</text>
+<rect x="210" y="267" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="267" width="560.0" height="14" fill="#71717a"/>
+<text x="778" y="279" fill="#8b949e" font-family="monospace" font-size="10">ABSENT peak 1.00 · onset t10</text>
+<text x="24" y="310" fill="#e6edf3" font-family="monospace" font-size="11">L7 Communication</text>
+<rect x="210" y="297" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="297" width="560.0" height="14" fill="#71717a"/>
+<text x="778" y="309" fill="#8b949e" font-family="monospace" font-size="10">ABSENT peak 1.00 · onset t10</text>
+<text x="24" y="340" fill="#e6edf3" font-family="monospace" font-size="11">L8 Culture</text>
+<rect x="210" y="327" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="327" width="560.0" height="14" fill="#fbbf24"/>
+<text x="778" y="339" fill="#8b949e" font-family="monospace" font-size="10">PARTIAL peak 1.00 · onset t10</text>
+<text x="24" y="370" fill="#e6edf3" font-family="monospace" font-size="11">L9 Collective intelligence</text>
+<rect x="210" y="357" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="357" width="280.0" height="14" fill="#fbbf24"/>
+<text x="498" y="369" fill="#8b949e" font-family="monospace" font-size="10">PARTIAL peak 0.50</text>
+<text x="24" y="400" fill="#e6edf3" font-family="monospace" font-size="11">L10 Artificial ecosystem</text>
+<rect x="210" y="387" width="560" height="14" fill="#1b2027"/>
+<rect x="210" y="387" width="416.8" height="14" fill="#34d399"/>
+<text x="634.7587257127068" y="399" fill="#8b949e" font-family="monospace" font-size="10">EMERGENT peak 0.74 · onset t270</text>
+<text x="24" y="442" fill="#e6edf3" font-family="monospace" font-size="12">novelty residual (change surprisal)</text>
+<polyline points="210.0,502.0 229.3,452.0 248.6,452.0 267.9,452.0 287.2,466.4 306.6,461.4 325.9,472.7 345.2,486.8 364.5,452.0 383.8,489.5 403.1,474.5 422.4,485.5 441.7,489.7 461.0,490.9 480.3,491.5 499.7,481.9 519.0,490.6 538.3,488.5 557.6,488.9 576.9,488.5 596.2,490.3 615.5,491.1 634.8,491.7 654.1,490.7 673.4,490.1 692.8,452.0 712.1,452.0 731.4,452.0 750.7,452.0 770.0,483.0" fill="none" stroke="#c084fc" stroke-width="1.4"/>
+<text x="210" y="518" fill="#71717a" font-family="monospace" font-size="10">0</text>
+<text x="770" y="518" fill="#71717a" font-family="monospace" font-size="10" text-anchor="end">t300</text>
+<text x="24" y="538" fill="#8b949e" font-family="monospace" font-size="10">ablation validation (mean peak across seeds):</text>
+<text x="24" y="554" fill="#8b949e" font-family="monospace" font-size="10">L0 VALID · no world matter flux (spawn 0, no food regen, uniform inert terrain, no environment) · peak 1.00 -> 0.00 (drop 1.00)</text>
+<text x="24" y="567" fill="#8b949e" font-family="monospace" font-size="10">L1 VALID · no agents spawned · peak 0.79 -> 0.50 (drop 0.29)</text>
+<text x="24" y="580" fill="#8b949e" font-family="monospace" font-size="10">L2 VALID · sensorimotor loop disabled (agents hold position, no feedback) · peak 0.84 -> 0.00 (drop 0.84)</text>
+<text x="24" y="593" fill="#8b949e" font-family="monospace" font-size="10">L3 VALID · learning disabled (brain off) · peak 0.90 -> 0.50 (drop 0.40)</text>
+<text x="24" y="606" fill="#8b949e" font-family="monospace" font-size="10">L4 VALID · single founder (no ecological richness) · peak 0.83 -> 0.00 (drop 0.83)</text>
+<text x="24" y="619" fill="#8b949e" font-family="monospace" font-size="10">L5 VALID · single founder clone (no heritable variation) · peak 1.00 -> 0.00 (drop 1.00)</text>
+<text x="24" y="632" fill="#8b949e" font-family="monospace" font-size="10">L6 VALID · reproduction disabled (no offspring) · peak 0.83 -> 0.50 (drop 0.33)</text>
+<text x="24" y="645" fill="#8b949e" font-family="monospace" font-size="10">L7 VALID · signal deposit 0 (closed communication channel) · peak 1.00 -> 0.00 (drop 1.00)</text>
+<text x="24" y="658" fill="#8b949e" font-family="monospace" font-size="10">L8 VALID · meme copy rate 0 (culture transmission frozen) · peak 0.85 -> 0.50 (drop 0.35)</text>
+<text x="24" y="671" fill="#8b949e" font-family="monospace" font-size="10">L9 VALID · tiny group (no collective scaling) · peak 0.78 -> 0.00 (drop 0.78)</text>
+<text x="24" y="684" fill="#8b949e" font-family="monospace" font-size="10">L10 VALID · open-ended novelty off (discovery off + frozen uniform environment) · peak 0.74 -> 0.47 (drop 0.27)</text>
+</svg>

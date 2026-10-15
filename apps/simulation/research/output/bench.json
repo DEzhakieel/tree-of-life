@@ -1,0 +1,823 @@
+{
+  "scale": "quick",
+  "seeds": [
+    "bench-seed-0001",
+    "bench-seed-0002",
+    "bench-seed-0003",
+    "bench-seed-0004",
+    "bench-seed-0005"
+  ],
+  "results": [
+    {
+      "id": "A",
+      "name": "Random walkers",
+      "family": "diffusion",
+      "stochastic": false,
+      "seeds": 1,
+      "scale": "quick",
+      "signature": {
+        "alpha": 0.9871564284520563,
+        "msdSlope": 2.028234119127643,
+        "dRelErr": 0.014117059563821588
+      },
+      "ci": {
+        "alpha": [
+          0.9871564284520563,
+          0.9871564284520563
+        ],
+        "msdSlope": [
+          2.028234119127643,
+          2.028234119127643
+        ],
+        "dRelErr": [
+          0.014117059563821588,
+          0.014117059563821588
+        ]
+      },
+      "checks": [
+        {
+          "key": "alpha",
+          "test": "range",
+          "threshold": [
+            0.98,
+            1.02
+          ],
+          "observed": 0.9871564284520563,
+          "ci": [
+            0.9871564284520563,
+            0.9871564284520563
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "MSD is linear in time: log–log slope α = 1 (Einstein)."
+        },
+        {
+          "key": "dRelErr",
+          "test": "lte",
+          "threshold": 0.03,
+          "observed": 0.014117059563821588,
+          "ci": [
+            0.014117059563821588,
+            0.014117059563821588
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "fitted MSD slope matches 2σ² to within 3% (D = σ²/2)."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 107
+    },
+    {
+      "id": "B",
+      "name": "Boids",
+      "family": "collective motion",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "phiOn": 0.9461494189751471,
+        "phiOff": 0.06836340695880047,
+        "minDistOn": 6.350123032180649
+      },
+      "ci": {
+        "phiOn": [
+          0.9407641375384396,
+          0.9513131514327567
+        ],
+        "phiOff": [
+          0.03197006700238798,
+          0.10450756718795003
+        ],
+        "minDistOn": [
+          6.2207520230948345,
+          6.470939890481636
+        ]
+      },
+      "checks": [
+        {
+          "key": "phiOn",
+          "test": "gte",
+          "threshold": 0.8,
+          "observed": 0.9461494189751471,
+          "ci": [
+            0.9407641375384396,
+            0.9513131514327567
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "alignment + cohesion order the flock: Φ ≥ 0.8."
+        },
+        {
+          "key": "phiOff",
+          "test": "lte",
+          "threshold": 0.15,
+          "observed": 0.06836340695880047,
+          "ci": [
+            0.03197006700238798,
+            0.10450756718795003
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "with alignment off, headings stay random: Φ ≈ 1/√N ≤ 0.15."
+        },
+        {
+          "key": "minDistOn",
+          "test": "gte",
+          "threshold": 5.6,
+          "observed": 6.350123032180649,
+          "ci": [
+            6.2207520230948345,
+            6.470939890481636
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "separation keeps agents apart: min pairwise distance ≥ 0.8·r_sep."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 5280
+    },
+    {
+      "id": "C",
+      "name": "Game of Life",
+      "family": "cellular automaton",
+      "stochastic": false,
+      "seeds": 1,
+      "scale": "quick",
+      "signature": {
+        "gliderShiftX": 10,
+        "gliderShiftY": 10,
+        "blinkerPeriod": 2,
+        "blockPeriod": 1,
+        "pulsarPeriod": 3,
+        "gunPeriod": 30,
+        "gunDelta": 5,
+        "gunDeltaSpread": 0,
+        "rpAlive": 148
+      },
+      "ci": {
+        "gliderShiftX": [
+          10,
+          10
+        ],
+        "gliderShiftY": [
+          10,
+          10
+        ],
+        "blinkerPeriod": [
+          2,
+          2
+        ],
+        "blockPeriod": [
+          1,
+          1
+        ],
+        "pulsarPeriod": [
+          3,
+          3
+        ],
+        "gunPeriod": [
+          30,
+          30
+        ],
+        "gunDelta": [
+          5,
+          5
+        ],
+        "gunDeltaSpread": [
+          0,
+          0
+        ],
+        "rpAlive": [
+          148,
+          148
+        ]
+      },
+      "checks": [
+        {
+          "key": "gliderShiftX",
+          "test": "eqAbs",
+          "threshold": 10,
+          "observed": 10,
+          "ci": [
+            10,
+            10
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "glider translates (+1,+1) every 4 generations: +10 cells over 10 periods."
+        },
+        {
+          "key": "blinkerPeriod",
+          "test": "eqAbs",
+          "threshold": 2,
+          "observed": 2,
+          "ci": [
+            2,
+            2
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "blinker has period 2."
+        },
+        {
+          "key": "blockPeriod",
+          "test": "eqAbs",
+          "threshold": 1,
+          "observed": 1,
+          "ci": [
+            1,
+            1
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "block is a still life (period 1)."
+        },
+        {
+          "key": "pulsarPeriod",
+          "test": "eqAbs",
+          "threshold": 3,
+          "observed": 3,
+          "ci": [
+            3,
+            3
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "pulsar has period 3."
+        },
+        {
+          "key": "gunPeriod",
+          "test": "eqAbs",
+          "threshold": 30,
+          "observed": 30,
+          "ci": [
+            30,
+            30
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "Gosper gun emits one glider (+5 cells) every 30 generations."
+        },
+        {
+          "key": "gunDeltaSpread",
+          "test": "eqAbs",
+          "threshold": 0,
+          "observed": 0,
+          "ci": [
+            0,
+            0
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "glider emission rate is perfectly regular (all 30-generation deltas equal)."
+        },
+        {
+          "key": "rpAlive",
+          "test": "gte",
+          "threshold": 1,
+          "observed": 148,
+          "ci": [
+            148,
+            148
+          ],
+          "pass": true,
+          "gate": false,
+          "note": "R-pentomino survives 120 generations (informational; exact 116 needs an infinite plane)."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 858
+    },
+    {
+      "id": "D",
+      "name": "Predator–prey",
+      "family": "population dynamics",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "periodRelErr": 0.000214895760234202,
+        "phaseLagNorm": 0.24489708130472654,
+        "invariantDriftPerPeriod": 1.8775532106122382e-17
+      },
+      "ci": {
+        "periodRelErr": [
+          0.00011670040778404278,
+          0.00034384307045920437
+        ],
+        "phaseLagNorm": [
+          0.2435084599327967,
+          0.24608992596971935
+        ],
+        "invariantDriftPerPeriod": [
+          0,
+          4.312860464775901e-17
+        ]
+      },
+      "checks": [
+        {
+          "key": "periodRelErr",
+          "test": "lte",
+          "threshold": 0.02,
+          "observed": 0.000214895760234202,
+          "ci": [
+            0.00011670040778404278,
+            0.00034384307045920437
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "measured orbit period matches 2π/√(αγ) to within 2%."
+        },
+        {
+          "key": "phaseLagNorm",
+          "test": "range",
+          "threshold": [
+            0.2,
+            0.3
+          ],
+          "observed": 0.24489708130472654,
+          "ci": [
+            0.2435084599327967,
+            0.24608992596971935
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "predator peak lags the prey peak by T/4 = 0.25 T."
+        },
+        {
+          "key": "invariantDriftPerPeriod",
+          "test": "lte",
+          "threshold": 0.005,
+          "observed": 1.8775532106122382e-17,
+          "ci": [
+            0,
+            4.312860464775901e-17
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "the first integral H = δx − γ ln x + βy − α ln y drifts by ≤0.5%/period."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 51
+    },
+    {
+      "id": "E",
+      "name": "Diffusion",
+      "family": "continuum transport",
+      "stochastic": false,
+      "seeds": 1,
+      "scale": "quick",
+      "signature": {
+        "relL2": 0.0007402520427137075,
+        "massRelErr": 6.661338147750842e-16,
+        "msdRelErr": 5.800922187049196e-9
+      },
+      "ci": {
+        "relL2": [
+          0.0007402520427137075,
+          0.0007402520427137075
+        ],
+        "massRelErr": [
+          6.661338147750842e-16,
+          6.661338147750842e-16
+        ],
+        "msdRelErr": [
+          5.800922187049196e-9,
+          5.800922187049196e-9
+        ]
+      },
+      "checks": [
+        {
+          "key": "relL2",
+          "test": "lte",
+          "threshold": 0.001,
+          "observed": 0.0007402520427137075,
+          "ci": [
+            0.0007402520427137075,
+            0.0007402520427137075
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "FTCS solution matches the analytic Gaussian to L2 relative error < 1e-3."
+        },
+        {
+          "key": "massRelErr",
+          "test": "lte",
+          "threshold": 0.000001,
+          "observed": 6.661338147750842e-16,
+          "ci": [
+            6.661338147750842e-16,
+            6.661338147750842e-16
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "total mass is conserved to machine precision."
+        },
+        {
+          "key": "msdRelErr",
+          "test": "lte",
+          "threshold": 0.01,
+          "observed": 5.800922187049196e-9,
+          "ci": [
+            5.800922187049196e-9,
+            5.800922187049196e-9
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "second moment grows as 4Dt to within 1%."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 69
+    },
+    {
+      "id": "F",
+      "name": "Reaction–diffusion (Gray–Scott)",
+      "family": "pattern formation",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "inOccFrac": 0.3349609375,
+        "inVVar": 0.01546675324527323,
+        "inBlobs": 9,
+        "outVMax": 4.6985172044962163e-67
+      },
+      "ci": {
+        "inOccFrac": [
+          0.3349609375,
+          0.3349609375
+        ],
+        "inVVar": [
+          0.015466753245272576,
+          0.015466753245272576
+        ],
+        "inBlobs": [
+          9,
+          9
+        ],
+        "outVMax": [
+          4.676175592036397e-67,
+          4.725720959262077e-67
+        ]
+      },
+      "checks": [
+        {
+          "key": "inOccFrac",
+          "test": "range",
+          "threshold": [
+            0.15,
+            0.6
+          ],
+          "observed": 0.3349609375,
+          "ci": [
+            0.3349609375,
+            0.3349609375
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "pattern regime: 15–60% of cells are occupied by inhibitor spots."
+        },
+        {
+          "key": "inVVar",
+          "test": "gte",
+          "threshold": 0.01,
+          "observed": 0.01546675324527323,
+          "ci": [
+            0.015466753245272576,
+            0.015466753245272576
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "spatial variance of v exceeds random noise: a real pattern formed."
+        },
+        {
+          "key": "inBlobs",
+          "test": "gte",
+          "threshold": 3,
+          "observed": 9,
+          "ci": [
+            9,
+            9
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "the pattern self-organises into ≥3 coherent spots (≥4 cells each)."
+        },
+        {
+          "key": "outVMax",
+          "test": "lte",
+          "threshold": 0.05,
+          "observed": 4.6985172044962163e-67,
+          "ci": [
+            4.676175592036397e-67,
+            4.725720959262077e-67
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "outside the pattern regime v relaxes to u=1, v=0 (max < 0.05)."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 2271
+    },
+    {
+      "id": "G",
+      "name": "Iterated Prisoner’s Dilemma",
+      "family": "evolutionary game theory",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "coopSpatial": 0.9312711415816284,
+        "coopWellMixed": 0.00012818877551020241
+      },
+      "ci": {
+        "coopSpatial": [
+          0.9244579081632655,
+          0.9380420918367346
+        ],
+        "coopWellMixed": [
+          0,
+          0.0002551020408163267
+        ]
+      },
+      "checks": [
+        {
+          "key": "coopSpatial",
+          "test": "gte",
+          "threshold": 0.9,
+          "observed": 0.9312711415816284,
+          "ci": [
+            0.9244579081632655,
+            0.9380420918367346
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "spatial reciprocity sustains cooperation: ≥90% cooperators."
+        },
+        {
+          "key": "coopWellMixed",
+          "test": "lte",
+          "threshold": 0.05,
+          "observed": 0.00012818877551020241,
+          "ci": [
+            0,
+            0.0002551020408163267
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "without spatial structure defectors sweep the population: ≤5% cooperators."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 3004
+    },
+    {
+      "id": "H",
+      "name": "Resource competition (R*)",
+      "family": "community ecology",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "winnerCorrect": 1,
+        "loserFrac": 0,
+        "coexistFA": 0.5027224949976233,
+        "coexistFB": 0.4972816928069669
+      },
+      "ci": {
+        "winnerCorrect": [
+          1,
+          1
+        ],
+        "loserFrac": [
+          0,
+          0
+        ],
+        "coexistFA": [
+          0.4792041388449251,
+          0.526332936470285
+        ],
+        "coexistFB": [
+          0.473667063529715,
+          0.520795861155075
+        ]
+      },
+      "checks": [
+        {
+          "key": "winnerCorrect",
+          "test": "eqAbs",
+          "threshold": 1,
+          "observed": 1,
+          "ci": [
+            1,
+            1
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "the species with the lowest R* wins competitive exclusion."
+        },
+        {
+          "key": "loserFrac",
+          "test": "lte",
+          "threshold": 0.05,
+          "observed": 0,
+          "ci": [
+            0,
+            0
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "the higher-R* species is driven effectively extinct (<5% of biomass)."
+        },
+        {
+          "key": "coexistFA",
+          "test": "range",
+          "threshold": [
+            0.1,
+            0.9
+          ],
+          "observed": 0.5027224949976233,
+          "ci": [
+            0.4792041388449251,
+            0.526332936470285
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "equal-R* species coexist; species A holds 10–90% of biomass."
+        },
+        {
+          "key": "coexistFB",
+          "test": "range",
+          "threshold": [
+            0.1,
+            0.9
+          ],
+          "observed": 0.4972816928069669,
+          "ci": [
+            0.473667063529715,
+            0.520795861155075
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "equal-R* species coexist; species B holds 10–90% of biomass."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 159
+    },
+    {
+      "id": "I",
+      "name": "Collective navigation",
+      "family": "swarm intelligence",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "consensus": 0.9123906711039903,
+        "arrival": 1
+      },
+      "ci": {
+        "consensus": [
+          0.9062207107934451,
+          0.9201892559130732
+        ],
+        "arrival": [
+          1,
+          1
+        ]
+      },
+      "checks": [
+        {
+          "key": "consensus",
+          "test": "gte",
+          "threshold": 0.8,
+          "observed": 0.9123906711039903,
+          "ci": [
+            0.9062207107934451,
+            0.9201892559130732
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "the swarm becomes polarised during transit: Φ ≥ 0.8."
+        },
+        {
+          "key": "arrival",
+          "test": "gte",
+          "threshold": 0.9,
+          "observed": 1,
+          "ci": [
+            1,
+            1
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "at least 90% of agents reach the destination."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 388
+    },
+    {
+      "id": "J",
+      "name": "Fractal-life composite",
+      "family": "novel hybrid",
+      "stochastic": true,
+      "seeds": 5,
+      "scale": "quick",
+      "signature": {
+        "moranCoupled": 0.3839867864227607,
+        "moranBaseline": 0.001026684401821876,
+        "selfOrgGain": 0.3835440525519237,
+        "crossCorr": 0.4679669482158541
+      },
+      "ci": {
+        "moranCoupled": [
+          0.3473324017124362,
+          0.41906380912130653
+        ],
+        "moranBaseline": [
+          -0.005901659340738829,
+          0.007393313386746844
+        ],
+        "selfOrgGain": [
+          0.3524307449416737,
+          0.4125575870657164
+        ],
+        "crossCorr": [
+          0.4306500153155013,
+          0.501998000668065
+        ]
+      },
+      "checks": [
+        {
+          "key": "moranCoupled",
+          "test": "gte",
+          "threshold": 0.2,
+          "observed": 0.3839867864227607,
+          "ci": [
+            0.3473324017124362,
+            0.41906380912130653
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "cross-influence produces spatial auto-correlation in agent density (Moran’s I ≥ 0.20)."
+        },
+        {
+          "key": "selfOrgGain",
+          "test": "gte",
+          "threshold": 0.05,
+          "observed": 0.3835440525519237,
+          "ci": [
+            0.3524307449416737,
+            0.4125575870657164
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "pattern strength exceeds the uncoupled baseline (gain ≥ 0.05)."
+        },
+        {
+          "key": "crossCorr",
+          "test": "gte",
+          "threshold": 0.3,
+          "observed": 0.4679669482158541,
+          "ci": [
+            0.4306500153155013,
+            0.501998000668065
+          ],
+          "pass": true,
+          "gate": true,
+          "note": "time-accumulated occupancy and CA activity become positively coupled (r ≥ 0.30)."
+        }
+      ],
+      "fidelity": 1,
+      "determinism": true,
+      "verdict": "PASS",
+      "elapsedMs": 3022
+    }
+  ],
+  "pass": true,
+  "totalMs": 15214
+}

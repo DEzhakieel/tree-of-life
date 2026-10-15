@@ -1,0 +1,95 @@
+import { Component, type ReactNode, useEffect, useState } from 'react';
+import { SceneView } from './components/SceneView.js';
+import { TopBar } from './components/TopBar.js';
+import { StatsPanel } from './components/StatsPanel.js';
+import { EventTimelinePanel } from './components/EventTimelinePanel.js';
+import { EventSchedulerPanel } from './components/EventSchedulerPanel.js';
+import { EmergenceAtlasPanel } from './components/EmergenceAtlasPanel.js';
+import { EmergenceRadarPanel } from './components/EmergenceRadarPanel.js';
+import { SpeciesPanel } from './components/SpeciesPanel.js';
+import { Toolbar } from './components/Toolbar.js';
+import { LayerPanel } from './components/LayerPanel.js';
+import { ModelPanel } from './components/ModelPanel.js';
+import { LineagePanel } from './components/LineagePanel.js';
+import { ObservablesChart } from './components/ObservablesChart.js';
+import { startSession, destroySession } from './net/session.js';
+import { useStore } from './store/useStore.js';
+
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null };
+  static getDerivedStateFromError(error: Error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#f87171', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
+          <h2 style={{ color: '#f87171', marginBottom: 8 }}>Render Error</h2>
+          {this.state.error.message}
+          {'\n\n'}
+          {this.state.error.stack}
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+export function App() {
+  const [bootError, setBootError] = useState<string | null>(null);
+  const workerError = useStore((s) => s.workerError);
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        const world = await startSession({ mode: 'local' });
+        useStore.getState().setWorld(world);
+        useStore.getState().setConnected(true);
+      } catch (err: any) {
+        console.error('failed to auto-start local world', err);
+        setBootError(err?.message ?? String(err));
+      }
+    })();
+    return () => destroySession();
+  }, []);
+
+  if (bootError) {
+    return (
+      <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#fbbf24', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
+        <h2 style={{ color: '#fbbf24', marginBottom: 8 }}>Boot Error (worker failed to start)</h2>
+        {bootError}
+      </div>
+    );
+  }
+
+  if (workerError) {
+    return (
+      <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#f87171', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
+        <h2 style={{ color: '#f87171', marginBottom: 8 }}>Worker Error (simulation crashed)</h2>
+        {workerError}
+      </div>
+    );
+  }
+
+  return (
+    <ErrorBoundary>
+    <div className="relative h-full w-full overflow-hidden bg-[#03040c] text-zinc-100">
+      <SceneView />
+      <TopBar />
+      <div className="pointer-events-none absolute left-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-56 flex-col gap-2 overflow-y-auto pb-28">
+        <ModelPanel />
+        <StatsPanel />
+        <EventTimelinePanel />
+        <EventSchedulerPanel />
+        <EmergenceAtlasPanel />
+        <EmergenceRadarPanel />
+        <ObservablesChart />
+      </div>
+      <div className="pointer-events-none absolute right-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-48 flex-col gap-2 overflow-y-auto pb-28">
+        <SpeciesPanel />
+        <LayerPanel />
+      </div>
+      <Toolbar />
+      <LineagePanel />
+    </div>
+    </ErrorBoundary>
+  );
+}

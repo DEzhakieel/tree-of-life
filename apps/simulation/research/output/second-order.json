@@ -1,0 +1,344 @@
+{
+  "provenance": {
+    "tool": "fractal-life research harness",
+    "timestamp": "2026-09-26T08:10:53.769Z",
+    "node": "v18.12.1",
+    "platform": "win32/x64",
+    "simulationPackage": "@fractal-life/simulation@1.0.0",
+    "engineSource": {
+      "path": "C:\\Users\\LENOVO\\Downloads\\fractallife2\\apps\\simulation\\src\\engine.ts",
+      "sha256": "fbc2b2541731a5cc0c31d9365776a8921bc634887326940869d575d2de6ce5d8"
+    },
+    "git": null,
+    "params": {
+      "firstOrderTicks": 60,
+      "secondOrderWindow": 2000,
+      "thirdOrderTicks": 60,
+      "stochTicks": 180,
+      "stochSpawn": 10,
+      "bootstrapSamples": 2000,
+      "permutations": 10000,
+      "analysisSeed": 12648430,
+      "terrainSampling": {
+        "jitterFractionOfWorldScale": 0.6,
+        "perAxis": true
+      }
+    },
+    "seeds": [
+      "research-seed-0001",
+      "research-seed-0002",
+      "research-seed-0003",
+      "research-seed-0004",
+      "research-seed-0005",
+      "research-seed-0006",
+      "research-seed-0007",
+      "research-seed-0008",
+      "research-seed-0009",
+      "research-seed-0010",
+      "research-seed-0011",
+      "research-seed-0012",
+      "research-seed-0013",
+      "research-seed-0014",
+      "research-seed-0015",
+      "research-seed-0016",
+      "research-seed-0017",
+      "research-seed-0018",
+      "research-seed-0019",
+      "research-seed-0020",
+      "research-seed-0021",
+      "research-seed-0022",
+      "research-seed-0023",
+      "research-seed-0024"
+    ],
+    "scenarios": [
+      "first-order",
+      "second-order",
+      "third-order",
+      "conservation",
+      "stochastic"
+    ]
+  },
+  "rows": [
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0001",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1329,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 4.87784234337596e-7
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0002",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1666,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00002650115311553236
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0003",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 499,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.000008050726137298625
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0004",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1150,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.000011371124855941162
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0005",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1380,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.000001552901380819094
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0006",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1535,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 8.621630342986464e-8
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0007",
+      "completed": 1,
+      "kills": 1,
+      "completed_at": 519,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00030286103719845414
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0008",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1094,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00003138277679681778
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0009",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1751,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 4.465620122573455e-7
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0010",
+      "completed": 1,
+      "kills": 1,
+      "completed_at": 1549,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0004026637179777026
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0011",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 569,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.000030823255656287074
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0012",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1586,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00010354036930948496
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0013",
+      "completed": 1,
+      "kills": 1,
+      "completed_at": 1812,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00003446522168815136
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0014",
+      "completed": 0,
+      "kills": 0,
+      "completed_at": -1,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.000008083173270279076
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0015",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1713,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0003251839953009039
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0016",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1546,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00005924876677454449
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0017",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1789,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0001205470907734707
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0018",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1861,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 1.7158496845581794e-9
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0019",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1828,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00033556835842318833
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0020",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1621,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0001438623439753428
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0021",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1805,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.00043136629392392933
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0022",
+      "completed": 1,
+      "kills": 1,
+      "completed_at": 1148,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0010409869719296694
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0023",
+      "completed": 1,
+      "kills": 1,
+      "completed_at": 1786,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0002955751260742545
+    },
+    {
+      "scenario": "second-order",
+      "seed": "research-seed-0024",
+      "completed": 1,
+      "kills": 2,
+      "completed_at": 1586,
+      "prey1_alive": 0,
+      "prey2_alive": 0,
+      "pred_alive": 0,
+      "cell_cap": 0.0001581726100994274
+    }
+  ],
+  "stats": {
+    "completion_rate": 0.9583333333333334,
+    "completion_ci95": [
+      0.8110363128713187,
+      0.9791521661766159
+    ],
+    "completion_k": 23,
+    "completion_n": 24,
+    "completion_mean_tick": 1380.0416666666667,
+    "completion_median_tick": 1567.5,
+    "completion_tick_ci95": [
+      1176.065625,
+      1576.815625
+    ],
+    "kills_mean": 1.7083333333333333,
+    "kills_median": 2
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "fractal-life-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fractal Life Sandbox — emergent artificial-life simulation on procedural fractal terrain",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w @fractal-life/web",
+    "dev:server": "npm run dev -w @fractal-life/server",
+    "build:web": "npm run build -w @fractal-life/web",
+    "build:server": "npm run build -w @fractal-life/server",
+    "build": "npm run build:server && npm run build:web",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:migrate": "npm run db:migrate -w @fractal-life/server"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}
