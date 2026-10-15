@@ -1,3 +1,4 @@
+import { countFreeParams, informationCriteria, relativeSse } from '../benchmarks/parsimony.js';
 import { parseJsonLoose } from './client.js';
 import { researchProposalPrompt } from './prompts.js';
 import { stableStringify } from './hash.js';
@@ -14,10 +15,29 @@ export interface ExperimentProposal {
 
 export type ProposalVerdict = 'supported' | 'refuted' | 'inconclusive';
 
+/**
+ * Information-criteria score attached to a proposal, so a proposal that retunes
+ * five knobs cannot beat a two-parameter proposal on residual error alone.
+ */
+export interface ProposalParsimony {
+  /** free parameters: params differing from the model default */
+  k: number;
+  /** residual observations (reference keys used) */
+  n: number;
+  sse: number;
+  aic: number;
+  bic: number;
+  /** ΔAIC within the round; 0 for the round's best */
+  deltaAic?: number;
+  akaikeWeight?: number;
+  evidence?: 'substantial' | 'considerably-less' | 'none';
+}
+
 export interface ProposalOutcome {
   proposal: ExperimentProposal;
   verdict: ProposalVerdict;
   detail: string;
+  parsimony?: ProposalParsimony;
 }
 
 /** Evaluates a proposal against the real benchmark harness. */
@@ -44,6 +64,7 @@ export interface LedgerEntry {
   verdict: ProposalVerdict;
   detail: string;
   round: number;
+  parsimony?: ProposalParsimony;
 }
 
 export interface LoopResult {
@@ -88,6 +109,41 @@ export function parseProposals(raw: string): ExperimentProposal[] {
 /** Stable identity for dedup: two proposals matching this have already been run. */
 export function proposalKey(p: ExperimentProposal): string {
   return `${p.id}|${p.model}|${stableStringify(p.params)}|${p.hypothesis}`;
+}
+
+/**
+ * Score one proposal on accuracy-per-complexity against the model's declared
+ * reference values. `reference` should be the model's `analytic` map when it has
+ * one (closed-form ground truth); otherwise fall back to the empirical targets'
+ * published values. Returns undefined when no reference values are available,
+ * since an SSE against nothing would be fiction.
+ */
+export function scoreProposalParsimony(
+  proposal: ExperimentProposal,
+  observed: Record<string, number>,
+  reference: Record<string, number> | undefined,
+  defaults: Record<string, number> | undefined,
+): ProposalParsimony | undefined {
+  if (!reference || Object.keys(reference).length === 0) return undefined;
+  const { sse, n } = relativeSse(observed, reference);
+  if (n === 0) return undefined;
+  const k = countFreeParams(proposal.params, defaults);
+  const { aic, bic } = informationCriteria(k, sse, n);
+  return { k, n, sse, aic, bic };
+}
+
+/** attach ΔAIC and Akaike weights across a round's scored proposals */
+export function rankRoundParsimony(outcomes: readonly ProposalOutcome[]): void {
+  const scored = outcomes.filter((o) => o.parsimony && Number.isFinite(o.parsimony.aic));
+  if (scored.length < 2) return;
+  const best = Math.min(...scored.map((o) => o.parsimony!.aic));
+  const weights = scored.map((o) => Math.exp(-0.5 * (o.parsimony!.aic - best)));
+  const sum = weights.reduce((a, b) => a + b, 0);
+  scored.forEach((o, i) => {
+    o.parsimony!.deltaAic = o.parsimony!.aic - best;
+    o.parsimony!.akaikeWeight = weights[i]! / sum;
+    o.parsimony!.evidence = o.parsimony!.deltaAic <= 2 ? 'substantial' : o.parsimony!.deltaAic <= 6 ? 'considerably-less' : 'none';
+  });
 }
 
 export async function proposeExperiments(
@@ -140,6 +196,7 @@ export async function runResearchLoop(
       records.push(record);
       history.push(record);
     }
+    rankRoundParsimony(records);
     rounds.push({ round, proposals: fresh, records, proposeResult: result });
 
     if (fresh.length === 0) break; // nothing new proposed
@@ -179,6 +236,7 @@ function buildLedger(rounds: LoopRound[]): LedgerEntry[] {
       verdict: rec.verdict,
       detail: rec.detail,
       round: r.round,
+      parsimony: rec.parsimony,
     })),
   );
 }

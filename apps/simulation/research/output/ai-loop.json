@@ -1,11 +1,13 @@
 {
-  "generatedAt": "2026-10-15T14:28:18.429Z",
+  "generatedAt": "2026-10-15T16:23:33.383Z",
   "provider": "ollama",
   "model": "qwen2.5:3b",
   "cached": true,
   "scale": "quick",
   "maxRounds": 3,
   "roundsUsed": 3,
+  "harnessRuns": 4,
+  "harnessScored": 5,
   "counts": {
     "total": 5,
     "supported": 4,
@@ -46,7 +48,14 @@
           "params": {},
           "expected": "The system could exhibit different spatial patterns depending on the reaction rates of the two substances involved.",
           "verdict": "supported",
-          "detail": "model E PASS (fidelity 1.00)"
+          "detail": "model E PASS (fidelity 1.00)",
+          "parsimony": {
+            "k": 0,
+            "n": 3,
+            "sse": 2.0000000000004436,
+            "aic": -1.216395324323828,
+            "bic": -1.216395324323828
+          }
         }
       ],
       "cached": true
@@ -65,7 +74,14 @@
           "params": {},
           "expected": "Dynamic environmental factors could affect the competitive exclusion dynamics and the stability of coexistence.",
           "verdict": "supported",
-          "detail": "model H PASS (fidelity 1.00)"
+          "detail": "model H PASS (fidelity 1.00)",
+          "parsimony": {
+            "k": 0,
+            "n": 2,
+            "sse": 0,
+            "aic": -56.64833659297699,
+            "bic": -56.64833659297699
+          }
         },
         {
           "id": "J",

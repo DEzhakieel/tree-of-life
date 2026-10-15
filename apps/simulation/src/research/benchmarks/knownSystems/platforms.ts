@@ -20,6 +20,15 @@ export const PLATFORM_SYSTEMS: KnownSystem[] = [
     benchId: 'D',
     replication: 'benchmark D — the continuous Lotka–Volterra backbone of the model, validated on period, phase lag and invariant.',
     notes: 'Replicates the ODE limit rather than the stochastic NetLogo grid; discrete predation not modelled.',
+    targets: [
+      {
+        key: 'phaseLagNorm',
+        value: 0.25,
+        tol: 0.1,
+        kind: 'expected',
+        source: 'Wilensky, U. (1997), NetLogo Wolf Sheep Predation — predator peaks trail prey peaks by roughly a quarter cycle in the coupled dynamics.',
+      },
+    ],
   },
   {
     id: 'netlogo-fire',
@@ -47,6 +56,24 @@ export const PLATFORM_SYSTEMS: KnownSystem[] = [
     benchId: 'J',
     replication: 'benchmark J — stigmergic agents laying a diffusing pheromone trail coupled to a CA layer; measures clustering and cross-correlation.',
     notes: 'Replicates trail-mediated self-organisation, not the full nest/food-foraging cycle.',
+    targets: [
+      {
+        key: 'selfOrgGain',
+        value: 0.05,
+        lo: 0.05,
+        hi: 1,
+        kind: 'expected',
+        source: 'Wilensky (1997), NetLogo Ants — pheromone-mediated trail formation raises spatial clustering above the uncoupled baseline (stigmergy).',
+      },
+      {
+        key: 'crossCorr',
+        value: 0.3,
+        lo: 0.3,
+        hi: 1,
+        kind: 'expected',
+        source: 'Wilensky (1997) — agent occupancy and pheromone density co-locate, so the two layers are positively correlated.',
+      },
+    ],
   },
   {
     id: 'mesa-schelling',
@@ -100,6 +127,15 @@ export const PLATFORM_SYSTEMS: KnownSystem[] = [
     benchId: 'H',
     replication: 'benchmark H — the resource-competition core (R* theory); winner/coexistence under asymmetric supply.',
     notes: 'Replicates the competition-for-a-limiting-resource mechanism, not the full sugar/migration economy.',
+    targets: [
+      {
+        key: 'winnerCorrect',
+        value: 1,
+        tol: 0,
+        kind: 'expected',
+        source: 'Epstein, J. M. & Axtell, R. (1996), Growing Artificial Societies — agents with the harvesting advantage displace those without, the R* mechanism at the heart of Sugarscape competition.',
+      },
+    ],
   },
   {
     id: 'flamegpu-boids',
@@ -114,6 +150,16 @@ export const PLATFORM_SYSTEMS: KnownSystem[] = [
     benchId: 'B',
     replication: 'benchmark B — the same three-rule flocking reduced to a grid-accelerated CPU model; order parameter and separation.',
     notes: 'CPU replication; no GPU spatial partitioning or messaging layer.',
+    targets: [
+      {
+        key: 'phiOn',
+        value: 0.8,
+        lo: 0.8,
+        hi: 1,
+        kind: 'expected',
+        source: 'Richmond, P. et al. (2010), Briefings in Bioinformatics 11:334 — GPU flocking shows the same emergent alignment as the CPU reference.',
+      },
+    ],
   },
   {
     id: 'flamegpu-pedestrian',
@@ -128,5 +174,15 @@ export const PLATFORM_SYSTEMS: KnownSystem[] = [
     benchId: 'I',
     replication: 'benchmark I — self-propelled alignment toward a target; polarisation and arrival fraction.',
     notes: 'Replicates directed collective motion, not full collision/queue mechanics.',
+    targets: [
+      {
+        key: 'arrival',
+        value: 0.9,
+        lo: 0.9,
+        hi: 1,
+        kind: 'expected',
+        source: 'Richmond, P. et al. (2014), FLAME GPU pedestrian simulation — a coherent crowd reaches the exit rather than dispersing.',
+      },
+    ],
   },
 ];

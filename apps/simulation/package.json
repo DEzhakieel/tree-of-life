@@ -19,6 +19,7 @@
     "research:bench": "tsx src/research/benchmarks/benchRun.ts",
     "research:known": "tsx src/research/benchmarks/knownRun.ts",
     "research:rigor": "tsx src/research/benchmarks/rigor/rigorRun.ts",
+    "research:scope": "tsx src/research/scopeRun.ts",
     "research:ai": "tsx src/research/aiRun.ts",
     "typecheck": "tsc --noEmit"
   },

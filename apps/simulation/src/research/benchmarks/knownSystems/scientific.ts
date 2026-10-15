@@ -19,6 +19,22 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'A',
     replication: 'benchmark A — 2-D step random walkers on a torus; fits MSD slope and diffusion exponent against theory.',
     notes: 'Idealised, toolless walkers; no excluded volume or persistence term.',
+    targets: [
+      {
+        key: 'alpha',
+        value: 1,
+        tol: 0.02,
+        kind: 'derived',
+        source: 'Einstein, A. (1905), Ann. Phys. 17:549; Pearson, K. (1905), Nature 72:294 — MSD grows linearly in time, so the log-log slope is exactly 1.',
+      },
+      {
+        key: 'dRelErr',
+        value: 0,
+        tol: 0.03,
+        kind: 'derived',
+        source: 'Einstein (1905) — ⟨r²⟩ = 4Dt in two dimensions; the fitted slope must recover the diffusion constant used to generate the walk.',
+      },
+    ],
   },
   {
     id: 'reynolds-boids',
@@ -32,6 +48,24 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'B',
     replication: 'benchmark B — grid-accelerated synchronous flocking with positional relaxation; order parameter Φ and minimum separation.',
     notes: 'Fixed-radius topological interaction with periodic bounds; no predator or goal terms.',
+    targets: [
+      {
+        key: 'phiOn',
+        value: 0.8,
+        lo: 0.8,
+        hi: 1,
+        kind: 'expected',
+        source: 'Reynolds, C. W. (1987), SIGGRAPH — alignment sustains a polarised flock; the Φ ≥ 0.8 reporting convention is the Vicsek-style order parameter.',
+      },
+      {
+        key: 'phiOff',
+        value: 0,
+        lo: 0,
+        hi: 0.15,
+        kind: 'expected',
+        source: 'Reynolds (1987) — without alignment the flock disperses, so polarisation collapses toward zero.',
+      },
+    ],
   },
   {
     id: 'conway-life',
@@ -45,6 +79,22 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'C',
     replication: 'benchmark C — reuses the engine GoL; verifies glider/blinker/block/pulsar periods and Gosper-gun emission.',
     notes: 'Fixed finite torus; exact integer CA so validation is deterministic.',
+    targets: [
+      {
+        key: 'gliderShiftX',
+        value: 10,
+        tol: 0,
+        kind: 'derived',
+        source: 'Gardner, M. (1970), Sci. Am. 223(4):120 — the glider translates by exactly (1,1) every four generations, so +10 cells over the model’s fixed ten-period test.',
+      },
+      {
+        key: 'gunPeriod',
+        value: 30,
+        tol: 0,
+        kind: 'derived',
+        source: 'Gosper, W. A. (1970) — the Gosper glider gun emits one glider every 30 generations.',
+      },
+    ],
   },
   {
     id: 'lotka-volterra',
@@ -58,6 +108,29 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'D',
     replication: 'benchmark D — RK4 integration of the classic ODEs; checks cycle period, quarter-phase lag and invariant drift.',
     notes: 'Deterministic ODE plus tiny seeded perturbation; no stochasticity or spatial structure.',
+    targets: [
+      {
+        key: 'periodRelErr',
+        value: 0,
+        tol: 0.02,
+        kind: 'derived',
+        source: 'Lotka, A. J. (1925), Elements of Physical Biology; Volterra, V. (1926), Nature 118:624 — small-amplitude cycle period T = 2π/√(αγ).',
+      },
+      {
+        key: 'phaseLagNorm',
+        value: 0.25,
+        tol: 0.05,
+        kind: 'derived',
+        source: 'Lotka (1925) / Volterra (1926) — the prey peak leads the predator peak by a quarter cycle, so the normalised lag is 1/4.',
+      },
+      {
+        key: 'invariantDriftPerPeriod',
+        value: 0,
+        tol: 0.02,
+        kind: 'derived',
+        source: 'Volterra (1926) — V = γx − α ln x + δy − β ln y is a first integral of the system, so it cannot drift over a closed cycle.',
+      },
+    ],
   },
   {
     id: 'diffusion-fick',
@@ -71,6 +144,29 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'E',
     replication: 'benchmark E — FTCS integration of a 2-D Gaussian; L2 error vs analytic solution, mass conservation and MSD growth.',
     notes: 'Explicit scheme on a periodic grid; validated against a closed-form solution.',
+    targets: [
+      {
+        key: 'massRelErr',
+        value: 0,
+        tol: 1e-6,
+        kind: 'derived',
+        source: 'Fick, A. (1855), Phil. Mag. 10:30 — the diffusion equation conserves total mass on a periodic domain.',
+      },
+      {
+        key: 'msdRelErr',
+        value: 0,
+        tol: 0.03,
+        kind: 'derived',
+        source: 'Einstein (1905), Ann. Phys. 17:549 — ⟨r²⟩ = 4Dt in two dimensions.',
+      },
+      {
+        key: 'relL2',
+        value: 0,
+        tol: 1e-3,
+        kind: 'derived',
+        source: 'Crank, J. (1975), The Mathematics of Diffusion — the Gaussian is the exact free-space solution; the discrete scheme must converge onto it.',
+      },
+    ],
   },
   {
     id: 'turing-reaction-diffusion',
@@ -84,6 +180,24 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'F',
     replication: 'benchmark F — Gray–Scott FTCS on a torus; in-regime spot patterns, out-regime decay to the trivial state.',
     notes: 'Fixed diffusion ratio Du/Dv = 2; seeded nuclei for the in-regime case.',
+    targets: [
+      {
+        key: 'inOccFrac',
+        value: 0,
+        lo: 0.01,
+        hi: 1,
+        kind: 'expected',
+        source: 'Turing, A. M. (1952), Phil. Trans. R. Soc. B 237:37; Gray, P. & Scott, S. K. (1984), Chem. Eng. Sci. 39:1087 — a sustained pattern occupies a finite fraction of the domain rather than decaying to the trivial state.',
+      },
+      {
+        key: 'outVMax',
+        value: 0,
+        lo: 0,
+        hi: 1e-3,
+        kind: 'expected',
+        source: 'Gray & Scott (1984) — outside the pattern-forming parameter regime the system relaxes to the trivial (fully reacted) steady state.',
+      },
+    ],
   },
   {
     id: 'nowak-may-ipd',
@@ -97,6 +211,24 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'G',
     replication: 'benchmark G — synchronous imitate-best on a Moore lattice vs. a well-mixed population; cooperation fraction contrast.',
     notes: 'Weak temptation b = 1.05; no mutation, migration or noise.',
+    targets: [
+      {
+        key: 'coopSpatial',
+        value: 0.9,
+        lo: 0.9,
+        hi: 1,
+        kind: 'expected',
+        source: 'Nowak, M. A. & May, R. M. (1992), Nature 359:826 — spatial reciprocity sustains high cooperation on a lattice under weak temptation.',
+      },
+      {
+        key: 'coopWellMixed',
+        value: 0,
+        lo: 0,
+        hi: 0.05,
+        kind: 'expected',
+        source: 'Nowak & May (1992) — without spatial structure the weak Prisoner’s Dilemma collapses to near-total defection.',
+      },
+    ],
   },
   {
     id: 'tilman-rstar',
@@ -110,6 +242,29 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'H',
     replication: 'benchmark H — two-species chemostat; the smaller-R* species excludes the larger, symmetric K coexists.',
     notes: 'Monod uptake, single limiting resource, constant dilution and supply.',
+    targets: [
+      {
+        key: 'winnerCorrect',
+        value: 1,
+        tol: 0,
+        kind: 'derived',
+        source: 'Tilman, D. (1982), Resource Competition and Community Structure — the species with the lower R* excludes the one with the higher R*.',
+      },
+      {
+        key: 'coexistFA',
+        value: 0.5,
+        tol: 0.1,
+        kind: 'expected',
+        source: 'Tilman (1982) — two species with identical R* and equal carrying capacity coexist at a mixed equilibrium.',
+      },
+      {
+        key: 'coexistFB',
+        value: 0.5,
+        tol: 0.1,
+        kind: 'expected',
+        source: 'Tilman (1982) — as above, symmetric in the second species.',
+      },
+    ],
   },
   {
     id: 'vicsek-model',
@@ -123,6 +278,24 @@ export const SCIENTIFIC_SYSTEMS: KnownSystem[] = [
     benchId: 'I',
     replication: 'benchmark I — Vicsek alignment with a destination pull; measures polarisation Φ and group arrival.',
     notes: 'Added goal-directed bias; interaction is a fixed neighbourhood radius.',
+    targets: [
+      {
+        key: 'consensus',
+        value: 0.8,
+        lo: 0.8,
+        hi: 1,
+        kind: 'expected',
+        source: 'Vicsek, T. et al. (1995), PRL 75:1226 — below the critical noise the ordered phase holds a high polarisation.',
+      },
+      {
+        key: 'arrival',
+        value: 0.9,
+        lo: 0.9,
+        hi: 1,
+        kind: 'expected',
+        source: 'Vicsek et al. (1995) — in the ordered phase the flock moves coherently, so it reaches the destination as a group.',
+      },
+    ],
   },
   {
     id: 'wolfram-eca',

@@ -5,14 +5,18 @@ import { runValidation } from '../src/research/benchmarks/rigor/validation.js';
 import { runNovelty } from '../src/research/benchmarks/rigor/novelty.js';
 import { runRigor } from '../src/research/benchmarks/rigor/rigorRun.js';
 
-test('rigor validation links every model to an empirical or explicit gap', () => {
-  const v = runValidation();
+test('rigor validation scores every model against published targets', () => {
+  const v = runValidation('quick');
   assert.equal(v.id, 'validation');
-  assert.equal(v.checks.length, BENCHMARK_MODELS.length);
-  for (const c of v.checks) {
-    assert.ok(c.module === 'validation');
-    assert.ok(c.outcome === 'PASS' || c.outcome === 'WARN');
+  const modelChecks = v.checks.filter((c) => c.key.endsWith('-emp'));
+  assert.equal(modelChecks.length, BENCHMARK_MODELS.length);
+  for (const c of modelChecks) {
+    assert.equal(c.module, 'validation');
+    assert.ok(['PASS', 'WARN', 'FAIL'].includes(c.outcome));
   }
+  const agg = v.checks.find((c) => c.key === 'emp-report');
+  assert.ok(agg, 'missing aggregate empirical-fidelity check');
+  assert.equal(agg.outcome, 'PASS', 'the shipped suite must reproduce every measured/derived target');
 });
 
 test('rigor novelty scorecard produces the expected gated checks', () => {

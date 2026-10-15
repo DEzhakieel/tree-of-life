@@ -26,6 +26,9 @@ deterministic, seedable experiments and writes a self-contained report bank to
 | `benchmarks/` | canonical A-Life benchmark suite — ten self-contained deterministic micro-models A–J (`benchRun.ts`) with literature-defined signatures and bootstrap-CI gated checks, plus the known-systems reverse-engineering registry (`knownRun.ts`) → `bench.*`, `known.*`, `plots/bench.svg`, `plots/known.svg` |
 | `benchmarks/rigor/` | research-rigor layer over A–J — verification (impl ≈ analytic, per-key declared tolerance), validation (model → empirical), reproducibility (fingerprints + seed cohort), sensitivity (OAT + Morris elementary-effects screen), ablation (structural/param interventions), significance (one-sided t + Holm–Bonferroni + Bayes factor + Clopper–Pearson), novelty/impact scorecard (`rigorRun.ts`) → `rigor.*`, `rigor-hypotheses.json` |
 | `ai/` | LLM / AI-agent layer over the research stack — content-addressed cached calls to open-source models through Ollama (`qwen2.5:3b` default) with a deterministic `mock` backend for tests/CI: a **world controller** running a closed observe → direct → actuate → measure loop against an unsteered control (`controller.ts`, `worldAI.ts`), a **phase analyst** that interprets measured critical loci (`phaseAnalyst.ts`), and an iterative **research loop** whose proposals are scored by the real benchmark harness and fed back across rounds (`researchAgent.ts`) → `aiRun.ts` → `ai-world.*`, `ai-phase.*`, `ai-loop.*` |
+| `scope.ts` | the **research scope** — seven research questions, ten scope boundaries (in/conditional/out), seven method commitments, and the fixed ledger of falsifiable claims; `benchmarkClaims()`/`empiricalClaims()` derive the per-model and per-system claims from the registries; `validateScope()` blocks on a claim with no falsifier, a question with no claim, or a duplicate id |
+| `claims.ts` | the **unified claims ledger** — one schema for every claim's verdict regardless of which module produced the evidence; typed mappers turn the benchmark scorecard, known-systems report, rigor checks, determinism reports, the AI loop and the world controller into `supported`/`refuted`/`inconclusive` verdicts (a claim id the scope did not pre-register is dropped, so evidence cannot invent a claim) |
+| `scopeRun.ts` | the scope CLI — runs the whole evidence bank (benchmarks, known systems, rigor, determinism) and joins it with the stored AI artifacts, then writes `SCOPE.md` + `output/claims.json` |
 
 ## Experiments
 
@@ -512,10 +515,16 @@ ECA, Langton's ant, Schelling, Kauffman NK, Mitchell GA, Avida, Tierra, Lenia)
 and 9 flagship ABM-platform models (NetLogo Wolf–Sheep/Fire/Ants, Mesa
 Schelling/Boltzmann, Repast Zombies/Sugarscape, FLAME GPU Boids/Pedestrian).
 Each entry records author, year, the phenomenon it demonstrates, a citation, and
-— where we ship an executable replication — the linked benchmark. `knownRun.ts`
-re-runs every linked benchmark to compute its **fidelity**; entries without a
-shipped replication are reported as `documented`. Currently **14/26 replicated**
-at fidelity 1.00; the remaining 12 are catalogued with a replication plan.
+— where we ship an executable replication — the linked benchmark. **Every
+replicated system also carries empirical targets**: a signature key, a value, a
+tolerance, a `kind` (`measured` published number, `derived` closed-form
+consequence, or `expected` qualitative regime) and its source. `knownRun.ts`
+re-runs every linked benchmark, computes its **fidelity**, and scores it against
+those literature bands independently of the model's own gating checks; entries
+without a shipped replication are reported as `documented`. Currently **14/26
+replicated**; the aggregate empirical fidelity counts only the strict
+(`measured`/`derived`) targets, so a system whose source reports only a
+qualitative regime is reported `inconclusive` rather than silently passed.
 
 ### Research-rigor layer (`benchmarks/rigor/`)
 
@@ -548,7 +557,7 @@ evaluated across every level rather than owned by one.
 | module | question | method |
 | --- | --- | --- |
 | `verification.ts` | does the implementation equal the mathematics? | observed seed-cohort mean vs each model's `analytic` reference, gated on the **model's own declared tolerance** (its `eqAbs`/`range`/`gte`/`lte` check for that key) — an exact check (`tol = 0`) must reproduce exactly; a miss that still overlaps the reference in the bootstrap CI is a WARN, not a FAIL |
-| `validation.ts` | does the model connect to an empirical / known system? | every model's `empirical` linkage resolved against the known-systems registry; unlinked models are explicitly WARN, not silently skipped |
+| `validation.ts` | does the model connect to an empirical / known system? | every replicated system carries **measured/derived targets** from the literature (value + tolerance + source); the linked benchmark is scored against those bands, not against its own gates. FAIL on a broken linkage or zero hits, WARN when only qualitative (`expected`) targets exist, PASS when every strict target lands in band |
 | `reproducibility.ts` | does a run replay? | double-run fingerprint gate per model at full scale |
 | `sensitivity.ts` | which knobs move the readout? | one-at-a-time (OAT) sweep of the first two knobs **plus a real Morris (1991) elementary-effects screen** — `r = 3` winding-stairs trajectories over 4 levels (`Δ = 2/3`), reporting μ (mean effect), μ\* (influence ranking) and σ (interaction/non-linearity) for every declared `params` knob |
 | `ablation.ts` | does removing a mechanism do what the model claims? | applies each declared `intervention` and checks the predicted qualitative `effects` (increase/decrease/change) |
@@ -560,11 +569,12 @@ WARN when the direction is right but the evidence is thin (a knob is inert for
 the chosen readout, or a claim does not survive Holm correction); FAIL only on a
 contradiction. `rigorRun` downgrades the overall verdict only on a hard FAIL,
 never on a WARN, so the layer reports rather than manufactures failure. Measured
-on the current suite: verification 16/16, validation 10/10, reproducibility
-10/10, sensitivity 9/9, significance 8/9 families (A's diffusion-constant error
-is deliberately flagged: its seed-mean 0.023 sits inside 3% but is not
-statistically distinguishable from 3% at n = 5). Full run (default) evaluates all
-modules at full scale; `--quick` shrinks the dev budget.
+on the current suite: verification 16/16, reproducibility 10/10, sensitivity 9/9,
+significance 8/9 families (A's diffusion-constant error is deliberately flagged:
+its seed-mean 0.023 sits inside 3% but is not statistically distinguishable from
+3% at n = 5), and validation scored against the published targets rather than the
+model's own gates. Full run (default) evaluates all modules at full scale;
+`--quick` shrinks the dev budget.
 
 ### LLM / AI-agent layer (`ai/`)
 
@@ -604,6 +614,44 @@ deduplicated by a stable key (`id|model|params|hypothesis`), and rounds stop
 early when a round contributes nothing new or nothing conclusive. The result
 carries a deduplicated, timestamp-free ledger that is fully derived from the
 cached responses, so re-runs are idempotent.
+
+Every proposal is scored by **parsimony** as well as accuracy (`benchmarks/parsimony.ts`):
+the residual between the proposal's signature and the model's default is charged
+2k (AIC) / k·ln n (BIC) for the free parameters it moved, so a hypothesis that
+fits only by retuning more knobs cannot win on accuracy alone. The loop records
+`harnessScored` (verdicts adjudicated by deterministic code) separately from
+`harnessRuns` (verdicts from an actual benchmark run); a proposal that names no
+known model is still adjudicated by the code, never by the language model.
+
+#### Research scope & claims ledger (`scope.ts`, `claims.ts`)
+
+The layers above each produce evidence in their own vocabulary — gates, fidelity,
+PASS/WARN/FAIL, supported/refuted. The scope layer fixes, **before** any experiment
+runs, what the whole program is claiming and what would refute it, then joins every
+module's output into one ledger:
+
+- **`scope.ts`** declares the research questions, what is in / conditional / out of
+  scope, the method commitments (determinism, verification, validation,
+  significance, ablation, parsimony, LLM-as-proposer), and the fixed claim registry.
+  Per-model benchmark claims and per-system empirical claims are **derived from the
+  registries** rather than hand-listed. `validateScope` refuses a claim with no
+  falsifier or a question with no claim.
+- **`claims.ts`** maps each evidence source onto that registry. A claim id the scope
+  did not pre-register is dropped, so evidence cannot invent a claim; a claim with no
+  evidence is reported `untested`, an honest `inconclusive` is distinguished from a
+  refutation, and refutations are printed, not hidden.
+- **`scopeRun.ts`** runs the full evidence bank and writes `SCOPE.md` +
+  `output/claims.json`.
+
+The shipped run reads `23/34 claims supported, 2 refuted, 9 inconclusive`. Both
+refutations are genuine and useful: **C-AI-03** (the world controller measurably
+under-performs doing nothing — alive 54 vs 139) and **C-SIG-01** (one directional
+claim does not survive Holm correction). The nine inconclusive are the honest
+boundary of the suite: those known systems publish only a *qualitative* regime, so
+the ledger refuses to convert their gated PASS into an empirical claim and asks for
+a measured target instead. The ledger also caught a real bug the gates did not — a
+Conway glider target entered as `1` where the model reports `10` — because the target
+key is checked against the model's declared signature.
 
 #### Determinism — cache by default
 
@@ -724,6 +772,11 @@ npx tsx apps/simulation/src/research/benchmarks/knownRun.ts          # writes kn
 npx tsx apps/simulation/src/research/benchmarks/rigor/rigorRun.ts          # full; writes rigor.{md,json,csv} + rigor-hypotheses.json
 npx tsx apps/simulation/src/research/benchmarks/rigor/rigorRun.ts --quick  # smaller budgets (dev)
 
+# research scope + unified claims ledger — joins the whole evidence bank (~1 min)
+npx tsx apps/simulation/src/research/scopeRun.ts                          # writes SCOPE.md + output/claims.json
+npx tsx apps/simulation/src/research/scopeRun.ts --full                   # full-scale evidence
+npx tsx apps/simulation/src/research/scopeRun.ts --determinism-seeds 5    # wider bit-exactness cohort
+
 # LLM / AI-agent layer (open-source models via Ollama; default model qwen2.5:3b)
 ollama pull qwen2.5:3b                                                      # once
 npx tsx apps/simulation/src/research/aiRun.ts world                         # closed-loop controller vs unsteered control (replays the cache)
@@ -778,7 +831,9 @@ npx tsx --test apps/simulation/test/*.test.ts
 | `ai-world.md/json` | the closed-loop world controller: warmup → observe → directive → actuate → measure windows, each decision's rationale and per-species strategies, the resulting trajectory, and a steered-vs-unsteered control comparison |
 | `ai-phase.md/json` | a parameter sweep with computed order-parameter critical loci (sharpest adjacent change, median-relative sharpness) plus the LLM's interpretation and recommended refinements |
 | `ai-loop.md/json` | multi-round research-agent proposals over models A–J: per-round tables with harness-evaluated supported / refuted / inconclusive verdicts and the cumulative deduplicated ledger |
-| `ai-loop-ledger.json` | the deduplicated, timestamp-free research ledger (fully derived from cached responses ⇒ idempotent re-runs) |
+| `ai-loop-ledger.json` | the deduplicated, timestamp-free research ledger (fully derived from cached responses ⇒ idempotent re-runs), with `harnessScored` / `harnessRuns` counts and per-proposal parsimony |
+| `SCOPE.md` | the generated research scope: purpose, questions, in/conditional/out boundaries, method commitments, and the full claim ledger with each claim's verdict, falsifier and evidence |
+| `claims.json` | machine-readable unified ledger: every claim's status / statistic / detail / source, per-question tallies, and the untested list |
 | `ai-cache/*.json` | content-addressed LLM call cache (replay-safe determinism); safe to delete, re-populated on the next run without `--no-cache` |
 | `plots/*.svg` | 6 deterministic charts |
 | `*.md/csv/json` (root) | earlier CLI determinism reports (first/second/third-order, conservation) |

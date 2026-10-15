@@ -76,7 +76,7 @@ const oneSidedGate = (c: BenchCheck): 'gt' | 'lt' | undefined =>
       : 'lt'
     : undefined;
 
-export function runSignificance(scale: BenchmarkScale = 'full'): RigorSection {
+export function runSignificance(scale: BenchmarkScale = 'full', opts: { write?: boolean } = {}): RigorSection {
   const checks: RigorCheck[] = [];
   const ledgerFamily: unknown[] = [];
   let tested = 0;
@@ -152,8 +152,10 @@ export function runSignificance(scale: BenchmarkScale = 'full'): RigorSection {
     if (modelSupported) supported++;
   }
 
-  // sequential, deterministic ledger (fully derived ⇒ idempotent re-runs)
-  try {
+  // sequential, deterministic ledger (fully derived ⇒ idempotent re-runs).
+  // Suppressed when a caller (e.g. the scope runner) only consumes the section:
+  // the ledger is a full-scale artifact and a quick-scale call must not clobber it.
+  if (opts.write !== false) try {
     fs.mkdirSync(path.dirname(LEDGER), { recursive: true });
     fs.writeFileSync(
       LEDGER,

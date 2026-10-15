@@ -53,7 +53,7 @@ export function runRigor(alwaysFull = true): RigorResult {
   const scale: BenchmarkScale = alwaysFull ? 'full' : 'quick';
   const studies: RigorSection[] = [];
   studies.push(runVerification(scale));
-  studies.push(runValidation());
+  studies.push(runValidation(scale));
   studies.push(runReproducibility(scale));
   studies.push(runSensitivity(scale));
   studies.push(runAblation(scale));

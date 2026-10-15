@@ -8,7 +8,8 @@ import { OUTPUT_DIR } from './ai/paths.js';
 import { runWorldControl } from './ai/controller.js';
 import { runWorld, fmtSample, deltaLine, type WorldSample } from './ai/world.js';
 import { analysePhases } from './ai/phaseAnalyst.js';
-import { runResearchLoop, type ExperimentProposal, type LoopResult } from './ai/researchAgent.js';
+import { runResearchLoop, scoreProposalParsimony, type ExperimentProposal, type LoopResult } from './ai/researchAgent.js';
+import { KNOWN_SYSTEMS } from './benchmarks/knownSystems/index.js';
 import { WORLD_KNOBS } from './ai/knobs.js';
 import type { ChatOptions, LlmConfig, ProviderId } from './ai/types.js';
 import type { WorldConfig } from '@fractal-life/shared';
@@ -364,6 +365,19 @@ function countByVerdict(records: { verdict: string }[]) {
   };
 }
 
+/** reference values a proposal is scored against: closed form first, then published targets */
+function referenceFor(model: (typeof BENCHMARK_MODELS)[number]): Record<string, number> | undefined {
+  if (model.analytic && Object.keys(model.analytic).length > 0) return model.analytic;
+  const targets = KNOWN_SYSTEMS.find((s) => s.id === model.empirical?.systemId)?.targets;
+  if (targets && targets.length > 0) return Object.fromEntries(targets.map((t) => [t.key, t.value]));
+  return undefined;
+}
+
+function defaultsFor(model: (typeof BENCHMARK_MODELS)[number]): Record<string, number> | undefined {
+  if (!model.params || model.params.length === 0) return undefined;
+  return Object.fromEntries(model.params.map((p) => [p.key, p.def]));
+}
+
 async function cmdLoop(args: Args): Promise<void> {
   const llm = makeLlm(args);
   const scale = (str(args, 'scale', 'quick') === 'full' ? 'full' : 'quick') as 'quick' | 'full';
@@ -371,20 +385,34 @@ async function cmdLoop(args: Args): Promise<void> {
 
   const evaluate = (p: ExperimentProposal) => {
     const model = findModel(p.model);
-    if (!model) return { verdict: 'inconclusive' as const, detail: `no benchmark model matches "${p.model}"` };
+    if (!model) return { verdict: 'inconclusive' as const, detail: `no benchmark model matches "${p.model}"`, harnessRun: false };
     try {
       const r = runBenchmark(model, { scale, determinismCheck: false, params: p.params });
       const failed = r.checks.filter((c) => c.gate && !c.pass).map((c) => c.key);
+      const parsimony = scoreProposalParsimony(p, r.signature, referenceFor(model), defaultsFor(model));
       return {
         verdict: (r.verdict === 'PASS' ? 'supported' : 'refuted') as 'supported' | 'refuted',
         detail: `model ${r.id} ${r.verdict} (fidelity ${r.fidelity.toFixed(2)})${failed.length ? `; failed gates: ${failed.join(', ')}` : ''}`,
+        parsimony,
+        harnessRun: true,
       };
     } catch (err) {
-      return { verdict: 'inconclusive' as const, detail: `evaluation error: ${(err as Error).message}` };
+      return { verdict: 'inconclusive' as const, detail: `evaluation error: ${(err as Error).message}`, harnessRun: false };
     }
   };
 
-  const result: LoopResult = await runResearchLoop(llm, scorecardContext(scale), evaluate, {
+  // Every verdict is adjudicated by deterministic code: either a benchmark run
+  // (`harnessRuns`) or a lookup that resolved to no model (`unmatched`). The
+  // language model never produces a verdict, which is what C-AI-01 records.
+  const harnessRuns = { n: 0 };
+  const wrappedEvaluate = (p: ExperimentProposal) => {
+    const out = evaluate(p);
+    if (out.harnessRun) harnessRuns.n++;
+    const { harnessRun: _h, ...rest } = out;
+    return rest;
+  };
+
+  const result: LoopResult = await runResearchLoop(llm, scorecardContext(scale), wrappedEvaluate, {
     maxRounds,
     chat: chatOpts(args),
   });
@@ -398,6 +426,10 @@ async function cmdLoop(args: Args): Promise<void> {
     scale,
     maxRounds,
     roundsUsed: result.roundsUsed,
+    /** proposals whose verdict came from an actual benchmark run */
+    harnessRuns: harnessRuns.n,
+    /** proposals adjudicated by deterministic code (all of them; the model never adjudicates) */
+    harnessScored: result.records.length,
     counts,
     rounds: result.rounds.map((r) => ({
       round: r.round,
@@ -410,6 +442,7 @@ async function cmdLoop(args: Args): Promise<void> {
         expected: rec.proposal.expected,
         verdict: rec.verdict,
         detail: rec.detail,
+        parsimony: rec.parsimony,
       })),
       cached: r.proposeResult.cached,
     })),
@@ -421,6 +454,8 @@ async function cmdLoop(args: Args): Promise<void> {
     provider: llm.provider,
     model: payload.model,
     scale,
+    harnessScored: result.records.length,
+    harnessRuns: harnessRuns.n,
     counts,
     ledger: result.ledger,
   });

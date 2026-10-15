@@ -1,8 +1,10 @@
 {
-  "generatedAt": "2026-10-15T14:28:18.429Z",
+  "generatedAt": "2026-10-15T16:23:33.383Z",
   "provider": "ollama",
   "model": "qwen2.5:3b",
   "scale": "quick",
+  "harnessScored": 5,
+  "harnessRuns": 4,
   "counts": {
     "total": 5,
     "supported": 4,
@@ -41,7 +43,14 @@
       "expected": "The system could exhibit different spatial patterns depending on the reaction rates of the two substances involved.",
       "verdict": "supported",
       "detail": "model E PASS (fidelity 1.00)",
-      "round": 1
+      "round": 1,
+      "parsimony": {
+        "k": 0,
+        "n": 3,
+        "sse": 2.0000000000004436,
+        "aic": -1.216395324323828,
+        "bic": -1.216395324323828
+      }
     },
     {
       "key": "H|Resource competition (R*)|{}|Adding a dynamic environmental factor could enhance the species' ability to competitively exclude rivals.",
@@ -52,7 +61,14 @@
       "expected": "Dynamic environmental factors could affect the competitive exclusion dynamics and the stability of coexistence.",
       "verdict": "supported",
       "detail": "model H PASS (fidelity 1.00)",
-      "round": 2
+      "round": 2,
+      "parsimony": {
+        "k": 0,
+        "n": 2,
+        "sse": 0,
+        "aic": -56.64833659297699,
+        "bic": -56.64833659297699
+      }
     },
     {
       "key": "J|Fractal-life composite|{}|Coupling the Game of Life with a diffusing pheromone field could lead to new emergent behaviors.",

@@ -1,0 +1,876 @@
+{
+  "generatedAt": "2026-10-15T16:25:22.303Z",
+  "scopeVersion": "1.0.0",
+  "method": "Each claim is pre-registered in research/scope.ts with a falsifiability criterion fixed before the experiment. Evidence is mapped from the harness scorecard, the known-systems target assessment, the rigor modules, the significance ledger and the AI loop ledger onto those claim ids; a verdict can only be attached to an id that already existed, so the ledger records tests rather than post-hoc narratives.",
+  "summary": {
+    "total": 34,
+    "supported": 23,
+    "refuted": 2,
+    "inconclusive": 9
+  },
+  "byQuestion": [
+    {
+      "question": "RQ1",
+      "total": 2,
+      "supported": 2,
+      "refuted": 0,
+      "inconclusive": 0
+    },
+    {
+      "question": "RQ2",
+      "total": 11,
+      "supported": 11,
+      "refuted": 0,
+      "inconclusive": 0
+    },
+    {
+      "question": "RQ3",
+      "total": 15,
+      "supported": 6,
+      "refuted": 0,
+      "inconclusive": 9
+    },
+    {
+      "question": "RQ4",
+      "total": 1,
+      "supported": 1,
+      "refuted": 0,
+      "inconclusive": 0
+    },
+    {
+      "question": "RQ5",
+      "total": 2,
+      "supported": 1,
+      "refuted": 1,
+      "inconclusive": 0
+    },
+    {
+      "question": "RQ6",
+      "total": 2,
+      "supported": 2,
+      "refuted": 0,
+      "inconclusive": 0
+    },
+    {
+      "question": "RQ7",
+      "total": 1,
+      "supported": 0,
+      "refuted": 1,
+      "inconclusive": 0
+    }
+  ],
+  "verdicts": [
+    {
+      "claimId": "C-ABL-01",
+      "question": "RQ4",
+      "kind": "behavioral",
+      "basis": "closed-form",
+      "criterion": {
+        "statement": "An intervention that leaves its target key unchanged, or moves it the wrong way, refutes the claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "observed": 13,
+        "target": 13
+      },
+      "detail": "13/13 declared interventions moved their target key in the predicted direction",
+      "source": "benchmarks/rigor/ablation",
+      "artifacts": [
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-AI-01",
+      "question": "RQ6",
+      "kind": "ai-generated",
+      "basis": "harness-scored-llm-proposal",
+      "criterion": {
+        "statement": "Any verdict in the loop ledger that is not traceable to a harness run over models A–J refutes the claim.",
+        "test": "eqAbs",
+        "value": 0
+      },
+      "test": "= 0 (±tol)",
+      "status": "supported",
+      "statistic": {
+        "observed": 5,
+        "target": 5
+      },
+      "detail": "5/5 loop verdicts adjudicated by deterministic code (4 by an actual benchmark run; the rest resolved to no model); the model proposed but never adjudicated",
+      "source": "ai/researchAgent",
+      "artifacts": [
+        "ai-loop.json",
+        "ai-loop-ledger.json"
+      ]
+    },
+    {
+      "claimId": "C-AI-02",
+      "question": "RQ6",
+      "kind": "ai-generated",
+      "basis": "harness-scored-llm-proposal",
+      "criterion": {
+        "statement": "A loop in which every round yields zero supported proposals refutes the claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "observed": 4,
+        "target": 5
+      },
+      "detail": "4/5 harness-scored proposals supported across the loop",
+      "source": "aiRun",
+      "artifacts": [
+        "ai-loop.json",
+        "ai-loop-ledger.json"
+      ]
+    },
+    {
+      "claimId": "C-AI-03",
+      "question": "RQ7",
+      "kind": "ai-generated",
+      "basis": "harness-scored-llm-proposal",
+      "criterion": {
+        "statement": "A steered trajectory whose aliveCount at the final tick is at or below the unsteered control refutes the claim.",
+        "test": "gt",
+        "value": 0
+      },
+      "test": "gt 0",
+      "status": "refuted",
+      "statistic": {
+        "observed": 54,
+        "target": 139
+      },
+      "detail": "steered aliveCount 54 vs unsteered control 139 (Δ -85); population 429 → 236, species 45 → 34",
+      "source": "ai/controller",
+      "artifacts": [
+        "ai-world.json",
+        "ai-world.md"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-A",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model A refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 1
+      },
+      "detail": "PASS: fidelity 1.000 over 2 gating checks, 1 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-ALL",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "One failing gating check on any model refutes the claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 10,
+        "target": 10
+      },
+      "detail": "10/10 models passed at quick scale",
+      "source": "benchmarks/benchRun",
+      "artifacts": [
+        "bench.json",
+        "bench.md"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-B",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model B refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 3 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-C",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model C refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 1
+      },
+      "detail": "PASS: fidelity 1.000 over 6 gating checks, 1 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-D",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model D refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 3 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-E",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model E refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 1
+      },
+      "detail": "PASS: fidelity 1.000 over 3 gating checks, 1 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-F",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model F refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 4 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-G",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model G refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 2 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-H",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model H refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 4 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-I",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model I refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 2 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-BENCH-J",
+      "question": "RQ2",
+      "kind": "behavioral",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "Any gating check failing on model J refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1,
+        "n": 5
+      },
+      "detail": "PASS: fidelity 1.000 over 3 gating checks, 5 seed(s), deterministic",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json"
+      ]
+    },
+    {
+      "claimId": "C-DET-01",
+      "question": "RQ1",
+      "kind": "deterministic",
+      "basis": "fingerprint-equality",
+      "criterion": {
+        "statement": "Any full-state fingerprint mismatch across a re-run of an identical configuration falsifies the claim.",
+        "test": "eqAbs",
+        "value": 0
+      },
+      "test": "= 0 (±tol)",
+      "status": "supported",
+      "statistic": {
+        "observed": 3,
+        "target": 3
+      },
+      "detail": "3/3 seeded experiment families reproduced bit-for-bit: first-order×2 ok, third-order×2 ok, stochastic×2 ok",
+      "source": "modes",
+      "artifacts": [
+        "first-order.json",
+        "second-order.json",
+        "third-order.json",
+        "conservation.json",
+        "modes.json"
+      ]
+    },
+    {
+      "claimId": "C-DET-02",
+      "question": "RQ1",
+      "kind": "deterministic",
+      "basis": "fingerprint-equality",
+      "criterion": {
+        "statement": "A single model whose two runs disagree on fingerprint refutes the claim.",
+        "test": "eqAbs",
+        "value": 0
+      },
+      "test": "= 0 (±tol)",
+      "status": "supported",
+      "statistic": {
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "10/10 models reproduced their fingerprint bit-for-bit across two runs",
+      "source": "benchmarks/harness",
+      "artifacts": [
+        "bench.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-AGG",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A single measured or derivable target falling outside its published band refutes the claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 11,
+        "target": 11
+      },
+      "detail": "11/11 measured or derivable literature targets reproduced across 5 quantified systems (aggregate fidelity 1.000)",
+      "source": "benchmarks/rigor/validation",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-CONWAY_LIFE",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Conway's Game of Life falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "2/2 measured/derived targets inside the published band (gated fidelity 1.000)",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-DIFFUSION_FICK",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Diffusion equation falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 3,
+        "target": 3
+      },
+      "detail": "3/3 measured/derived targets inside the published band (gated fidelity 1.000)",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-FLAMEGPU_BOIDS",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Boids (GPU) falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "linked to Boids (GPU) (bench B, gated fidelity 1.000) but the source reports only qualitative targets (1 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-FLAMEGPU_PEDESTRIAN",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Pedestrian Flow falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "linked to Pedestrian Flow (bench I, gated fidelity 1.000) but the source reports only qualitative targets (1 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-LOTKA_VOLTERRA",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Lotka–Volterra predator–prey falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 3,
+        "target": 3
+      },
+      "detail": "3/3 measured/derived targets inside the published band (gated fidelity 1.000)",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-NETLOGO_ANTS",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Ants (stigmergy) falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "linked to Ants (stigmergy) (bench J, gated fidelity 1.000) but the source reports only qualitative targets (2 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-NETLOGO_WOLF_SHEEP",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Wolf–Sheep Predation falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "linked to Wolf–Sheep Predation (bench D, gated fidelity 1.000) but the source reports only qualitative targets (1 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-NOWAK_MAY_IPD",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Spatial Prisoner’s Dilemma falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "linked to Spatial Prisoner’s Dilemma (bench G, gated fidelity 1.000) but the source reports only qualitative targets (2 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-RANDOM_WALK_PEARSON",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Random walk falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "2/2 measured/derived targets inside the published band (gated fidelity 1.000)",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-REPAST_SUGARSCAPE",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Sugarscape falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "linked to Sugarscape (bench H, gated fidelity 1.000) but the source reports only qualitative targets (1 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-REYNOLDS_BOIDS",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Boids falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "linked to Boids (bench B, gated fidelity 1.000) but the source reports only qualitative targets (2 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-TILMAN_RSTAR",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for R* resource competition falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "supported",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 1,
+        "target": 1
+      },
+      "detail": "1/1 measured/derived targets inside the published band (gated fidelity 1.000)",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-TURING_REACTION_DIFFUSION",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Turing / Gray–Scott reaction–diffusion falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "linked to Turing / Gray–Scott reaction–diffusion (bench F, gated fidelity 1.000) but the source reports only qualitative targets (2 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-EMP-VICSEK_MODEL",
+      "question": "RQ3",
+      "kind": "empirical",
+      "basis": "measured-literature",
+      "criterion": {
+        "statement": "A measured or derivable target for Vicsek self-propelled particles falling outside its published band refutes this claim.",
+        "test": "gte",
+        "value": 1
+      },
+      "test": "gte 1",
+      "status": "inconclusive",
+      "statistic": {
+        "fidelity": 1,
+        "observed": 2,
+        "target": 2
+      },
+      "detail": "linked to Vicsek self-propelled particles (bench I, gated fidelity 1.000) but the source reports only qualitative targets (2 expected, 0 measured/derived) — no numeric reference to reproduce",
+      "source": "benchmarks/knownSystems/targets",
+      "artifacts": [
+        "known.json",
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-NOV-01",
+      "question": "RQ5",
+      "kind": "statistical",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "A discrimination score below 0.6 or a coverage score below 0.9 refutes the claim.",
+        "test": "gte",
+        "value": 0.6
+      },
+      "test": "gte 0.6",
+      "status": "supported",
+      "statistic": {
+        "observed": 0.67,
+        "target": 0.6
+      },
+      "detail": "discrimination 0.67 (≥0.6), coverage 1.00 (≥0.9)",
+      "source": "benchmarks/rigor/novelty",
+      "artifacts": [
+        "rigor.json"
+      ]
+    },
+    {
+      "claimId": "C-SIG-01",
+      "question": "RQ5",
+      "kind": "statistical",
+      "basis": "harness-gate",
+      "criterion": {
+        "statement": "A family whose Holm-adjusted one-sided p exceeds 0.05, or whose effect sign is wrong, refutes the claim.",
+        "test": "gte",
+        "value": 1,
+        "alpha": 0.05
+      },
+      "test": "gte 1",
+      "status": "refuted",
+      "statistic": {
+        "observed": 19,
+        "target": 20
+      },
+      "detail": "19/20 directional claims survived Holm–Bonferroni FWER 0.05",
+      "source": "benchmarks/rigor/significance",
+      "artifacts": [
+        "rigor-hypotheses.json",
+        "rigor.json"
+      ]
+    }
+  ],
+  "untested": [],
+  "issues": []
+}
