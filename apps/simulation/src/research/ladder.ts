@@ -7,7 +7,7 @@ import { Engine } from '../engine.js';
 import type { BrainConfig } from '../brain.js';
 import type { WorldStochasticConfig } from '../worldStoch.js';
 import { sampleGrid } from '../terrain.js';
-import { makeWorld, runFirstOrder, runSecondOrder, runThirdOrder, runConservation, determinismCheck } from './scenarios.js';
+import { makeWorld, runFirstOrder, runSecondOrder, runThirdOrder, runConservation, determinismCheck, worldFingerprint } from './scenarios.js';
 import { mean, stdev } from './stats.js';
 
 /**
@@ -139,6 +139,9 @@ export interface LadderResult {
   summary: LadderSummary;
   synthesis: LadderSynthesis;
   controlled: ControlledScenarioEvidence;
+  /** sha256 over the full world state (grid + alive agents) after the final
+   * tick — makes a run bit-comparable even when the summary is degenerate */
+  worldFingerprint: string;
 }
 
 function pearson(xs: number[], ys: number[]): number {
@@ -333,6 +336,7 @@ export function runLadder(opts: LadderOptions): LadderResult {
     summary,
     synthesis,
     controlled,
+    worldFingerprint: worldFingerprint(engine),
   };
 }
 

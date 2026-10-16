@@ -24,6 +24,7 @@
     "research:rigor": "tsx src/research/benchmarks/rigor/rigorRun.ts",
     "research:scope": "tsx src/research/scopeRun.ts",
     "research:ai": "tsx src/research/aiRun.ts",
+    "research:experiment": "tsx src/research/experimentCli.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

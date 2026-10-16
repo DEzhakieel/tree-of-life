@@ -22,15 +22,20 @@ function verdictScore(v: LadderLevelVerdict["verdict"]): number {
   return 0;
 }
 
+/** ladder levels are named 'L1 life' / 'L2 interaction' / 'L3 cognition' */
+function levelVerdict(r: LadderResult, prefix: string): LadderLevelVerdict["verdict"] {
+  return r.synthesis.levels.find((l) => l.level.startsWith(prefix))?.verdict ?? "ABSENT";
+}
+
 export const objectives = {
   l1Emergent(): Objective {
-    return { id: "l1-emergent", name: "L1 emergent", value(r) { return verdictScore(r.synthesis.levels.find(l => l.level === "L1")?.verdict ?? "ABSENT"); }, threshold: 1, weight: 1 };
+    return { id: "l1-emergent", name: "L1 emergent", value(r) { return verdictScore(levelVerdict(r, "L1")); }, threshold: 1, weight: 1 };
   },
   l2Emergent(): Objective {
-    return { id: "l2-emergent", name: "L2 emergent", value(r) { return verdictScore(r.synthesis.levels.find(l => l.level === "L2")?.verdict ?? "ABSENT"); }, threshold: 1, weight: 1 };
+    return { id: "l2-emergent", name: "L2 emergent", value(r) { return verdictScore(levelVerdict(r, "L2")); }, threshold: 1, weight: 1 };
   },
   l3Emergent(): Objective {
-    return { id: "l3-emergent", name: "L3 emergent", value(r) { return verdictScore(r.synthesis.levels.find(l => l.level === "L3")?.verdict ?? "ABSENT"); }, threshold: 1, weight: 1 };
+    return { id: "l3-emergent", name: "L3 emergent", value(r) { return verdictScore(levelVerdict(r, "L3")); }, threshold: 1, weight: 1 };
   },
   adaptation(min = 0): Objective {
     return { id: "adaptation", name: "Adaptation (%)", value(r) { return Math.max(0, r.summary.cognition.adaptationFrac * 100); }, threshold: min, weight: 1 };
@@ -48,7 +53,7 @@ export const objectives = {
     return { id: "signal-use", name: "Signal correlation", value(r) { return clamp01(Math.abs(r.summary.cognition.signalCorr)); }, weight: 0.3 };
   },
   cultureMemeMI(): Objective {
-    return { id: "culture-mi", name: "Culture–species MI", value(r) { return clamp01(r.summary.cognition.speciesMemeMIMax); }, weight: 0.4 };
+    return { id: "culture-mi", name: "Cultureï¿½species MI", value(r) { return clamp01(r.summary.cognition.speciesMemeMIMax); }, weight: 0.4 };
   },
 };
 
