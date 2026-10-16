@@ -1,7 +1,7 @@
 # Fractal Life — research scope
 
 Scope version: 1.0.0
-Generated: 2026-10-15T16:25:22.303Z
+Generated: 2026-10-16T13:16:26.412Z
 Claims: 34 tested — 23 supported, 2 refuted, 9 inconclusive; 0 undefined-but-untested
 
 > This document is generated from `research/scope.ts` and the evidence artifacts.

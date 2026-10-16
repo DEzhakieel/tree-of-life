@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T16:25:22.303Z",
+  "generatedAt": "2026-10-16T13:16:26.412Z",
   "scopeVersion": "1.0.0",
   "method": "Each claim is pre-registered in research/scope.ts with a falsifiability criterion fixed before the experiment. Evidence is mapped from the harness scorecard, the known-systems target assessment, the rigor modules, the significance ledger and the AI loop ledger onto those claim ids; a verdict can only be attached to an id that already existed, so the ledger records tests rather than post-hoc narratives.",
   "summary": {
