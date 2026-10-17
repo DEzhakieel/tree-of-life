@@ -1,0 +1,38 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_wasmengine_free: (a: number, b: number) => void;
+export const __wbg_wasmtickresult_free: (a: number, b: number) => void;
+export const wasmengine_agent_summaries_json: (a: number) => [number, number, number];
+export const wasmengine_alive_count: (a: number) => number;
+export const wasmengine_all_agent_states_json: (a: number) => [number, number, number];
+export const wasmengine_apply_intervention_json: (a: number, b: number, c: number) => [number, number];
+export const wasmengine_brain_stats_json: (a: number) => [number, number, number];
+export const wasmengine_build_lineage_json: (a: number) => [number, number, number];
+export const wasmengine_compute_state_hash: (a: number) => number;
+export const wasmengine_config_json: (a: number) => [number, number, number];
+export const wasmengine_current_tick: (a: number) => number;
+export const wasmengine_debug_agents_json: (a: number) => [number, number, number];
+export const wasmengine_debug_trace_json: (a: number) => [number, number, number];
+export const wasmengine_intervention_log_json: (a: number) => [number, number, number];
+export const wasmengine_new: (a: number, b: number) => [number, number, number];
+export const wasmengine_set_brain_json: (a: number, b: number, c: number) => [number, number];
+export const wasmengine_set_map_json: (a: number) => [number, number, number];
+export const wasmengine_set_reality_json: (a: number, b: number, c: number) => [number, number];
+export const wasmengine_set_record_delta: (a: number, b: number) => void;
+export const wasmengine_set_world_stoch_json: (a: number, b: number, c: number) => [number, number];
+export const wasmengine_terrain_grid_json: (a: number) => [number, number, number];
+export const wasmengine_tick: (a: number) => number;
+export const wasmengine_world_status_json: (a: number, b: number) => [number, number, number];
+export const wasmtickresult_delta_bytes: (a: number) => any;
+export const wasmtickresult_delta_count: (a: number) => number;
+export const wasmtickresult_events_json: (a: number) => [number, number, number];
+export const wasmtickresult_stats_json: (a: number) => [number, number, number];
+export const wasmtickresult_tick: (a: number) => number;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_exn_store: (a: number) => void;
+export const __externref_table_alloc: () => number;
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_start: () => void;

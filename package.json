@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Fractal Life Sandbox — emergent artificial-life simulation on procedural fractal terrain",
+  "description": "Tree of Life — emergent artificial-life simulation on procedural fractal terrain (formerly Fractal Life Sandbox)",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -14,6 +14,8 @@
     "build:web": "npm run build -w @fractal-life/web",
     "build:server": "npm run build -w @fractal-life/server",
     "build": "npm run build:server && npm run build:web",
+    "preview": "node serve.js",
+    "terminal": "npm run terminal -w @fractal-life/simulation",
     "test": "npm run test --workspaces --if-present",
     "test:fast": "npm run test --workspaces --if-present -- --fast",
     "typecheck": "npm run typecheck --workspaces --if-present",

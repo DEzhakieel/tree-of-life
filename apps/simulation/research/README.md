@@ -1,8 +1,27 @@
-# Fractal Life — research harness documentation
+# Tree of Life — research harness documentation
+
+*(Tree of Life — formerly "Fractal Life v2".)*
 
 This directory is the measurement + experiment arm of the simulation. It runs
 deterministic, seedable experiments and writes a self-contained report bank to
 `research/output/` — statistics, probabilities, SVG plots, CSV, JSON.
+
+> **Single record of the research stack:** `research/UNIFIED_RECORD.md` pegs every
+> instrument (detectors, observers, documenters, LLM/agents) to the system
+> sections (`SYSTEM_MAP.md`), the five hierarchies (capability radar L0–L10,
+> life-organization ladder O0–O9, emergence ladder L1–L3, macro regimes, rigor
+> a–d), the reinforcing/balancing loop and the reciprocity process, plus experiments, phases, categories, and the
+> classification catalog — with a master cross-reference matrix and a records
+> index. The module table below is the per-module detail it indexes into.
+>
+> **Whole-system atlas:** `research/SYSTEM_ATLAS.md` maps the engines/runtimes,
+> the tick-pipeline mechanisms, the biomimicry (what real biology/physics each
+> module models), the detectors, the LLM agents, the experiments, and the
+> server/web/scripts/probe/infra tooling — the navigation entry point.
+>
+> **Technical manual:** `research/manual/` is the deep specification — the full
+> tick algorithm and every subsystem mechanism, the mathematical formulation and
+> derivations, the Phase A–M model evolution, and the evaluations/debug log.
 
 ## Modules
 
@@ -816,6 +835,8 @@ npx tsx --test apps/simulation/test/*.test.ts
 | `plots/complexity.svg` | per-unit (∂/∂lg p) panels for capacity (right) and supply (left), criticality markers, attractor-mode bars, plus interaction-surface heatmaps (T1/T3 aliveFrac over capacity×supply) |
 | `emergence.md/json/csv` | emergence measurement layer: five axes per world (micro-information bits · macro-information bits · LMC complexity · self-organization · temporal persistence) + emergent information (sync/predictive NMI) + composite emergence index + ABSENT/PARTIAL/EMERGENT verdict; phase-2 metric axes (order · species/trait polarization · aggregation · Moran I · fill factor · correlation length · Shannon/Simpson/evenness · synergy/redundancy/total bits · compressibility · LZ) and the population-level macro-state detector (dominant/final stage, progression, spatial structure, coordination, rigidity, persistence, organization, vitality, macroOrder vs agentOrder and their divergence); archetype ladder T0–T3 × 3 seeds × capacities 60/150/400, per-world determinism double-run |
 | `plots/emergence.svg` | normalised emergence axes grouped by tier, emergence-index line against the EMERGENT band, and an exemplar microInfo/complexity/aggregation trace |
+| `lifeorg.md/json/csv` | life-organization ladder (`D-ORG`): the O0 subatomic → O9 organism rungs, each a coverage-gated composition of `SimStats` observables (run-relative stretch + hysteresis; a wired-off substrate reads DORMANT). Legacy vs full-substrate arm × seeds → per-level status/onset/peak/coverage |
+| `plots/lifeorg.svg` | per-rung peak bars (legacy vs full arm) coloured by status + the novelty sparkline |
 | `analysis.md` | the statistics + probability report (links plots) |
 | `analysis.json` | machine-readable numbers |
 | `causal.md/csv/json` | causal reverse-engineering: every one of the 2^n component arms at two densities, threshold sensitivity (factors 0.8/0.9/1/1.1/1.25) with per-factor relabel rates and transition counts, density sweeps, minimal sufficient sets, leave-one-out ablations, and replication on a second (`double-size`) genome background with variant separation/sense geometry |

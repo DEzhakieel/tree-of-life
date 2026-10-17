@@ -1,0 +1,15 @@
+{
+  "name": "fractal-life-wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "fractal_life_wasm_bg.wasm",
+    "fractal_life_wasm.js",
+    "fractal_life_wasm.d.ts"
+  ],
+  "main": "fractal_life_wasm.js",
+  "types": "fractal_life_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

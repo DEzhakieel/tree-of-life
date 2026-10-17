@@ -1,0 +1,2528 @@
+{
+  "config": {
+    "seeds": [
+      "highn.s1",
+      "highn.s2",
+      "highn.s3"
+    ],
+    "scales": [
+      100,
+      500,
+      1000,
+      2000,
+      5000,
+      10000
+    ],
+    "ticks": 2000,
+    "sampleEvery": 200,
+    "verifyRepro": 2
+  },
+  "nCandidates": 18,
+  "candidates": [
+    {
+      "id": "highn_n100_mp120_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 100,
+        "maxPopulation": 120,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.539167155953353,
+        "rigidity": 0.6,
+        "persistence": 0.2222222222222222,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 43,
+        "coop": 0.0022858508769527976,
+        "donation": 0.2948567673402481,
+        "pop": 120
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.5,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 10.1
+      },
+      "digest": "786265110a9bf482bfec4d6a2488a71c3edec838fb74099101e9299335138023",
+      "reproducible": true,
+      "summary": {
+        "life": {
+          "finalAlive": 120,
+          "minAlive": 38,
+          "maxAlive": 120,
+          "extinct": false,
+          "totalBirths": 456,
+          "totalDeaths": 436,
+          "netBirths": 20,
+          "reproductionRate": 1.0458715596330275,
+          "avgEnergyMean": 62.2270305415844,
+          "avgEnergyCV": 0.26608701621368025,
+          "matterMean": 1906322.9414156668,
+          "matterCV": 0.042216493361164675,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 43,
+          "finalSpecies": 43,
+          "maxPredatorFraction": 0.13157894736842105,
+          "maxCooperation": 0.0022858508769527976,
+          "maxMeanAltruism": 0.2948567673402481,
+          "maxKills": 6
+        },
+        "cognition": {
+          "foragingMean": 0.401646915416741,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.1667231433717315,
+          "signalCorr": 0.3255084605103878,
+          "headingEntropyMean": 2.1652202398020712,
+          "signalTotalMean": 80.58516661742075,
+          "signalCellsMax": 12678,
+          "cultureCountMax": 13,
+          "memeEntropyMax": 3.3124308023479356,
+          "speciesMemeMIMax": 0.9296529259133036,
+          "complexityMax": 0.36338784923819595,
+          "fitnessFirstQ": 66.08719219196155,
+          "fitnessLastQ": 266.44047252019,
+          "adaptationDelta": 200.35328032822844,
+          "adaptationFrac": 3.031650667594836
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.33186391199559584,
+          "meanCooperationMean": 0.5080110206548111,
+          "meanRiskMean": 0.35041192297678364,
+          "meanDeceptionMean": 0.5891323784358435,
+          "predatorGeneFractionMax": 0.6842105263157895,
+          "preyGeneFractionMax": 0.8916666666666667,
+          "energyInequalityMax": 0.5587106144416346,
+          "donationRatioMean": 0.036046319363282474,
+          "strategyEntropy": 0.12557903821658892
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 120,
+              "minAlive": 38,
+              "netBirths": 20,
+              "reproductionRate": 1.0458715596330275,
+              "avgEnergyMean": 62.2270305415844,
+              "avgEnergyCV": 0.26608701621368025,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 43,
+              "maxPredatorFraction": 0.13157894736842105,
+              "maxCooperation": 0.0022858508769527976,
+              "maxMeanAltruism": 0.2948567673402481,
+              "maxKills": 6
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.401646915416741,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.1667231433717315,
+              "signalTotalMean": 80.58516661742075,
+              "headingEntropyMean": 2.1652202398020712,
+              "cultureCountMax": 13,
+              "memeEntropyMax": 3.3124308023479356,
+              "adaptationDelta": 200.35328032822844,
+              "adaptationFrac": 3.031650667594836
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "d6aee21628d97513b75ec6d85c114549fe120144f63436a7c5af8aadc1a7f0fa"
+    },
+    {
+      "id": "highn_n10000_mp12000_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 10000,
+        "maxPopulation": 12000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.6394441832866201,
+        "rigidity": 0.5,
+        "persistence": 0.7777777777777778,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 2307,
+        "coop": 0.0006972129130742185,
+        "donation": 0.08963416332307524,
+        "pop": 5101
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.21595216653966362,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.815952166539663
+      },
+      "digest": "bbd47d55e983d8a1b16faf7f9ba23b43e1492dd05056ac8aed6547b8d6948669",
+      "reproducible": true,
+      "summary": {
+        "life": {
+          "finalAlive": 5101,
+          "minAlive": 3830,
+          "maxAlive": 5714,
+          "extinct": false,
+          "totalBirths": 27574,
+          "totalDeaths": 32473,
+          "netBirths": -4899,
+          "reproductionRate": 0.8491362054630001,
+          "avgEnergyMean": 29.308810273137947,
+          "avgEnergyCV": 0.0782787251024112,
+          "matterMean": 961002.6767806921,
+          "matterCV": 0.3846107382330346,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 2307,
+          "finalSpecies": 2014,
+          "maxPredatorFraction": 0.17597911227154048,
+          "maxCooperation": 0.0006972129130742185,
+          "maxMeanAltruism": 0.08963416332307524,
+          "maxKills": 1216
+        },
+        "cognition": {
+          "foragingMean": 0.16649136766670825,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.20364734996782063,
+          "signalCorr": -0.012255632943580968,
+          "headingEntropyMean": 3.3499837141348094,
+          "signalTotalMean": 3193.4945042798004,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.340560688931114,
+          "speciesMemeMIMax": 0.850620725192848,
+          "complexityMax": 0.057394369177265585,
+          "fitnessFirstQ": 68.51695282795384,
+          "fitnessLastQ": 78.79618076916584,
+          "adaptationDelta": 10.279227941212,
+          "adaptationFrac": 0.15002459270223464
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.48966379343214844,
+          "meanCooperationMean": 0.48041440723492707,
+          "meanRiskMean": 0.4496263562296689,
+          "meanDeceptionMean": 0.513090004065809,
+          "predatorGeneFractionMax": 0.4241838902839482,
+          "preyGeneFractionMax": 0.509311899627524,
+          "energyInequalityMax": 0.670902252017403,
+          "donationRatioMean": 0.020912121090222502,
+          "strategyEntropy": 0.03453661895921886
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 5101,
+              "minAlive": 3830,
+              "netBirths": -4899,
+              "reproductionRate": 0.8491362054630001,
+              "avgEnergyMean": 29.308810273137947,
+              "avgEnergyCV": 0.0782787251024112,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 2307,
+              "maxPredatorFraction": 0.17597911227154048,
+              "maxCooperation": 0.0006972129130742185,
+              "maxMeanAltruism": 0.08963416332307524,
+              "maxKills": 1216
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.16649136766670825,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.20364734996782063,
+              "signalTotalMean": 3193.4945042798004,
+              "headingEntropyMean": 3.3499837141348094,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.340560688931114,
+              "adaptationDelta": 10.279227941212,
+              "adaptationFrac": 0.15002459270223464
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "f25343e5ec893fcf57177e5ecd20296ab3576d24fe278c610ace80d665cceb47"
+    },
+    {
+      "id": "highn_n2000_mp2400_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 2000,
+        "maxPopulation": 2400,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.721784602360902,
+        "rigidity": 0.5,
+        "persistence": 0.5555555555555556,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 576,
+        "coop": 0.0005625773013967343,
+        "donation": 0.10334614850568678,
+        "pop": 2400
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.17598593706882354,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.775985937068823
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 2400,
+          "minAlive": 913,
+          "maxAlive": 2400,
+          "extinct": false,
+          "totalBirths": 7215,
+          "totalDeaths": 6815,
+          "netBirths": 400,
+          "reproductionRate": 1.0586940572267058,
+          "avgEnergyMean": 57.3310732538567,
+          "avgEnergyCV": 0.40471843422028936,
+          "matterMean": 1537164.8660183419,
+          "matterCV": 0.10566147150871932,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 576,
+          "finalSpecies": 496,
+          "maxPredatorFraction": 0.1664841182913472,
+          "maxCooperation": 0.0005625773013967343,
+          "maxMeanAltruism": 0.10334614850568678,
+          "maxKills": 181
+        },
+        "cognition": {
+          "foragingMean": 0.1666565552191158,
+          "foragingPositiveFrac": 0.9,
+          "hazardCorr": -0.1845111337139803,
+          "signalCorr": 0.09117386219806144,
+          "headingEntropyMean": 3.0910506536801536,
+          "signalTotalMean": 1522.0552705021005,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.236926233964059,
+          "speciesMemeMIMax": 0.9188145196844744,
+          "complexityMax": 0.22436646732219215,
+          "fitnessFirstQ": 71.0509819863508,
+          "fitnessLastQ": 168.85701810559638,
+          "adaptationDelta": 97.80603611924558,
+          "adaptationFrac": 1.3765613561545782
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.5776980114195353,
+          "meanCooperationMean": 0.5146871005987781,
+          "meanRiskMean": 0.5733775325274867,
+          "meanDeceptionMean": 0.4271935806868917,
+          "predatorGeneFractionMax": 0.6708333333333333,
+          "preyGeneFractionMax": 0.4786418400876232,
+          "energyInequalityMax": 0.5518965188849659,
+          "donationRatioMean": 0.02965260523600463,
+          "strategyEntropy": 0.07834464796941917
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 2400,
+              "minAlive": 913,
+              "netBirths": 400,
+              "reproductionRate": 1.0586940572267058,
+              "avgEnergyMean": 57.3310732538567,
+              "avgEnergyCV": 0.40471843422028936,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 576,
+              "maxPredatorFraction": 0.1664841182913472,
+              "maxCooperation": 0.0005625773013967343,
+              "maxMeanAltruism": 0.10334614850568678,
+              "maxKills": 181
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.1666565552191158,
+              "foragingPositiveFrac": 0.9,
+              "hazardCorr": -0.1845111337139803,
+              "signalTotalMean": 1522.0552705021005,
+              "headingEntropyMean": 3.0910506536801536,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.236926233964059,
+              "adaptationDelta": 97.80603611924558,
+              "adaptationFrac": 1.3765613561545782
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "760897dc87b6c352e0c459b549b20ada148c20d76ad13421e663e2cc2cf595eb"
+    },
+    {
+      "id": "highn_n1000_mp1200_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 1000,
+        "maxPopulation": 1200,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 3,
+        "structure": 0.6283025682257769,
+        "rigidity": 0.6,
+        "persistence": 0.4444444444444444,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 329,
+        "coop": 0.0004405040028944989,
+        "donation": 0.09003527218488143,
+        "pop": 1200
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.1603878955698989,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.760387895569899
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 1200,
+          "minAlive": 418,
+          "maxAlive": 1200,
+          "extinct": false,
+          "totalBirths": 2821,
+          "totalDeaths": 2621,
+          "netBirths": 200,
+          "reproductionRate": 1.0763067531476536,
+          "avgEnergyMean": 73.1365453389383,
+          "avgEnergyCV": 0.3632715749126955,
+          "matterMean": 1707312.9813006595,
+          "matterCV": 0.03394845438054394,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 329,
+          "finalSpecies": 300,
+          "maxPredatorFraction": 0.15789473684210525,
+          "maxCooperation": 0.0004405040028944989,
+          "maxMeanAltruism": 0.09003527218488143,
+          "maxKills": 28
+        },
+        "cognition": {
+          "foragingMean": 0.16717665538456244,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.25232383031215355,
+          "signalCorr": 0.01715669997371367,
+          "headingEntropyMean": 3.3588877521235303,
+          "signalTotalMean": 979.0333791212655,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.1065934760174585,
+          "speciesMemeMIMax": 0.9291752197993329,
+          "complexityMax": 0.15081845061777827,
+          "fitnessFirstQ": 66.22583530101704,
+          "fitnessLastQ": 271.09199133383646,
+          "adaptationDelta": 204.86615603281942,
+          "adaptationFrac": 3.0934476719189568
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.49502559367154364,
+          "meanCooperationMean": 0.5433477629430965,
+          "meanRiskMean": 0.5309204938370102,
+          "meanDeceptionMean": 0.5989271374574134,
+          "predatorGeneFractionMax": 0.5116666666666667,
+          "preyGeneFractionMax": 0.5271428571428571,
+          "energyInequalityMax": 0.5311899458251743,
+          "donationRatioMean": 0.02358610872328803,
+          "strategyEntropy": 0.04343206739773894
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 1200,
+              "minAlive": 418,
+              "netBirths": 200,
+              "reproductionRate": 1.0763067531476536,
+              "avgEnergyMean": 73.1365453389383,
+              "avgEnergyCV": 0.3632715749126955,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 329,
+              "maxPredatorFraction": 0.15789473684210525,
+              "maxCooperation": 0.0004405040028944989,
+              "maxMeanAltruism": 0.09003527218488143,
+              "maxKills": 28
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.16717665538456244,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.25232383031215355,
+              "signalTotalMean": 979.0333791212655,
+              "headingEntropyMean": 3.3588877521235303,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.1065934760174585,
+              "adaptationDelta": 204.86615603281942,
+              "adaptationFrac": 3.0934476719189568
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "79081e1a0420e95864ad02166776fe4ac1be752ac26b7fc982a303be862ef07e"
+    },
+    {
+      "id": "highn_n500_mp600_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 500,
+        "maxPopulation": 600,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.5005493665336178,
+        "rigidity": 0.7,
+        "persistence": 0.5555555555555556,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 201,
+        "coop": 0.0008277196783044198,
+        "donation": 0.1435253055328448,
+        "pop": 600
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.13484317792944814,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.734843177929449
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 600,
+          "minAlive": 309,
+          "maxAlive": 600,
+          "extinct": false,
+          "totalBirths": 1831,
+          "totalDeaths": 1731,
+          "netBirths": 100,
+          "reproductionRate": 1.0577700751010977,
+          "avgEnergyMean": 66.46200791365166,
+          "avgEnergyCV": 0.37426175029922965,
+          "matterMean": 1823609.7572729557,
+          "matterCV": 0.015173065452793925,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 201,
+          "finalSpecies": 134,
+          "maxPredatorFraction": 0.0970873786407767,
+          "maxCooperation": 0.0008277196783044198,
+          "maxMeanAltruism": 0.1435253055328448,
+          "maxKills": 21
+        },
+        "cognition": {
+          "foragingMean": 0.20074474551124627,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.19884853978536154,
+          "signalCorr": 0.18331832726767505,
+          "headingEntropyMean": 3.0892238069761917,
+          "signalTotalMean": 553.9582415053135,
+          "signalCellsMax": 16365,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 3.721805184828195,
+          "speciesMemeMIMax": 0.9322113407749122,
+          "complexityMax": 0.2789511170487376,
+          "fitnessFirstQ": 63.37478122238889,
+          "fitnessLastQ": 254.479591108225,
+          "adaptationDelta": 191.10480988583612,
+          "adaptationFrac": 3.0154709207630854
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.5987379614214082,
+          "meanCooperationMean": 0.5055425016474516,
+          "meanRiskMean": 0.5661614422491181,
+          "meanDeceptionMean": 0.48339212242477975,
+          "predatorGeneFractionMax": 0.7016666666666667,
+          "preyGeneFractionMax": 0.5663430420711975,
+          "energyInequalityMax": 0.5635497253083095,
+          "donationRatioMean": 0.03318848449776947,
+          "strategyEntropy": 0.08821610863337404
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 600,
+              "minAlive": 309,
+              "netBirths": 100,
+              "reproductionRate": 1.0577700751010977,
+              "avgEnergyMean": 66.46200791365166,
+              "avgEnergyCV": 0.37426175029922965,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 201,
+              "maxPredatorFraction": 0.0970873786407767,
+              "maxCooperation": 0.0008277196783044198,
+              "maxMeanAltruism": 0.1435253055328448,
+              "maxKills": 21
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.20074474551124627,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.19884853978536154,
+              "signalTotalMean": 553.9582415053135,
+              "headingEntropyMean": 3.0892238069761917,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 3.721805184828195,
+              "adaptationDelta": 191.10480988583612,
+              "adaptationFrac": 3.0154709207630854
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "ff22cb43242d6683b7949c22b9ba1724b419fd53d45b132d2e151455c4d7ce49"
+    },
+    {
+      "id": "highn_n100_mp120_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 100,
+        "maxPopulation": 120,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.503635663819418,
+        "rigidity": 0.7,
+        "persistence": 0.5555555555555556,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 25,
+        "coop": 0.0014402765339982598,
+        "donation": 0.11353795991483677,
+        "pop": 120
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.1339613787049338,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.733961378704933
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 120,
+          "minAlive": 60,
+          "maxAlive": 120,
+          "extinct": false,
+          "totalBirths": 244,
+          "totalDeaths": 224,
+          "netBirths": 20,
+          "reproductionRate": 1.0892857142857142,
+          "avgEnergyMean": 73.59422137595156,
+          "avgEnergyCV": 0.3820610267467301,
+          "matterMean": 1957391.9398628299,
+          "matterCV": 0.04930498537679828,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 25,
+          "finalSpecies": 19,
+          "maxPredatorFraction": 0.13333333333333333,
+          "maxCooperation": 0.0014402765339982598,
+          "maxMeanAltruism": 0.11353795991483677,
+          "maxKills": 5
+        },
+        "cognition": {
+          "foragingMean": 0.0957223864174804,
+          "foragingPositiveFrac": 0.7,
+          "hazardCorr": -0.34888045212057955,
+          "signalCorr": 0.16977216944001733,
+          "headingEntropyMean": 1.2974274461947688,
+          "signalTotalMean": 87.45005317650404,
+          "signalCellsMax": 10874,
+          "cultureCountMax": 12,
+          "memeEntropyMax": 2.848293874971893,
+          "speciesMemeMIMax": 0.9559711700973754,
+          "complexityMax": 0.5654465925413196,
+          "fitnessFirstQ": 64.10219101043103,
+          "fitnessLastQ": 210.57900732416363,
+          "adaptationDelta": 146.4768163137326,
+          "adaptationFrac": 2.2850516340369262
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.3389014537317664,
+          "meanCooperationMean": 0.708549058810311,
+          "meanRiskMean": 0.7578300946197063,
+          "meanDeceptionMean": 0.7446881616457556,
+          "predatorGeneFractionMax": 0.21666666666666667,
+          "preyGeneFractionMax": 0.8055555555555556,
+          "energyInequalityMax": 0.5662288868387145,
+          "donationRatioMean": 0.04708325494925517,
+          "strategyEntropy": 0.1959152314498054
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 120,
+              "minAlive": 60,
+              "netBirths": 20,
+              "reproductionRate": 1.0892857142857142,
+              "avgEnergyMean": 73.59422137595156,
+              "avgEnergyCV": 0.3820610267467301,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 25,
+              "maxPredatorFraction": 0.13333333333333333,
+              "maxCooperation": 0.0014402765339982598,
+              "maxMeanAltruism": 0.11353795991483677,
+              "maxKills": 5
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.0957223864174804,
+              "foragingPositiveFrac": 0.7,
+              "hazardCorr": -0.34888045212057955,
+              "signalTotalMean": 87.45005317650404,
+              "headingEntropyMean": 1.2974274461947688,
+              "cultureCountMax": 12,
+              "memeEntropyMax": 2.848293874971893,
+              "adaptationDelta": 146.4768163137326,
+              "adaptationFrac": 2.2850516340369262
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "f80e862b6dd29c98858e5edc32d91048525fc136a5c8cec501e96591d4022503"
+    },
+    {
+      "id": "highn_n2000_mp2400_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 2000,
+        "maxPopulation": 2400,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 3,
+        "structure": 0.6346937652177129,
+        "rigidity": 0.6,
+        "persistence": 0.1111111111111111,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 822,
+        "coop": 0.0005181494168002162,
+        "donation": 0.14888094686689807,
+        "pop": 2400
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.13046792010727745,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.730467920107277
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 2400,
+          "minAlive": 699,
+          "maxAlive": 2400,
+          "extinct": false,
+          "totalBirths": 7521,
+          "totalDeaths": 7121,
+          "netBirths": 400,
+          "reproductionRate": 1.0561718859710716,
+          "avgEnergyMean": 54.15623314399077,
+          "avgEnergyCV": 0.3643053257827132,
+          "matterMean": 1447705.1902012038,
+          "matterCV": 0.15296460196824266,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 822,
+          "finalSpecies": 803,
+          "maxPredatorFraction": 0.1888412017167382,
+          "maxCooperation": 0.0005181494168002162,
+          "maxMeanAltruism": 0.14888094686689807,
+          "maxKills": 156
+        },
+        "cognition": {
+          "foragingMean": 0.25715531307982864,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.1892665369844984,
+          "signalCorr": 0.00969708987815095,
+          "headingEntropyMean": 3.2991144171319613,
+          "signalTotalMean": 1407.0122111007704,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.255354797543881,
+          "speciesMemeMIMax": 0.924643492177137,
+          "complexityMax": 0.10510390238933269,
+          "fitnessFirstQ": 66.32580100335403,
+          "fitnessLastQ": 211.6032725479686,
+          "adaptationDelta": 145.27747154461457,
+          "adaptationFrac": 2.1903613578261654
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.45720610198953365,
+          "meanCooperationMean": 0.39729516441473306,
+          "meanRiskMean": 0.4813893348459546,
+          "meanDeceptionMean": 0.4620043475288277,
+          "predatorGeneFractionMax": 0.34342258440046564,
+          "preyGeneFractionMax": 0.5446265938069217,
+          "energyInequalityMax": 0.5344580580592935,
+          "donationRatioMean": 0.026496419962995527,
+          "strategyEntropy": 0.05089470542909379
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 2400,
+              "minAlive": 699,
+              "netBirths": 400,
+              "reproductionRate": 1.0561718859710716,
+              "avgEnergyMean": 54.15623314399077,
+              "avgEnergyCV": 0.3643053257827132,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 822,
+              "maxPredatorFraction": 0.1888412017167382,
+              "maxCooperation": 0.0005181494168002162,
+              "maxMeanAltruism": 0.14888094686689807,
+              "maxKills": 156
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.25715531307982864,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.1892665369844984,
+              "signalTotalMean": 1407.0122111007704,
+              "headingEntropyMean": 3.2991144171319613,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.255354797543881,
+              "adaptationDelta": 145.27747154461457,
+              "adaptationFrac": 2.1903613578261654
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "06be559def4c23278b0b553da2d9116ce601c388729c65c96464ae7b6f991ec7"
+    },
+    {
+      "id": "highn_n10000_mp12000_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 10000,
+        "maxPopulation": 12000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 3,
+        "structure": 0.6353822249056617,
+        "rigidity": 0.6,
+        "persistence": 0.2222222222222222,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 2083,
+        "coop": 0.0007212188757724439,
+        "donation": 0.13307092938285836,
+        "pop": 3984
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.09891859112923106,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.698918591129232
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 3984,
+          "minAlive": 3341,
+          "maxAlive": 4459,
+          "extinct": false,
+          "totalBirths": 23632,
+          "totalDeaths": 29648,
+          "netBirths": -6016,
+          "reproductionRate": 0.7970858067997841,
+          "avgEnergyMean": 33.43717988816095,
+          "avgEnergyCV": 0.04508619778192216,
+          "matterMean": 1046167.5581012549,
+          "matterCV": 0.33337044267605337,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 2083,
+          "finalSpecies": 1457,
+          "maxPredatorFraction": 0.21370847051780903,
+          "maxCooperation": 0.0007212188757724439,
+          "maxMeanAltruism": 0.13307092938285836,
+          "maxKills": 1073
+        },
+        "cognition": {
+          "foragingMean": 0.10781343742534626,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.2199645764897193,
+          "signalCorr": 0.06298896315928282,
+          "headingEntropyMean": 3.5396181543790908,
+          "signalTotalMean": 2867.3605970450562,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.303571316191936,
+          "speciesMemeMIMax": 0.8626790369334211,
+          "complexityMax": 0.11845238888707342,
+          "fitnessFirstQ": 76.43573472314714,
+          "fitnessLastQ": 101.50587918063589,
+          "adaptationDelta": 25.07014445748875,
+          "adaptationFrac": 0.3279898407242853
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.5136550598173707,
+          "meanCooperationMean": 0.5020481565691909,
+          "meanRiskMean": 0.44463850179171616,
+          "meanDeceptionMean": 0.5871314275286503,
+          "predatorGeneFractionMax": 0.5436746987951807,
+          "preyGeneFractionMax": 0.5272809599275526,
+          "energyInequalityMax": 0.6794785299007874,
+          "donationRatioMean": 0.027996973759249245,
+          "strategyEntropy": 0.061622845639219596
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 3984,
+              "minAlive": 3341,
+              "netBirths": -6016,
+              "reproductionRate": 0.7970858067997841,
+              "avgEnergyMean": 33.43717988816095,
+              "avgEnergyCV": 0.04508619778192216,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 2083,
+              "maxPredatorFraction": 0.21370847051780903,
+              "maxCooperation": 0.0007212188757724439,
+              "maxMeanAltruism": 0.13307092938285836,
+              "maxKills": 1073
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.10781343742534626,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.2199645764897193,
+              "signalTotalMean": 2867.3605970450562,
+              "headingEntropyMean": 3.5396181543790908,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.303571316191936,
+              "adaptationDelta": 25.07014445748875,
+              "adaptationFrac": 0.3279898407242853
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "72b151a3d04a65d72c779e869b9c6b6737ac2ae4cd70b880f53f117b4dde37d9"
+    },
+    {
+      "id": "highn_n5000_mp6000_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 5000,
+        "maxPopulation": 6000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 3,
+        "structure": 0.6238210260087808,
+        "rigidity": 0.6,
+        "persistence": 0.2222222222222222,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 2055,
+        "coop": 0.0004191524336389174,
+        "donation": 0.04035852125522615,
+        "pop": 5997
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.09561539144440794,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.695615391444408
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 5997,
+          "minAlive": 2060,
+          "maxAlive": 5997,
+          "extinct": false,
+          "totalBirths": 27087,
+          "totalDeaths": 26090,
+          "netBirths": 997,
+          "reproductionRate": 1.038213875047911,
+          "avgEnergyMean": 31.84770428732715,
+          "avgEnergyCV": 0.05592953631193243,
+          "matterMean": 1089414.22945236,
+          "matterCV": 0.35444649055666977,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 2055,
+          "finalSpecies": 1854,
+          "maxPredatorFraction": 0.15825242718446603,
+          "maxCooperation": 0.0004191524336389174,
+          "maxMeanAltruism": 0.04035852125522615,
+          "maxKills": 477
+        },
+        "cognition": {
+          "foragingMean": 0.2144651222368167,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.19173638805143584,
+          "signalCorr": -0.06449338659040972,
+          "headingEntropyMean": 3.248075999943024,
+          "signalTotalMean": 2515.8149031555063,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.285698641825159,
+          "speciesMemeMIMax": 0.8604765448114756,
+          "complexityMax": 0.07633466658286768,
+          "fitnessFirstQ": 64.51419739845954,
+          "fitnessLastQ": 68.11041132287248,
+          "adaptationDelta": 3.596213924412936,
+          "adaptationFrac": 0.05574298479141904
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.6221558884468646,
+          "meanCooperationMean": 0.41491049493648424,
+          "meanRiskMean": 0.4937217176368388,
+          "meanDeceptionMean": 0.5170367425230372,
+          "predatorGeneFractionMax": 0.7938969484742371,
+          "preyGeneFractionMax": 0.49241274658573597,
+          "energyInequalityMax": 0.6624365567465081,
+          "donationRatioMean": 0.013500277921019826,
+          "strategyEntropy": 0.10180167585332439
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 5997,
+              "minAlive": 2060,
+              "netBirths": 997,
+              "reproductionRate": 1.038213875047911,
+              "avgEnergyMean": 31.84770428732715,
+              "avgEnergyCV": 0.05592953631193243,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 2055,
+              "maxPredatorFraction": 0.15825242718446603,
+              "maxCooperation": 0.0004191524336389174,
+              "maxMeanAltruism": 0.04035852125522615,
+              "maxKills": 477
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.2144651222368167,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.19173638805143584,
+              "signalTotalMean": 2515.8149031555063,
+              "headingEntropyMean": 3.248075999943024,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.285698641825159,
+              "adaptationDelta": 3.596213924412936,
+              "adaptationFrac": 0.05574298479141904
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "0022a037a1ea25e88d4ced20acfbabb7fc3004aafb1ff7bba514dec445daca16"
+    },
+    {
+      "id": "highn_n2000_mp2400_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 2000,
+        "maxPopulation": 2400,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 3,
+        "structure": 0.597919412077137,
+        "rigidity": 0.6,
+        "persistence": 0.2222222222222222,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 775,
+        "coop": 0.0006775646139204844,
+        "donation": 0.2147329721194022,
+        "pop": 2399
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.08821493032108114,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.688214930321081
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 2399,
+          "minAlive": 870,
+          "maxAlive": 2400,
+          "extinct": false,
+          "totalBirths": 8757,
+          "totalDeaths": 8358,
+          "netBirths": 399,
+          "reproductionRate": 1.0477386934673367,
+          "avgEnergyMean": 51.24438987602034,
+          "avgEnergyCV": 0.33109218717427674,
+          "matterMean": 1440650.0877039593,
+          "matterCV": 0.1611364039724953,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 775,
+          "finalSpecies": 609,
+          "maxPredatorFraction": 0.16436781609195403,
+          "maxCooperation": 0.0006775646139204844,
+          "maxMeanAltruism": 0.2147329721194022,
+          "maxKills": 123
+        },
+        "cognition": {
+          "foragingMean": 0.24815099037755858,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.24179387376649347,
+          "signalCorr": 0.10741860589559112,
+          "headingEntropyMean": 3.277157698071592,
+          "signalTotalMean": 1678.1533286899291,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.217651405170203,
+          "speciesMemeMIMax": 0.8813746079930601,
+          "complexityMax": 0.14122951954442897,
+          "fitnessFirstQ": 61.40798057812364,
+          "fitnessLastQ": 201.17823262733464,
+          "adaptationDelta": 139.770252049211,
+          "adaptationFrac": 2.2760926305237206
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.4599121968708083,
+          "meanCooperationMean": 0.5419562960562694,
+          "meanRiskMean": 0.5935185256680741,
+          "meanDeceptionMean": 0.5495835618136387,
+          "predatorGeneFractionMax": 0.4664443518132555,
+          "preyGeneFractionMax": 0.6353158137390502,
+          "energyInequalityMax": 0.5480551843959363,
+          "donationRatioMean": 0.04181065586264457,
+          "strategyEntropy": 0.06481589902924073
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 2399,
+              "minAlive": 870,
+              "netBirths": 399,
+              "reproductionRate": 1.0477386934673367,
+              "avgEnergyMean": 51.24438987602034,
+              "avgEnergyCV": 0.33109218717427674,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 775,
+              "maxPredatorFraction": 0.16436781609195403,
+              "maxCooperation": 0.0006775646139204844,
+              "maxMeanAltruism": 0.2147329721194022,
+              "maxKills": 123
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.24815099037755858,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.24179387376649347,
+              "signalTotalMean": 1678.1533286899291,
+              "headingEntropyMean": 3.277157698071592,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.217651405170203,
+              "adaptationDelta": 139.770252049211,
+              "adaptationFrac": 2.2760926305237206
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "cad189256fe3cb20e6525e90f110e7cb070720c7f6af8d15d40de69be4f8ef0a"
+    },
+    {
+      "id": "highn_n1000_mp1200_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 1000,
+        "maxPopulation": 1200,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.6286678291230652,
+        "rigidity": 0.5,
+        "persistence": 0.3333333333333333,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 504,
+        "coop": 0.00039280947682823715,
+        "donation": 0.17975479572714678,
+        "pop": 1200
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.08588908122309237,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.685889081223092
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 1200,
+          "minAlive": 354,
+          "maxAlive": 1200,
+          "extinct": false,
+          "totalBirths": 4499,
+          "totalDeaths": 4299,
+          "netBirths": 200,
+          "reproductionRate": 1.0465224470807164,
+          "avgEnergyMean": 56.420586618410404,
+          "avgEnergyCV": 0.3034658936438966,
+          "matterMean": 1671036.5914985344,
+          "matterCV": 0.05526559065282916,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 504,
+          "finalSpecies": 500,
+          "maxPredatorFraction": 0.22033898305084745,
+          "maxCooperation": 0.00039280947682823715,
+          "maxMeanAltruism": 0.17975479572714678,
+          "maxKills": 80
+        },
+        "cognition": {
+          "foragingMean": 0.2935344507552812,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.18853687490063262,
+          "signalCorr": -0.02056914694045682,
+          "headingEntropyMean": 2.598134068665634,
+          "signalTotalMean": 720.8779764159588,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.1842151248984445,
+          "speciesMemeMIMax": 0.8798476386319335,
+          "complexityMax": 0.26544925797264957,
+          "fitnessFirstQ": 64.6096757333104,
+          "fitnessLastQ": 193.56545219011772,
+          "adaptationDelta": 128.9557764568073,
+          "adaptationFrac": 1.9959205025126354
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.4343782766812696,
+          "meanCooperationMean": 0.41254679883255196,
+          "meanRiskMean": 0.46302891214969144,
+          "meanDeceptionMean": 0.498599303537111,
+          "predatorGeneFractionMax": 0.35516372795969775,
+          "preyGeneFractionMax": 0.519774011299435,
+          "energyInequalityMax": 0.5730910585672718,
+          "donationRatioMean": 0.03473605863912958,
+          "strategyEntropy": 0.06249015143534073
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 1200,
+              "minAlive": 354,
+              "netBirths": 200,
+              "reproductionRate": 1.0465224470807164,
+              "avgEnergyMean": 56.420586618410404,
+              "avgEnergyCV": 0.3034658936438966,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 504,
+              "maxPredatorFraction": 0.22033898305084745,
+              "maxCooperation": 0.00039280947682823715,
+              "maxMeanAltruism": 0.17975479572714678,
+              "maxKills": 80
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.2935344507552812,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.18853687490063262,
+              "signalTotalMean": 720.8779764159588,
+              "headingEntropyMean": 2.598134068665634,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.1842151248984445,
+              "adaptationDelta": 128.9557764568073,
+              "adaptationFrac": 1.9959205025126354
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "c5c765854ef18b7cecaa67973893b615ec59ff0ab059acf742addea406ed5699"
+    },
+    {
+      "id": "highn_n500_mp600_highn.s3",
+      "seed": "highn.s3",
+      "opts": {
+        "seed": "highn.s3",
+        "ticks": 2000,
+        "spawnCount": 500,
+        "maxPopulation": 600,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.6210039425817466,
+        "rigidity": 0.5,
+        "persistence": 0.3333333333333333,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 161,
+        "coop": 0.0003069892777619529,
+        "donation": 0.09415846380079122,
+        "pop": 600
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.08369939935414421,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.683699399354143
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 600,
+          "minAlive": 213,
+          "maxAlive": 600,
+          "extinct": false,
+          "totalBirths": 1700,
+          "totalDeaths": 1600,
+          "netBirths": 100,
+          "reproductionRate": 1.0625,
+          "avgEnergyMean": 69.14006633375294,
+          "avgEnergyCV": 0.40808432738854566,
+          "matterMean": 1846012.530940968,
+          "matterCV": 0.019220282714954184,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 161,
+          "finalSpecies": 153,
+          "maxPredatorFraction": 0.1596244131455399,
+          "maxCooperation": 0.0003069892777619529,
+          "maxMeanAltruism": 0.09415846380079122,
+          "maxKills": 21
+        },
+        "cognition": {
+          "foragingMean": 0.20078304300404065,
+          "foragingPositiveFrac": 0.9,
+          "hazardCorr": -0.25967446804273264,
+          "signalCorr": 0.3705873300242718,
+          "headingEntropyMean": 3.1606984031678618,
+          "signalTotalMean": 447.6578726205388,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 20,
+          "memeEntropyMax": 3.992409050924756,
+          "speciesMemeMIMax": 0.9268140618541661,
+          "complexityMax": 0.3317828041081129,
+          "fitnessFirstQ": 60.2276639381378,
+          "fitnessLastQ": 225.61038604709836,
+          "adaptationDelta": 165.38272210896056,
+          "adaptationFrac": 2.745959436162619
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.4081709586096268,
+          "meanCooperationMean": 0.5427629952144558,
+          "meanRiskMean": 0.6244320085084543,
+          "meanDeceptionMean": 0.6725366586693438,
+          "predatorGeneFractionMax": 0.36155606407322655,
+          "preyGeneFractionMax": 0.8016666666666666,
+          "energyInequalityMax": 0.5266546722171471,
+          "donationRatioMean": 0.028248842338328972,
+          "strategyEntropy": 0.10609334018623494
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 600,
+              "minAlive": 213,
+              "netBirths": 100,
+              "reproductionRate": 1.0625,
+              "avgEnergyMean": 69.14006633375294,
+              "avgEnergyCV": 0.40808432738854566,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 161,
+              "maxPredatorFraction": 0.1596244131455399,
+              "maxCooperation": 0.0003069892777619529,
+              "maxMeanAltruism": 0.09415846380079122,
+              "maxKills": 21
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.20078304300404065,
+              "foragingPositiveFrac": 0.9,
+              "hazardCorr": -0.25967446804273264,
+              "signalTotalMean": 447.6578726205388,
+              "headingEntropyMean": 3.1606984031678618,
+              "cultureCountMax": 20,
+              "memeEntropyMax": 3.992409050924756,
+              "adaptationDelta": 165.38272210896056,
+              "adaptationFrac": 2.745959436162619
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "6619c8ca4ee50aa6f29972bc5dd162723cb74d21159313784f8cd5405a807709"
+    },
+    {
+      "id": "highn_n10000_mp12000_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 10000,
+        "maxPopulation": 12000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.6046139632118119,
+        "rigidity": 0.4,
+        "persistence": 0.1111111111111111,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 0.5,
+        "maxSpecies": 2105,
+        "coop": 0.0007149059174602915,
+        "donation": 0.06594914250272378,
+        "pop": 7359
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.2504451195341629,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 0.8,
+        "G8": 1,
+        "total": 9.650445119534163
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 7359,
+          "minAlive": 3541,
+          "maxAlive": 7359,
+          "extinct": false,
+          "totalBirths": 26365,
+          "totalDeaths": 29006,
+          "netBirths": -2641,
+          "reproductionRate": 0.9089498724401848,
+          "avgEnergyMean": 30.509949996074216,
+          "avgEnergyCV": 0.08969743721104953,
+          "matterMean": 1009634.8889729686,
+          "matterCV": 0.3602123481028145,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 2105,
+          "finalSpecies": 2025,
+          "maxPredatorFraction": 0.2050268285794973,
+          "maxCooperation": 0.0007149059174602915,
+          "maxMeanAltruism": 0.06594914250272378,
+          "maxKills": 946
+        },
+        "cognition": {
+          "foragingMean": 0.16759821740805542,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.22013368176198006,
+          "signalCorr": 0.08332513869694294,
+          "headingEntropyMean": 3.340218844281737,
+          "signalTotalMean": 3062.015301439597,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.317822502633887,
+          "speciesMemeMIMax": 0.8498183941623993,
+          "complexityMax": 0.15200750156378867,
+          "fitnessFirstQ": 73.94990335659075,
+          "fitnessLastQ": 71.19814570522585,
+          "adaptationDelta": -2.7517576513648976,
+          "adaptationFrac": -0.037211105443853816
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.4086693057336806,
+          "meanCooperationMean": 0.4987267195017126,
+          "meanRiskMean": 0.5562257969979052,
+          "meanDeceptionMean": 0.49224692981789603,
+          "predatorGeneFractionMax": 0.4266633064516129,
+          "preyGeneFractionMax": 0.6289454806312769,
+          "energyInequalityMax": 0.6940718057432079,
+          "donationRatioMean": 0.02019997904281556,
+          "strategyEntropy": 0.0613151678934093
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 7359,
+              "minAlive": 3541,
+              "netBirths": -2641,
+              "reproductionRate": 0.9089498724401848,
+              "avgEnergyMean": 30.509949996074216,
+              "avgEnergyCV": 0.08969743721104953,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 2105,
+              "maxPredatorFraction": 0.2050268285794973,
+              "maxCooperation": 0.0007149059174602915,
+              "maxMeanAltruism": 0.06594914250272378,
+              "maxKills": 946
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "PARTIAL",
+            "evidence": {
+              "foragingMean": 0.16759821740805542,
+              "hazardCorr": -0.22013368176198006,
+              "headingEntropyMean": 3.340218844281737
+            },
+            "note": "information processing is present but communication/culture or adaptation did not rise above threshold."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is partial. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "d730e0abff32a1a7ae0355efcc0c8f5425703f092726c4d1055496fd7946f52b"
+    },
+    {
+      "id": "highn_n1000_mp1200_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 1000,
+        "maxPopulation": 1200,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.5354838871783779,
+        "rigidity": 0.5,
+        "persistence": 0.2222222222222222,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 397,
+        "coop": 0.0005817211018387465,
+        "donation": 0.11994072777729617,
+        "pop": 1200
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.029623791078564294,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 1,
+        "G8": 1,
+        "total": 9.629623791078565
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 1200,
+          "minAlive": 469,
+          "maxAlive": 1200,
+          "extinct": false,
+          "totalBirths": 3235,
+          "totalDeaths": 3035,
+          "netBirths": 200,
+          "reproductionRate": 1.0658978583196046,
+          "avgEnergyMean": 63.88833681063748,
+          "avgEnergyCV": 0.39520828748030545,
+          "matterMean": 1718873.4700547562,
+          "matterCV": 0.03151264140656015,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 397,
+          "finalSpecies": 285,
+          "maxPredatorFraction": 0.16631130063965885,
+          "maxCooperation": 0.0005817211018387465,
+          "maxMeanAltruism": 0.11994072777729617,
+          "maxKills": 98
+        },
+        "cognition": {
+          "foragingMean": 0.16764343939906207,
+          "foragingPositiveFrac": 0.9,
+          "hazardCorr": -0.16921492522478127,
+          "signalCorr": -0.05106952595666011,
+          "headingEntropyMean": 3.1319143851741265,
+          "signalTotalMean": 998.7713908955087,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.12158052589004,
+          "speciesMemeMIMax": 0.9345797469358045,
+          "complexityMax": 0.19360003964647685,
+          "fitnessFirstQ": 67.22824712537869,
+          "fitnessLastQ": 241.6379801372218,
+          "adaptationDelta": 174.40973301184312,
+          "adaptationFrac": 2.594292436132897
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.5034350433847836,
+          "meanCooperationMean": 0.5333610920066215,
+          "meanRiskMean": 0.5607377383817544,
+          "meanDeceptionMean": 0.42388624214085296,
+          "predatorGeneFractionMax": 0.5108333333333334,
+          "preyGeneFractionMax": 0.5309168443496801,
+          "energyInequalityMax": 0.5612796984756722,
+          "donationRatioMean": 0.027872153661361903,
+          "strategyEntropy": 0.06530607996414417
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 1200,
+              "minAlive": 469,
+              "netBirths": 200,
+              "reproductionRate": 1.0658978583196046,
+              "avgEnergyMean": 63.88833681063748,
+              "avgEnergyCV": 0.39520828748030545,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 397,
+              "maxPredatorFraction": 0.16631130063965885,
+              "maxCooperation": 0.0005817211018387465,
+              "maxMeanAltruism": 0.11994072777729617,
+              "maxKills": 98
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.16764343939906207,
+              "foragingPositiveFrac": 0.9,
+              "hazardCorr": -0.16921492522478127,
+              "signalTotalMean": 998.7713908955087,
+              "headingEntropyMean": 3.1319143851741265,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.12158052589004,
+              "adaptationDelta": 174.40973301184312,
+              "adaptationFrac": 2.594292436132897
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "bc155a6326373a7399aefc02120ce9641ad1f1865981d687571367c34f0fac3f"
+    },
+    {
+      "id": "highn_n100_mp120_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 100,
+        "maxPopulation": 120,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.45454545454545453,
+        "rigidity": 0.4,
+        "persistence": 0.6666666666666666,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 44,
+        "coop": 0.0006035651899977723,
+        "donation": 0.1453295836373848,
+        "pop": 120
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.2083046131006694,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 0.8,
+        "G8": 1,
+        "total": 9.60830461310067
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 120,
+          "minAlive": 49,
+          "maxAlive": 120,
+          "extinct": false,
+          "totalBirths": 320,
+          "totalDeaths": 300,
+          "netBirths": 20,
+          "reproductionRate": 1.0666666666666667,
+          "avgEnergyMean": 67.95421750894239,
+          "avgEnergyCV": 0.33073414604305157,
+          "matterMean": 1938146.401571333,
+          "matterCV": 0.04147452509009469,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 44,
+          "finalSpecies": 38,
+          "maxPredatorFraction": 0.17647058823529413,
+          "maxCooperation": 0.0006035651899977723,
+          "maxMeanAltruism": 0.1453295836373848,
+          "maxKills": 5
+        },
+        "cognition": {
+          "foragingMean": 0.232500117686189,
+          "foragingPositiveFrac": 0.9,
+          "hazardCorr": -0.24522465396444604,
+          "signalCorr": -0.11427203822178933,
+          "headingEntropyMean": 2.14999108106902,
+          "signalTotalMean": 135.0443677088286,
+          "signalCellsMax": 11581,
+          "cultureCountMax": 16,
+          "memeEntropyMax": 3.6152403875465637,
+          "speciesMemeMIMax": 0.9397444374513823,
+          "complexityMax": 0.7734635879600583,
+          "fitnessFirstQ": 80.32287953412279,
+          "fitnessLastQ": 430.8289346240761,
+          "adaptationDelta": 350.5060550899533,
+          "adaptationFrac": 4.363713765279682
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.42418627923889163,
+          "meanCooperationMean": 0.6850322218084768,
+          "meanRiskMean": 0.5060609368623203,
+          "meanDeceptionMean": 0.5422732917995186,
+          "predatorGeneFractionMax": 0.4489795918367347,
+          "preyGeneFractionMax": 0.5490196078431373,
+          "energyInequalityMax": 0.5581253974384228,
+          "donationRatioMean": 0.023286752712728332,
+          "strategyEntropy": 0.10755119200832
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 120,
+              "minAlive": 49,
+              "netBirths": 20,
+              "reproductionRate": 1.0666666666666667,
+              "avgEnergyMean": 67.95421750894239,
+              "avgEnergyCV": 0.33073414604305157,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 44,
+              "maxPredatorFraction": 0.17647058823529413,
+              "maxCooperation": 0.0006035651899977723,
+              "maxMeanAltruism": 0.1453295836373848,
+              "maxKills": 5
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.232500117686189,
+              "foragingPositiveFrac": 0.9,
+              "hazardCorr": -0.24522465396444604,
+              "signalTotalMean": 135.0443677088286,
+              "headingEntropyMean": 2.14999108106902,
+              "cultureCountMax": 16,
+              "memeEntropyMax": 3.6152403875465637,
+              "adaptationDelta": 350.5060550899533,
+              "adaptationFrac": 4.363713765279682
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "ed1f5e42ce868e5772eb997e61cf2b15875905a3e7d4e69025ddd735b1bcdcd2"
+    },
+    {
+      "id": "highn_n5000_mp6000_highn.s2",
+      "seed": "highn.s2",
+      "opts": {
+        "seed": "highn.s2",
+        "ticks": 2000,
+        "spawnCount": 5000,
+        "maxPopulation": 6000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.6839454347668579,
+        "rigidity": 0.4,
+        "persistence": 0.1111111111111111,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 1503,
+        "coop": 0.0005517719280155934,
+        "donation": 0.05961998494878501,
+        "pop": 6000
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.13025411140703314,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 0.8,
+        "G8": 1,
+        "total": 9.530254111407034
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 6000,
+          "minAlive": 2005,
+          "maxAlive": 6000,
+          "extinct": false,
+          "totalBirths": 20068,
+          "totalDeaths": 19068,
+          "netBirths": 1000,
+          "reproductionRate": 1.052443885043004,
+          "avgEnergyMean": 33.70009619292556,
+          "avgEnergyCV": 0.16477628541839606,
+          "matterMean": 1203132.0840857816,
+          "matterCV": 0.26549263279501467,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 1503,
+          "finalSpecies": 1466,
+          "maxPredatorFraction": 0.1745635910224439,
+          "maxCooperation": 0.0005517719280155934,
+          "maxMeanAltruism": 0.05961998494878501,
+          "maxKills": 497
+        },
+        "cognition": {
+          "foragingMean": 0.16812674683955275,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.20394827779372265,
+          "signalCorr": 0.07196050801241652,
+          "headingEntropyMean": 3.3909372923622074,
+          "signalTotalMean": 2369.6327373664026,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.298378071565846,
+          "speciesMemeMIMax": 0.8768023005146856,
+          "complexityMax": 0.17523673184038852,
+          "fitnessFirstQ": 69.29068950613038,
+          "fitnessLastQ": 76.25486427959868,
+          "adaptationDelta": 6.964174773468301,
+          "adaptationFrac": 0.10050664559849931
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.5424932878339652,
+          "meanCooperationMean": 0.5273799096600109,
+          "meanRiskMean": 0.5074696091288333,
+          "meanDeceptionMean": 0.48984457337086107,
+          "predatorGeneFractionMax": 0.5968333333333333,
+          "preyGeneFractionMax": 0.47057150980949675,
+          "energyInequalityMax": 0.6582056524437315,
+          "donationRatioMean": 0.02064609624473316,
+          "strategyEntropy": 0.03672786716413643
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 6000,
+              "minAlive": 2005,
+              "netBirths": 1000,
+              "reproductionRate": 1.052443885043004,
+              "avgEnergyMean": 33.70009619292556,
+              "avgEnergyCV": 0.16477628541839606,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 1503,
+              "maxPredatorFraction": 0.1745635910224439,
+              "maxCooperation": 0.0005517719280155934,
+              "maxMeanAltruism": 0.05961998494878501,
+              "maxKills": 497
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.16812674683955275,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.20394827779372265,
+              "signalTotalMean": 2369.6327373664026,
+              "headingEntropyMean": 3.3909372923622074,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.298378071565846,
+              "adaptationDelta": 6.964174773468301,
+              "adaptationFrac": 0.10050664559849931
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "3cef8c76e75cbe83677bcefb9cebf122811b20623515db4528c9b6dbaaaf8531"
+    },
+    {
+      "id": "highn_n500_mp600_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 500,
+        "maxPopulation": 600,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.45488329843127917,
+        "rigidity": 0.4,
+        "persistence": 0.1111111111111111,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 199,
+        "coop": 0.0008955006809115176,
+        "donation": 0.10666543809277755,
+        "pop": 600
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.11296999103805282,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 0.8,
+        "G8": 1,
+        "total": 9.512969991038053
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 600,
+          "minAlive": 167,
+          "maxAlive": 600,
+          "extinct": false,
+          "totalBirths": 2807,
+          "totalDeaths": 2707,
+          "netBirths": 100,
+          "reproductionRate": 1.036941263391208,
+          "avgEnergyMean": 42.37545365548972,
+          "avgEnergyCV": 0.15938723542571967,
+          "matterMean": 1820273.9802175344,
+          "matterCV": 0.014258395340407385,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 199,
+          "finalSpecies": 199,
+          "maxPredatorFraction": 0.25748502994011974,
+          "maxCooperation": 0.0008955006809115176,
+          "maxMeanAltruism": 0.10666543809277755,
+          "maxKills": 35
+        },
+        "cognition": {
+          "foragingMean": 0.21558521284394333,
+          "foragingPositiveFrac": 0.9,
+          "hazardCorr": -0.1806250744795674,
+          "signalCorr": -0.029604955778737764,
+          "headingEntropyMean": 2.8907106504845435,
+          "signalTotalMean": 297.06303782589237,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.087230712569232,
+          "speciesMemeMIMax": 0.945769319835156,
+          "complexityMax": 0.5500289651751158,
+          "fitnessFirstQ": 61.148121538101506,
+          "fitnessLastQ": 136.68536316300592,
+          "adaptationDelta": 75.53724162490441,
+          "adaptationFrac": 1.2353158155126158
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.406648652201756,
+          "meanCooperationMean": 0.6545775152852323,
+          "meanRiskMean": 0.525461938643714,
+          "meanDeceptionMean": 0.5574791583917723,
+          "predatorGeneFractionMax": 0.31736526946107785,
+          "preyGeneFractionMax": 0.7284595300261096,
+          "energyInequalityMax": 0.6054796353992808,
+          "donationRatioMean": 0.023512744700403033,
+          "strategyEntropy": 0.10688181795902553
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 600,
+              "minAlive": 167,
+              "netBirths": 100,
+              "reproductionRate": 1.036941263391208,
+              "avgEnergyMean": 42.37545365548972,
+              "avgEnergyCV": 0.15938723542571967,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 199,
+              "maxPredatorFraction": 0.25748502994011974,
+              "maxCooperation": 0.0008955006809115176,
+              "maxMeanAltruism": 0.10666543809277755,
+              "maxKills": 35
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.21558521284394333,
+              "foragingPositiveFrac": 0.9,
+              "hazardCorr": -0.1806250744795674,
+              "signalTotalMean": 297.06303782589237,
+              "headingEntropyMean": 2.8907106504845435,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.087230712569232,
+              "adaptationDelta": 75.53724162490441,
+              "adaptationFrac": 1.2353158155126158
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "b274f41ffbebdbba1856a98efb93c690c37bc699a230f678c5ab5ed40a6253a2"
+    },
+    {
+      "id": "highn_n5000_mp6000_highn.s1",
+      "seed": "highn.s1",
+      "opts": {
+        "seed": "highn.s1",
+        "ticks": 2000,
+        "spawnCount": 5000,
+        "maxPopulation": 6000,
+        "sampleEvery": 200
+      },
+      "regimeVec": {
+        "macroIdx": 2,
+        "structure": 0.587826526381051,
+        "rigidity": 0.4,
+        "persistence": 0.1111111111111111,
+        "hL1": 1,
+        "hL2": 1,
+        "hL3": 1,
+        "maxSpecies": 2213,
+        "coop": 0.00042889558952928,
+        "donation": 0.05842227819325527,
+        "pop": 5533
+      },
+      "scores": {
+        "G0": 1,
+        "G1": 1,
+        "G2": 0.10279156615394547,
+        "G3": 1,
+        "G4": 0.8,
+        "G5": 1,
+        "G6": 1,
+        "G7": 0.8,
+        "G8": 1,
+        "total": 9.502791566153945
+      },
+      "summary": {
+        "life": {
+          "finalAlive": 5533,
+          "minAlive": 1694,
+          "maxAlive": 5981,
+          "extinct": false,
+          "totalBirths": 27605,
+          "totalDeaths": 27072,
+          "netBirths": 533,
+          "reproductionRate": 1.0196882387706856,
+          "avgEnergyMean": 31.19453702675694,
+          "avgEnergyCV": 0.08548775273864381,
+          "matterMean": 1156792.1865750928,
+          "matterCV": 0.31118538340755264,
+          "cycling": true,
+          "carrionLoop": true
+        },
+        "interaction": {
+          "maxSpecies": 2213,
+          "finalSpecies": 2066,
+          "maxPredatorFraction": 0.20543093270365997,
+          "maxCooperation": 0.00042889558952928,
+          "maxMeanAltruism": 0.05842227819325527,
+          "maxKills": 489
+        },
+        "cognition": {
+          "foragingMean": 0.19561255074691036,
+          "foragingPositiveFrac": 1,
+          "hazardCorr": -0.22748639122246916,
+          "signalCorr": 0.03899600291952547,
+          "headingEntropyMean": 3.258087080274734,
+          "signalTotalMean": 2404.6188113733065,
+          "signalCellsMax": 16384,
+          "cultureCountMax": 21,
+          "memeEntropyMax": 4.24421236663926,
+          "speciesMemeMIMax": 0.8908949553153896,
+          "complexityMax": 0.051992758132080576,
+          "fitnessFirstQ": 68.68526005716043,
+          "fitnessLastQ": 74.84991594958082,
+          "adaptationDelta": 6.1646558924203845,
+          "adaptationFrac": 0.08975223923284424
+        },
+        "gameTheory": {
+          "meanAggressionMean": 0.3994638161504084,
+          "meanCooperationMean": 0.528051000299429,
+          "meanRiskMean": 0.2796145126924278,
+          "meanDeceptionMean": 0.619014935125017,
+          "predatorGeneFractionMax": 0.3872491145218418,
+          "preyGeneFractionMax": 0.7627487042300619,
+          "energyInequalityMax": 0.6832327609725729,
+          "donationRatioMean": 0.01507710415852464,
+          "strategyEntropy": 0.14065802607081537
+        }
+      },
+      "synthesis": {
+        "levels": [
+          {
+            "level": "L1 life",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "finalAlive": 5533,
+              "minAlive": 1694,
+              "netBirths": 533,
+              "reproductionRate": 1.0196882387706856,
+              "avgEnergyMean": 31.19453702675694,
+              "avgEnergyCV": 0.08548775273864381,
+              "cycling": true,
+              "carrionLoop": true
+            },
+            "note": "population persists, reproduces, holds homeostasis and matter keeps cycling — the living subsystem is self-sustaining."
+          },
+          {
+            "level": "L2 interaction",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "maxSpecies": 2213,
+              "maxPredatorFraction": 0.20543093270365997,
+              "maxCooperation": 0.00042889558952928,
+              "maxMeanAltruism": 0.05842227819325527,
+              "maxKills": 489
+            },
+            "note": "individuals differentiated into multiple species and interacted — through predation and/or cooperation."
+          },
+          {
+            "level": "L3 cognition",
+            "verdict": "EMERGENT",
+            "evidence": {
+              "foragingMean": 0.19561255074691036,
+              "foragingPositiveFrac": 1,
+              "hazardCorr": -0.22748639122246916,
+              "signalTotalMean": 2404.6188113733065,
+              "headingEntropyMean": 3.258087080274734,
+              "cultureCountMax": 21,
+              "memeEntropyMax": 4.24421236663926,
+              "adaptationDelta": 6.1646558924203845,
+              "adaptationFrac": 0.08975223923284424
+            },
+            "note": "agents used environmental information to steer (gradient foraging, hazard response), sustained a communication/culture channel, and selection improved their payoff across the run."
+          }
+        ],
+        "chain": "Matter loops (L0) cycle; life (L1) is emergent; interaction (L2) is emergent; cognition (L3) is emergent. The causal ladder holds: L1 requires L0, L2 requires L1's persistent population, and L3 requires L2's structured population — each rung is a prerequisite that the run either satisfies or fails."
+      },
+      "worldFingerprint": "a4bc410546b4a78c927737c4887b15ecd34f863884cc93cf01d8a6a8e8beac4c"
+    }
+  ],
+  "selected": [
+    "highn_n100_mp120_highn.s1",
+    "highn_n10000_mp12000_highn.s3",
+    "highn_n2000_mp2400_highn.s2"
+  ]
+}

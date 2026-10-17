@@ -1,79 +1,152 @@
-# Fractal Life v2: Emergence Engineering Sandbox
+# Tree of Life: Emergence Engineering Sandbox
 
-A deterministic, two-engine (TypeScript + Rust/WASM) simulation for studying how
-interactions produce life and cognition, now extended to *engineer* emergence:
-search over controllable parameters, measure L1-L3 emergence, document and
-reproduce experiments, and analyze rare/high-impact (black swan) events.
+[![CI](https://github.com/DEzhakieel/tree-of-life/actions/workflows/ci.yml/badge.svg)](https://github.com/DEzhakieel/tree-of-life/actions/workflows/ci.yml)
+[![Deploy dashboard](https://github.com/DEzhakieel/tree-of-life/actions/workflows/pages.yml/badge.svg)](https://github.com/DEzhakieel/tree-of-life/actions/workflows/pages.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg)](package.json)
 
-## Core concepts
-- Deterministic by `(seed, config)`: replays reproduce byte-exact trajectories.
-- TS reference engine + Rust/WASM parity (brain, stochastics, cellBio, universe, omics).
-- Research ladder: L1-L3 emergence scoring with controlled causal scenarios.
-- Design/search: objectives + candidate evaluation + multi-seed aggregation.
-- Reproducible experiments: documented hypotheses + bit-exact digests + verify.
-- Black swans: rare high-impact event detection + joint event-set probability.
+> **Live dashboard:** https://dezhakieel.github.io/tree-of-life/
+> **Docs:** [`docs/`](docs/index.md) · **Thesis:** [`THESIS.md`](THESIS.md) + [`thesis/main.tex`](thesis/main.tex)
 
-## Quick start
-```bash
-npm install
-npm run test:fast   # cheap tier across workspaces (fast feedback)
-npm test            # full suite
+A deterministic, **two-engine** (TypeScript + Rust/WASM) artificial-life sandbox
+for studying how interactions produce life and cognition — and for *engineering*
+emergence: searching controllable parameters, measuring emergence, documenting
+and reproducing experiments, and analyzing rare/high-impact (black-swan) events.
+
+Everything is reproducible from a seed, bit-for-bit across both engines, and
+driven by **one command layer** that appears both as an in-browser terminal and
+as a console dashboard.
+
+<details>
+<summary><b>Project name note</b></summary>
+
+The project is **Tree of Life** (formerly "Fractal Life v2"). Code identifiers
+such as `@fractal-life/*` and `fractal_life_*` are intentionally unchanged.
+</details>
+
+## Two surfaces, one system
+
+```mermaid
+graph LR
+  T["terminal / commands"] --> R["shared CommandRegistry"]
+  R --> W["web host (browser)"]
+  R --> C["console host (Node TUI)"]
+  W --> D["live dashboard"]
+  C --> D2["ANSI dashboard"]
 ```
 
-## Key commands
-- `npm run test:fast` / `npm test` - fast tier / full suite.
-- `npm run research:scope` - validate and generate scope/claims outputs (apps/simulation).
-- `npm run research:experiment -- --list` - document/run/reproduce experiments.
-- Other research CLIs: `research:ladder`, `research:bench`, `research:rigor`, `research:ai`
-  (see `apps/simulation/package.json`).
-- Build server: `npm run build:server`; web: `npm run build:web`.
+## Quick start
+
+```bash
+git clone https://github.com/DEzhakieel/tree-of-life.git
+cd tree-of-life
+npm install
+
+npm run dev:web        # dashboard -> http://localhost:5173
+npm run terminal       # console dashboard (same commands)
+```
+
+In the browser, click **`> terminal`** (bottom-right) and type `help`. In the
+console, the ANSI dashboard is live and accepts the same commands.
+
+```bash
+npm run typecheck      # tsc --noEmit across workspaces
+npm run test:fast      # cheap tier (~1 min, 44/44 files)
+npm run build          # server + web
+npm run preview        # serve the built dashboard -> http://localhost:3000
+```
+
+See [`docs/SETUP.md`](docs/SETUP.md) for the full tutorial and
+[`docs/GUIDE.md`](docs/GUIDE.md) for the dashboard + terminal reference.
+
+## Core concepts
+
+- **Deterministic** by `(seed, config)`: replays reproduce byte-exact trajectories.
+- **TS reference + Rust/WASM authority** with parity (brain, stochastics, cell
+  biology, universe, omics) — verified by bit-identical digests.
+- **Opt-in depth** (Phases A–M): disabled subsystems are inert and report
+  DORMANT rather than half-simulating.
+- **Measurement stack**: hundreds of documented observables, detectors, and a
+  pre-registered scope ledger (23 supported / 2 refuted / 9 inconclusive).
+- **Reproducible experiments**: documented hypotheses + sha256 digest manifests
+  + `--verify`.
+- **Black swans**: rare high-impact event detection + joint event-set
+  probability (independence + Fréchet bounds).
+
+## Terminal commands
+
+`help · status · stats [key] · params · set <k> <v> · play · pause · step <n> ·
+spawn <n> · reset · speed <tps> · turbo [on|off] · export · caps · version ·
+about · license · cite · docs · platform · echo · clear · quit` (console)
+
+Scriptable modes:
+
+```bash
+npm run terminal -- --seed demo --steps 1000       # one-shot dashboard
+npm run terminal -- --steps 1000 --json            # raw state
+"status`nstats tick" | npm run terminal            # pipe a script
+```
+
+## Architecture
+
+- `apps/simulation/` — TS engine, research lab, console TUI.
+- `apps/web/` — React dashboard, worker/remote sources, in-browser terminal.
+- `apps/server/` — REST + WebSocket API (worlds, snapshots, events, interventions).
+- `packages/shared/` — types, binary protocol, and the terminal command layer.
+- `packages/shaders/` — shader sources.
+- `crates/` — Rust engine + WASM crate (parity with TS).
+- `docs/` — published documentation · `thesis/` — LaTeX + bibliography.
+
+Deep dive: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
+[`docs/REVERSE_ENGINEERING.md`](docs/REVERSE_ENGINEERING.md),
+[`apps/simulation/research/manual/`](apps/simulation/research/manual/) (the
+exhaustive engineering manual).
 
 ## Reproducible experiments
-Experiments are immutable, documented records (`hypothesis + config + seeds +
-objectives`) that can be run, saved as a manifest, and reproduced bit-for-bit.
+
+Experiments are immutable records (hypothesis + config + seeds + objectives) that
+can be run, saved as a manifest, and reproduced bit-for-bit.
 
 ```bash
 cd apps/simulation
 npx tsx src/research/experimentCli.ts --list
 npx tsx src/research/experimentCli.ts --run l3-baseline
-npx tsx src/research/experimentCli.ts --verify l3-baseline
+npx tsx src/research/experimentCli.ts --verify l3-baseline   # REPRODUCED?
 ```
 
-- `run` executes the ladder per seed, scores the objectives, records a sha256
-  *digest* (world fingerprint + trajectory + summary + synthesis), and writes
-  `research/experiments/<id>.json`. A double-run of the first seed proves
-  determinism at run time.
-- `verify` re-runs a saved manifest and reports whether every digest is
-  bit-identical (`REPRODUCED`) or differs (`FAILED`).
-- The digest includes `LadderResult.worldFingerprint` (full grid + alive agents),
-  so different seeds never collide even when their summary is degenerate.
+The digest includes `LadderResult.worldFingerprint`, so distinct seeds never
+collide even when their summary is degenerate.
 
-Modules: `src/research/experiment.ts` (runner/digest/manifest),
-`experimentRegistry.ts` (documented experiments), `experimentCli.ts` (CLI).
+## Research lab
 
-## Architecture
-- `apps/simulation/` - TS engine, research CLIs, design/search, experiments, black swans.
-- `crates/` - Rust engine + WASM crate (parity with TS).
-- `apps/server/` - REST/WebSocket API (worlds, snapshots, events, interventions).
-- `apps/web/` - browser UI and worker engine.
-- `packages/shared/` - types/constants/protocol.
+Generators/CLIs live under `apps/simulation/src/research/` with npm scripts:
 
-## Emergence engineering
-- `src/research/design/` - objectives, candidates, evaluation, search.
-- `src/research/experiment.ts` - documented, reproducible experiment runner.
-- `src/research/blackSwans.ts` - rare/high-impact detection + surprise scoring.
-- `src/research/eventProbability.ts` - joint event-set probability (independence + bounds).
-- `research/SYSTEM_MAP.md` - research-grade map of every subsystem.
-- `THESIS.md` - thesis framing of the platform.
+| Script | Purpose |
+|---|---|
+| `research:scope` | scope/claims ledger |
+| `research:rigor` | rigor assessment |
+| `research:ladder` | L1–L3 emergence ladder |
+| `research:life` | life-organization rungs (O0–O9) |
+| `research:highn` | high-N world selection |
+| `research:bench` / `research:known` | benchmarks |
+| `research:ai` | LLM-assisted experiment proposal |
+| `research:experiment` | run/verify experiments |
+
+Outputs land in `apps/simulation/research/{output,plots,experiments}/`. See
+[`docs/RESULTS.md`](docs/RESULTS.md).
 
 ## Testing
-`scripts/run-tests.mjs` discovers `test/*.test.ts` per workspace. `--fast` runs
-the cheap tier (from `test/tiers.json`); the default full run includes the long
-poles (causal, parity, experiment, ...). Research tests never write shared state.
 
-## Research outputs
-Generated artifacts live under `apps/simulation/research/` (SCOPE.md, output/,
-experiments/, ladder/) and are committed where appropriate.
+`scripts/run-tests.mjs` discovers `test/*.test.ts` per workspace; tiers are data
+in `test/tiers.json` (`--fast` for the cheap tier, `--jobs N` to parallelize).
+Research tests never write shared state. See
+[`apps/simulation/research/TEST_MATRIX.md`](apps/simulation/research/TEST_MATRIX.md).
 
-## License
-MIT.
+## Contributing & security
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`SECURITY.md`](SECURITY.md).
+
+## License & citation
+
+MIT © 2026 **Daven Ezhakieel**. If you use this work, please cite it — see
+[`CITATION.cff`](CITATION.cff) or run `cite` in the terminal.

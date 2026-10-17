@@ -12,6 +12,7 @@ import { LayerPanel } from './components/LayerPanel.js';
 import { ModelPanel } from './components/ModelPanel.js';
 import { LineagePanel } from './components/LineagePanel.js';
 import { ObservablesChart } from './components/ObservablesChart.js';
+import { TerminalDock } from './terminal/TerminalDock.js';
 import { startSession, destroySession } from './net/session.js';
 import { useStore } from './store/useStore.js';
 
@@ -89,6 +90,7 @@ export function App() {
       </div>
       <Toolbar />
       <LineagePanel />
+      <TerminalDock />
     </div>
     </ErrorBoundary>
   );

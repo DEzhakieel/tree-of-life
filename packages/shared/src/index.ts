@@ -8,8 +8,10 @@ export * from './genomeBlueprint.js';
 export * from './eventSink.js';
 export * from './emergenceAtlas.js';
 export * from './emergenceRadar.js';
+export * from './lifeOrganization.js';
 export * from './protocol/binary.js';
 export * from './protocol/hash.js';
+export * from './terminal/index.js';
 
 /** Client -> server JSON control messages over the WS gateway. */
 export interface ClientJoinMessage {

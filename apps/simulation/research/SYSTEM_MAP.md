@@ -1,4 +1,11 @@
-# Research-Grade System Mapping: Fractal Life v2
+# Research-Grade System Mapping: Tree of Life
+
+*(Tree of Life — formerly "Fractal Life v2".)*
+
+> **Deep atlas:** `research/SYSTEM_ATLAS.md` is the full inventory behind this
+> section map — engines/runtimes, the tick-pipeline mechanisms, the biomimicry
+> map (mechanism → real-world biology/physics), detectors, agents, experiments,
+> and tooling, each cited to a source file.
 
 ## 1. Core Engine Systems
 | System | Location | Purpose | State |
@@ -53,6 +60,11 @@
 - TS <-> WASM parity: `apps/simulation/test/parity.test.ts`.
 - Scope claims: `test/scope.test.ts` + `research/scopeRun.ts`.
 - Rigor: `test/rigor.test.ts`.
+- Multi-aspect gates: `research/TEST_MATRIX.md` (conservation, mathematical consistency, hierarchy, reciprocity, ablation, perturbation, reproducibility, disaster, phases, transitions, criticality, dimensionality). 
+- Regime catalog: `research/REGIME_CATALOG.md` (regimes, macro/micro/hierarchical, reciprocity, phases/transitions, regime vector, strict params).
+- Scaling/derivation catalog: `research/SCALING_CATALOG.md` (scaling laws, derivation, dimensional engine, estimation/approximation, discovery, experimentation).
+- Unified record: `research/UNIFIED_RECORD.md` (pegs every instrument — detectors, observers, documenters, LLM/agents — to these sections, the hierarchies, the reinforcing/balancing loop, reciprocity, experiments, phases, categories, and the classification catalog; master cross-reference matrix + records index).
+- System atlas: `research/SYSTEM_ATLAS.md` (deep file-level inventory of engines/runtimes, tick-pipeline mechanisms, the biomimicry map, detectors, agents, experiments, and server/web/scripts/probe/infra tooling).
 - Objectives contract: `test/design.test.ts` (ladder level-name regression).
 - Reproducibility: `test/experiment.test.ts` (bit-exact digests; cross-seed).
 - Server API: `apps/server/test/*.test.ts`.

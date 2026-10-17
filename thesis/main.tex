@@ -1,0 +1,283 @@
+% Tree of Life — a computational thesis.
+% Build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+% or:     latexmk -pdf main
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\SimStats}{\ensuremath{\mathrm{SimStats}}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\KL}{D_{KL}}
+
+\title{\textbf{Engineering Emergence in the Tree of Life Sandbox}\\[2mm]
+\large A Deterministic, Dual-Engine Platform for Reproducible Artificial-Life Research}
+\author{Daven Ezhakieel}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+We present \emph{Tree of Life}, a deterministic artificial-life sandbox and
+accompanying research stack for the reproducible study of emergence. The system
+models agents that move, metabolise, fight, cooperate, learn, and speciate on
+procedural fractal escape-time terrain, with an extensible layered substrate
+spanning chemistry, cell biology, physiology, ecology, and culture. Two engines
+--- a readable TypeScript reference and a high-performance Rust/WebAssembly
+authority --- reproduce each world \emph{bit-for-bit} from a seed, enforced by a
+shared binary protocol and a rolling state signature. We formalise the tick as a
+fixed ordered pipeline, define a library of observable quantities with documented
+formulas, and drive measurement through detectors that convert time series into
+discrete, testable claims. A pre-registered scope ledger tracks every claim as
+\emph{supported}, \emph{refuted}, or \emph{inconclusive} (currently 23/2/9 of
+34). We report reproducible results: fast-tier verification (44/44 files),
+bit-identical replay across engines, a life-organization ladder reaching rung
+O9, and a rigor assessment scoring 0.933 novelty. We argue that treating
+emergence as an \emph{engineering objective}, rather than an observed epiphenomenon,
+demands determinism, explicit objectives, multi-seed aggregation, and
+re-runnable experiments --- and that a single command layer spanning a browser
+dashboard and a console TUI is the enabling substrate for such campaigns.
+\end{abstract}
+
+\section{Introduction}
+Artificial-life (ALife) systems \citep{langton1990,ray1991,ofria2004} seek to
+generate open-ended complexity from simple rules. Their scientific value,
+however, is limited by reproducibility: stochasticity, floating-point drift,
+and undocumented mechanics make results hard to replicate and harder to compare.
+Tree of Life reframes an elaborate fractal-life simulation as an
+\emph{emergence-engineering} platform whose first-class concerns are
+determinism, measurement, and experimentability.
+
+Our contributions are:
+\begin{enumerate}\setlength\itemsep{1pt}
+\item a \textbf{dual-engine} design (TypeScript reference + Rust/WASM authority)
+that guarantees bit-reproducible trajectories via seeded streams and an ordered
+tick pipeline;
+\item a \textbf{layered substrate} (Phases A--M) where depth is opt-in and inert
+when disabled, enabling clean A/B perturbations;
+\item a \textbf{measurement stack}: hundreds of documented observables, detectors
+that emit discrete claims, and a pre-registered scope ledger;
+\item a \textbf{shared command layer} that exposes the same control verbs through
+an in-browser terminal and a console dashboard;
+\item an \textbf{experiment runner} with digest manifests and a \code{--verify}
+path proving bit-identical reproducibility.
+\end{enumerate}
+Sections \ref{sec:related}--\ref{sec:results} develop the system, its
+mathematics, its methodology, and its results.
+
+\section{Related work}\label{sec:related}
+ALife spans cellular automata \citep{neumann1966,gardner1970}, self-replicating
+programs \citep{ray1991}, and digital-evolution platforms
+\citep{ofria2004}. Complexity and information measures are classical
+\citep{shannon1948,cover2006,lopezruiz1995,grassberger1983,lempelziv1976}.
+Evolutionary dynamics rest on selection theory \citep{fisher1930,price1970},
+game dynamics \citep{taylor1978}, and social behaviour
+\citep{hamilton1964,nowak2005}. Ecology draws on trophic structure
+\citep{lindeman1942} and functional responses \citep{holling1959}. Physiology
+and transport use well-known models \citep{michaelis1913,berg1977,hodgkin1952,goldman1943}.
+Fractal geometry \citep{mandelbrot1982} and morphogenesis \citep{turing1952}
+motivate the world substrate. Statistics and reproducibility follow modern
+practice \citep{student1908,welch1947,clopper1934,jeffreys1961,kass1995,nosek2018}.
+
+\section{System architecture}\label{sec:arch}
+The repository is a monorepo. A shared package holds types, the binary protocol,
+and the terminal command layer; the \code{simulation} package holds the
+TypeScript reference engine and the research lab; \code{crates/simulation} and
+\code{crates/wasm} hold the Rust authority; \code{apps/web} and
+\code{apps/server} hold the dashboard and the HTTP/WS gateway.
+
+\begin{figure}[t]\centering
+\begin{tikzpicture}[
+  node distance=6mm and 10mm, >={Latex[length=2mm]},
+  box/.style={draw,rounded corners,align=center,inner sep=3pt,font=\small},
+  eng/.style={box,fill=blue!5}, web/.style={box,fill=green!6}, shr/.style={box,fill=yellow!10}]
+\node[web] (ui) {React dashboard\\\code{apps/web}};
+\node[web,below=of ui] (wk) {Worker / remote source};
+\node[eng,right=of wk] (ts) {TS reference\\\code{apps/simulation}};
+\node[eng,above=of ts] (wasm) {Rust authority\\\code{crates/wasm}};
+\node[shr,left=of ts] (sh) {shared: types, protocol, terminal};
+\draw[->] (ui) -- (wk);
+\draw[->] (wk) -- (wasm);
+\draw[->,dashed] (wk) -- (ts);
+\draw[->] (sh) -- (ts);
+\draw[->] (sh) -- (ui);
+\end{tikzpicture}
+\caption{Two engines behind one protocol; the terminal core is shared.}
+\label{fig:arch}
+\end{figure}
+
+\section{The model and algorithms}\label{sec:model}
+\paragraph{World.} Each world is a fractal escape-time field
+$z \mapsto z^2 + c$ \citep{mandelbrot1982}; terrain properties (food, water,
+chemistry, topology) are derived from the escape behaviour and the seed.
+
+\paragraph{Agents.} An agent carries a genome (a fixed-length real vector; a
+canonical size of 217 usable loci expanded to a 256-slot store), an energy and
+water budget, a neural brain (Hebbian or back-propagation, optional POMDP
+policy), and rich physiological state.
+
+\paragraph{The tick.} One tick is a \emph{fixed ordered pipeline}. Order is part
+of the specification: day/night and seasons $\to$ stochastic world $\to$ ecology
+grounding $\to$ per agent (ascending id) a 23-stage chain (orbit, chem-terrain
+sample, neighbour scan, pattern drives, movement, metabolism, water, feeding,
+chemistry, DNA, omics, cells, immune, predator--prey, dormancy, reproductive
+gene tracking, costly signalling, green-beard donation, memetic imitation,
+reproduction, brain learning) $\to$ biome re-injection $\to$ replicator
+projection (every 100 ticks) $\to$ fitness/births/events $\to$ mathematical and
+biophysical observables $\to$ the world half (carrion, decomposition, plant
+growth, weathering, signal diffusion, statistics).
+
+\paragraph{Determinism.} Every stochastic path draws from a \code{SplitMix64}
+stream keyed by $(\text{seed}, \text{tag}, t, \text{id})$; there is no global
+randomness. A rolling FNV-1a \emph{state hash} $h_t$ fingerprints each tick and
+underpins regression and parity tests.
+
+\section{Mathematical foundations}\label{sec:math}
+\paragraph{Drag fixed point.} With velocity update $v \leftarrow \alpha v +
+F/m$ and clamping to $v_{\max}$, the terminal speed is
+$v^\* = \min(v_{\max}, F/(m(1-\alpha)))$ for $\alpha \in (0,1)$.
+
+\paragraph{Stochastic field.} An Ornstein--Uhlenbeck process
+$dx = \theta(\mu - x)\,dt + \sigma\, dW$ has stationary variance
+$\Var[x] = \sigma^2/(2\theta)$; Poisson burst pulses follow
+$\Pr(k) = e^{-\lambda}\lambda^k/k!$.
+
+\paragraph{Enzyme kinetics.} Substrate uptake follows Michaelis--Menten
+$v = v_{\max}[S]/(K_m + [S])$ \citep{michaelis1913}.
+
+\paragraph{Diffusion stability.} A 2-D explicit Laplacian update of a grid with
+spacing $\Delta x$ and step $\Delta t$ is stable iff the diffusion number
+$D\,\Delta t/\Delta x^2 \le \tfrac14$.
+
+\paragraph{Learning.} TD(0) value updates $V(s) \leftarrow V(s) + \alpha[r +
+\gamma V(s') - V(s)]$; Hebbian plasticity $\Delta w_{ij} = \eta\, a_i a_j$; and
+back-propagation via the chain rule. Surprise is $|\delta|$ where
+$\delta = r + \gamma V(s') - V(s)$.
+
+\paragraph{Electrophysiology.} Membrane potential uses the Goldman--Hodgkin--Katz
+relation \citep{hodgkin1952,goldman1943}
+$V_m = \frac{RT}{F}\ln\frac{\sum P_i [i]_o}{\sum P_i [i]_i}$.
+
+\paragraph{Ecology and selection.} Trophic transfer follows the 10\% rule
+\citep{lindeman1942}; the replicator equation
+$\dot{x}_i = x_i\big((Ax)_i - x^\top A x\big)$ \citep{taylor1978} is projected
+every 100 ticks. The Price equation
+$\Delta\bar{w} = \Cov(w,z)/\bar{w} + \E[w\,\Delta z]/\bar{w}$ \citep{price1970}
+splits selection from transmission. Predation uses
+$f(R) = aR/(1+ahR)$ \citep{holling1959}.
+
+\paragraph{Diversity and complexity.} Shannon entropy
+$H = -\sum p_i \log_2 p_i$ \citep{shannon1948}; Simpson
+$1-\sum p_i^2$; LMC complexity $C = H \cdot D$ with
+$D = \sum (p_i - 1/n)^2$ \citep{lopezruiz1995}; the Gini coefficient for energy
+inequality; and the correlation dimension via Grassberger--Procaccia
+\citep{grassberger1983}. Normalised mutual information between meme tags and
+species is
+$\mathrm{NMI} = I(X;Y)/\sqrt{H(X)H(Y)}$.
+
+\paragraph{Dynamics.} The maximal Lyapunov exponent is estimated by
+$\lambda = \lim_{t\to\infty}\tfrac1t \sum_t \ln|\delta z_t/\delta z_0|$
+\citep{lyapunov1892,strogatz2018}; a Jacobi iteration solves the steady-state
+field.
+
+\paragraph{Statistics.} Welch's $t$-test \citep{welch1947}, Student's
+$t$ \citep{student1908} via the incomplete beta function, Clopper--Pearson
+intervals \citep{clopper1934}, one-way ANOVA, and Bayes factors with
+Savage--Dickey--Raftery approximations \citep{jeffreys1961,kass1995}.
+
+\section{Methodology}\label{sec:method}
+\paragraph{Reproducibility.} A world is a fixpoint of $(\text{seed},
+\text{config})$; trajectories are replayable. The experiment runner records a
+manifest of sha256 digests (world fingerprint, trajectory, summary, synthesis);
+\code{--verify} re-runs and compares bit-for-bit.
+
+\paragraph{Objectives and search.} Emergence flags (L1--L3), adaptation,
+steady-state, speciation, hazard/signal, and culture--species MI form a
+multi-objective vector; search is random-with-elite, extensible to
+hill-climbing and Pareto fronts.
+
+\paragraph{Pre-registration.} Claims are registered before testing and resolved
+with effect sizes and intervals, following reproducibility practice
+\citep{nosek2018}.
+
+\paragraph{Rare events.} Black-swan detectors (extinction, complexity collapse,
+cooperation drop, culture loss) score impact and a surprise heuristic
+$S = \text{impact}\,(1-p)/(p+\varepsilon)$, with joint probabilities bounded by
+independence and Fr\'echet bounds.
+
+\section{Results}\label{sec:results}
+\begin{table}[t]\centering
+\caption{Scope ledger, v1.0.0 (2026-10-16).}\label{tab:scope}
+\begin{tabular}{l r}
+\toprule
+Outcome & Count\\
+\midrule
+Supported & 23\\
+Refuted & 2\\
+Inconclusive & 9\\
+\midrule
+Total & 34\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]\centering
+\caption{Verification status.}\label{tab:verify}
+\begin{tabular}{l l}
+\toprule
+Check & Result\\
+\midrule
+Fast test tier & 44/44 files pass\\
+Typecheck (shared, simulation, web) & clean\\
+Cross-engine replay & bit-identical digests\\
+Rigor & PASS (novelty 0.933)\\
+Life-organization ceiling & rung O9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two refuted claims are reported rather than hidden: \textbf{C-AI-03} found
+the learned steerer \emph{worse} than a do-nothing control, and
+\textbf{C-SIG-01}, a costly-signalling prediction, failed in the tested regime.
+This is the intended function of a pre-registered ledger. High-$N$ search
+identified several high-complexity worlds (scores to 10.1), and life
+organization reaches its ceiling only when all substrates are enabled ---
+legacy configurations report dormant rungs O0/O3/O7/O8.
+
+\section{Discussion and limitations}\label{sec:disc}
+Treating emergence as an engineering objective forces (a) determinism and
+parity, (b) explicit objectives and thresholds, (c) multi-seed aggregation to
+avoid single-seed overfitting, and (d) re-runnable records. Limitations:
+the opt-in omics/quantum layers (E--J) are \emph{readings of shared pools}, and
+the TypeScript reference reports zeros there --- their numbers are WASM-only; a
+``supported'' verdict is statistical, not proof; and current search is
+random-with-elite rather than a full Pareto campaign.
+
+\section{Conclusion}\label{sec:concl}
+Tree of Life demonstrates that a rich artificial-life substrate can be made
+deterministic, measurable, and experimentable without sacrificing depth.
+A single ordered pipeline, a shared binary protocol, and a shared command layer
+turn an emergence simulator into a reproducible laboratory --- and the two
+refutations in its ledger show the laboratory does its job.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

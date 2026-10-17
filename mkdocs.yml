@@ -1,0 +1,44 @@
+site_name: Tree of Life
+site_description: Emergent artificial-life simulation on procedural fractal terrain.
+site_author: Daven Ezhakieel
+repo_url: https://github.com/DEzhakieel/tree-of-life
+repo_name: DEzhakieel/tree-of-life
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: teal
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Setup: SETUP.md
+  - Guide: GUIDE.md
+  - Architecture: ARCHITECTURE.md
+  - Design: DESIGN.md
+  - Reverse engineering: REVERSE_ENGINEERING.md
+  - Mapping: MAPPING.md
+  - Results: RESULTS.md
+  - References: REFERENCES.md
+  - Publishing: PUBLISH.md
+
+copyright: Copyright &copy; 2026 Daven Ezhakieel — MIT

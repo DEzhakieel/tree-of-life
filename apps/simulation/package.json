@@ -13,6 +13,7 @@
     "test:fast": "node ../../scripts/run-tests.mjs --fast",
     "test:slow": "node ../../scripts/run-tests.mjs --slow",
     "test:record": "node ../../scripts/run-tests.mjs --record",
+    "terminal": "tsx src/tui.ts",
     "enrich": "tsx src/research/enrich.ts",
     "research": "tsx src/research/cli.ts",
     "research:events": "tsx src/research/eventRun.ts",
@@ -25,6 +26,8 @@
     "research:scope": "tsx src/research/scopeRun.ts",
     "research:ai": "tsx src/research/aiRun.ts",
     "research:experiment": "tsx src/research/experimentCli.ts",
+    "research:highn": "tsx src/research/highN.ts",
+    "research:life": "tsx src/research/lifeRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

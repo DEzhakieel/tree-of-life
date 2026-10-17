@@ -1,4 +1,6 @@
-# Fractal Life — research scope
+# Tree of Life — research scope
+
+*(Tree of Life — formerly "Fractal Life v2".)*
 
 Scope version: 1.0.0
 Generated: 2026-10-16T13:16:26.412Z

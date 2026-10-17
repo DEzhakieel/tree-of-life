@@ -2,8 +2,12 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const proxyTarget = process.env.FLS_API ?? 'http://localhost:8080';
+// GitHub Pages serves project sites under /<repo>/. Set FLS_BASE=/tree-of-life/
+// for that deployment; defaults to '/' for local dev and root hosting.
+const base = process.env.FLS_BASE ?? '/';
 
 export default defineConfig({
+  base,
   plugins: [react()],
   server: {
     port: 5173,

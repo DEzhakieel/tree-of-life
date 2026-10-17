@@ -1,4 +1,11 @@
-# Thesis: Engineering Emergence in a Deterministic Fractal-Life Sandbox
+# Thesis: Engineering Emergence in the Tree of Life Sandbox
+
+> *Tree of Life* (formerly "Fractal Life v2") — a deterministic two-engine
+> (TypeScript + Rust/WASM) emergence-engineering platform.
+
+> **Formal write-up:** the complete LaTeX thesis lives in
+> [`thesis/main.tex`](thesis/main.tex) (build: `latexmk -pdf main`).
+> Task-oriented docs: [`docs/`](docs/index.md).
 
 ## Abstract
 This work reframes a research-oriented fractal-life simulation as an *emergence

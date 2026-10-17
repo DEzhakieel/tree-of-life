@@ -4,6 +4,7 @@ build/
 coverage/
 *.log
 .env
+.env.*
 .env.local
 .DS_Store
 Thumbs.db
@@ -12,6 +13,22 @@ target/
 chk.txt
 vite_out.txt
 vite_err.txt
+
+# docs site build
+site/
+.mkdocs-build/
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+
+# editors / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*~
+
 apps/web/node_modules/
 apps/server/node_modules/
 apps/simulation/node_modules/

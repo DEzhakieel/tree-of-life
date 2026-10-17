@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: "Tree of Life: Emergence Engineering Sandbox"
+message: "If you use this software or its results, please cite it as below."
+type: software
+authors:
+  - family-names: "Ezhakieel"
+    given-names: "Daven"
+    alias: "Daven Ezhakieel"
+license: MIT
+version: 1.0.0
+doi: ""
+date-released: "2026-10-17"
+repository-code: "https://github.com/DEzhakieel/tree-of-life"
+url: "https://dezhakieel.github.io/tree-of-life/"
+keywords:
+  - artificial life
+  - emergence
+  - complex systems
+  - deterministic simulation
+  - evolutionary dynamics
+  - reproduction
+  - scientific computing
+  - WebAssembly
+abstract: >-
+  A deterministic, two-engine (TypeScript reference + Rust/WASM authority)
+  artificial-life sandbox for the reproducible study of emergence: fractal
+  escape-time worlds, neural agents, evolutionary game theory, and a full
+  research/measurement stack (detectors, statistics, benchmarks, Bayesian
+  ledgers, and LLM-assisted experiment proposal).
+preferred-citation:
+  type: software
+  title: "Tree of Life: Emergence Engineering Sandbox"
+  authors:
+    - family-names: "Ezhakieel"
+      given-names: "Daven"
+  year: 2026
+  version: 1.0.0
+  license: MIT
+  url: "https://github.com/DEzhakieel/tree-of-life"
