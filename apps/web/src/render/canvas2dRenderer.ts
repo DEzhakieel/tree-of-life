@@ -3,6 +3,13 @@ import type { AgentBuffer } from '../net/agentBuffer.js';
 import { useStore } from '../store/useStore.js';
 import { frameSuspended } from './frameBudget.js';
 import { pickAgent, pickRadius, CLICK_SLOP_PX } from './pick.js';
+import {
+  buildEdges,
+  buildLineageEdges,
+  buildLattice,
+  lineageParents,
+  latticeCellSize,
+} from './representation.js';
 
 const GOLDEN = 0.6180339887498949;
 const BG = '#03040c';
@@ -274,6 +281,7 @@ export class Canvas2DRenderer {
     const cw = this.container.clientWidth;
     const ch = this.container.clientHeight;
     const ctx = this.ctx;
+    const rep = st.representation;
 
     // clear
     ctx.fillStyle = BG;
@@ -294,9 +302,11 @@ export class Canvas2DRenderer {
     }
 
     // draw agents
-    if (st.showAgents) {
+    if (st.showAgents && (rep === 'particle' || rep === 'fractal')) {
       const agents = this.opts.agents;
       const n = agents.count;
+      // Fractal view demotes the population to markers so the ground reads.
+      const sizeScale = rep === 'fractal' ? 0.45 : 1;
       ctx.globalCompositeOperation = 'lighter';
       for (let i = 0; i < n; i++) {
         const ax = agents.x[i]!;
@@ -311,13 +321,16 @@ export class Canvas2DRenderer {
         // Quadratic size ramp matches the WebGL path: starved agents fade to
         // a faint speck, well-fed ones bloom.
         const fed = energy * energy;
-        const size = (1.5 + fed * 5.5) * 2;
+        const size = (1.5 + fed * 5.5) * 2 * sizeScale;
         ctx.globalAlpha = 0.35 + fed * 0.65;
         ctx.drawImage(moteSprite(hue), sx - size / 2, sy - size / 2, size, size);
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
     }
+
+    if (rep === 'graph') this.drawGraph(cw, ch, st.showCulture);
+    if (rep === 'lattice') this.drawLattice(cw, ch, st.showCulture);
 
     this.frame++;
 
@@ -326,6 +339,84 @@ export class Canvas2DRenderer {
       this.drawMinimap();
     }
   };
+
+  /** Network view: proximity + lineage edges, then agents as nodes. */
+  private drawGraph(cw: number, ch: number, showCulture: boolean): void {
+    if (!this.world) return;
+    const ctx = this.ctx;
+    const agents = this.opts.agents;
+    const st = useStore.getState();
+    const toScreen = (row: number): { sx: number; sy: number } => {
+      const c = worldToComplex(this.world!.params, agents.x[row]!, agents.y[row]!);
+      return this.worldToScreen(c.re, c.im, cw, ch);
+    };
+
+    const prox = buildEdges(agents, this.world.params.worldScale / 60, 2500);
+    const lin = buildLineageEdges(agents, lineageParents(st.lineage));
+
+    ctx.lineWidth = 1;
+    for (const e of prox) {
+      const a = toScreen(e.a);
+      const b = toScreen(e.b);
+      ctx.strokeStyle = 'rgba(120,150,180,0.22)';
+      ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+    }
+    for (const e of lin) {
+      const a = toScreen(e.a);
+      const b = toScreen(e.b);
+      ctx.strokeStyle = 'rgba(140,190,255,0.55)';
+      ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+    }
+
+    const n = agents.count;
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i++) {
+      const { sx, sy } = toScreen(i);
+      if (sx < -10 || sx > cw + 10 || sy < -10 || sy > ch + 10) continue;
+      const energy = agents.energy[i]!;
+      const fed = energy * energy;
+      const hue = showCulture ? agents.meme[i]! : (agents.species[i]! * GOLDEN) % 1;
+      const size = 3 + fed * 5;
+      ctx.globalAlpha = 0.5 + fed * 0.5;
+      ctx.drawImage(moteSprite(hue), sx - size / 2, sy - size / 2, size, size);
+    }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  /** Lattice view: agents binned into a grid, cell brightness = density. */
+  private drawLattice(cw: number, ch: number, showCulture: boolean): void {
+    if (!this.world) return;
+    const ctx = this.ctx;
+    const agents = this.opts.agents;
+    const cell = latticeCellSize(WORLD_SIZE);
+    const grid = buildLattice(agents, WORLD_SIZE, cell);
+    let maxCount = 1;
+    for (let i = 0; i < grid.count.length; i++) if (grid.count[i]! > maxCount) maxCount = grid.count[i]!;
+
+    const params = this.world.params;
+    for (let y = 0; y < grid.rows; y++) {
+      for (let x = 0; x < grid.cols; x++) {
+        const idx = y * grid.cols + x;
+        const c = grid.count[idx]!;
+        if (c === 0) continue;
+        const wx = (x + 0.5) * cell;
+        const wy = (y + 0.5) * cell;
+        const comp = worldToComplex(params, wx, wy);
+        const { sx, sy } = this.worldToScreen(comp.re, comp.im, cw, ch);
+        const px = Math.max(2, cw / grid.cols);
+        const t = c / maxCount;
+        ctx.globalAlpha = 0.25 + t * 0.75;
+        if (showCulture) {
+          ctx.fillStyle = `hsl(${Math.round((grid.meme[idx]! / c) * 360)}, 70%, ${Math.round(20 + t * 55)}%)`;
+        } else {
+          ctx.fillStyle = `rgb(${Math.round(20 + t * 200)}, ${Math.round(60 + t * 180)}, ${Math.round(120 + t * 135)})`;
+        }
+        ctx.fillRect(sx - px / 2, sy - px / 2, px, px);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
 
   private drawMinimap(): void {
     const ctx = this.minimapCtx;

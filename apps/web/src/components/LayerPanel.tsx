@@ -1,4 +1,4 @@
-import { useStore, type GroundLayer } from '../store/useStore.js';
+import { useStore, type GroundLayer, type Representation } from '../store/useStore.js';
 import { Panel } from './Panel.js';
 
 const GROUND_LAYERS: { id: GroundLayer; label: string; hint: string }[] = [
@@ -8,6 +8,13 @@ const GROUND_LAYERS: { id: GroundLayer; label: string; hint: string }[] = [
   { id: 'energy', label: 'Energy field', hint: 'where energy is stored' },
   { id: 'culture', label: 'Culture map', hint: 'which memes dominate where' },
   { id: 'gene', label: 'Gene map', hint: 'which species genomes dominate where' },
+];
+
+const REPRESENTATIONS: { id: Representation; label: string; hint: string }[] = [
+  { id: 'particle', label: 'Particle', hint: 'agents as glowing motes' },
+  { id: 'fractal', label: 'Fractal', hint: 'evolved-set terrain, agents as markers' },
+  { id: 'graph', label: 'Network', hint: 'agents as nodes, lineage and proximity as edges' },
+  { id: 'lattice', label: 'Lattice', hint: 'spatial grid, cell brightness = density' },
 ];
 
 function Switch({ on, onClick }: { on: boolean; onClick: () => void }) {
@@ -36,6 +43,7 @@ function Row({ label, on, action }: { label: string; on: boolean; action: () => 
 }
 
 export function LayerPanel() {
+  const representation = useStore((s) => s.representation);
   const groundLayer = useStore((s) => s.groundLayer);
   const showTerrain = useStore((s) => s.showTerrain);
   const showAgents = useStore((s) => s.showAgents);
@@ -45,6 +53,21 @@ export function LayerPanel() {
 
   return (
     <Panel title="Display">
+      <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Representation</div>
+      <div className="mb-2 flex flex-col gap-0.5">
+        {REPRESENTATIONS.map((r) => (
+          <button
+            key={r.id}
+            onClick={() => useStore.getState().setRepresentation(r.id)}
+            title={r.hint}
+            className={`rounded-md px-1.5 py-1 text-left text-xs ${
+              representation === r.id ? 'bg-indigo-500/40 text-white' : 'text-zinc-400 hover:bg-white/10'
+            }`}
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
       <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Ground layer</div>
       <div className="mb-2 flex flex-col gap-0.5">
         {GROUND_LAYERS.map((l) => (

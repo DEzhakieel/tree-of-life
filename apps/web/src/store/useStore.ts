@@ -58,6 +58,13 @@ export const EVENT_MARK_CAP = 2000;
 
 export type SimMode = 'local' | 'remote';
 
+/** How the population is drawn. Same simulation, four views:
+ *  particle — agents as glowing motes (the default);
+ *  fractal  — the evolved-set terrain dominates, agents demoted to markers;
+ *  graph    — agents as nodes, lineage + proximity as edges;
+ *  lattice  — agents binned into a spatial grid, cell = population density. */
+export type Representation = 'particle' | 'fractal' | 'graph' | 'lattice';
+
 export interface StatsPoint {
   tick: number;
   population: number;
@@ -221,6 +228,7 @@ export interface SimState {
 
   // render layers
   groundLayer: GroundLayer;
+  representation: Representation;
   showAgents: boolean;
   showTerrain: boolean;
   showMinimap: boolean;
@@ -288,6 +296,7 @@ export interface SimState {
   patchAgentGenome: (id: number, index: number, value: number) => void;
   setDesignGenome: (g: Float32Array | null) => void;
   setGroundLayer: (l: GroundLayer) => void;
+  setRepresentation: (r: Representation) => void;
   setShowAgents: (b: boolean) => void;
   setShowTerrain: (b: boolean) => void;
   setShowMinimap: (b: boolean) => void;
@@ -369,6 +378,7 @@ export const useStore = create<SimState>((set) => ({
   designGenome: null,
 
   groundLayer: 'set',
+  representation: 'particle',
   showAgents: true,
   showTerrain: true,
   showMinimap: true,
@@ -467,6 +477,7 @@ export const useStore = create<SimState>((set) => ({
     }),
   setDesignGenome: (g) => set({ designGenome: g }),
   setGroundLayer: (l) => set({ groundLayer: l }),
+  setRepresentation: (r) => set({ representation: r }),
   setShowAgents: (b) => set({ showAgents: b }),
   setShowTerrain: (b) => set({ showTerrain: b }),
   setShowMinimap: (b) => set({ showMinimap: b }),

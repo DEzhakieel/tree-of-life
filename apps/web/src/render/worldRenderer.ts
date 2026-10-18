@@ -10,6 +10,7 @@ import { useStore } from '../store/useStore.js';
 import { frameSuspended } from './frameBudget.js';
 import { EvolvedTerrain } from './evolvedTerrain.js';
 import { AgentsMesh } from './agents.js';
+import { GraphView, LatticeView } from './graphLattice.js';
 import { createEffects } from './effects.js';
 import { Minimap } from './minimap.js';
 import { pickAgent, pickRadius, CLICK_SLOP_PX } from './pick.js';
@@ -38,6 +39,9 @@ export class WorldRenderer {
   private terrain: EvolvedTerrain | null = null;
   private lastGroundLayer = 'set';
   private agentsMesh: AgentsMesh | null = null;
+  private graphView: GraphView | null = null;
+  private latticeView: LatticeView | null = null;
+  private lastRepresentation = '';
   private effects: ReturnType<typeof createEffects> | null = null;
   private minimap: Minimap;
   private container: HTMLElement;
@@ -108,37 +112,55 @@ export class WorldRenderer {
   setWorld(world: WorldConfig | null): void {
     this.world = world;
     if (!world) {
-      if (this.terrain) {
-        this.scene.remove(this.terrain.group);
-        this.terrain.dispose();
-        this.terrain = null;
-      }
-      if (this.agentsMesh) {
-        this.scene.remove(this.agentsMesh.mesh);
-        this.agentsMesh.dispose();
-        this.agentsMesh = null;
-      }
+      this.disposeViews();
       return;
     }
-    if (this.terrain) {
-      this.scene.remove(this.terrain.group);
-      this.terrain.dispose();
-    }
-    if (this.agentsMesh) {
-      this.scene.remove(this.agentsMesh.mesh);
-      this.agentsMesh.dispose();
-    }
+    this.disposeViews();
     this.terrain = new EvolvedTerrain(world.params);
     this.scene.add(this.terrain.group);
     const maxCount = Math.min(world.params.maxPopulation, 12000);
     this.agentsMesh = new AgentsMesh(maxCount);
     this.scene.add(this.agentsMesh.mesh);
+    this.graphView = new GraphView(maxCount, world.params.worldScale / 60);
+    this.scene.add(this.graphView.group);
+    this.latticeView = new LatticeView(
+      world.params.worldScale,
+      world.params.centerX,
+      world.params.centerY,
+      WORLD_SIZE,
+    );
+    this.scene.add(this.latticeView.group);
 
     // reset the view over the whole world
     this.camX = world.params.centerX;
     this.camY = world.params.centerY;
     this.span = world.params.worldScale * 1.05;
     this.updateCamera();
+  }
+
+  /** Drop every per-world view. Called on world change and on destroy. */
+  private disposeViews(): void {
+    if (this.terrain) {
+      this.scene.remove(this.terrain.group);
+      this.terrain.dispose();
+      this.terrain = null;
+    }
+    if (this.agentsMesh) {
+      this.scene.remove(this.agentsMesh.mesh);
+      this.agentsMesh.dispose();
+      this.agentsMesh = null;
+    }
+    if (this.graphView) {
+      this.scene.remove(this.graphView.group);
+      this.graphView.dispose();
+      this.graphView = null;
+    }
+    if (this.latticeView) {
+      this.scene.remove(this.latticeView.group);
+      this.latticeView.dispose();
+      this.latticeView = null;
+    }
+    this.lastRepresentation = '';
   }
 
   // ---------------------------------------------------------------------------
@@ -333,22 +355,50 @@ export class WorldRenderer {
     if (!this.world) return;
 
     const p = this.world.params;
+    const rep = st.representation;
 
-    // ground: repaint from live data on an interval, or immediately on layer change
+    // ground: repaint from live data on an interval, or immediately on layer
+    // change. The fractal view leans on the terrain so it stays live there too.
     if (this.terrain) {
       const layerChanged = st.groundLayer !== this.lastGroundLayer;
       if (layerChanged) this.lastGroundLayer = st.groundLayer;
       if (layerChanged || this.frame % 8 === 0) {
         this.terrain.update(st.setMap, this.opts.agents, st.groundLayer);
       }
-      this.terrain.setVisible(st.showTerrain);
+      // Fractal view foregrounds the terrain; the others drop it back unless
+      // the user explicitly asked for the ground overlay.
+      this.terrain.setVisible(rep === 'fractal' ? true : st.showTerrain);
     }
 
+    // Agents: particle and fractal draw them; graph/lattice replace them.
     if (this.agentsMesh) {
-      this.agentsMesh.setVisible(st.showAgents);
-      const scale = (p.worldScale * 3.2) / WORLD_SIZE;
-      this.agentsMesh.update(p, this.opts.agents, scale, st.showCulture);
+      const showAgents = (rep === 'particle' || rep === 'fractal') && st.showAgents;
+      this.agentsMesh.setVisible(showAgents);
+      if (showAgents) {
+        // In the fractal view the terrain is the subject, so agents shrink to
+        // markers and stop swamping it.
+        const scale = (p.worldScale * 3.2) / WORLD_SIZE * (rep === 'fractal' ? 0.45 : 1);
+        this.agentsMesh.update(p, this.opts.agents, scale, st.showCulture);
+      }
     }
+
+    if (this.graphView) {
+      const on = rep === 'graph';
+      this.graphView.setVisible(on);
+      if (on && (this.frame % 4 === 0 || this.lastRepresentation !== rep)) {
+        this.graphView.update(p, this.opts.agents, st.lineage, st.showCulture);
+      }
+    }
+
+    if (this.latticeView) {
+      const on = rep === 'lattice';
+      this.latticeView.setVisible(on);
+      if (on && (this.frame % 4 === 0 || this.lastRepresentation !== rep)) {
+        this.latticeView.update(this.opts.agents, st.showCulture);
+      }
+    }
+
+    this.lastRepresentation = rep;
 
     this.frame++;
     if (this.frame % 4 === 0 && st.showMinimap) {
@@ -372,8 +422,7 @@ export class WorldRenderer {
     c.removeEventListener('pointerleave', this.onPointerLeave);
     c.removeEventListener('wheel', this.onWheel);
     window.removeEventListener('resize', this.onResize);
-    this.terrain?.dispose();
-    this.agentsMesh?.dispose();
+    this.disposeViews();
     this.effects?.dispose();
     this.renderer.dispose();
   }
