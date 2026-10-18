@@ -11,7 +11,7 @@ test('boots the local WASM world and simulates', async ({ page }) => {
 
   await page.goto('/');
 
-  await expect(page.getByText('FRACTAL LIFE')).toBeVisible();
+  await expect(page.getByText('TREE OF LIFE')).toBeVisible();
   await expect(page.getByRole('button', { name: /⏸|▶/ })).toBeVisible();
   await expect(
     page.getByText(/Boot Error|Worker Error/),

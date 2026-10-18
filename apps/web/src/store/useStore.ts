@@ -229,6 +229,10 @@ export interface SimState {
   showCulture: boolean;
   lineage: LineageNode[] | null;
 
+  /** per-panel collapse state, keyed by the panel's registry id. A missing key
+   *  means the panel is expanded, so panels never seen before default open. */
+  panelCollapsed: Record<string, boolean>;
+
   cameraZoom: number;
   workerError: string | null;
 
@@ -291,6 +295,7 @@ export interface SimState {
   setShowLineage: (b: boolean) => void;
   setShowCulture: (b: boolean) => void;
   setLineage: (l: LineageNode[] | null) => void;
+  togglePanel: (id: string) => void;
   setCameraZoom: (z: number) => void;
   setWorkerError: (e: string | null) => void;
 }
@@ -371,6 +376,11 @@ export const useStore = create<SimState>((set) => ({
   showLineage: false,
   showCulture: false,
   lineage: null,
+
+  // The three densest analysis panels start folded so the world view and the
+  // vital signs are the first thing on screen; everything else opens by
+  // default and stays open (an unknown id reads as expanded).
+  panelCollapsed: { atlas: true, radar: true, scheduler: true },
 
   cameraZoom: 1,
   workerError: null,
@@ -464,6 +474,8 @@ export const useStore = create<SimState>((set) => ({
   setShowLineage: (b) => set({ showLineage: b }),
   setShowCulture: (b) => set({ showCulture: b }),
   setLineage: (l) => set({ lineage: l }),
+  togglePanel: (id) =>
+    set((st) => ({ panelCollapsed: { ...st.panelCollapsed, [id]: !st.panelCollapsed[id] } })),
   setCameraZoom: (z) => set({ cameraZoom: z }),
   setWorkerError: (e) => set({ workerError: e }),
 }));

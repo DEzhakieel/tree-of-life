@@ -37,14 +37,21 @@ export class AgentsMesh {
       const w = worldToComplex(params, agents.x[i]!, agents.y[i]!);
       const energy = agents.energy[i]!;
       const species = agents.species[i]!;
-      const size = (0.5 + energy * 1.6) * scale;
+      // Quadratic ramp so starving agents shrink to near-nothing while a
+      // well-fed agent stays clearly larger than the pack.
+      const fed = energy * energy;
+      const size = (0.28 + fed * 2.1) * scale;
       dummy.position.set(w.re, w.im, 0.03 + energy * 0.1);
-      dummy.scale.set(size, size, size * (0.6 + energy * 0.8));
+      // Flatter when starved, taller when fed: a live agent reads as a mote of
+      // light, a starving one as a dim speck.
+      dummy.scale.set(size, size, size * (0.5 + energy * 0.9));
       dummy.rotation.set(0, 0, (species * 0.37) % (Math.PI * 2));
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
       const hue = culture ? agents.meme[i]! : (species * GOLDEN) % 1;
-      color.setHSL(hue % 1, culture ? 0.6 : 0.85, 0.35 + energy * 0.5);
+      // Wide lightness spread so low-energy agents fall toward the background
+      // instead of clustering at a mid grey.
+      color.setHSL(hue % 1, culture ? 0.55 : 0.8, 0.12 + fed * 0.62);
       tmp.copy(color);
       mesh.setColorAt(i, tmp);
     }

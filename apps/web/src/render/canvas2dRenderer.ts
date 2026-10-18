@@ -8,6 +8,39 @@ const GOLDEN = 0.6180339887498949;
 const BG = '#03040c';
 const PAINT_INTERVAL_MS = 140;
 
+/** Hue is quantised so the sprite cache stays small (one canvas per bucket)
+ *  while still reading as a continuous colour ramp. */
+const HUE_BUCKETS = 36;
+const SPRITE_SIZE = 32;
+
+/**
+ * Soft radial-gradient mote, pre-rendered once per hue bucket and blitted with
+ * additive blending. Cheaper than a per-agent gradient fill and it gives the
+ * population a bloom-like glow that hard discs cannot.
+ */
+const spriteCache = new Map<number, HTMLCanvasElement>();
+
+function moteSprite(hue: number): HTMLCanvasElement {
+  const bucket = ((Math.round((hue % 1) * HUE_BUCKETS) % HUE_BUCKETS) + HUE_BUCKETS) % HUE_BUCKETS;
+  const hit = spriteCache.get(bucket);
+  if (hit) return hit;
+  const c = document.createElement('canvas');
+  c.width = SPRITE_SIZE;
+  c.height = SPRITE_SIZE;
+  const g = c.getContext('2d')!;
+  const r = SPRITE_SIZE / 2;
+  const grad = g.createRadialGradient(r, r, 0, r, r, r);
+  const deg = (bucket / HUE_BUCKETS) * 360;
+  // Bright core fading to transparent — the falloff is what sells the glow.
+  grad.addColorStop(0, `hsla(${deg}, 90%, 72%, 1)`);
+  grad.addColorStop(0.35, `hsla(${deg}, 85%, 55%, 0.65)`);
+  grad.addColorStop(1, `hsla(${deg}, 80%, 45%, 0)`);
+  g.fillStyle = grad;
+  g.fillRect(0, 0, SPRITE_SIZE, SPRITE_SIZE);
+  spriteCache.set(bucket, c);
+  return c;
+}
+
 export interface Canvas2DRendererOptions {
   canvas: HTMLCanvasElement;
   minimapCanvas: HTMLCanvasElement;
@@ -264,6 +297,7 @@ export class Canvas2DRenderer {
     if (st.showAgents) {
       const agents = this.opts.agents;
       const n = agents.count;
+      ctx.globalCompositeOperation = 'lighter';
       for (let i = 0; i < n; i++) {
         const ax = agents.x[i]!;
         const ay = agents.y[i]!;
@@ -274,14 +308,15 @@ export class Canvas2DRenderer {
         const energy = agents.energy[i]!;
         const species = agents.species[i]!;
         const hue = st.showCulture ? agents.meme[i]! : (species * GOLDEN) % 1;
-        const l = 30 + energy * 50;
-        const size = 1.5 + energy * 3;
-
-        ctx.beginPath();
-        ctx.arc(sx, sy, size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${Math.round((hue % 1) * 360)}, ${st.showCulture ? 60 : 85}%, ${Math.round(l)}%)`;
-        ctx.fill();
+        // Quadratic size ramp matches the WebGL path: starved agents fade to
+        // a faint speck, well-fed ones bloom.
+        const fed = energy * energy;
+        const size = (1.5 + fed * 5.5) * 2;
+        ctx.globalAlpha = 0.35 + fed * 0.65;
+        ctx.drawImage(moteSprite(hue), sx - size / 2, sy - size / 2, size, size);
       }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
     }
 
     this.frame++;
@@ -304,12 +339,17 @@ export class Canvas2DRenderer {
     const sx = w / WORLD_SIZE;
     const sy = h / WORLD_SIZE;
     const n = Math.min(agents.count, 12000);
+    ctx.globalCompositeOperation = 'lighter';
     for (let i = 0; i < n; i++) {
+      const energy = agents.energy[i]!;
       const hue = (agents.species[i]! * GOLDEN) % 1;
-      const l = 30 + agents.energy[i]! * 50;
-      ctx.fillStyle = `hsl(${Math.round(hue * 360)}, 85%, ${Math.round(l)}%)`;
-      ctx.fillRect(agents.x[i]! * sx, agents.y[i]! * sy, 2, 2);
+      // Alpha tracks energy so dead weight dims out and the live population
+      // is what the minimap actually reads as.
+      ctx.globalAlpha = 0.3 + energy * energy * 0.7;
+      ctx.drawImage(moteSprite(hue), agents.x[i]! * sx - 1.5, agents.y[i]! * sy - 1.5, 3, 3);
     }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
   }
 
   destroy(): void {

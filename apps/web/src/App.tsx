@@ -1,18 +1,10 @@
 import { Component, type ReactNode, useEffect, useState } from 'react';
 import { SceneView } from './components/SceneView.js';
 import { TopBar } from './components/TopBar.js';
-import { StatsPanel } from './components/StatsPanel.js';
-import { EventTimelinePanel } from './components/EventTimelinePanel.js';
-import { EventSchedulerPanel } from './components/EventSchedulerPanel.js';
-import { EmergenceAtlasPanel } from './components/EmergenceAtlasPanel.js';
-import { EmergenceRadarPanel } from './components/EmergenceRadarPanel.js';
-import { SpeciesPanel } from './components/SpeciesPanel.js';
 import { Toolbar } from './components/Toolbar.js';
-import { LayerPanel } from './components/LayerPanel.js';
-import { ModelPanel } from './components/ModelPanel.js';
 import { LineagePanel } from './components/LineagePanel.js';
-import { ObservablesChart } from './components/ObservablesChart.js';
 import { TerminalDock } from './terminal/TerminalDock.js';
+import { LEFT_DOCK, RIGHT_DOCK } from './components/docks.js';
 import { startSession, destroySession } from './net/session.js';
 import { useStore } from './store/useStore.js';
 
@@ -76,17 +68,14 @@ export function App() {
       <SceneView />
       <TopBar />
       <div className="pointer-events-none absolute left-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-56 flex-col gap-2 overflow-y-auto pb-28">
-        <ModelPanel />
-        <StatsPanel />
-        <EventTimelinePanel />
-        <EventSchedulerPanel />
-        <EmergenceAtlasPanel />
-        <EmergenceRadarPanel />
-        <ObservablesChart />
+        {LEFT_DOCK.map(({ id, Component }) => (
+          <Component key={id} />
+        ))}
       </div>
       <div className="pointer-events-none absolute right-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-48 flex-col gap-2 overflow-y-auto pb-28">
-        <SpeciesPanel />
-        <LayerPanel />
+        {RIGHT_DOCK.map(({ id, Component }) => (
+          <Component key={id} />
+        ))}
       </div>
       <Toolbar />
       <LineagePanel />

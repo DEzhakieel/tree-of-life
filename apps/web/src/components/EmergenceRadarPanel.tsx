@@ -13,7 +13,7 @@ export function EmergenceRadarPanel() {
   const count = points.length;
 
   return (
-    <Panel title="Emergence radar" right={<span className="font-mono text-zinc-500">{count} pts</span>}>
+    <Panel title="Emergence radar" id="radar" right={<span className="font-mono text-zinc-500">{count} pts</span>}>
       <div className="flex flex-col gap-1">
         {COLS.map((id) => {
           const st = last?.status[id] ?? 'DORMANT';

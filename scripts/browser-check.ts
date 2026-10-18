@@ -137,7 +137,7 @@ async function main(): Promise<void> {
     };
 
     const body = await evalJs(`document.body ? document.body.innerText.slice(0, 300) : '(no body)'`);
-    check('page mounts with title', String(body.value ?? '').includes('FRACTAL LIFE'), String(body.value ?? '').slice(0, 120));
+    check('page mounts with title', String(body.value ?? '').includes('TREE OF LIFE'), String(body.value ?? '').slice(0, 120));
 
     const canvasCount = await evalJs(`document.querySelectorAll('canvas').length`);
     check('renderer + minimap canvases', (canvasCount.value as number) >= 2, `canvases=${canvasCount.value}`);

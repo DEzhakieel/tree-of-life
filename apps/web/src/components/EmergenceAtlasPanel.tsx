@@ -47,6 +47,7 @@ export function EmergenceAtlasPanel() {
   return (
     <Panel
       title="Emergence atlas"
+      id="atlas"
       right={<span className="font-mono text-zinc-500">{summary.n} pts</span>}
     >
       <svg

@@ -88,6 +88,7 @@ export function EventSchedulerPanel() {
   return (
     <Panel
       title="Event Scheduler"
+      id="scheduler"
       right={
         <span className="font-mono text-zinc-500">
           {scheduled.filter((e) => e.firedTick === undefined).length} pending

@@ -14,7 +14,7 @@ export function TopBar() {
   return (
     <div className="absolute inset-x-0 top-0 z-20 flex items-center gap-3 border-b border-white/10 bg-black/60 px-4 py-2 backdrop-blur">
       <h1 className="mr-2 bg-gradient-to-r from-indigo-400 to-fuchsia-400 bg-clip-text text-sm font-black tracking-tight text-transparent">
-        FRACTAL LIFE
+        TREE OF LIFE
       </h1>
 
       <NewWorldModal />

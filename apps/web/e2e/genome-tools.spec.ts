@@ -13,7 +13,7 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   page.on('pageerror', (err) => pageErrors.push(err.message));
 
   await page.goto('/');
-  await expect(page.getByText('FRACTAL LIFE')).toBeVisible();
+  await expect(page.getByText('TREE OF LIFE')).toBeVisible();
   await expect(page.getByText(/Boot Error|Worker Error/)).toHaveCount(0);
 
   await page.waitForFunction(
