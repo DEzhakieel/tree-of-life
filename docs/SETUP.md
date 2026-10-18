@@ -81,6 +81,10 @@ spawn <n> · reset · speed <tps> · turbo [on|off] · export · caps · version
 about · license · cite · docs · platform · echo · clear · quit
 ```
 
+The browser terminal additionally has
+`experiment list | run <id> | verify <id> | status <jobId>` for the experiment
+directory — see [`EXPERIMENTS.md`](EXPERIMENTS.md).
+
 ## 4. Build
 
 ```bash

@@ -98,7 +98,8 @@ See [`docs/SETUP.md`](docs/SETUP.md) for the full tutorial and
 
 `help · status · stats [key] · params · set <k> <v> · play · pause · step <n> ·
 spawn <n> · reset · speed <tps> · turbo [on|off] · export · caps · version ·
-about · license · cite · docs · platform · echo · clear · quit` (console)
+about · license · cite · docs · platform · echo · clear · quit` (console) plus
+`experiment list|run|verify|status`.
 
 Scriptable modes:
 
@@ -112,7 +113,7 @@ npm run terminal -- --steps 1000 --json            # raw state
 
 - `apps/simulation/` — TS engine, research lab, console TUI.
 - `apps/web/` — React dashboard, worker/remote sources, in-browser terminal.
-- `apps/server/` — REST + WebSocket API (worlds, snapshots, events, interventions).
+- `apps/server/` — REST + WebSocket API (worlds, snapshots, events, interventions, experiment jobs).
 - `packages/shared/` — types, binary protocol, and the terminal command layer.
 - `packages/shaders/` — shader sources.
 - `crates/` — Rust engine + WASM crate (parity with TS).
@@ -126,7 +127,8 @@ exhaustive engineering manual).
 ## Reproducible experiments
 
 Experiments are immutable records (hypothesis + config + seeds + objectives) that
-can be run, saved as a manifest, and reproduced bit-for-bit.
+can be run, saved as a manifest, and reproduced bit-for-bit. Full guide:
+[`docs/EXPERIMENTS.md`](docs/EXPERIMENTS.md).
 
 ```bash
 cd apps/simulation
@@ -137,6 +139,19 @@ npx tsx src/research/experimentCli.ts --verify l3-baseline   # REPRODUCED?
 
 The digest includes `LadderResult.worldFingerprint`, so distinct seeds never
 collide even when their summary is degenerate.
+
+Three surfaces share the same registry: the **Experiments** panel in the
+dashboard (Run / Reproduce with live progress), the REST API at
+`/api/experiments` (jobs run on a worker thread — `POST /:id/run` answers 202
+immediately), and the terminal:
+
+```text
+experiment list | run <id> [--double-check] | verify <id> | status <jobId>
+```
+
+On the static GitHub Pages build there is no server, so the panel degrades to
+the same catalog **read-only** and tells you how to start the API.
+
 
 ## Research lab
 

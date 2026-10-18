@@ -1,6 +1,6 @@
 import type { SimStats } from '../types.js';
 import { CommandRegistry } from './registry.js';
-import type { Metric, TerminalContext, TerminalMeta } from './types.js';
+import type { ExperimentJobView, Metric, TerminalContext, TerminalMeta } from './types.js';
 
 const num = (v: number, digits = 3): string =>
   Number.isFinite(v) ? v.toFixed(digits) : String(v);
@@ -311,5 +311,90 @@ export function createDefaultRegistry(meta: TerminalMeta): CommandRegistry {
     },
   });
 
+  r.register({
+    name: 'experiment',
+    aliases: ['exp'],
+    summary: 'experiment directory: list | run <id> [--double-check] | verify <id> | status <jobId>',
+    usage: 'experiment list | run <id> [--double-check] | verify <id> | status <jobId>',
+    async run(ctx, args) {
+      const host = ctx.host;
+      const sub = args[0] ?? 'list';
+
+      if (sub === 'list') {
+        if (!host.listExperiments) {
+          ctx.error('this host has no experiment directory');
+          return;
+        }
+        const list = await host.listExperiments();
+        if (list.length === 0) {
+          ctx.print('no experiments registered');
+          return;
+        }
+        const width = Math.max(...list.map((e) => e.id.length));
+        for (const e of list) {
+          ctx.print(`${e.id.padEnd(width + 2)}${e.kind.padEnd(6)}${e.seedCount}s  ${e.name}`);
+        }
+        return;
+      }
+
+      if (sub === 'run' || sub === 'verify') {
+        const id = args[1];
+        if (!id) {
+          ctx.error(`usage: experiment ${sub} <id>`);
+          return;
+        }
+        const doubleCheck = args.includes('--double-check');
+        const job =
+          sub === 'run'
+            ? await host.startExperimentRun?.(id, doubleCheck)
+            : await host.startExperimentVerify?.(id);
+        if (!job) {
+          ctx.error('this host cannot start experiments (no API server answering?)');
+          return;
+        }
+        ctx.print(`${job.status} ${job.mode} job ${job.id}`);
+        ctx.print(`poll with: experiment status ${job.id}`);
+        return;
+      }
+
+      if (sub === 'status') {
+        const jobId = args[1];
+        if (!jobId) {
+          ctx.error('usage: experiment status <jobId>');
+          return;
+        }
+        if (!host.experimentJob) {
+          ctx.error('this host cannot poll experiment jobs');
+          return;
+        }
+        const job = await host.experimentJob(jobId);
+        if (!job) {
+          ctx.error(`job not found: ${jobId}`);
+          return;
+        }
+        printExperimentJob(ctx, job);
+        return;
+      }
+
+      ctx.error('usage: experiment list | run <id> [--double-check] | verify <id> | status <jobId>');
+    },
+  });
+
   return r;
+}
+
+function printExperimentJob(ctx: TerminalContext, job: ExperimentJobView): void {
+  ctx.print(`job        ${job.id}`);
+  ctx.print(`experiment ${job.experimentId} (${job.mode})`);
+  ctx.print(`status     ${job.status}`);
+  if (job.progress) ctx.print(`progress   ${job.progress.done}/${job.progress.total} ${job.progress.label}`);
+  if (job.error) ctx.error(job.error);
+  if (job.status !== 'done') return;
+  if (job.mode === 'run') {
+    if (job.meanScore !== undefined) ctx.print(`meanScore  ${num(job.meanScore)}`);
+    if (job.passRate !== undefined) ctx.print(`passRate   ${(job.passRate * 100).toFixed(0)}%`);
+    if (job.reproducible !== undefined) ctx.print(`repro      ${job.reproducible ? 'yes' : 'no'}`);
+  } else if (job.matched !== undefined) {
+    ctx.print(job.matched ? 'reproduced bit-for-bit' : 'DRIFT - digests differ from the record');
+  }
 }

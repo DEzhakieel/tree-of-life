@@ -5,6 +5,7 @@ import { EventTimelinePanel } from './EventTimelinePanel.js';
 import { EventSchedulerPanel } from './EventSchedulerPanel.js';
 import { EmergenceAtlasPanel } from './EmergenceAtlasPanel.js';
 import { EmergenceRadarPanel } from './EmergenceRadarPanel.js';
+import { ExperimentDirectoryPanel } from './ExperimentDirectoryPanel.js';
 import { ObservablesChart } from './ObservablesChart.js';
 import { SpeciesPanel } from './SpeciesPanel.js';
 import { LayerPanel } from './LayerPanel.js';
@@ -24,6 +25,7 @@ export const LEFT_DOCK: readonly DockEntry[] = [
   { id: 'atlas', Component: EmergenceAtlasPanel },
   { id: 'radar', Component: EmergenceRadarPanel },
   { id: 'signals', Component: ObservablesChart },
+  { id: 'experiments', Component: ExperimentDirectoryPanel },
 ];
 
 /** Right dock: population + display. */

@@ -78,6 +78,7 @@ Open it in the browser with the **`> terminal`** button, or run the console
 | `reset` | `restart`, `new` | restart the world |
 | `speed <tps>` | `tps`, `rate` | target ticks/second |
 | `turbo [on\|off]` | | run unpaced (local engine) |
+| `experiment list\|run\|verify\|status <jobId>` | `exp` | experiment directory — *browser terminal*, needs the API server ([EXPERIMENTS](EXPERIMENTS.md)); console users: `npm run research:experiment` |
 | `export` | `dump` | JSON snapshot of state |
 | `caps` | `capabilities` | host platform + verbs |
 | `version` · `about` · `license` · `cite` · `docs` | | project metadata |

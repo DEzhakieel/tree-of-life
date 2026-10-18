@@ -12,6 +12,22 @@ import {
   setTurbo,
   startSession,
 } from '../net/session.js';
+import { fetchJob, loadExperiments, startReproduce, startRun, type Job } from '../net/experiments.js';
+
+function toJobView(job: Job) {
+  return {
+    id: job.id,
+    experimentId: job.experimentId,
+    mode: job.mode,
+    status: job.status,
+    progress: job.progress,
+    error: job.error,
+    meanScore: job.manifest?.aggregate.meanScore,
+    passRate: job.manifest?.aggregate.passRate,
+    reproducible: job.manifest?.reproducible,
+    matched: job.report?.matched,
+  };
+}
 
 /**
  * In-browser {@link TerminalHost}: adapts the Zustand store + the session
@@ -99,6 +115,30 @@ export function createWebHost(): TerminalHost {
         params: s.formParams,
         stats: s.stats,
       };
+    },
+
+    async listExperiments() {
+      const { experiments } = await loadExperiments();
+      return experiments.map((e) => ({
+        id: e.id,
+        name: e.name,
+        kind: e.kind ?? 'ladder',
+        seedCount: e.seeds.length,
+        hypothesis: e.hypothesis,
+      }));
+    },
+
+    async startExperimentRun(id, doubleCheck) {
+      return toJobView(await startRun(id, doubleCheck));
+    },
+
+    async startExperimentVerify(id) {
+      return toJobView(await startReproduce(id));
+    },
+
+    async experimentJob(jobId) {
+      const job = await fetchJob(jobId);
+      return job ? toJobView(job) : null;
     },
   };
 }

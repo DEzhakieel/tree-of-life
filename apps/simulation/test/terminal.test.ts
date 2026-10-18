@@ -8,6 +8,7 @@ import {
   parseCommandLine,
   summarizeStats,
   tokenize,
+  type ExperimentJobView,
   type TerminalContext,
   type TerminalHost,
   type TerminalMeta,
@@ -140,5 +141,102 @@ describe('summarizeStats', () => {
     const rows = summarizeStats(emptySimStats(7, 1, { population: 42, aliveCount: 40 }));
     assert.ok(rows.some((r) => r.label === 'tick' && r.value === '7'));
     assert.ok(rows.some((r) => r.label === 'population' && r.value === '42'));
+  });
+});
+
+describe('experiment command', () => {
+  function withExperiments(): { host: TerminalHost; calls: string[]; jobs: Map<string, ExperimentJobView> } {
+    const calls: string[] = [];
+    const jobs = new Map<string, ExperimentJobView>();
+    const host: TerminalHost = {
+      ...mockHost(),
+      async listExperiments() {
+        return [
+          { id: 'ews-sweep', name: 'Early-Warning Sweep', kind: 'ews', seedCount: 2, hypothesis: 'h' },
+          { id: 'l3-baseline', name: 'L3 Baseline', kind: 'ladder', seedCount: 3, hypothesis: 'h' },
+        ];
+      },
+      async startExperimentRun(id, doubleCheck) {
+        calls.push(`run:${id}:${doubleCheck}`);
+        const job: ExperimentJobView = { id: `job-${id}`, experimentId: id, mode: 'run', status: 'queued', progress: null };
+        jobs.set(job.id, job);
+        return job;
+      },
+      async startExperimentVerify(id) {
+        calls.push(`verify:${id}`);
+        const job: ExperimentJobView = { id: `job-verify-${id}`, experimentId: id, mode: 'reproduce', status: 'queued', progress: null };
+        jobs.set(job.id, job);
+        return job;
+      },
+      async experimentJob(jobId) {
+        return jobs.get(jobId) ?? null;
+      },
+    };
+    return { host, calls, jobs };
+  }
+
+  it('lists the catalog and starts a run with optional double-check', async () => {
+    const { host, calls, jobs } = withExperiments();
+    const { ctx, out, errs } = ctxFor(host);
+    const registry = createDefaultRegistry(META);
+
+    await executeLine(registry, ctx, 'experiment list');
+    assert.ok(out.some((l) => l.includes('ews-sweep') && l.includes('ews')));
+    assert.ok(out.some((l) => l.includes('l3-baseline') && l.includes('ladder')));
+
+    await executeLine(registry, ctx, 'experiment run l3-baseline --double-check');
+    assert.ok(calls.includes('run:l3-baseline:true'), 'double-check flag reaches the host');
+    assert.ok(out.some((l) => l.includes('job-l3-baseline')));
+    assert.ok(out.some((l) => l.includes('experiment status job-l3-baseline')), 'prints how to poll');
+
+    jobs.set('job-l3-baseline', {
+      id: 'job-l3-baseline',
+      experimentId: 'l3-baseline',
+      mode: 'run',
+      status: 'done',
+      progress: { done: 3, total: 3, label: 'double-check' },
+      meanScore: 0.42,
+      passRate: 1,
+      reproducible: true,
+    });
+    await executeLine(registry, ctx, 'experiment status job-l3-baseline');
+    assert.ok(out.some((l) => l.includes('meanScore  0.420')));
+    assert.ok(out.some((l) => l.includes('passRate   100%')));
+    assert.ok(out.some((l) => l.includes('repro      yes')));
+
+    await executeLine(registry, ctx, 'experiment verify l3-baseline');
+    assert.ok(calls.includes('verify:l3-baseline'));
+    assert.equal(errs.length, 0, errs.join('\n'));
+  });
+
+  it('reports drift, missing jobs, bad usage, and hosts without the verbs', async () => {
+    const { host, jobs } = withExperiments();
+    const { ctx, out, errs } = ctxFor(host);
+    const registry = createDefaultRegistry(META);
+
+    jobs.set('job-x', {
+      id: 'job-x',
+      experimentId: 'ews-sweep',
+      mode: 'reproduce',
+      status: 'done',
+      progress: null,
+      matched: false,
+    });
+    await executeLine(registry, ctx, 'experiment status job-x');
+    assert.ok(out.some((l) => l.includes('DRIFT')));
+
+    await executeLine(registry, ctx, 'experiment status job-missing');
+    assert.ok(errs.some((l) => l.includes('job not found')));
+
+    await executeLine(registry, ctx, 'experiment run');
+    assert.ok(errs.some((l) => l.includes('usage: experiment run')));
+
+    await executeLine(registry, ctx, 'experiment nope');
+    assert.ok(errs.some((l) => l.includes('usage: experiment')));
+
+    // a host that omits the optional verbs must fail loudly, not crash
+    const bare = ctxFor(mockHost());
+    await executeLine(registry, bare.ctx, 'experiment list');
+    assert.ok(bare.errs.some((l) => l.includes('no experiment directory')));
   });
 });

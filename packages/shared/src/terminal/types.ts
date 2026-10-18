@@ -17,6 +17,29 @@ export interface Metric {
   value: string;
 }
 
+/** Catalog row surfaced by `experiment list`. */
+export interface ExperimentInfo {
+  id: string;
+  name: string;
+  kind: 'ladder' | 'ews';
+  seedCount: number;
+  hypothesis: string;
+}
+
+/** Projection of a background experiment job the terminal can display. */
+export interface ExperimentJobView {
+  id: string;
+  experimentId: string;
+  mode: 'run' | 'reproduce';
+  status: 'queued' | 'running' | 'done' | 'error';
+  progress: { done: number; total: number; label: string } | null;
+  error?: string;
+  meanScore?: number;
+  passRate?: number;
+  reproducible?: boolean;
+  matched?: boolean;
+}
+
 /** Adapter implemented by each platform to expose its live session. */
 export interface TerminalHost {
   readonly platform: TerminalPlatform;
@@ -41,6 +64,13 @@ export interface TerminalHost {
   exportState(): unknown;
   /** Optional async tick for console hosts that must pump their own loop. */
   drain?(): Promise<void>;
+
+  // Experiment directory (optional: hosts without a server omit these and the
+  // `experiment` command reports that the verb is unavailable).
+  listExperiments?(): Promise<ExperimentInfo[]>;
+  startExperimentRun?(id: string, doubleCheck: boolean): Promise<ExperimentJobView>;
+  startExperimentVerify?(id: string): Promise<ExperimentJobView>;
+  experimentJob?(jobId: string): Promise<ExperimentJobView | null>;
 }
 
 /** Runtime handed to every command. */

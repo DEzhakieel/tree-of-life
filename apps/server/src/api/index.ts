@@ -6,7 +6,9 @@ import type { Storage } from '../store/interface.js';
 import type { Gateway } from '../gateway/types.js';
 import { config } from '../config.js';
 import { GroundingService } from '../data/groundingService.js';
+import { ExperimentJobs } from '../experiments/jobs.js';
 import { createDataApi } from './data.js';
+import { createExperimentsApi } from './experiments.js';
 
 /** Express 4 does not catch async rejections; forward them to the error handler. */
 function asyncHandler(
@@ -23,6 +25,10 @@ export function createApi(worldManager: WorldManager, storage: Storage, gateway:
   // Open-source scientific data (PubChem / GBIF / Kazusa) served from the
   // offline enrichment snapshot. Mounted under /api/data.
   api.use('/data', createDataApi(grounding ?? new GroundingService()));
+
+  // Experiment directory: list / run / poll / reproduce registered experiments.
+  // Each router owns its own queue, so mounts stay independent.
+  api.use('/experiments', createExperimentsApi(new ExperimentJobs()));
 
   api.get('/health', (_req, res) => {
     res.json({ ok: true, uptime: process.uptime() });

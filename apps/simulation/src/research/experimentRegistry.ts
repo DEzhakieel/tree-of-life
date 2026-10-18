@@ -53,5 +53,18 @@ export function defaultExperiments(): ExperimentRegistry {
     objectiveIds: ['life-steady', 'speciation', 'hazard-avoidance'],
     createdAt: '2026-10-16T00:00:00.000Z',
   });
+  reg.register({
+    id: 'ews-sweep',
+    name: 'Early-Warning Sweep',
+    kind: 'ews',
+    hypothesis: 'Rolling early-warning signals rise before a slow metabolismBase ramp drives the population across a critical transition',
+    description:
+      'Critical-transitions grid: burn in for 350 ticks, then ramp metabolismBase 1 -> 40 over tau ticks and compare indicator lead times against the collapse tick, with a no-ramp control at the same tick budget.',
+    tags: ['ews', 'critical-transition', 'early-warning'],
+    seeds: ['ews.a', 'ews.b'],
+    ladder: {},
+    ews: { ramps: [300, 900] },
+    createdAt: '2026-10-18T00:00:00.000Z',
+  });
   return reg;
 }

@@ -1,7 +1,9 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  // `worker` is the experiment thread; jobs.ts resolves it next to the bundle,
+  // so it has to land at dist/worker.js rather than under a subdirectory.
+  entry: { index: 'src/index.ts', worker: 'src/experiments/worker.ts' },
   format: ['esm'],
   outDir: 'dist',
   target: 'node18',

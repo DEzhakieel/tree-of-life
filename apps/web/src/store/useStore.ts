@@ -390,7 +390,7 @@ export const useStore = create<SimState>((set) => ({
   // The three densest analysis panels start folded so the world view and the
   // vital signs are the first thing on screen; everything else opens by
   // default and stays open (an unknown id reads as expanded).
-  panelCollapsed: { atlas: true, radar: true, scheduler: true },
+  panelCollapsed: { atlas: true, radar: true, scheduler: true, experiments: true },
 
   cameraZoom: 1,
   workerError: null,

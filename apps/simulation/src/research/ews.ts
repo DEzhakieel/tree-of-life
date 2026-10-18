@@ -112,9 +112,10 @@ export interface EwsControl {
   minPop: number;
 }
 
-export function runEwsControl(seeds: string[], ticks: number): EwsControl[] {
+export function runEwsControl(seeds: string[], ticks: number, onSeed?: (seed: string, index: number) => void): EwsControl[] {
   const out: EwsControl[] = [];
-  for (const seed of seeds) {
+  for (let i = 0; i < seeds.length; i++) {
+    const seed = seeds[i]!;
     const world = makeWorld(seed, EW_SPAWN, { maxPopulation: EW_MAX_POP, foodRegenRate: EW_FOOD, metabolismBase: EW_M0 });
     const engine = new Engine(world);
     let minPop = Infinity;
@@ -124,6 +125,7 @@ export function runEwsControl(seeds: string[], ticks: number): EwsControl[] {
       minPop = Math.min(minPop, engine.aliveCount());
     }
     out.push({ seed, finalPop: engine.aliveCount(), minPop });
+    onSeed?.(seed, i);
   }
   return out;
 }
@@ -178,11 +180,21 @@ function runOne(spec: EwsRunSpec): EwsRun {
   return { spec, pop, stress, points, collapse, collapseStress, leads, auc, tau };
 }
 
-export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsReport {
+export interface EwsReportOptions {
+  seeds: string[];
+  ramps: number[];
+  /** streamed as each seed x ramp finishes, then each no-ramp control */
+  onProgress?: (p: { done: number; total: number; label: string }) => void;
+}
+
+export function runEwsReport(opts: EwsReportOptions): EwsReport {
   const runs: EwsRun[] = [];
+  const total = opts.seeds.length * opts.ramps.length + opts.seeds.length;
+  let done = 0;
   for (const seed of opts.seeds) {
     for (const ramp of opts.ramps) {
       runs.push(runOne({ seed, ramp, burn: EW_BURN, ticks: EW_BURN + ramp + EW_TAIL }));
+      opts.onProgress?.({ done: ++done, total, label: `${seed} tau=${ramp}` });
     }
   }
   const summary: EwsRampSummary[] = opts.ramps.map((ramp) => {
@@ -242,7 +254,9 @@ export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsRep
     burn: EW_BURN,
     ews: EW_EWS,
     runs,
-    control: runEwsControl(opts.seeds, EW_BURN + Math.max(...opts.ramps) + EW_TAIL),
+    control: runEwsControl(opts.seeds, EW_BURN + Math.max(...opts.ramps) + EW_TAIL, (_seed, i) =>
+      opts.onProgress?.({ done: ++done, total, label: `control ${opts.seeds[i] ?? ''}` }),
+    ),
     summary,
     trends,
     pooled: poolRuns(runs),
