@@ -83,7 +83,9 @@ async function ensureWasm(wasmBinaryUrl?: string): Promise<void> {
   if (wasmInitialized) return;
   // Respect Vite's base path so project-site deployments (GitHub Pages under
   // /<repo>/) resolve the binary correctly; defaults to '/' for local dev.
-  const base = import.meta.env.BASE_URL ?? '/';
+  // Cast mirrors net/sinkConfig.ts: `import.meta.env` is Vite-injected and is
+  // undefined when this module is imported by the Node test runner.
+  const base = ((import.meta as { env?: Record<string, string | undefined> }).env?.BASE_URL) ?? '/';
   const url = wasmBinaryUrl ?? new URL(`${base}wasm/fractal_life_wasm_bg.wasm`, self.location.origin).href;
   const response = await fetch(url);
   const bytes = await response.arrayBuffer();
