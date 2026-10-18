@@ -21,12 +21,15 @@ as a console dashboard.
 
 The project's single research vertical is **critical transitions / early-warning
 signals**. When metabolic load is ramped until the population collapses to
-extinction, which generic indicators warn in advance — and does the lead time
-scale with how slowly the bifurcation is approached? The system is genuinely
-**bistable** (low ≈ 40 vs high ≈ 500), so the question is well posed. Result so
-far: **variance** (pooled AUC ≈ 0.61) and **flickering** (≈ 0.62) are the
-workhorse indicators, autocorrelation-based indicators are weak, and skewness
-fails. Full charter: [`docs/SPECIALIZATION.md`](docs/SPECIALIZATION.md).
+extinction, which generic indicators warn in advance — and does the warning scale
+with how slowly the bifurcation is approached? The system is genuinely **bistable**
+(low ≈ 40 vs high ≈ 500), so the question is well posed. Result so far (8 seeds ×
+6 ramp durations, 48 runs): **variance** is the workhorse indicator (pooled AUC
+≈ 0.66), flicker is a distant second (≈ 0.56), autocorrelation-based indicators
+are at chance, and skewness is anti-predictive. On a fine τ grid the AUC **declines
+monotonically** as the tipping point is approached more slowly — so the
+fixed-distance-to-bifurcation prediction is **rejected**. Full charter:
+[`docs/SPECIALIZATION.md`](docs/SPECIALIZATION.md).
 
 ```bash
 npm run research:ews -w @fractal-life/simulation            # full grid -> research/output/ews.*

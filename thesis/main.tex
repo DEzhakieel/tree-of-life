@@ -47,9 +47,11 @@ fixed ordered pipeline, define a library of observable quantities with documente
 formulas, and drive measurement through detectors that convert time series into
 discrete, testable claims. A pre-registered scope ledger tracks every claim as
 \emph{supported}, \emph{refuted}, or \emph{inconclusive} (currently 23/2/9 of
-34). We report reproducible results: fast-tier verification (44/44 files),
+34). We report reproducible results: fast-tier verification (45/45 files),
 bit-identical replay across engines, a life-organization ladder reaching rung
-O9, and a rigor assessment scoring 0.933 novelty. We argue that treating
+O9, a rigor assessment scoring 0.933 novelty, and a focused critical-transitions
+study in which variance is a reliable early-warning indicator while the
+fixed-distance-to-bifurcation calibration prediction is rejected. We argue that treating
 emergence as an \emph{engineering objective}, rather than an observed epiphenomenon,
 demands determinism, explicit objectives, multi-seed aggregation, and
 re-runnable experiments --- and that a single command layer spanning a browser
@@ -265,36 +267,43 @@ legacy configurations report dormant rungs O0/O3/O7/O8.
 The project's focused vertical asks whether generic, model-free early-warning
 indicators give calibrated advance notice of a macroscopic collapse. The
 ecology is \emph{bistable} (a low state of $\approx 40$ agents and a high state
-of $\approx 500$), and a no-ramp control survives in $4/4$ replicates. Ramping
+of $\approx 500$), and a no-ramp control survives in $8/8$ replicates. Ramping
 metabolic load from $1$ to $40$ over a duration $\tau$ drives a reliable
 collapse to extinction, so extinction is the critical transition and population
 the order parameter. Indicators are computed on detrended rolling windows
 (variance, lag-1 autocorrelation, recovery rate, coefficient of variation,
 skewness, flickering) and scored by ROC area between pre-collapse and
-early-stationary windows.
+early-stationary windows. The design is $8$ seeds $\times$ $6$ ramp durations
+($\tau = 300,\dots,1050$ ticks), $48$ runs.
 
 \begin{table}[t]\centering
-\caption{Pooled early-warning skill over 10 collapsed runs (AUC; $0.5$ is
+\caption{Pooled early-warning skill over 43 collapsed runs (AUC; $0.5$ is
 chance). Lead is measured in ticks and in control-parameter (metabolic-load)
 units.}\label{tab:ews}
-\begin{tabular}{l r r}
+\begin{tabular}{l r r r}
 \toprule
-Indicator & AUC & Mean lead (ticks)\\
+Indicator & AUC & Mean lead (ticks) & Mean lead (stress)\\
 \midrule
-Variance & 0.613 & 191\\
-Flickering & 0.624 & 88\\
-AR(1) / recovery & 0.537 & 42\\
-CV & 0.486 & 118\\
-Skewness & 0.409 & 82\\
+Variance & 0.659 & 207 & 13.9\\
+Flickering & 0.562 & 32 & 2.8\\
+CV & 0.512 & 160 & 8.6\\
+AR(1) / recovery & 0.493 & 39 & 1.4\\
+Skewness & 0.361 & 50 & 3.9\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Variance and flickering are the usable indicators; the autocorrelation-based
-indicators are weak, and skewness falls \emph{below} chance. The AUC-by-$\tau$
-curve is non-monotone ($0.65$, $0.79$, $0.38$ for $\tau=350,600,900$), so
-lead-time calibration is not resolved at four replicates. The experiment is
-fully reproducible via \texttt{npm run research:ews}.
+Variance is the workhorse indicator, flicker a distant second; the
+autocorrelation-based indicators are at chance and skewness falls \emph{below}
+chance. On this finer grid the AUC-vs-$\tau$ curve is \emph{monotone
+decreasing} --- roughly $0.72$ for $\tau \le 750$ falling to $0.54$ for
+$\tau \ge 900$ (slope $-0.0003$, $R^2 = 0.69$); the previously reported
+``non-monotone'' curve was a four-replicate artefact. Consequently the
+fixed distance-to-bifurcation prediction is rejected: the lead measured in
+stress units \emph{shrinks} with $\tau$ (CV slope $-0.013$, $R^2 = 0.89$) rather
+than staying constant, so warning quality degrades as the tipping point is
+approached more slowly. The experiment is fully reproducible via
+\texttt{npm run research:ews}.
 
 \section{Discussion and limitations}\label{sec:disc}
 Treating emergence as an engineering objective forces (a) determinism and

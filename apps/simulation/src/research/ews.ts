@@ -20,14 +20,14 @@ import {
 import { Engine } from '../engine.js';
 import { makeWorld } from './scenarios.js';
 
-export const EW_SEEDS = ['ews.a', 'ews.b', 'ews.c', 'ews.d'];
+export const EW_SEEDS = ['ews.a', 'ews.b', 'ews.c', 'ews.d', 'ews.e', 'ews.f', 'ews.g', 'ews.h'];
 export const EW_SPAWN = 300;
 export const EW_MAX_POP = 500;
 export const EW_FOOD = 0.0018;
 export const EW_M0 = 1;
 export const EW_MMAX = 40;
 export const EW_BURN = 350;
-export const EW_RAMPS = [350, 600, 900];
+export const EW_RAMPS = [300, 450, 600, 750, 900, 1050];
 export const EW_TAIL = 300;
 export const EW_EWS: EwsConfig = { window: 60, step: 15, detrend: 25 };
 export const EW_COLLAPSE = {
@@ -72,7 +72,14 @@ export interface EwsRampSummary {
   meanPlateau: number;
   leads: Record<EwsIndicator, { detectFrac: number; meanTicks: number; sdTicks: number; meanParam: number; sdParam: number }>;
   auc: Record<EwsIndicator, number>;
+  aucSd: Record<EwsIndicator, number>;
   tau: Record<EwsIndicator, number>;
+}
+
+export interface EwsTrend {
+  slope: number;
+  intercept: number;
+  r2: number;
 }
 
 export interface EwsPooled {
@@ -95,6 +102,7 @@ export interface EwsReport {
   runs: EwsRun[];
   control: EwsControl[];
   summary: EwsRampSummary[];
+  trends: Record<EwsIndicator, { param: EwsTrend; ticks: EwsTrend; auc: EwsTrend }>;
   pooled: EwsPooled;
 }
 
@@ -182,6 +190,7 @@ export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsRep
     const withCollapse = rs.filter((r) => r.collapse !== null);
     const leads = {} as EwsRampSummary['leads'];
     const auc = {} as Record<EwsIndicator, number>;
+    const aucSd = {} as Record<EwsIndicator, number>;
     const tau = {} as Record<EwsIndicator, number>;
     for (const ind of EWS_INDICATORS) {
       const lt = withCollapse.map((r) => r.leads[ind]).filter((l): l is LeadTime => l !== null);
@@ -195,6 +204,7 @@ export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsRep
         sdParam: sampleSd(paramArr),
       };
       auc[ind] = mean(withCollapse.map((r) => r.auc[ind]));
+      aucSd[ind] = sampleSd(withCollapse.map((r) => r.auc[ind]));
       tau[ind] = mean(withCollapse.map((r) => r.tau[ind]));
     }
     const collapseTicks = withCollapse.map((r) => r.collapse!.tick);
@@ -208,9 +218,19 @@ export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsRep
       meanPlateau: mean(withCollapse.map((r) => r.collapse!.plateau)),
       leads,
       auc,
+      aucSd,
       tau,
     };
   });
+  const xs = summary.map((s) => s.ramp);
+  const trends = {} as EwsReport['trends'];
+  for (const ind of EWS_INDICATORS) {
+    trends[ind] = {
+      param: linfit(xs, summary.map((s) => s.leads[ind].meanParam)),
+      ticks: linfit(xs, summary.map((s) => s.leads[ind].meanTicks)),
+      auc: linfit(xs, summary.map((s) => s.auc[ind])),
+    };
+  }
   return {
     seeds: opts.seeds,
     ramps: opts.ramps,
@@ -224,7 +244,31 @@ export function runEwsReport(opts: { seeds: string[]; ramps: number[] }): EwsRep
     runs,
     control: runEwsControl(opts.seeds, EW_BURN + Math.max(...opts.ramps) + EW_TAIL),
     summary,
+    trends,
     pooled: poolRuns(runs),
+  };
+}
+
+function linfit(xs: number[], ys: number[]): EwsTrend {
+  const n = Math.min(xs.length, ys.length);
+  if (n < 2) return { slope: 0, intercept: ys[0] ?? 0, r2: 0 };
+  const mx = mean(xs.slice(0, n));
+  const my = mean(ys.slice(0, n));
+  let sxx = 0;
+  let sxy = 0;
+  let syy = 0;
+  for (let i = 0; i < n; i++) {
+    const dx = xs[i] - mx;
+    const dy = ys[i] - my;
+    sxx += dx * dx;
+    sxy += dx * dy;
+    syy += dy * dy;
+  }
+  const slope = sxx === 0 ? 0 : sxy / sxx;
+  return {
+    slope,
+    intercept: my - slope * mx,
+    r2: syy === 0 ? 0 : (sxy * sxy) / (sxx * syy),
   };
 }
 
@@ -309,9 +353,28 @@ export function renderEwsReport(report: EwsReport): { md: string; json: string; 
       md.push(
         `| ${s.ramp} | ${IND_LABEL[ind]} | ${(l.detectFrac * 100).toFixed(0)}% | ` +
           `${l.meanTicks.toFixed(0)} ± ${l.sdTicks.toFixed(0)} | ${l.meanParam.toFixed(2)} ± ${l.sdParam.toFixed(2)} | ` +
-          `${s.auc[ind].toFixed(3)} | ${s.tau[ind].toFixed(2)} |`,
+          `${s.auc[ind].toFixed(3)} ± ${s.aucSd[ind].toFixed(3)} | ${s.tau[ind].toFixed(2)} |`,
       );
     }
+  }
+  md.push('');
+  md.push('## H3: does the warning track distance-to-bifurcation?');
+  md.push('');
+  md.push(
+    `Linear fit of each metric against ramp duration tau across the grid ` +
+      `(${report.ramps.join(', ')} ticks; ${report.seeds.length} replicates each). ` +
+      `A fixed distance-to-bifurcation would give lead(stress) slope ~ 0 with lead(ticks) slope > 0.`,
+  );
+  md.push('');
+  md.push('| indicator | lead (stress) slope | R2 | lead (ticks) slope | R2 | AUC slope | R2 |');
+  md.push('| :-- | ---: | ---: | ---: | ---: | ---: | ---: |');
+  for (const ind of EWS_INDICATORS) {
+    const t = report.trends[ind];
+    md.push(
+      `| ${IND_LABEL[ind]} | ${t.param.slope.toFixed(4)} | ${t.param.r2.toFixed(2)} | ` +
+        `${t.ticks.slope.toFixed(3)} | ${t.ticks.r2.toFixed(2)} | ` +
+        `${t.auc.slope.toFixed(4)} | ${t.auc.r2.toFixed(2)} |`,
+    );
   }
   md.push('');
   md.push('## Reading the table');

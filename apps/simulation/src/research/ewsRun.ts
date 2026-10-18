@@ -22,7 +22,7 @@ if (argv.includes('--help')) {
   console.log('');
   console.log('  --seeds a,b,c   replicate seeds (default ' + EW_SEEDS.join(',') + ')');
   console.log('  --ramps a,b,c   ramp durations in ticks (default ' + EW_RAMPS.join(',') + ')');
-  console.log('  --quick         2 seeds, ramps 350,600');
+  console.log('  --quick         2 seeds, ramps 300,900');
   console.log('');
   console.log('Writes research/output/ews.{md,json,csv} and research/output/plots/ews.svg.');
   process.exit(0);
@@ -33,7 +33,7 @@ const seedsArg = str('--seeds', '');
 const rampsArg = str('--ramps', '');
 const seeds = quick ? ['ews.a', 'ews.b'] : seedsArg ? seedsArg.split(',').map((s) => s.trim()).filter(Boolean) : EW_SEEDS;
 const ramps = quick
-  ? [350, 600]
+  ? [300, 900]
   : rampsArg
     ? rampsArg.split(',').map((s) => Number(s.trim())).filter((n) => Number.isFinite(n) && n > 0)
     : EW_RAMPS;
@@ -61,6 +61,15 @@ const ctrlFinal = report.control.reduce((a, c) => a + c.finalPop, 0) / Math.max(
 const ctrlSurvived = report.control.filter((c) => c.finalPop > 0).length;
 console.log('');
 console.log(`no-ramp control: mean final pop ${ctrlFinal.toFixed(0)}, survived ${ctrlSurvived}/${report.control.length}`);
+console.log('');
+console.log('H3 trend vs tau (lead-stress slope ~0 & lead-ticks slope >0 supports fixed distance-to-bifurcation):');
+for (const i of EWS_INDICATORS) {
+  const t = report.trends[i];
+  console.log(
+    `  ${i.padEnd(9)} leadStress slope ${t.param.slope.toFixed(4)} (R2 ${t.param.r2.toFixed(2)})  ` +
+      `leadTicks slope ${t.ticks.slope.toFixed(3)} (R2 ${t.ticks.r2.toFixed(2)})  AUC slope ${t.auc.slope.toFixed(4)}`,
+  );
+}
 
 const dir = writeEwsReport(report);
 console.log('');

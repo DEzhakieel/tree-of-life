@@ -3,12 +3,19 @@
     "ews.a",
     "ews.b",
     "ews.c",
-    "ews.d"
+    "ews.d",
+    "ews.e",
+    "ews.f",
+    "ews.g",
+    "ews.h"
   ],
   "ramps": [
-    350,
+    300,
+    450,
     600,
-    900
+    750,
+    900,
+    1050
   ],
   "spawn": 300,
   "maxPop": 500,
@@ -25,25 +32,25 @@
     {
       "spec": {
         "seed": "ews.a",
-        "ramp": 350,
+        "ramp": 300,
         "burn": 350,
-        "ticks": 1000
+        "ticks": 950
       },
       "collapse": {
-        "tick": 540,
+        "tick": 530,
         "plateau": 202.37857142857143,
         "threshold": 50.59464285714286,
         "tol": 0.25,
         "minAfter": 0
       },
-      "collapseStress": 22.17142857142857,
+      "collapseStress": 24.4,
       "leads": {
         "variance": {
-          "tick": 225,
-          "center": 255,
-          "leadTicks": 315,
-          "leadParam": 21.17142857142857,
-          "value": 55.41425849221834,
+          "tick": 285,
+          "center": 315,
+          "leadTicks": 245,
+          "leadParam": 23.4,
+          "value": 60.36386013422918,
           "baselineMean": 30.167361131317303,
           "baselineSd": 16.549767344128043
         },
@@ -52,38 +59,94 @@
         "cv": {
           "tick": 285,
           "center": 315,
-          "leadTicks": 255,
-          "leadParam": 21.17142857142857,
+          "leadTicks": 245,
+          "leadParam": 23.4,
           "value": 0.11793256030151675,
           "baselineMean": 0.09192402126444105,
           "baselineSd": 0.017002589030852864
         },
-        "skewness": {
-          "tick": 495,
-          "center": 525,
-          "leadTicks": 45,
-          "leadParam": 5.0142857142857125,
-          "value": 0.6541946190518426,
-          "baselineMean": 0.136651753028569,
-          "baselineSd": 0.3277080131880769
-        },
+        "skewness": null,
         "flicker": null
       },
       "auc": {
-        "variance": 0.9444444444444444,
+        "variance": 0.9411764705882353,
+        "ar1": 0.6596638655462185,
+        "recovery": 0.6596638655462185,
+        "cv": 0.8571428571428571,
+        "skewness": 0.3949579831932773,
+        "flicker": 0.5042016806722689
+      },
+      "tau": {
+        "variance": 0.4338461538461538,
+        "ar1": -0.003076923076923077,
+        "recovery": 0.003076923076923077,
+        "cv": 0.563076923076923,
+        "skewness": 0.13846153846153847,
+        "flicker": -0.1408908735770983
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.a",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 572,
+        "plateau": 202.37857142857143,
+        "threshold": 50.59464285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 20.240000000000002,
+      "leads": {
+        "variance": {
+          "tick": 285,
+          "center": 315,
+          "leadTicks": 287,
+          "leadParam": 19.240000000000002,
+          "value": 60.36386013422918,
+          "baselineMean": 30.167361131317303,
+          "baselineSd": 16.549767344128043
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 285,
+          "center": 315,
+          "leadTicks": 287,
+          "leadParam": 19.240000000000002,
+          "value": 0.11793256030151675,
+          "baselineMean": 0.09192402126444105,
+          "baselineSd": 0.017002589030852864
+        },
+        "skewness": null,
+        "flicker": {
+          "tick": 540,
+          "center": 570,
+          "leadTicks": 32,
+          "leadParam": 2.773333333333337,
+          "value": 0.0847457627118644,
+          "baselineMean": 0.029275808936825885,
+          "baselineSd": 0.022854232625872613
+        }
+      },
+      "auc": {
+        "variance": 0.9285714285714286,
         "ar1": 0.623015873015873,
         "recovery": 0.623015873015873,
         "cv": 0.873015873015873,
-        "skewness": 0.36507936507936506,
-        "flicker": 0.5119047619047619
+        "skewness": 0.42857142857142855,
+        "flicker": 0.4503968253968254
       },
       "tau": {
-        "variance": 0.38461538461538464,
-        "ar1": -0.08831908831908832,
-        "recovery": 0.08831908831908832,
-        "cv": 0.5669515669515669,
-        "skewness": 0.1396011396011396,
-        "flicker": -0.14623960265954428
+        "variance": 0.23645320197044334,
+        "ar1": -0.11330049261083744,
+        "recovery": 0.11330049261083744,
+        "cv": 0.4975369458128079,
+        "skewness": 0.18226600985221675,
+        "flicker": 0.04594768006447692
       }
     },
     {
@@ -137,6 +200,62 @@
     {
       "spec": {
         "seed": "ews.a",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 599,
+        "plateau": 202.37857142857143,
+        "threshold": 50.59464285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 13.948,
+      "leads": {
+        "variance": {
+          "tick": 285,
+          "center": 315,
+          "leadTicks": 314,
+          "leadParam": 12.948,
+          "value": 60.36386013422918,
+          "baselineMean": 30.167361131317303,
+          "baselineSd": 16.549767344128043
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 285,
+          "center": 315,
+          "leadTicks": 314,
+          "leadParam": 12.948,
+          "value": 0.11793256030151675,
+          "baselineMean": 0.09192402126444105,
+          "baselineSd": 0.017002589030852864
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.8928571428571429,
+        "ar1": 0.6150793650793651,
+        "recovery": 0.6150793650793651,
+        "cv": 0.8531746031746031,
+        "skewness": 0.42857142857142855,
+        "flicker": 0.4503968253968254
+      },
+      "tau": {
+        "variance": 0.2367816091954023,
+        "ar1": -0.12643678160919541,
+        "recovery": 0.12643678160919541,
+        "cv": 0.5264367816091954,
+        "skewness": 0.10344827586206896,
+        "flicker": -0.014623493600694338
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.a",
         "ramp": 900,
         "burn": 350,
         "ticks": 1550
@@ -184,45 +303,133 @@
     },
     {
       "spec": {
-        "seed": "ews.b",
-        "ramp": 350,
+        "seed": "ews.a",
+        "ramp": 1050,
         "burn": 350,
-        "ticks": 1000
+        "ticks": 1700
       },
       "collapse": {
-        "tick": 777,
+        "tick": 1338,
+        "plateau": 202.37857142857143,
+        "threshold": 50.59464285714286,
+        "tol": 0.25,
+        "minAfter": 1
+      },
+      "collapseStress": 37.69714285714286,
+      "leads": {
+        "variance": {
+          "tick": 1260,
+          "center": 1290,
+          "leadTicks": 78,
+          "leadParam": 2.8971428571428532,
+          "value": 141.3476852324301,
+          "baselineMean": 30.167361131317303,
+          "baselineSd": 16.549767344128043
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 1260,
+          "center": 1290,
+          "leadTicks": 78,
+          "leadParam": 2.8971428571428532,
+          "value": 0.18775587908522212,
+          "baselineMean": 0.09192402126444105,
+          "baselineSd": 0.017002589030852864
+        },
+        "skewness": {
+          "tick": 1290,
+          "center": 1320,
+          "leadTicks": 48,
+          "leadParam": 1.7828571428571394,
+          "value": 0.6893061522304752,
+          "baselineMean": 0.136651753028569,
+          "baselineSd": 0.3277080131880769
+        },
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.626984126984127,
+        "ar1": 0.373015873015873,
+        "recovery": 0.373015873015873,
+        "cv": 0.48412698412698413,
+        "skewness": 0.376984126984127,
+        "flicker": 0.7043650793650794
+      },
+      "tau": {
+        "variance": -0.10569620253164556,
+        "ar1": -0.05886075949367089,
+        "recovery": 0.05886075949367089,
+        "cv": -0.09556962025316455,
+        "skewness": -0.05063291139240506,
+        "flicker": 0.20469820075055123
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.b",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 663,
         "plateau": 167.7357142857143,
         "threshold": 41.933928571428574,
         "tol": 0.25,
-        "minAfter": 7
+        "minAfter": 24
       },
       "collapseStress": 40,
       "leads": {
         "variance": null,
-        "ar1": {
-          "tick": 735,
-          "center": 765,
-          "leadTicks": 42,
-          "leadParam": 0,
-          "value": 0.9668491727072354,
-          "baselineMean": 0.9162179520109045,
-          "baselineSd": 0.025081680889492548
-        },
-        "recovery": {
-          "tick": 735,
-          "center": 765,
-          "leadTicks": 42,
-          "leadParam": 0,
-          "value": 0.033712770143723675,
-          "baselineMean": 0.08784939410923742,
-          "baselineSd": 0.027842519905563225
-        },
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5436507936507936,
+        "ar1": 0.5476190476190477,
+        "recovery": 0.5476190476190477,
+        "cv": 0.5912698412698413,
+        "skewness": 0.5158730158730159,
+        "flicker": 0.6130952380952381
+      },
+      "tau": {
+        "variance": -0.11932773109243698,
+        "ar1": -0.1865546218487395,
+        "recovery": 0.1865546218487395,
+        "cv": -0.19327731092436976,
+        "skewness": 0.03865546218487395,
+        "flicker": 0.04714262861266293
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.b",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 958,
+        "plateau": 167.7357142857143,
+        "threshold": 41.933928571428574,
+        "tol": 0.25,
+        "minAfter": 11
+      },
+      "collapseStress": 40,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
         "cv": {
-          "tick": 735,
-          "center": 765,
-          "leadTicks": 42,
+          "tick": 900,
+          "center": 930,
+          "leadTicks": 58,
           "leadParam": 0,
-          "value": 0.16086393081408246,
+          "value": 0.19270672612516837,
           "baselineMean": 0.0904174005335418,
           "baselineSd": 0.023086316862991226
         },
@@ -230,20 +437,20 @@
         "flicker": null
       },
       "auc": {
-        "variance": 0.14285714285714285,
-        "ar1": 0.2857142857142857,
-        "recovery": 0.2857142857142857,
-        "cv": 0.1626984126984127,
-        "skewness": 0.47619047619047616,
-        "flicker": 0.7400793650793651
+        "variance": 0.46825396825396826,
+        "ar1": 0.6111111111111112,
+        "recovery": 0.6111111111111112,
+        "cv": 0.5,
+        "skewness": 0.3888888888888889,
+        "flicker": 0.6924603174603174
       },
       "tau": {
-        "variance": -0.18699186991869918,
-        "ar1": -0.10104529616724739,
-        "recovery": 0.10104529616724739,
-        "cv": -0.25203252032520324,
-        "skewness": -0.056910569105691054,
-        "flicker": 0.18377266149240334
+        "variance": -0.24388539482879107,
+        "ar1": 0.045422781271837874,
+        "recovery": -0.045422781271837874,
+        "cv": -0.06079664570230608,
+        "skewness": -0.058001397624039136,
+        "flicker": 0.1365415488883474
       }
     },
     {
@@ -305,6 +512,54 @@
     {
       "spec": {
         "seed": "ews.b",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 1230,
+        "plateau": 167.7357142857143,
+        "threshold": 41.933928571428574,
+        "tol": 0.25,
+        "minAfter": 38
+      },
+      "collapseStress": 40,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 1155,
+          "center": 1185,
+          "leadTicks": 75,
+          "leadParam": 0,
+          "value": 0.16008742463409772,
+          "baselineMean": 0.0904174005335418,
+          "baselineSd": 0.023086316862991226
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.6468253968253969,
+        "ar1": 0.8214285714285714,
+        "recovery": 0.8214285714285714,
+        "cv": 0.7063492063492064,
+        "skewness": 0.4603174603174603,
+        "flicker": 0.5119047619047619
+      },
+      "tau": {
+        "variance": -0.0045662100456621,
+        "ar1": 0.23515981735159816,
+        "recovery": -0.23515981735159816,
+        "cv": 0.1171993911719939,
+        "skewness": -0.00684931506849315,
+        "flicker": -0.09158044193010802
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.b",
         "ramp": 900,
         "burn": 350,
         "ticks": 1550
@@ -352,58 +607,148 @@
     },
     {
       "spec": {
-        "seed": "ews.c",
-        "ramp": 350,
+        "seed": "ews.b",
+        "ramp": 1050,
         "burn": 350,
-        "ticks": 1000
+        "ticks": 1700
       },
       "collapse": {
-        "tick": 583,
+        "tick": 1505,
+        "plateau": 167.7357142857143,
+        "threshold": 41.933928571428574,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 40,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 1410,
+          "center": 1440,
+          "leadTicks": 95,
+          "leadParam": 0,
+          "value": 0.1471282461845149,
+          "baselineMean": 0.0904174005335418,
+          "baselineSd": 0.023086316862991226
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.4603174603174603,
+        "ar1": 0.5753968253968254,
+        "recovery": 0.5753968253968254,
+        "cv": 0.19444444444444445,
+        "skewness": 0.3134920634920635,
+        "flicker": 0.7638888888888888
+      },
+      "tau": {
+        "variance": 0.01684981684981685,
+        "ar1": 0.14041514041514042,
+        "recovery": -0.14119947204233038,
+        "cv": 0.04322344322344322,
+        "skewness": 0.012942612942612943,
+        "flicker": -0.012607880940368433
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.c",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 486,
         "plateau": 349.87142857142857,
         "threshold": 87.46785714285714,
         "tol": 0.25,
-        "minAfter": 71
+        "minAfter": 42
       },
-      "collapseStress": 26.962857142857143,
+      "collapseStress": 18.68,
+      "leads": {
+        "variance": {
+          "tick": 360,
+          "center": 390,
+          "leadTicks": 126,
+          "leadParam": 16.38,
+          "value": 465.0895233787091,
+          "baselineMean": 63.65650184637059,
+          "baselineSd": 38.587098914798794
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 375,
+          "center": 405,
+          "leadTicks": 111,
+          "leadParam": 14.43,
+          "value": 0.16169091008882702,
+          "baselineMean": 0.09570832749838759,
+          "baselineSd": 0.02124470163119434
+        },
+        "skewness": {
+          "tick": 435,
+          "center": 465,
+          "leadTicks": 51,
+          "leadParam": 6.630000000000001,
+          "value": 0.7232107440462824,
+          "baselineMean": 0.15355247579743367,
+          "baselineSd": 0.1752885222292523
+        },
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.9081632653061225,
+        "ar1": 0.6836734693877551,
+        "recovery": 0.6836734693877551,
+        "cv": 0.4846938775510204,
+        "skewness": 0.16326530612244897,
+        "flicker": 0.5025510204081632
+      },
+      "tau": {
+        "variance": 0.5652173913043478,
+        "ar1": 0.2885375494071146,
+        "recovery": -0.2885375494071146,
+        "cv": 0.3675889328063241,
+        "skewness": -0.1541501976284585,
+        "flicker": -0.14381254459313111
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.c",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": null,
+      "collapseStress": null,
       "leads": {
         "variance": null,
         "ar1": null,
         "recovery": null,
         "cv": null,
-        "skewness": {
-          "tick": 435,
-          "center": 465,
-          "leadTicks": 148,
-          "leadParam": 16.49142857142857,
-          "value": 0.43369399714665774,
-          "baselineMean": 0.15355247579743367,
-          "baselineSd": 0.1752885222292523
-        },
-        "flicker": {
-          "tick": 495,
-          "center": 525,
-          "leadTicks": 88,
-          "leadParam": 9.805714285714284,
-          "value": 0.0847457627118644,
-          "baselineMean": 0.020030816640986136,
-          "baselineSd": 0.010220723545008942
-        }
+        "skewness": null,
+        "flicker": null
       },
       "auc": {
-        "variance": 0.6507936507936508,
-        "ar1": 0.6547619047619048,
-        "recovery": 0.6547619047619048,
-        "cv": 0.4603174603174603,
-        "skewness": 0.3134920634920635,
-        "flicker": 0.5833333333333334
+        "variance": 0.5,
+        "ar1": 0.5,
+        "recovery": 0.5,
+        "cv": 0.5,
+        "skewness": 0.5,
+        "flicker": 0.5
       },
       "tau": {
-        "variance": 0.024630541871921183,
-        "ar1": 0.029556650246305417,
-        "recovery": -0.029556650246305417,
-        "cv": 0.019704433497536946,
-        "skewness": 0.014778325123152709,
-        "flicker": 0.1829600889669444
+        "variance": 0,
+        "ar1": 0,
+        "recovery": 0,
+        "cv": 0,
+        "skewness": 0,
+        "flicker": 0
       }
     },
     {
@@ -412,6 +757,40 @@
         "ramp": 600,
         "burn": 350,
         "ticks": 1250
+      },
+      "collapse": null,
+      "collapseStress": null,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5,
+        "ar1": 0.5,
+        "recovery": 0.5,
+        "cv": 0.5,
+        "skewness": 0.5,
+        "flicker": 0.5
+      },
+      "tau": {
+        "variance": 0,
+        "ar1": 0,
+        "recovery": 0,
+        "cv": 0,
+        "skewness": 0,
+        "flicker": 0
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.c",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
       },
       "collapse": null,
       "collapseStress": null,
@@ -476,19 +855,53 @@
     },
     {
       "spec": {
-        "seed": "ews.d",
-        "ramp": 350,
+        "seed": "ews.c",
+        "ramp": 1050,
         "burn": 350,
-        "ticks": 1000
+        "ticks": 1700
+      },
+      "collapse": null,
+      "collapseStress": null,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5,
+        "ar1": 0.5,
+        "recovery": 0.5,
+        "cv": 0.5,
+        "skewness": 0.5,
+        "flicker": 0.5
+      },
+      "tau": {
+        "variance": 0,
+        "ar1": 0,
+        "recovery": 0,
+        "cv": 0,
+        "skewness": 0,
+        "flicker": 0
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.d",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
       },
       "collapse": {
-        "tick": 489,
+        "tick": 476,
         "plateau": 243.93571428571428,
         "threshold": 60.98392857142857,
         "tol": 0.25,
         "minAfter": 0
       },
-      "collapseStress": 16.488571428571426,
+      "collapseStress": 17.38,
       "leads": {
         "variance": null,
         "ar1": null,
@@ -496,9 +909,9 @@
         "cv": {
           "tick": 375,
           "center": 405,
-          "leadTicks": 114,
-          "leadParam": 12.702857142857141,
-          "value": 0.14392041669518627,
+          "leadTicks": 101,
+          "leadParam": 13.129999999999999,
+          "value": 0.18735857852202603,
           "baselineMean": 0.09025211267277299,
           "baselineSd": 0.030007241045721954
         },
@@ -507,19 +920,67 @@
       },
       "auc": {
         "variance": 0.8673469387755102,
-        "ar1": 0.5663265306122449,
-        "recovery": 0.5663265306122449,
-        "cv": 0.47959183673469385,
-        "skewness": 0.336734693877551,
+        "ar1": 0.5561224489795918,
+        "recovery": 0.5561224489795918,
+        "cv": 0.5255102040816326,
+        "skewness": 0.32653061224489793,
         "flicker": 0.625
       },
       "tau": {
-        "variance": 0.42292490118577075,
-        "ar1": 0.30434782608695654,
-        "recovery": -0.30434782608695654,
-        "cv": 0.2964426877470356,
-        "skewness": 0.019762845849802372,
-        "flicker": -0.07952427724875442
+        "variance": 0.3939393939393939,
+        "ar1": 0.29004329004329005,
+        "recovery": -0.29004329004329005,
+        "cv": 0.26406926406926406,
+        "skewness": 0.012987012987012988,
+        "flicker": -0.048189014620846425
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.d",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 513,
+        "plateau": 243.93571428571428,
+        "threshold": 60.98392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 15.126666666666667,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 390,
+          "center": 420,
+          "leadTicks": 123,
+          "leadParam": 10.66,
+          "value": 0.137247796422442,
+          "baselineMean": 0.09025211267277299,
+          "baselineSd": 0.030007241045721954
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.8035714285714286,
+        "ar1": 0.45982142857142855,
+        "recovery": 0.45982142857142855,
+        "cv": 0.4017857142857143,
+        "skewness": 0.24107142857142858,
+        "flicker": 0.7165178571428571
+      },
+      "tau": {
+        "variance": 0.3466666666666667,
+        "ar1": 0.25333333333333335,
+        "recovery": -0.25333333333333335,
+        "cv": 0.30666666666666664,
+        "skewness": 0,
+        "flicker": -0.129991114192382
       }
     },
     {
@@ -581,6 +1042,46 @@
     {
       "spec": {
         "seed": "ews.d",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 742,
+        "plateau": 243.93571428571428,
+        "threshold": 60.98392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 21.383999999999997,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5476190476190477,
+        "ar1": 0.623015873015873,
+        "recovery": 0.623015873015873,
+        "cv": 0.5079365079365079,
+        "skewness": 0.6031746031746031,
+        "flicker": 0.47023809523809523
+      },
+      "tau": {
+        "variance": -0.24358974358974358,
+        "ar1": 0.2230769230769231,
+        "recovery": -0.2230769230769231,
+        "cv": 0.08461538461538462,
+        "skewness": 0.05897435897435897,
+        "flicker": -0.10167187119497459
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.d",
         "ramp": 900,
         "burn": 350,
         "ticks": 1550
@@ -625,6 +1126,1246 @@
         "skewness": -0.04927536231884058,
         "flicker": -0.06833657350630723
       }
+    },
+    {
+      "spec": {
+        "seed": "ews.d",
+        "ramp": 1050,
+        "burn": 350,
+        "ticks": 1700
+      },
+      "collapse": {
+        "tick": 850,
+        "plateau": 243.93571428571428,
+        "threshold": 60.98392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 19.57142857142857,
+      "leads": {
+        "variance": null,
+        "ar1": {
+          "tick": 810,
+          "center": 840,
+          "leadTicks": 40,
+          "leadParam": 1.485714285714284,
+          "value": 0.9741018732331104,
+          "baselineMean": 0.8847825999336751,
+          "baselineSd": 0.05285624775315343
+        },
+        "recovery": {
+          "tick": 810,
+          "center": 840,
+          "leadTicks": 40,
+          "leadParam": 1.485714285714284,
+          "value": 0.026239388167233844,
+          "baselineMean": 0.12408694585293528,
+          "baselineSd": 0.06116598645521953
+        },
+        "cv": {
+          "tick": 795,
+          "center": 825,
+          "leadTicks": 55,
+          "leadParam": 2.042857142857141,
+          "value": 0.14795669423526225,
+          "baselineMean": 0.09025211267277299,
+          "baselineSd": 0.030007241045721954
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.4444444444444444,
+        "ar1": 0.5357142857142857,
+        "recovery": 0.5357142857142857,
+        "cv": 0.17063492063492064,
+        "skewness": 0.38095238095238093,
+        "flicker": 0.4781746031746032
+      },
+      "tau": {
+        "variance": -0.272895467160037,
+        "ar1": 0.18408880666049954,
+        "recovery": -0.18408880666049954,
+        "cv": -0.008325624421831638,
+        "skewness": -0.06567992599444958,
+        "flicker": -0.11688696742483738
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 831,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 16
+      },
+      "collapseStress": 40,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 795,
+          "center": 825,
+          "leadTicks": 36,
+          "leadParam": 0,
+          "value": 0.23162595396549693,
+          "baselineMean": 0.11360275762044779,
+          "baselineSd": 0.07145056401347252
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.12301587301587301,
+        "ar1": 0.15476190476190477,
+        "recovery": 0.15476190476190477,
+        "cv": 0.19047619047619047,
+        "skewness": 0.26587301587301587,
+        "flicker": 0.746031746031746
+      },
+      "tau": {
+        "variance": -0.11304347826086956,
+        "ar1": -0.11497584541062802,
+        "recovery": 0.11497584541062802,
+        "cv": 0.033816425120772944,
+        "skewness": -0.09178743961352658,
+        "flicker": -0.019205729451864068
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 865,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 40,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 780,
+          "center": 810,
+          "leadTicks": 85,
+          "leadParam": 1.7333333333333343,
+          "value": 0.23287730234353393,
+          "baselineMean": 0.11360275762044779,
+          "baselineSd": 0.07145056401347252
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.623015873015873,
+        "ar1": 0.40476190476190477,
+        "recovery": 0.40476190476190477,
+        "cv": 0.38492063492063494,
+        "skewness": 0.14682539682539683,
+        "flicker": 0.5912698412698413
+      },
+      "tau": {
+        "variance": 0.09574468085106383,
+        "ar1": 0.0549645390070922,
+        "recovery": -0.05511130706277348,
+        "cv": 0.16134751773049646,
+        "skewness": -0.030141843971631204,
+        "flicker": -0.12315542394791316
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 600,
+        "burn": 350,
+        "ticks": 1250
+      },
+      "collapse": {
+        "tick": 943,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 39.545,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.626984126984127,
+        "ar1": 0.2976190476190476,
+        "recovery": 0.2976190476190476,
+        "cv": 0.5079365079365079,
+        "skewness": 0.2619047619047619,
+        "flicker": 0.5555555555555556
+      },
+      "tau": {
+        "variance": 0.023222060957910014,
+        "ar1": 0.002902757619738752,
+        "recovery": -0.002909097833232835,
+        "cv": 0.17851959361393324,
+        "skewness": 0.011611030478955007,
+        "flicker": -0.1685634966586603
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 1036,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 36.672,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 1005,
+          "center": 1035,
+          "leadTicks": 31,
+          "leadParam": 1.6120000000000019,
+          "value": 0.24474908383408314,
+          "baselineMean": 0.11360275762044779,
+          "baselineSd": 0.07145056401347252
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.7261904761904762,
+        "ar1": 0.47619047619047616,
+        "recovery": 0.47619047619047616,
+        "cv": 0.5952380952380952,
+        "skewness": 0.373015873015873,
+        "flicker": 0.4623015873015873
+      },
+      "tau": {
+        "variance": 0.023728813559322035,
+        "ar1": 0.04971751412429379,
+        "recovery": -0.056170721330698184,
+        "cv": 0.17062146892655367,
+        "skewness": 0.04067796610169491,
+        "flicker": -0.15181559186843482
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 900,
+        "burn": 350,
+        "ticks": 1550
+      },
+      "collapse": {
+        "tick": 1043,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 31.03,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 990,
+          "center": 1020,
+          "leadTicks": 53,
+          "leadParam": 2.296666666666667,
+          "value": 0.23237410336749884,
+          "baselineMean": 0.11360275762044779,
+          "baselineSd": 0.07145056401347252
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.7261904761904762,
+        "ar1": 0.4246031746031746,
+        "recovery": 0.4246031746031746,
+        "cv": 0.4722222222222222,
+        "skewness": 0.28174603174603174,
+        "flicker": 0.42063492063492064
+      },
+      "tau": {
+        "variance": 0.08926553672316384,
+        "ar1": 0.059887005649717516,
+        "recovery": -0.0577250407514713,
+        "cv": 0.1864406779661017,
+        "skewness": 0.030508474576271188,
+        "flicker": -0.26862781220809984
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.e",
+        "ramp": 1050,
+        "burn": 350,
+        "ticks": 1700
+      },
+      "collapse": {
+        "tick": 1075,
+        "plateau": 235.54285714285714,
+        "threshold": 58.885714285714286,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 27.928571428571427,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 1005,
+          "center": 1035,
+          "leadTicks": 70,
+          "leadParam": 2.599999999999998,
+          "value": 0.28951838684668096,
+          "baselineMean": 0.11360275762044779,
+          "baselineSd": 0.07145056401347252
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.6865079365079365,
+        "ar1": 0.373015873015873,
+        "recovery": 0.373015873015873,
+        "cv": 0.42063492063492064,
+        "skewness": 0.29365079365079366,
+        "flicker": 0.5634920634920635
+      },
+      "tau": {
+        "variance": 0.1263881544156531,
+        "ar1": 0.08619777895293496,
+        "recovery": -0.08748705188031419,
+        "cv": 0.17609730301427817,
+        "skewness": 0.05552617662612375,
+        "flicker": -0.17644619282913807
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 517,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 22.71,
+      "leads": {
+        "variance": {
+          "tick": 300,
+          "center": 330,
+          "leadTicks": 217,
+          "leadParam": 21.71,
+          "value": 74.88777187908501,
+          "baselineMean": 24.699930201032615,
+          "baselineSd": 13.531087591900695
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 270,
+          "center": 300,
+          "leadTicks": 247,
+          "leadParam": 21.71,
+          "value": 0.07492159926399916,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.8839285714285714,
+        "ar1": 0.625,
+        "recovery": 0.625,
+        "cv": 0.71875,
+        "skewness": 0.32589285714285715,
+        "flicker": 0.421875
+      },
+      "tau": {
+        "variance": 0.4266666666666667,
+        "ar1": -0.08,
+        "recovery": 0.08,
+        "cv": 0.66,
+        "skewness": -0.006666666666666667,
+        "flicker": -0.3896705496376419
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 570,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 20.066666666666666,
+      "leads": {
+        "variance": {
+          "tick": 300,
+          "center": 330,
+          "leadTicks": 270,
+          "leadParam": 19.066666666666666,
+          "value": 76.8289829733512,
+          "baselineMean": 24.699930201032615,
+          "baselineSd": 13.531087591900695
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 270,
+          "center": 300,
+          "leadTicks": 300,
+          "leadParam": 19.066666666666666,
+          "value": 0.07492159926399916,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.9246031746031746,
+        "ar1": 0.6468253968253969,
+        "recovery": 0.6468253968253969,
+        "cv": 0.7619047619047619,
+        "skewness": 0.3333333333333333,
+        "flicker": 0.35912698412698413
+      },
+      "tau": {
+        "variance": 0.3103448275862069,
+        "ar1": 0.019704433497536946,
+        "recovery": -0.019704433497536946,
+        "cv": 0.5911330049261084,
+        "skewness": -0.11822660098522167,
+        "flicker": -0.3234693749475957
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 600,
+        "burn": 350,
+        "ticks": 1250
+      },
+      "collapse": {
+        "tick": 609,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 17.835,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 270,
+          "center": 300,
+          "leadTicks": 339,
+          "leadParam": 16.835,
+          "value": 0.07492159926399916,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.8492063492063492,
+        "ar1": 0.5,
+        "recovery": 0.5,
+        "cv": 0.7222222222222222,
+        "skewness": 0.25,
+        "flicker": 0.3968253968253968
+      },
+      "tau": {
+        "variance": 0.23440860215053763,
+        "ar1": -0.1827956989247312,
+        "recovery": 0.1827956989247312,
+        "cv": 0.5827956989247312,
+        "skewness": -0.14408602150537633,
+        "flicker": -0.3421119363843977
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 622,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 15.144000000000002,
+      "leads": {
+        "variance": {
+          "tick": 300,
+          "center": 330,
+          "leadTicks": 322,
+          "leadParam": 14.144000000000002,
+          "value": 77.9219894457448,
+          "baselineMean": 24.699930201032615,
+          "baselineSd": 13.531087591900695
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 270,
+          "center": 300,
+          "leadTicks": 352,
+          "leadParam": 14.144000000000002,
+          "value": 0.07492159926399916,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.9047619047619048,
+        "ar1": 0.5357142857142857,
+        "recovery": 0.5357142857142857,
+        "cv": 0.7261904761904762,
+        "skewness": 0.23412698412698413,
+        "flicker": 0.32936507936507936
+      },
+      "tau": {
+        "variance": 0.29435483870967744,
+        "ar1": -0.15725806451612903,
+        "recovery": 0.15725806451612903,
+        "cv": 0.6008064516129032,
+        "skewness": -0.07258064516129033,
+        "flicker": -0.322451010818512
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 900,
+        "burn": 350,
+        "ticks": 1550
+      },
+      "collapse": {
+        "tick": 653,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 14.13,
+      "leads": {
+        "variance": {
+          "tick": 300,
+          "center": 330,
+          "leadTicks": 353,
+          "leadParam": 13.13,
+          "value": 77.88339361814064,
+          "baselineMean": 24.699930201032615,
+          "baselineSd": 13.531087591900695
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 165,
+          "center": 195,
+          "leadTicks": 488,
+          "leadParam": 13.13,
+          "value": 0.07455391736295662,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.9047619047619048,
+        "ar1": 0.5277777777777778,
+        "recovery": 0.5277777777777778,
+        "cv": 0.7301587301587301,
+        "skewness": 0.2777777777777778,
+        "flicker": 0.4722222222222222
+      },
+      "tau": {
+        "variance": 0.27629233511586454,
+        "ar1": -0.11586452762923351,
+        "recovery": 0.11586452762923351,
+        "cv": 0.6221033868092691,
+        "skewness": -0.10873440285204991,
+        "flicker": -0.16259797924241196
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.f",
+        "ramp": 1050,
+        "burn": 350,
+        "ticks": 1700
+      },
+      "collapse": {
+        "tick": 802,
+        "plateau": 179.56428571428572,
+        "threshold": 44.89107142857143,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 17.788571428571426,
+      "leads": {
+        "variance": null,
+        "ar1": {
+          "tick": 765,
+          "center": 795,
+          "leadTicks": 37,
+          "leadParam": 1.3742857142857154,
+          "value": 0.9801426180354704,
+          "baselineMean": 0.932717293059524,
+          "baselineSd": 0.03112428727029508
+        },
+        "recovery": null,
+        "cv": {
+          "tick": 165,
+          "center": 195,
+          "leadTicks": 637,
+          "leadParam": 16.788571428571426,
+          "value": 0.07455391736295662,
+          "baselineMean": 0.054442684242528315,
+          "baselineSd": 0.012434668115196727
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5714285714285714,
+        "ar1": 0.3888888888888889,
+        "recovery": 0.3888888888888889,
+        "cv": 0.8492063492063492,
+        "skewness": 0.49603174603174605,
+        "flicker": 0.42658730158730157
+      },
+      "tau": {
+        "variance": -0.17758985200845667,
+        "ar1": -0.13742071881606766,
+        "recovery": 0.13742071881606766,
+        "cv": 0.3594080338266385,
+        "skewness": -0.05919661733615222,
+        "flicker": -0.0645786921791123
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 488,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 2
+      },
+      "collapseStress": 18.94,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 360,
+          "center": 390,
+          "leadTicks": 128,
+          "leadParam": 16.64,
+          "value": 0.21045159459038956,
+          "baselineMean": 0.12008048535397227,
+          "baselineSd": 0.03433567934896141
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.7295918367346939,
+        "ar1": 0.5867346938775511,
+        "recovery": 0.5867346938775511,
+        "cv": 0.5,
+        "skewness": 0.2193877551020408,
+        "flicker": 0.6224489795918368
+      },
+      "tau": {
+        "variance": 0.2727272727272727,
+        "ar1": 0.17786561264822134,
+        "recovery": -0.17786561264822134,
+        "cv": 0.35177865612648224,
+        "skewness": -0.11462450592885376,
+        "flicker": 0.0471061163829026
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 538,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 17.293333333333333,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 435,
+          "center": 465,
+          "leadTicks": 103,
+          "leadParam": 8.926666666666666,
+          "value": 0.19054378516117565,
+          "baselineMean": 0.12008048535397227,
+          "baselineSd": 0.03433567934896141
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5515873015873016,
+        "ar1": 0.5119047619047619,
+        "recovery": 0.5119047619047619,
+        "cv": 0.3968253968253968,
+        "skewness": 0.26587301587301587,
+        "flicker": 0.6031746031746031
+      },
+      "tau": {
+        "variance": 0.12,
+        "ar1": 0.1753846153846154,
+        "recovery": -0.1753846153846154,
+        "cv": 0.2923076923076923,
+        "skewness": -0.009230769230769232,
+        "flicker": -0.09827951402125562
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 600,
+        "burn": 350,
+        "ticks": 1250
+      },
+      "collapse": {
+        "tick": 583,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 16.145,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 525,
+          "center": 555,
+          "leadTicks": 58,
+          "leadParam": 3.7699999999999996,
+          "value": 0.22548592238974738,
+          "baselineMean": 0.12008048535397227,
+          "baselineSd": 0.03433567934896141
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5873015873015873,
+        "ar1": 0.4722222222222222,
+        "recovery": 0.4722222222222222,
+        "cv": 0.21031746031746032,
+        "skewness": 0.2976190476190476,
+        "flicker": 0.5634920634920635
+      },
+      "tau": {
+        "variance": 0.09852216748768473,
+        "ar1": 0.15763546798029557,
+        "recovery": -0.15763546798029557,
+        "cv": 0.08374384236453201,
+        "skewness": -0.029556650246305417,
+        "flicker": -0.13240525061790775
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 659,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 17.067999999999998,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.623015873015873,
+        "ar1": 0.5714285714285714,
+        "recovery": 0.5714285714285714,
+        "cv": 0.3412698412698413,
+        "skewness": 0.44841269841269843,
+        "flicker": 0.5158730158730159
+      },
+      "tau": {
+        "variance": -0.062388591800356503,
+        "ar1": 0.0659536541889483,
+        "recovery": -0.0659536541889483,
+        "cv": 0.12299465240641712,
+        "skewness": 0.16934046345811052,
+        "flicker": -0.11641900075133575
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 900,
+        "burn": 350,
+        "ticks": 1550
+      },
+      "collapse": {
+        "tick": 742,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 17.986666666666665,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.36507936507936506,
+        "ar1": 0.2777777777777778,
+        "recovery": 0.2777777777777778,
+        "cv": 0.16666666666666666,
+        "skewness": 0.38492063492063494,
+        "flicker": 0.623015873015873
+      },
+      "tau": {
+        "variance": -0.21794871794871795,
+        "ar1": -0.017948717948717947,
+        "recovery": 0.017948717948717947,
+        "cv": 0.18205128205128204,
+        "skewness": 0.10512820512820513,
+        "flicker": -0.09367887334368714
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.g",
+        "ramp": 1050,
+        "burn": 350,
+        "ticks": 1700
+      },
+      "collapse": {
+        "tick": 818,
+        "plateau": 407.3357142857143,
+        "threshold": 101.83392857142857,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 18.382857142857144,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": null,
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.43253968253968256,
+        "ar1": 0.4365079365079365,
+        "recovery": 0.4365079365079365,
+        "cv": 0.1746031746031746,
+        "skewness": 0.3531746031746032,
+        "flicker": 0.5198412698412699
+      },
+      "tau": {
+        "variance": -0.08282828282828283,
+        "ar1": 0.048484848484848485,
+        "recovery": -0.049519965897605635,
+        "cv": 0.20515414443293764,
+        "skewness": 0.13845378220350965,
+        "flicker": -0.18139868267645384
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 300,
+        "burn": 350,
+        "ticks": 950
+      },
+      "collapse": {
+        "tick": 441,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 12.83,
+      "leads": {
+        "variance": {
+          "tick": 345,
+          "center": 375,
+          "leadTicks": 96,
+          "leadParam": 11.83,
+          "value": 31.618345114258037,
+          "baselineMean": 5.736961788337817,
+          "baselineSd": 2.326110195641776
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 345,
+          "center": 375,
+          "leadTicks": 96,
+          "leadParam": 11.83,
+          "value": 0.14280764343867636,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.7662337662337663,
+        "ar1": 0.35714285714285715,
+        "recovery": 0.35714285714285715,
+        "cv": 0.512987012987013,
+        "skewness": 0.2597402597402597,
+        "flicker": 0.6233766233766234
+      },
+      "tau": {
+        "variance": 0.35789473684210527,
+        "ar1": 0,
+        "recovery": 0,
+        "cv": 0.18947368421052632,
+        "skewness": -0.09473684210526316,
+        "flicker": -0.012926112238824687
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 450,
+        "burn": 350,
+        "ticks": 1100
+      },
+      "collapse": {
+        "tick": 472,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 11.573333333333334,
+      "leads": {
+        "variance": {
+          "tick": 360,
+          "center": 390,
+          "leadTicks": 112,
+          "leadParam": 9.706666666666667,
+          "value": 22.07494231341897,
+          "baselineMean": 5.736961788337817,
+          "baselineSd": 2.326110195641776
+        },
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 360,
+          "center": 390,
+          "leadTicks": 112,
+          "leadParam": 9.706666666666667,
+          "value": 0.12946467547795912,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.6538461538461539,
+        "ar1": 0.27472527472527475,
+        "recovery": 0.27472527472527475,
+        "cv": 0.46703296703296704,
+        "skewness": 0.32967032967032966,
+        "flicker": 0.6895604395604396
+      },
+      "tau": {
+        "variance": 0.30735930735930733,
+        "ar1": 0.030303030303030304,
+        "recovery": -0.030303030303030304,
+        "cv": 0.26406926406926406,
+        "skewness": -0.0735930735930736,
+        "flicker": -0.08428527216546854
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 600,
+        "burn": 350,
+        "ticks": 1250
+      },
+      "collapse": {
+        "tick": 509,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 11.335,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 375,
+          "center": 405,
+          "leadTicks": 134,
+          "leadParam": 8.71,
+          "value": 0.13440472306339657,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.6785714285714286,
+        "ar1": 0.3794642857142857,
+        "recovery": 0.3794642857142857,
+        "cv": 0.5491071428571429,
+        "skewness": 0.3705357142857143,
+        "flicker": 0.6004464285714286
+      },
+      "tau": {
+        "variance": 0.08695652173913043,
+        "ar1": -0.07246376811594203,
+        "recovery": 0.07246376811594203,
+        "cv": 0.2753623188405797,
+        "skewness": 0.07971014492753623,
+        "flicker": -0.11579134805062574
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 750,
+        "burn": 350,
+        "ticks": 1400
+      },
+      "collapse": {
+        "tick": 526,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 10.152,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 390,
+          "center": 420,
+          "leadTicks": 136,
+          "leadParam": 7.071999999999999,
+          "value": 0.14506987961395898,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5966386554621849,
+        "ar1": 0.31512605042016806,
+        "recovery": 0.31512605042016806,
+        "cv": 0.5084033613445378,
+        "skewness": 0.46218487394957986,
+        "flicker": 0.5819327731092437
+      },
+      "tau": {
+        "variance": -0.07692307692307693,
+        "ar1": -0.08307692307692308,
+        "recovery": 0.08307692307692308,
+        "cv": 0.2676923076923077,
+        "skewness": 0.11384615384615385,
+        "flicker": -0.15566235649883123
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 900,
+        "burn": 350,
+        "ticks": 1550
+      },
+      "collapse": {
+        "tick": 551,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 9.709999999999999,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 405,
+          "center": 435,
+          "leadTicks": 146,
+          "leadParam": 6.326666666666666,
+          "value": 0.15641346058547348,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.626984126984127,
+        "ar1": 0.3888888888888889,
+        "recovery": 0.3888888888888889,
+        "cv": 0.5714285714285714,
+        "skewness": 0.5,
+        "flicker": 0.5892857142857143
+      },
+      "tau": {
+        "variance": 0.03133903133903134,
+        "ar1": -0.014245014245014245,
+        "recovery": 0.014245014245014245,
+        "cv": 0.23646723646723647,
+        "skewness": 0.02564102564102564,
+        "flicker": -0.07513090964928144
+      }
+    },
+    {
+      "spec": {
+        "seed": "ews.h",
+        "ramp": 1050,
+        "burn": 350,
+        "ticks": 1700
+      },
+      "collapse": {
+        "tick": 564,
+        "plateau": 112.92857142857143,
+        "threshold": 28.232142857142858,
+        "tol": 0.25,
+        "minAfter": 0
+      },
+      "collapseStress": 8.948571428571428,
+      "leads": {
+        "variance": null,
+        "ar1": null,
+        "recovery": null,
+        "cv": {
+          "tick": 405,
+          "center": 435,
+          "leadTicks": 159,
+          "leadParam": 5.905714285714286,
+          "value": 0.1067444467634406,
+          "baselineMean": 0.05965245097151847,
+          "baselineSd": 0.031098446295638217
+        },
+        "skewness": null,
+        "flicker": null
+      },
+      "auc": {
+        "variance": 0.5873015873015873,
+        "ar1": 0.3253968253968254,
+        "recovery": 0.3253968253968254,
+        "cv": 0.503968253968254,
+        "skewness": 0.47619047619047616,
+        "flicker": 0.6329365079365079
+      },
+      "tau": {
+        "variance": -0.09523809523809523,
+        "ar1": -0.07936507936507936,
+        "recovery": 0.07936507936507936,
+        "cv": 0.25396825396825395,
+        "skewness": 0.042328042328042326,
+        "flicker": -0.05748556175058326
+      }
     }
   ],
   "control": [
@@ -647,87 +2388,191 @@
       "seed": "ews.d",
       "finalPop": 500,
       "minPop": 84
+    },
+    {
+      "seed": "ews.e",
+      "finalPop": 498,
+      "minPop": 66
+    },
+    {
+      "seed": "ews.f",
+      "finalPop": 500,
+      "minPop": 74
+    },
+    {
+      "seed": "ews.g",
+      "finalPop": 500,
+      "minPop": 73
+    },
+    {
+      "seed": "ews.h",
+      "finalPop": 500,
+      "minPop": 59
     }
   ],
   "summary": [
     {
-      "ramp": 350,
-      "n": 4,
+      "ramp": 300,
+      "n": 8,
       "collapseFrac": 1,
-      "meanCollapseTick": 597.25,
-      "meanCollapseStress": 26.405714285714282,
-      "meanPlateau": 240.98035714285714,
+      "meanCollapseTick": 554,
+      "meanCollapseStress": 24.367500000000003,
+      "meanPlateau": 237.41160714285715,
       "leads": {
         "variance": {
-          "detectFrac": 0.25,
-          "meanTicks": 315,
-          "sdTicks": 0,
-          "meanParam": 21.17142857142857,
-          "sdParam": 0
+          "detectFrac": 0.5,
+          "meanTicks": 171,
+          "sdTicks": 71.27879535083815,
+          "meanParam": 18.330000000000002,
+          "sdParam": 5.265668681816837
         },
         "ar1": {
-          "detectFrac": 0.25,
-          "meanTicks": 42,
+          "detectFrac": 0,
+          "meanTicks": 0,
           "sdTicks": 0,
           "meanParam": 0,
           "sdParam": 0
         },
         "recovery": {
-          "detectFrac": 0.25,
-          "meanTicks": 42,
+          "detectFrac": 0,
+          "meanTicks": 0,
           "sdTicks": 0,
           "meanParam": 0,
           "sdParam": 0
         },
         "cv": {
-          "detectFrac": 0.75,
-          "meanTicks": 137,
-          "sdTicks": 108.34666584625482,
-          "meanParam": 11.29142857142857,
-          "sdParam": 10.65605203149643
+          "detectFrac": 0.875,
+          "meanTicks": 137.71428571428572,
+          "sdTicks": 79.26267361483227,
+          "meanParam": 14.448571428571427,
+          "sdParam": 7.692159273293441
         },
         "skewness": {
-          "detectFrac": 0.5,
-          "meanTicks": 96.5,
-          "sdTicks": 72.8319984622144,
-          "meanParam": 10.752857142857142,
-          "sdParam": 8.115565542932462
+          "detectFrac": 0.125,
+          "meanTicks": 51,
+          "sdTicks": 0,
+          "meanParam": 6.630000000000001,
+          "sdParam": 0
         },
         "flicker": {
-          "detectFrac": 0.25,
-          "meanTicks": 88,
+          "detectFrac": 0,
+          "meanTicks": 0,
           "sdTicks": 0,
-          "meanParam": 9.805714285714284,
+          "meanParam": 0,
           "sdParam": 0
         }
       },
       "auc": {
-        "variance": 0.6513605442176871,
-        "ar1": 0.532454648526077,
-        "recovery": 0.532454648526077,
-        "cv": 0.49390589569161,
-        "skewness": 0.37287414965986393,
-        "flicker": 0.6150793650793651
+        "variance": 0.7203884394666957,
+        "ar1": 0.5213397859143657,
+        "recovery": 0.5213397859143657,
+        "cv": 0.5476037479385694,
+        "skewness": 0.3089401006614767,
+        "flicker": 0.5823225360219846
+      },
+      "aucSd": {
+        "variance": 0.27324128277586496,
+        "ar1": 0.17878483372147433,
+        "recovery": 0.17878483372147433,
+        "cv": 0.193635346299747,
+        "skewness": 0.10976162226864848,
+        "flicker": 0.1007644882797892
       },
       "tau": {
-        "variance": 0.16129473943859435,
-        "ar1": 0.036135022961731565,
-        "recovery": -0.036135022961731565,
-        "cv": 0.15776654196773404,
-        "skewness": 0.029307935367100902,
-        "flicker": 0.035242217637762266
+        "variance": 0.2772400507465792,
+        "ar1": 0.046479882720291923,
+        "recovery": -0.046479882720291923,
+        "cv": 0.2795658218107404,
+        "skewness": -0.033982704788667904,
+        "flicker": -0.08255575989048011
+      }
+    },
+    {
+      "ramp": 450,
+      "n": 8,
+      "collapseFrac": 0.875,
+      "meanCollapseTick": 641.1428571428571,
+      "meanCollapseStress": 23.471428571428568,
+      "meanPlateau": 221.34591836734694,
+      "leads": {
+        "variance": {
+          "detectFrac": 0.375,
+          "meanTicks": 223,
+          "sdTicks": 96.50388593212193,
+          "meanParam": 16.004444444444445,
+          "sdParam": 5.454724082372528
+        },
+        "ar1": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        },
+        "recovery": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        },
+        "cv": {
+          "detectFrac": 0.875,
+          "meanTicks": 152.57142857142858,
+          "sdTicks": 98.56783982425021,
+          "meanParam": 9.904761904761903,
+          "sdParam": 7.500333537557059
+        },
+        "skewness": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        },
+        "flicker": {
+          "detectFrac": 0.125,
+          "meanTicks": 32,
+          "sdTicks": 0,
+          "meanParam": 2.773333333333337,
+          "sdParam": 0
+        }
+      },
+      "auc": {
+        "variance": 0.7076356183499041,
+        "ar1": 0.5045951072736787,
+        "recovery": 0.5045951072736787,
+        "cv": 0.5407836211407641,
+        "skewness": 0.3048905459619745,
+        "flicker": 0.5860724097331241
+      },
+      "aucSd": {
+        "variance": 0.18110756092568722,
+        "ar1": 0.13568561314878805,
+        "recovery": 0.13568561314878805,
+        "cv": 0.19609221884317324,
+        "skewness": 0.0951801370576917,
+        "flicker": 0.1349541667145253
+      },
+      "tau": {
+        "variance": 0.167526184229271,
+        "ar1": 0.06654460574094409,
+        "recovery": -0.06656557260604141,
+        "cv": 0.29318063511581854,
+        "skewness": -0.015275382221788298,
+        "flicker": -0.08238449576025582
       }
     },
     {
       "ramp": 600,
-      "n": 4,
-      "collapseFrac": 0.75,
-      "meanCollapseTick": 710,
-      "meanCollapseStress": 23.706666666666667,
-      "meanPlateau": 204.68333333333337,
+      "n": 8,
+      "collapseFrac": 0.875,
+      "meanCollapseTick": 682,
+      "meanCollapseStress": 22.282857142857146,
+      "meanPlateau": 221.34591836734694,
       "leads": {
         "variance": {
-          "detectFrac": 0.25,
+          "detectFrac": 0.125,
           "meanTicks": 67,
           "sdTicks": 0,
           "meanParam": 2.2749999999999986,
@@ -749,13 +2594,13 @@
         },
         "cv": {
           "detectFrac": 0.75,
-          "meanTicks": 175,
-          "sdTicks": 113.16801668316009,
-          "meanParam": 9.273333333333333,
-          "sdParam": 6.0451164863328595
+          "meanTicks": 176,
+          "sdTicks": 116.5109436919983,
+          "meanParam": 9.522499999999999,
+          "sdParam": 5.665636548526565
         },
         "skewness": {
-          "detectFrac": 0.25,
+          "detectFrac": 0.125,
           "meanTicks": 52,
           "sdTicks": 0,
           "meanParam": 3.379999999999999,
@@ -770,35 +2615,119 @@
         }
       },
       "auc": {
-        "variance": 0.791005291005291,
-        "ar1": 0.6375661375661376,
-        "recovery": 0.6375661375661376,
-        "cv": 0.5873015873015873,
-        "skewness": 0.40079365079365087,
-        "flicker": 0.5529100529100529
+        "variance": 0.7307256235827665,
+        "ar1": 0.5088577097505669,
+        "recovery": 0.5088577097505669,
+        "cv": 0.5359268707482994,
+        "skewness": 0.3403486394557823,
+        "flicker": 0.5392928004535148
+      },
+      "aucSd": {
+        "variance": 0.11558974060975638,
+        "ar1": 0.16823215542613595,
+        "recovery": 0.16823215542613595,
+        "cv": 0.21515580344609755,
+        "skewness": 0.07148391067748519,
+        "flicker": 0.08553873627770375
       },
       "tau": {
-        "variance": 0.1456281479269985,
-        "ar1": 0.13402995471960988,
-        "recovery": -0.13402995471960988,
-        "cv": 0.26032741205154997,
-        "skewness": 0.06878804465011362,
-        "flicker": -0.08697316551868355
+        "variance": 0.12571339944517976,
+        "ar1": 0.043909803245455827,
+        "recovery": -0.043910708990240695,
+        "cv": 0.271629098556918,
+        "skewness": 0.017720376800735765,
+        "flicker": -0.1456845040382346
       }
     },
     {
-      "ramp": 900,
-      "n": 4,
-      "collapseFrac": 0.75,
-      "meanCollapseTick": 1202.6666666666667,
-      "meanCollapseStress": 33.99111111111111,
-      "meanPlateau": 204.68333333333337,
+      "ramp": 750,
+      "n": 8,
+      "collapseFrac": 0.875,
+      "meanCollapseTick": 773.4285714285714,
+      "meanCollapseStress": 22.05257142857143,
+      "meanPlateau": 221.34591836734694,
       "leads": {
         "variance": {
+          "detectFrac": 0.25,
+          "meanTicks": 318,
+          "sdTicks": 5.656854249492381,
+          "meanParam": 13.546000000000001,
+          "sdParam": 0.845699710299112
+        },
+        "ar1": {
           "detectFrac": 0,
           "meanTicks": 0,
           "sdTicks": 0,
           "meanParam": 0,
+          "sdParam": 0
+        },
+        "recovery": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        },
+        "cv": {
+          "detectFrac": 0.625,
+          "meanTicks": 181.6,
+          "sdTicks": 143.778649319014,
+          "meanParam": 7.155200000000001,
+          "sdParam": 6.409577458772146
+        },
+        "skewness": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        },
+        "flicker": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        }
+      },
+      "auc": {
+        "variance": 0.7054154995331466,
+        "ar1": 0.5654261704681872,
+        "recovery": 0.5654261704681872,
+        "cv": 0.6055088702147525,
+        "skewness": 0.4299719887955183,
+        "flicker": 0.47457316259837273
+      },
+      "aucSd": {
+        "variance": 0.1427466165465629,
+        "ar1": 0.1543001550087275,
+        "recovery": 0.1543001550087275,
+        "cv": 0.170757497475709,
+        "skewness": 0.1109796900022978,
+        "flicker": 0.07795797932473897
+      },
+      "tau": {
+        "variance": 0.023913948443651807,
+        "ar1": 0.029590877077073686,
+        "recovery": -0.030512763820845744,
+        "cv": 0.27005234829067937,
+        "skewness": 0.058122465430371965,
+        "flicker": -0.13631768095184152
+      }
+    },
+    {
+      "ramp": 900,
+      "n": 8,
+      "collapseFrac": 0.875,
+      "meanCollapseTick": 942.4285714285714,
+      "meanCollapseStress": 24.975714285714286,
+      "meanPlateau": 221.34591836734694,
+      "leads": {
+        "variance": {
+          "detectFrac": 0.125,
+          "meanTicks": 353,
+          "sdTicks": 0,
+          "meanParam": 13.13,
           "sdParam": 0
         },
         "ar1": {
@@ -817,10 +2746,10 @@
         },
         "cv": {
           "detectFrac": 0.75,
-          "meanTicks": 42.666666666666664,
-          "sdTicks": 13.868429375143146,
-          "meanParam": 0.6355555555555554,
-          "sdParam": 0.9195792113384919
+          "meanTicks": 135.83333333333334,
+          "sdTicks": 177.43214665518383,
+          "meanParam": 3.943333333333334,
+          "sdParam": 5.045831282686069
         },
         "skewness": {
           "detectFrac": 0,
@@ -838,64 +2767,252 @@
         }
       },
       "auc": {
-        "variance": 0.38359788359788355,
-        "ar1": 0.4431216931216932,
-        "recovery": 0.4431216931216932,
-        "cv": 0.373015873015873,
-        "skewness": 0.4656084656084656,
-        "flicker": 0.7076719576719577
+        "variance": 0.5391156462585034,
+        "ar1": 0.42120181405895696,
+        "recovery": 0.42120181405895696,
+        "cv": 0.4370748299319728,
+        "skewness": 0.4058956916099773,
+        "flicker": 0.6040249433106576
+      },
+      "aucSd": {
+        "variance": 0.2238745797817054,
+        "ar1": 0.09021208352896659,
+        "recovery": 0.09021208352896659,
+        "cv": 0.20496366043961317,
+        "skewness": 0.09741004117322394,
+        "flicker": 0.1265226876800616
       },
       "tau": {
-        "variance": -0.26711712121168835,
-        "ar1": 0.028335451043907584,
-        "recovery": -0.028335451043907584,
-        "cv": -0.037567507860362614,
-        "skewness": -0.06349120272962609,
-        "flicker": 0.08008407977148124
+        "variance": -0.08891473977224619,
+        "ar1": -0.0004521287202179181,
+        "recovery": 0.000760980848538806,
+        "cv": 0.15919429424468595,
+        "skewness": -0.019704329385060896,
+        "flicker": -0.051397619304148094
+      }
+    },
+    {
+      "ramp": 1050,
+      "n": 8,
+      "collapseFrac": 0.875,
+      "meanCollapseTick": 993.1428571428571,
+      "meanCollapseStress": 24.331020408163266,
+      "meanPlateau": 221.34591836734694,
+      "leads": {
+        "variance": {
+          "detectFrac": 0.125,
+          "meanTicks": 78,
+          "sdTicks": 0,
+          "meanParam": 2.8971428571428532,
+          "sdParam": 0
+        },
+        "ar1": {
+          "detectFrac": 0.25,
+          "meanTicks": 38.5,
+          "sdTicks": 2.1213203435596424,
+          "meanParam": 1.4299999999999997,
+          "sdParam": 0.0787918984750704
+        },
+        "recovery": {
+          "detectFrac": 0.125,
+          "meanTicks": 40,
+          "sdTicks": 0,
+          "meanParam": 1.485714285714284,
+          "sdParam": 0
+        },
+        "cv": {
+          "detectFrac": 0.75,
+          "meanTicks": 182.33333333333334,
+          "sdTicks": 225.6596256902565,
+          "meanParam": 5.039047619047618,
+          "sdParam": 6.061489725065516
+        },
+        "skewness": {
+          "detectFrac": 0.125,
+          "meanTicks": 48,
+          "sdTicks": 0,
+          "meanParam": 1.7828571428571394,
+          "sdParam": 0
+        },
+        "flicker": {
+          "detectFrac": 0,
+          "meanTicks": 0,
+          "sdTicks": 0,
+          "meanParam": 0,
+          "sdParam": 0
+        }
+      },
+      "auc": {
+        "variance": 0.54421768707483,
+        "ar1": 0.4297052154195012,
+        "recovery": 0.4297052154195012,
+        "cv": 0.39965986394557823,
+        "skewness": 0.3843537414965987,
+        "flicker": 0.5841836734693878
+      },
+      "aucSd": {
+        "variance": 0.09929701072785714,
+        "ar1": 0.09263172696368142,
+        "recovery": 0.09263172696368142,
+        "cv": 0.24690188216898895,
+        "skewness": 0.07658588189285674,
+        "flicker": 0.12230903529166832
+      },
+      "tau": {
+        "variance": -0.08442998978586391,
+        "ar1": 0.02622000240551506,
+        "recovery": -0.02666410554370455,
+        "cv": 0.13342227625579361,
+        "skewness": 0.010534451339611688,
+        "flicker": -0.05781511100713458
       }
     }
   ],
+  "trends": {
+    "variance": {
+      "param": {
+        "slope": -0.014193641723356014,
+        "intercept": 20.611139380196526,
+        "r2": 0.3425534187284443
+      },
+      "ticks": {
+        "slope": 0.033523809523809504,
+        "intercept": 179.03809523809525,
+        "r2": 0.006209913354708417
+      },
+      "auc": {
+        "slope": -0.0002688997718634572,
+        "intercept": 0.8394237650521414,
+        "r2": 0.6948681336276811
+      }
+    },
+    "ar1": {
+      "param": {
+        "slope": 0.0013619047619047617,
+        "intercept": -0.6809523809523809,
+        "r2": 0.42857142857142855
+      },
+      "ticks": {
+        "slope": 0.03666666666666667,
+        "intercept": -18.333333333333332,
+        "r2": 0.4285714285714285
+      },
+      "auc": {
+        "slope": -0.00012414938502873667,
+        "intercept": 0.5756551353752734,
+        "r2": 0.38933277912526687
+      }
+    },
+    "recovery": {
+      "param": {
+        "slope": 0.0014149659863945561,
+        "intercept": -0.707482993197278,
+        "r2": 0.4285714285714285
+      },
+      "ticks": {
+        "slope": 0.0380952380952381,
+        "intercept": -19.047619047619047,
+        "r2": 0.42857142857142855
+      },
+      "auc": {
+        "slope": -0.00012414938502873667,
+        "intercept": 0.5756551353752734,
+        "r2": 0.38933277912526687
+      }
+    },
+    "cv": {
+      "param": {
+        "slope": -0.012818896145124716,
+        "intercept": 16.98832394557823,
+        "r2": 0.8888694954152841
+      },
+      "ticks": {
+        "slope": 0.033996371882086165,
+        "intercept": 138.06117913832202,
+        "r2": 0.19355979297040282
+      },
+      "auc": {
+        "slope": -0.00018690738935711932,
+        "intercept": 0.637255455136045,
+        "r2": 0.46405634424392267
+      }
+    },
+    "skewness": {
+      "param": {
+        "slope": -0.005260136054421772,
+        "intercept": 5.516068027210886,
+        "r2": 0.3079220148341806
+      },
+      "ticks": {
+        "slope": -0.012761904761904763,
+        "intercept": 33.780952380952385,
+        "r2": 0.01683680167030274
+      },
+      "auc": {
+        "slope": 0.00014661085532559129,
+        "intercept": 0.2634377906521138,
+        "r2": 0.6227150842113041
+      }
+    },
+    "flicker": {
+      "param": {
+        "slope": -0.0015847619047619072,
+        "intercept": 1.5319365079365102,
+        "r2": 0.15428571428571433
+      },
+      "ticks": {
+        "slope": -0.018285714285714287,
+        "intercept": 17.676190476190477,
+        "r2": 0.15428571428571425
+      },
+      "auc": {
+        "slope": -2.9644759724295086e-7,
+        "intercept": 0.5619450230593126,
+        "r2": 0.000003032875217798582
+      }
+    }
+  },
   "pooled": {
-    "n": 12,
-    "collapsed": 10,
+    "n": 48,
+    "collapsed": 43,
     "auc": {
-      "variance": 0.6129251700680272,
-      "ar1": 0.5371882086167801,
-      "recovery": 0.5371882086167801,
-      "cv": 0.48565759637188205,
-      "skewness": 0.40907029478458046,
-      "flicker": 0.6242063492063491
+      "variance": 0.6593692567285494,
+      "ar1": 0.4925400094444458,
+      "recovery": 0.4925400094444458,
+      "cv": 0.5119420552413515,
+      "skewness": 0.36115686177978545,
+      "flicker": 0.5622234701193319
     },
     "leads": {
       "variance": {
-        "detectFrac": 0.2,
-        "meanTicks": 191,
-        "meanParam": 11.723214285714285
+        "detectFrac": 0.27906976744186046,
+        "meanTicks": 207.25,
+        "meanParam": 13.89395634920635
       },
       "ar1": {
-        "detectFrac": 0.1,
-        "meanTicks": 42,
-        "meanParam": 0
+        "detectFrac": 0.046511627906976744,
+        "meanTicks": 38.5,
+        "meanParam": 1.4299999999999997
       },
       "recovery": {
-        "detectFrac": 0.1,
-        "meanTicks": 42,
-        "meanParam": 0
+        "detectFrac": 0.023255813953488372,
+        "meanTicks": 40,
+        "meanParam": 1.485714285714284
       },
       "cv": {
-        "detectFrac": 0.9,
-        "meanTicks": 118.22222222222223,
-        "meanParam": 7.066772486772487
+        "detectFrac": 0.8604651162790697,
+        "meanTicks": 159.59459459459458,
+        "meanParam": 8.575097812097809
       },
       "skewness": {
-        "detectFrac": 0.3,
-        "meanTicks": 81.66666666666667,
-        "meanParam": 8.295238095238094
+        "detectFrac": 0.06976744186046512,
+        "meanTicks": 50.333333333333336,
+        "meanParam": 3.93095238095238
       },
       "flicker": {
-        "detectFrac": 0.1,
-        "meanTicks": 88,
-        "meanParam": 9.805714285714284
+        "detectFrac": 0.023255813953488372,
+        "meanTicks": 32,
+        "meanParam": 2.773333333333337
       }
     }
   }

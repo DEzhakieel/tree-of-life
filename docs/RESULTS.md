@@ -10,21 +10,25 @@ narrative is `apps/simulation/research/UNIFIED_RECORD.md`.
 The project's single vertical. A control parameter (`metabolismBase`) is ramped
 1 → 40 after a 350-tick plateau; the population collapses to extinction. The
 ecology is bistable (low ≈ 40 vs high ≈ 500), and a **no-ramp control survives
-4/4** — so the collapse is ramp-caused. Indicators (pooled over 10/12 collapsed
-runs; AUC, 0.5 = chance):
+8/8** — so the collapse is ramp-caused. Design: 8 seeds × 6 ramp durations
+(τ = 300…1050) = 48 runs. Indicators (pooled over 43/48 collapsed runs; AUC,
+0.5 = chance):
 
 | indicator | AUC | detect | mean lead (ticks) | mean lead (stress) |
 |---|---:|---:|---:|---:|
-| variance | 0.613 | 20% | 191 | 11.7 |
-| flicker | 0.624 | 10% | 88 | 9.8 |
-| AR(1) / recovery | 0.537 | 10% | 42 | 0.0 |
-| CV | 0.486 | 90% | 118 | 7.1 |
-| skewness | 0.409 | 30% | 82 | 8.3 |
+| variance | 0.659 | 28% | 207 | 13.9 |
+| flicker | 0.562 | 2% | 32 | 2.8 |
+| CV | 0.512 | 86% | 160 | 8.6 |
+| AR(1) / recovery | 0.493 | 5% | 39 | 1.4 |
+| skewness | 0.361 | 7% | 50 | 3.9 |
 
-Findings: **variance and flickering** are the usable early-warning indicators;
-autocorrelation-based indicators are weak; **skewness fails** (below chance). The
-AUC-by-ramp-duration curve is **non-monotone** (0.65, 0.79, 0.38 for τ = 350,
-600, 900), so lead-time calibration is unresolved at n = 4. Full charter and
+Findings: **variance** is the workhorse early-warning indicator; flicker is a
+distant second; autocorrelation-based indicators are at chance; **skewness is
+anti-predictive**. With 8 replicates the previously "non-monotone" AUC-vs-τ curve
+resolves into a **monotone decline** — 0.72 → 0.54 as τ grows (slope −0.0003,
+R² 0.69) — i.e. warning quality **degrades** the more slowly the tipping point is
+approached. The fixed distance-to-bifurcation prediction (**H3**) is **rejected**:
+lead in stress units shrinks with τ (CV slope −0.013, R² 0.89). Full charter and
 falsifiers: [`SPECIALIZATION.md`](SPECIALIZATION.md).
 
 Reproduce: `npm run research:ews` (from `apps/simulation`; `--quick` to smoke).
