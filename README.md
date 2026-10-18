@@ -17,6 +17,22 @@ Everything is reproducible from a seed, bit-for-bit across both engines, and
 driven by **one command layer** that appears both as an in-browser terminal and
 as a console dashboard.
 
+## Research focus: critical transitions
+
+The project's single research vertical is **critical transitions / early-warning
+signals**. When metabolic load is ramped until the population collapses to
+extinction, which generic indicators warn in advance — and does the lead time
+scale with how slowly the bifurcation is approached? The system is genuinely
+**bistable** (low ≈ 40 vs high ≈ 500), so the question is well posed. Result so
+far: **variance** (pooled AUC ≈ 0.61) and **flickering** (≈ 0.62) are the
+workhorse indicators, autocorrelation-based indicators are weak, and skewness
+fails. Full charter: [`docs/SPECIALIZATION.md`](docs/SPECIALIZATION.md).
+
+```bash
+npm run research:ews -w @fractal-life/simulation            # full grid -> research/output/ews.*
+npm run research:ews -w @fractal-life/simulation -- --quick # fast smoke
+```
+
 <details>
 <summary><b>Project name note</b></summary>
 
@@ -51,7 +67,7 @@ console, the ANSI dashboard is live and accepts the same commands.
 
 ```bash
 npm run typecheck      # tsc --noEmit across workspaces
-npm run test:fast      # cheap tier (~1 min, 44/44 files)
+npm run test:fast      # cheap tier (~1 min, 45/45 files)
 npm run build          # server + web
 npm run preview        # serve the built dashboard -> http://localhost:3000
 ```
@@ -72,6 +88,8 @@ See [`docs/SETUP.md`](docs/SETUP.md) for the full tutorial and
   + `--verify`.
 - **Black swans**: rare high-impact event detection + joint event-set
   probability (independence + Fréchet bounds).
+- **One focused vertical**: critical transitions & early-warning signals —
+  a reproducible collapse experiment with pre-registered indicators.
 
 ## Terminal commands
 
@@ -131,6 +149,7 @@ Generators/CLIs live under `apps/simulation/src/research/` with npm scripts:
 | `research:bench` / `research:known` | benchmarks |
 | `research:ai` | LLM-assisted experiment proposal |
 | `research:experiment` | run/verify experiments |
+| `research:ews` | critical-transition early-warning sweep |
 
 Outputs land in `apps/simulation/research/{output,plots,experiments}/`. See
 [`docs/RESULTS.md`](docs/RESULTS.md).

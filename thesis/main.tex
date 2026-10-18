@@ -244,7 +244,7 @@ Total & 34\\
 \toprule
 Check & Result\\
 \midrule
-Fast test tier & 44/44 files pass\\
+Fast test tier & 45/45 files pass\\
 Typecheck (shared, simulation, web) & clean\\
 Cross-engine replay & bit-identical digests\\
 Rigor & PASS (novelty 0.933)\\
@@ -260,6 +260,41 @@ This is the intended function of a pre-registered ledger. High-$N$ search
 identified several high-complexity worlds (scores to 10.1), and life
 organization reaches its ceiling only when all substrates are enabled ---
 legacy configurations report dormant rungs O0/O3/O7/O8.
+
+\section{Critical transitions and early-warning signals}\label{sec:ews}
+The project's focused vertical asks whether generic, model-free early-warning
+indicators give calibrated advance notice of a macroscopic collapse. The
+ecology is \emph{bistable} (a low state of $\approx 40$ agents and a high state
+of $\approx 500$), and a no-ramp control survives in $4/4$ replicates. Ramping
+metabolic load from $1$ to $40$ over a duration $\tau$ drives a reliable
+collapse to extinction, so extinction is the critical transition and population
+the order parameter. Indicators are computed on detrended rolling windows
+(variance, lag-1 autocorrelation, recovery rate, coefficient of variation,
+skewness, flickering) and scored by ROC area between pre-collapse and
+early-stationary windows.
+
+\begin{table}[t]\centering
+\caption{Pooled early-warning skill over 10 collapsed runs (AUC; $0.5$ is
+chance). Lead is measured in ticks and in control-parameter (metabolic-load)
+units.}\label{tab:ews}
+\begin{tabular}{l r r}
+\toprule
+Indicator & AUC & Mean lead (ticks)\\
+\midrule
+Variance & 0.613 & 191\\
+Flickering & 0.624 & 88\\
+AR(1) / recovery & 0.537 & 42\\
+CV & 0.486 & 118\\
+Skewness & 0.409 & 82\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Variance and flickering are the usable indicators; the autocorrelation-based
+indicators are weak, and skewness falls \emph{below} chance. The AUC-by-$\tau$
+curve is non-monotone ($0.65$, $0.79$, $0.38$ for $\tau=350,600,900$), so
+lead-time calibration is not resolved at four replicates. The experiment is
+fully reproducible via \texttt{npm run research:ews}.
 
 \section{Discussion and limitations}\label{sec:disc}
 Treating emergence as an engineering objective forces (a) determinism and

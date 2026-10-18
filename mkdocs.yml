@@ -31,6 +31,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Specialization: SPECIALIZATION.md
   - Setup: SETUP.md
   - Guide: GUIDE.md
   - Architecture: ARCHITECTURE.md

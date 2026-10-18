@@ -5,6 +5,31 @@ a CLI in `apps/simulation/src/research/` (npm scripts `research:*`) and written
 to `apps/simulation/research/output/` with plots in `.../plots/`. The full
 narrative is `apps/simulation/research/UNIFIED_RECORD.md`.
 
+## 0. Critical transitions / early warning (research focus)
+
+The project's single vertical. A control parameter (`metabolismBase`) is ramped
+1 → 40 after a 350-tick plateau; the population collapses to extinction. The
+ecology is bistable (low ≈ 40 vs high ≈ 500), and a **no-ramp control survives
+4/4** — so the collapse is ramp-caused. Indicators (pooled over 10/12 collapsed
+runs; AUC, 0.5 = chance):
+
+| indicator | AUC | detect | mean lead (ticks) | mean lead (stress) |
+|---|---:|---:|---:|---:|
+| variance | 0.613 | 20% | 191 | 11.7 |
+| flicker | 0.624 | 10% | 88 | 9.8 |
+| AR(1) / recovery | 0.537 | 10% | 42 | 0.0 |
+| CV | 0.486 | 90% | 118 | 7.1 |
+| skewness | 0.409 | 30% | 82 | 8.3 |
+
+Findings: **variance and flickering** are the usable early-warning indicators;
+autocorrelation-based indicators are weak; **skewness fails** (below chance). The
+AUC-by-ramp-duration curve is **non-monotone** (0.65, 0.79, 0.38 for τ = 350,
+600, 900), so lead-time calibration is unresolved at n = 4. Full charter and
+falsifiers: [`SPECIALIZATION.md`](SPECIALIZATION.md).
+
+Reproduce: `npm run research:ews` (from `apps/simulation`; `--quick` to smoke).
+Outputs: `output/ews.{md,json,csv}`, `plots/ews.svg`.
+
 ## 1. Scope ledger (v1.0.0, 2026‑10‑16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²
@@ -82,7 +107,7 @@ its seed**, and the TypeScript and Rust engines agree.
 
 | Tier | Result |
 |---|---|
-| Fast tier | **44 / 44 files pass** (includes the new `terminal.test.ts`) |
+| Fast tier | **45 / 45 files pass** (includes `terminal.test.ts` and `ews.test.ts`) |
 | Typecheck | clean in `packages/shared`, `apps/simulation`, `apps/web` |
 
 ## 7. Emergence hierarchies

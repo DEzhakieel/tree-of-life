@@ -28,6 +28,7 @@
     "research:experiment": "tsx src/research/experimentCli.ts",
     "research:highn": "tsx src/research/highN.ts",
     "research:life": "tsx src/research/lifeRun.ts",
+    "research:ews": "tsx src/research/ewsRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
