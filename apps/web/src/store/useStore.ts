@@ -385,7 +385,7 @@ export const useStore = create<SimState>((set) => ({
   groundLayer: 'set',
   representation: 'particle',
   showAgents: true,
-  showTerrain: true,
+  showTerrain: false,
   showMinimap: true,
   showSpecies: true,
   showLineage: false,

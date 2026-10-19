@@ -11,10 +11,10 @@ const GROUND_LAYERS: { id: GroundLayer; label: string; hint: string }[] = [
 ];
 
 const REPRESENTATIONS: { id: Representation; label: string; hint: string }[] = [
-  { id: 'particle', label: 'Particle', hint: 'agents as glowing motes' },
-  { id: 'fractal', label: 'Fractal', hint: 'evolved-set terrain, agents as markers' },
+  { id: 'particle', label: 'Particle', hint: 'Lenia-style glow field, agents fuse into masses' },
+  { id: 'fractal', label: 'Fractal', hint: 'evolved-set terrain, agents as crisp markers' },
   { id: 'graph', label: 'Network', hint: 'agents as nodes, lineage and proximity as edges' },
-  { id: 'lattice', label: 'Lattice', hint: 'spatial grid, cell brightness = density' },
+  { id: 'lattice', label: 'Lattice', hint: 'pixel grid, cell brightness = density' },
 ];
 
 function Switch({ on, onClick }: { on: boolean; onClick: () => void }) {

@@ -18,12 +18,13 @@ const PAINT_INTERVAL_MS = 140;
 /** Hue is quantised so the sprite cache stays small (one canvas per bucket)
  *  while still reading as a continuous colour ramp. */
 const HUE_BUCKETS = 36;
-const SPRITE_SIZE = 32;
+const SPRITE_SIZE = 48;
 
 /**
- * Soft radial-gradient mote, pre-rendered once per hue bucket and blitted with
- * additive blending. Cheaper than a per-agent gradient fill and it gives the
- * population a bloom-like glow that hard discs cannot.
+ * Soft gaussian-ish mote, pre-rendered once per hue bucket and blitted with
+ * additive blending. The wide low-alpha skirt is what gives the population
+ * the Lenia look: neighbouring motes melt into each other instead of reading
+ * as separate dots.
  */
 const spriteCache = new Map<number, HTMLCanvasElement>();
 
@@ -38,14 +39,20 @@ function moteSprite(hue: number): HTMLCanvasElement {
   const r = SPRITE_SIZE / 2;
   const grad = g.createRadialGradient(r, r, 0, r, r, r);
   const deg = (bucket / HUE_BUCKETS) * 360;
-  // Bright core fading to transparent — the falloff is what sells the glow.
-  grad.addColorStop(0, `hsla(${deg}, 90%, 72%, 1)`);
-  grad.addColorStop(0.35, `hsla(${deg}, 85%, 55%, 0.65)`);
+  // hot core -> mid body -> long soft skirt; the falloff sells the glow
+  grad.addColorStop(0, `hsla(${deg}, 95%, 78%, 1)`);
+  grad.addColorStop(0.22, `hsla(${deg}, 90%, 60%, 0.75)`);
+  grad.addColorStop(0.6, `hsla(${deg}, 85%, 50%, 0.22)`);
   grad.addColorStop(1, `hsla(${deg}, 80%, 45%, 0)`);
   g.fillStyle = grad;
   g.fillRect(0, 0, SPRITE_SIZE, SPRITE_SIZE);
   spriteCache.set(bucket, c);
   return c;
+}
+
+/** Diameter of a mote in screen px for the current zoom (world-anchored). */
+function moteDia(worldScale: number, diaFraction: number, span: number, viewH: number): number {
+  return ((worldScale * diaFraction) / span) * viewH;
 }
 
 export interface Canvas2DRendererOptions {
@@ -305,25 +312,42 @@ export class Canvas2DRenderer {
     if (st.showAgents && (rep === 'particle' || rep === 'fractal')) {
       const agents = this.opts.agents;
       const n = agents.count;
-      // Fractal view demotes the population to markers so the ground reads.
-      const sizeScale = rep === 'fractal' ? 0.45 : 1;
-      ctx.globalCompositeOperation = 'lighter';
+      const worldScale = this.world.params.worldScale;
+      // Particle: Lenia-style additive glow field. Fractal: the terrain is
+      // the subject, so agents become small crisp markers on top of it.
+      const marker = rep === 'fractal';
+      ctx.globalCompositeOperation = marker ? 'source-over' : 'lighter';
       for (let i = 0; i < n; i++) {
         const ax = agents.x[i]!;
         const ay = agents.y[i]!;
         const c = worldToComplex(this.world.params, ax, ay);
         const { sx, sy } = this.worldToScreen(c.re, c.im, cw, ch);
-        if (sx < -10 || sx > cw + 10 || sy < -10 || sy > ch + 10) continue;
 
         const energy = agents.energy[i]!;
+        const fed = energy * energy;
+        // world-anchored diameter, matched to the WebGL field: ~1% (starved)
+        // to ~6% (fed) of the default full-world view
+        const dia = moteDia(
+          worldScale,
+          marker ? 0.005 + fed * 0.018 : 0.012 + fed * 0.05,
+          this.span,
+          ch,
+        );
+        if (sx < -dia || sx > cw + dia || sy < -dia || sy > ch + dia) continue;
+
         const species = agents.species[i]!;
         const hue = st.showCulture ? agents.meme[i]! : (species * GOLDEN) % 1;
-        // Quadratic size ramp matches the WebGL path: starved agents fade to
-        // a faint speck, well-fed ones bloom.
-        const fed = energy * energy;
-        const size = (1.5 + fed * 5.5) * 2 * sizeScale;
-        ctx.globalAlpha = 0.35 + fed * 0.65;
-        ctx.drawImage(moteSprite(hue), sx - size / 2, sy - size / 2, size, size);
+        if (marker) {
+          ctx.globalAlpha = 0.9;
+          ctx.fillStyle = `hsl(${Math.round((hue % 1) * 360)}, 80%, ${Math.round(35 + fed * 25)}%)`;
+          ctx.beginPath();
+          ctx.arc(sx, sy, Math.max(1.2, dia / 2), 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.globalAlpha = 0.4 + fed * 0.6;
+          const d = Math.max(2, dia);
+          ctx.drawImage(moteSprite(hue), sx - d / 2, sy - d / 2, d, d);
+        }
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
@@ -358,27 +382,33 @@ export class Canvas2DRenderer {
     for (const e of prox) {
       const a = toScreen(e.a);
       const b = toScreen(e.b);
-      ctx.strokeStyle = 'rgba(120,150,180,0.22)';
+      ctx.strokeStyle = 'rgba(120,160,200,0.32)';
       ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
     }
     for (const e of lin) {
       const a = toScreen(e.a);
       const b = toScreen(e.b);
-      ctx.strokeStyle = 'rgba(140,190,255,0.55)';
+      ctx.strokeStyle = 'rgba(140,190,255,0.7)';
       ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
     }
 
     const n = agents.count;
-    ctx.globalCompositeOperation = 'lighter';
+    const worldScale = this.world.params.worldScale;
+    ctx.globalCompositeOperation = 'source-over';
     for (let i = 0; i < n; i++) {
       const { sx, sy } = toScreen(i);
-      if (sx < -10 || sx > cw + 10 || sy < -10 || sy > ch + 10) continue;
       const energy = agents.energy[i]!;
       const fed = energy * energy;
+      // crisp nodes read against the wire — deliberately unlike the particle
+      // field's soft additive blobs
+      const dia = Math.max(3, moteDia(worldScale, 0.010 + fed * 0.035, this.span, ch));
+      if (sx < -dia || sx > cw + dia || sy < -dia || sy > ch + dia) continue;
       const hue = showCulture ? agents.meme[i]! : (agents.species[i]! * GOLDEN) % 1;
-      const size = 3 + fed * 5;
-      ctx.globalAlpha = 0.5 + fed * 0.5;
-      ctx.drawImage(moteSprite(hue), sx - size / 2, sy - size / 2, size, size);
+      ctx.globalAlpha = 0.75 + fed * 0.25;
+      ctx.fillStyle = `hsl(${Math.round((hue % 1) * 360)}, 85%, ${Math.round(50 + fed * 30)}%)`;
+      ctx.beginPath();
+      ctx.arc(sx, sy, dia / 2, 0, Math.PI * 2);
+      ctx.fill();
     }
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = 'source-over';
@@ -404,15 +434,17 @@ export class Canvas2DRenderer {
         const wy = (y + 0.5) * cell;
         const comp = worldToComplex(params, wx, wy);
         const { sx, sy } = this.worldToScreen(comp.re, comp.im, cw, ch);
-        const px = Math.max(2, cw / grid.cols);
+        const px = Math.max(2, Math.round(cw / grid.cols));
         const t = c / maxCount;
-        ctx.globalAlpha = 0.25 + t * 0.75;
+        ctx.globalAlpha = 0.35 + t * 0.65;
         if (showCulture) {
-          ctx.fillStyle = `hsl(${Math.round((grid.meme[idx]! / c) * 360)}, 70%, ${Math.round(20 + t * 55)}%)`;
+          ctx.fillStyle = `hsl(${Math.round((grid.meme[idx]! / c) * 360)}, 70%, ${Math.round(15 + t * 60)}%)`;
         } else {
-          ctx.fillStyle = `rgb(${Math.round(20 + t * 200)}, ${Math.round(60 + t * 180)}, ${Math.round(120 + t * 135)})`;
+          // near-black indigo -> electric blue -> white, matched to the WebGL view
+          ctx.fillStyle = `rgb(${Math.round(8 + t * 215)}, ${Math.round(30 + t * 200)}, ${Math.round(90 + t * 145)})`;
         }
-        ctx.fillRect(sx - px / 2, sy - px / 2, px, px);
+        // snapped to the pixel grid so cells stay chunky squares, not blurs
+        ctx.fillRect(Math.round(sx - px / 2), Math.round(sy - px / 2), px, px);
       }
     }
     ctx.globalAlpha = 1;

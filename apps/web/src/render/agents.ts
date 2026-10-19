@@ -1,70 +1,64 @@
 import * as THREE from 'three';
 import { worldToComplex, type WorldParams } from '@fractal-life/shared';
 import type { AgentBuffer } from '../net/agentBuffer.js';
+import { GlowMotes } from './glowMotes.js';
 
 const GOLDEN = 0.6180339887498949;
 
 /**
- * InstancedMesh population: one small octahedron per agent, positioned on the
- * complex plane, coloured by deterministic species hue and brightness by
- * energy. Additive-ish glow is provided by the bloom pass.
+ * Lenia-style population field: gaussian motes sized in world units (they
+ * grow and shrink with zoom like everything else) and blended additively so
+ * neighbouring agents fuse into continuous glowing masses rather than reading
+ * as separate hard dots. The fractal view reuses the same path with shrunken,
+ * sharper motes so the evolved-set terrain stays the subject.
  */
 export class AgentsMesh {
-  mesh: THREE.InstancedMesh;
-  private dummy = new THREE.Object3D();
+  readonly mesh: THREE.Mesh;
+  private g: GlowMotes;
   private color = new THREE.Color();
-  private tmp = new THREE.Color();
-  private maxCount: number;
 
   constructor(maxCount: number) {
-    this.maxCount = maxCount;
-    const geo = new THREE.OctahedronGeometry(1, 0);
-    const mat = new THREE.MeshBasicMaterial({ vertexColors: false });
-    const mesh = new THREE.InstancedMesh(geo, mat, maxCount);
-    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-    mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(maxCount * 3), 3);
-    mesh.instanceColor.setUsage(THREE.DynamicDrawUsage);
-    mesh.frustumCulled = false;
-    this.mesh = mesh;
-    this.color = new THREE.Color();
+    this.g = new GlowMotes(maxCount, 1.5);
+    this.mesh = this.g.mesh;
   }
 
-  update(params: WorldParams, agents: AgentBuffer, scale: number, culture: boolean): void {
-    const count = Math.min(agents.count, this.maxCount);
-    const { dummy, mesh, color, tmp } = this;
-    mesh.count = count;
+  update(params: WorldParams, agents: AgentBuffer, culture: boolean, marker: boolean): void {
+    const count = Math.min(agents.count, this.g.max);
+    const off = this.g.attr('aOffset');
+    const col = this.g.attr('aColor');
+    const size = this.g.attr('aSize');
+    const alpha = this.g.attr('aAlpha');
+    const color = this.color;
+    this.g.setSharpness(marker ? 3.2 : 1.5);
     for (let i = 0; i < count; i++) {
       const w = worldToComplex(params, agents.x[i]!, agents.y[i]!);
       const energy = agents.energy[i]!;
       const species = agents.species[i]!;
-      // Quadratic ramp so starving agents shrink to near-nothing while a
-      // well-fed agent stays clearly larger than the pack.
+      // Quadratic ramp so starving agents shrink toward specks while a
+      // well-fed one swells and overlaps its neighbours into the field.
       const fed = energy * energy;
-      const size = (0.28 + fed * 2.1) * scale;
-      dummy.position.set(w.re, w.im, 0.03 + energy * 0.1);
-      // Flatter when starved, taller when fed: a live agent reads as a mote of
-      // light, a starving one as a dim speck.
-      dummy.scale.set(size, size, size * (0.5 + energy * 0.9));
-      dummy.rotation.set(0, 0, (species * 0.37) % (Math.PI * 2));
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
+      off.setXYZ(i, w.re, w.im, 0.05);
+      // World-anchored diameter: roughly 1% (starved) to 6% (fed) of the
+      // default full-world view, so a dense population fuses into a
+      // continuous Lenia-like sheet instead of a starfield.
+      size.setX(i, params.worldScale * (marker ? 0.005 + fed * 0.018 : 0.012 + fed * 0.05));
       const hue = culture ? agents.meme[i]! : (species * GOLDEN) % 1;
-      // Wide lightness spread so low-energy agents fall toward the background
-      // instead of clustering at a mid grey.
-      color.setHSL(hue % 1, culture ? 0.55 : 0.8, 0.12 + fed * 0.62);
-      tmp.copy(color);
-      mesh.setColorAt(i, tmp);
+      color.setHSL(
+        hue % 1,
+        culture ? 0.6 : 0.85,
+        marker ? 0.35 + fed * 0.25 : 0.42 + fed * 0.3,
+      );
+      col.setXYZ(i, color.r, color.g, color.b);
+      alpha.setX(i, marker ? 0.9 : 0.55 + fed * 0.45);
     }
-    mesh.instanceMatrix.needsUpdate = true;
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    this.g.commit(count);
   }
 
   setVisible(v: boolean): void {
-    this.mesh.visible = v;
+    this.g.setVisible(v);
   }
 
   dispose(): void {
-    this.mesh.geometry.dispose();
-    (this.mesh.material as THREE.Material).dispose();
+    this.g.dispose();
   }
 }

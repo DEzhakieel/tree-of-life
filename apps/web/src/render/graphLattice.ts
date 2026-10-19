@@ -9,40 +9,45 @@ import {
   latticeCellSize,
   type Edge,
 } from './representation.js';
+import { GlowMotes } from './glowMotes.js';
 
 const GOLDEN = 0.6180339887498949;
 
 /**
- * Network view: one point per agent, edges between near neighbours and between
- * parent/child lineages. Rebuilds geometry each update — the edge set is
- * small and capped, so this stays cheap enough for an interactive view.
+ * Network view: one crisp node per agent, edges between near neighbours and
+ * between parent/child lineages. Nodes are gaussian motes with a tight core
+ * (readable points, unlike the particle field's wide blobs) and the wire is
+ * additively blended so dense clusters light up. Rebuilds geometry each
+ * update — the edge set is small and capped, so this stays cheap enough for
+ * an interactive view.
  */
 export class GraphView {
   group = new THREE.Group();
-  private points: THREE.Points;
+  private motes: GlowMotes;
   private lines: THREE.LineSegments;
   private maxAgents: number;
   private maxEdges = 4000;
 
   constructor(maxAgents: number, private proximityRadius: number) {
     this.maxAgents = maxAgents;
-
-    const pGeo = new THREE.BufferGeometry();
-    pGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(maxAgents * 3), 3));
-    pGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(maxAgents * 3), 3));
-    const pMat = new THREE.PointsMaterial({ size: 0.02, vertexColors: true, transparent: true, opacity: 0.95 });
-    this.points = new THREE.Points(pGeo, pMat);
-    this.points.frustumCulled = false;
+    this.motes = new GlowMotes(maxAgents, 3.0);
 
     const lGeo = new THREE.BufferGeometry();
     lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(this.maxEdges * 2 * 3), 3));
     lGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(this.maxEdges * 2 * 3), 3));
-    const lMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.35 });
+    const lMat = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.5,
+      blending: THREE.AdditiveBlending,
+      depthTest: false,
+      depthWrite: false,
+    });
     this.lines = new THREE.LineSegments(lGeo, lMat);
     this.lines.frustumCulled = false;
 
     this.group.add(this.lines);
-    this.group.add(this.points);
+    this.group.add(this.motes.mesh);
   }
 
   update(
@@ -52,21 +57,26 @@ export class GraphView {
     showCulture: boolean,
   ): void {
     const n = Math.min(agents.count, this.maxAgents);
-    const pPos = this.points.geometry.getAttribute('position') as THREE.BufferAttribute;
-    const pCol = this.points.geometry.getAttribute('color') as THREE.BufferAttribute;
+    const off = this.motes.attr('aOffset');
+    const col = this.motes.attr('aColor');
+    const size = this.motes.attr('aSize');
+    const alpha = this.motes.attr('aAlpha');
     const color = new THREE.Color();
 
     for (let i = 0; i < n; i++) {
       const w = worldToComplex(params, agents.x[i]!, agents.y[i]!);
-      pPos.setXYZ(i, w.re, w.im, 0.05);
-      const hue = showCulture ? agents.meme[i]! : (agents.species[i]! * GOLDEN) % 1;
       const energy = agents.energy[i]!;
-      color.setHSL(hue % 1, 0.8, 0.25 + energy * energy * 0.55);
-      pCol.setXYZ(i, color.r, color.g, color.b);
+      const fed = energy * energy;
+      const hue = showCulture ? agents.meme[i]! : (agents.species[i]! * GOLDEN) % 1;
+      off.setXYZ(i, w.re, w.im, 0.05);
+      // slightly leaner than the particle field: nodes should read as points
+      // on a wire, not as blobs
+      size.setX(i, params.worldScale * (0.010 + fed * 0.035));
+      color.setHSL(hue % 1, 0.8, 0.5 + fed * 0.3);
+      col.setXYZ(i, color.r, color.g, color.b);
+      alpha.setX(i, 0.75 + fed * 0.25);
     }
-    pPos.needsUpdate = true;
-    pCol.needsUpdate = true;
-    (this.points.geometry as THREE.BufferGeometry).setDrawRange(0, n);
+    this.motes.commit(n);
 
     const prox = buildEdges(agents, this.proximityRadius, this.maxEdges);
     const lin = buildLineageEdges(agents, lineageParents(lineage));
@@ -81,8 +91,8 @@ export class GraphView {
       const wb = worldToComplex(params, agents.x[edge.b]!, agents.y[edge.b]!);
       lPos.setXYZ(e * 2, wa.re, wa.im, 0.02);
       lPos.setXYZ(e * 2 + 1, wb.re, wb.im, 0.02);
-      if (edge.kind === 'lineage') color.setRGB(0.55, 0.75, 1);
-      else color.setRGB(0.35, 0.45, 0.55);
+      if (edge.kind === 'lineage') color.setRGB(0.5, 0.75, 1);
+      else color.setRGB(0.4, 0.55, 0.7);
       lCol.setXYZ(e * 2, color.r, color.g, color.b);
       lCol.setXYZ(e * 2 + 1, color.r, color.g, color.b);
       e++;
@@ -97,8 +107,7 @@ export class GraphView {
   }
 
   dispose(): void {
-    this.points.geometry.dispose();
-    (this.points.material as THREE.Material).dispose();
+    this.motes.dispose();
     this.lines.geometry.dispose();
     (this.lines.material as THREE.Material).dispose();
   }
@@ -106,7 +115,8 @@ export class GraphView {
 
 /**
  * Lattice view: a flat grid of cells tinted by population density, with the
- * agents themselves hidden. Reads as a heat map of where life actually is.
+ * agents themselves hidden. Nearest filtering keeps the cells crisp — a
+ * chunky pixel grid, deliberately unlike the particle field's smooth glow.
  */
 export class LatticeView {
   group = new THREE.Group();
@@ -125,8 +135,9 @@ export class LatticeView {
     const N = 48;
     this.data = new Uint8Array(new ArrayBuffer(N * N * 4));
     this.texture = new THREE.DataTexture(this.data, N, N, THREE.RGBAFormat, THREE.UnsignedByteType);
-    this.texture.minFilter = THREE.LinearFilter;
-    this.texture.magFilter = THREE.LinearFilter;
+    // hard pixels: the grid structure is the point of this representation
+    this.texture.minFilter = THREE.NearestFilter;
+    this.texture.magFilter = THREE.NearestFilter;
     this.texture.flipY = false;
     this.texture.needsUpdate = true;
     const material = new THREE.MeshBasicMaterial({ map: this.texture, transparent: true, depthWrite: false });
@@ -154,15 +165,16 @@ export class LatticeView {
         const o = idx * 4;
         if (showCulture) {
           const hue = (grid.meme[idx]! / c) * 360;
-          const rgb = hslToRgb(hue, 0.7, 0.2 + t * 0.55);
+          const rgb = hslToRgb(hue, 0.7, 0.15 + t * 0.6);
           px[o] = rgb[0]; px[o + 1] = rgb[1]; px[o + 2] = rgb[2];
         } else {
-          // deep blue -> cyan -> white as density climbs
-          px[o] = Math.round(20 + t * 200);
-          px[o + 1] = Math.round(60 + t * 180);
-          px[o + 2] = Math.round(120 + t * 135);
+          // near-black indigo -> electric blue -> white as density climbs;
+          // the deep floor keeps empty cells unmistakably empty
+          px[o] = Math.round(8 + t * 215);
+          px[o + 1] = Math.round(30 + t * 200);
+          px[o + 2] = Math.round(90 + t * 145);
         }
-        px[o + 3] = Math.round(60 + t * 195);
+        px[o + 3] = Math.round(80 + t * 175);
       }
     }
     this.texture.needsUpdate = true;

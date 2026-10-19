@@ -99,6 +99,8 @@ export class WorldRenderer {
     });
     this.brush = new THREE.Mesh(this.brushRingGeo, brushMat);
     this.brush.visible = false;
+    // above the additive glow field so the brush ring never drowns in it
+    this.brush.renderOrder = 10;
     this.scene.add(this.brush);
 
     this.bindEvents();
@@ -375,10 +377,10 @@ export class WorldRenderer {
       const showAgents = (rep === 'particle' || rep === 'fractal') && st.showAgents;
       this.agentsMesh.setVisible(showAgents);
       if (showAgents) {
-        // In the fractal view the terrain is the subject, so agents shrink to
-        // markers and stop swamping it.
-        const scale = (p.worldScale * 3.2) / WORLD_SIZE * (rep === 'fractal' ? 0.45 : 1);
-        this.agentsMesh.update(p, this.opts.agents, scale, st.showCulture);
+        // Particle mode is the full Lenia-style glow field; the fractal view
+        // demotes agents to small crisp markers so the terrain stays the
+        // subject.
+        this.agentsMesh.update(p, this.opts.agents, st.showCulture, rep === 'fractal');
       }
     }
 
