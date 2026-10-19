@@ -119,9 +119,13 @@ Only if you change `crates/simulation` or `crates/wasm`:
 ```bash
 rustup target add wasm32-unknown-unknown
 cargo install wasm-pack
-wasm-pack build crates/wasm --target web --out-dir ../../apps/web/public/wasm
-# then refresh the glue import used by the adapter
+pwsh scripts/build-wasm.ps1
 ```
+
+The script rebuilds `crates/wasm/pkg` (imported by the server/simulation
+typecheck and parity tests) and copies the result to `apps/web/public/wasm`
+(served by the dashboard). Both outputs are committed so CI and the GitHub
+Pages deploy run without a Rust toolchain.
 
 The dashboard falls back to the TypeScript engine whenever no WASM module is
 present, so the app always runs.

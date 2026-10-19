@@ -1,0 +1,3 @@
+# Prebuilt wasm-pack output is committed so typecheck, parity tests and
+# deployment work without a Rust toolchain (mirrors apps/web/public/wasm).
+# Rebuild with: scripts/build-wasm.ps1  (requires rust + wasm-pack)
