@@ -42,7 +42,7 @@ function Row({ label, on, action }: { label: string; on: boolean; action: () => 
   );
 }
 
-export function LayerPanel() {
+export function LayerPanel({ id }: { id?: string }) {
   const representation = useStore((s) => s.representation);
   const groundLayer = useStore((s) => s.groundLayer);
   const showTerrain = useStore((s) => s.showTerrain);
@@ -52,7 +52,7 @@ export function LayerPanel() {
   const showCulture = useStore((s) => s.showCulture);
 
   return (
-    <Panel title="Display">
+    <Panel id={id} title="Display">
       <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Representation</div>
       <div className="mb-2 flex flex-col gap-0.5">
         {REPRESENTATIONS.map((r) => (

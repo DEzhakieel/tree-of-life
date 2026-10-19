@@ -68,13 +68,13 @@ export function App() {
       <SceneView />
       <TopBar />
       <div className="pointer-events-none absolute left-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-56 flex-col gap-2 overflow-y-auto pb-28">
-        {LEFT_DOCK.map(({ id, Component }) => (
-          <Component key={id} />
-        ))}
+  {LEFT_DOCK.map(({ id, Component }) => (
+      <Component key={id} id={id} />
+    ))}
       </div>
       <div className="pointer-events-none absolute right-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-48 flex-col gap-2 overflow-y-auto pb-28">
         {RIGHT_DOCK.map(({ id, Component }) => (
-          <Component key={id} />
+          <Component key={id} id={id} />
         ))}
       </div>
       <Toolbar />

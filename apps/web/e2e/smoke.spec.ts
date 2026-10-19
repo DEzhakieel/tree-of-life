@@ -12,7 +12,7 @@ test('boots the local WASM world and simulates', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByText('TREE OF LIFE')).toBeVisible();
-  await expect(page.getByRole('button', { name: /⏸|▶/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /^(⏸|▶)$/ })).toBeVisible();
   await expect(
     page.getByText(/Boot Error|Worker Error/),
   ).toHaveCount(0);
@@ -37,7 +37,11 @@ test('boots the local WASM world and simulates', async ({ page }) => {
 
   expect(pageErrors, `page errors: ${pageErrors.join('; ')}`).toEqual([]);
   expect(
-    consoleErrors.filter((t) => !/favicon|net::ERR_CONNECTION/.test(t)),
+    // Backend-less runs are expected: the experiments health probe and the
+    // event-sink config probe both hit the vite /api proxy, which answers 5xx
+    // when no server is up. Real regressions surface as pageerror, Boot Error,
+    // or a dead worker (asserted above and below), not as these probe messages.
+    consoleErrors.filter((t) => !/favicon|net::ERR_CONNECTION|status of 50\d/.test(t)),
     `console errors: ${consoleErrors.join('; ')}`,
   ).toEqual([]);
 });
@@ -46,7 +50,7 @@ test('pause button roundtrips through the worker', async ({ page }) => {
   test.setTimeout(180_000);
   await page.goto('/');
 
-  const btn = page.getByRole('button', { name: /⏸|▶/ });
+  const btn = page.getByRole('button', { name: /^(⏸|▶)$/ });
   await expect(btn).toBeVisible();
   await expect(page.getByText(/Boot Error|Worker Error/)).toHaveCount(0);
 

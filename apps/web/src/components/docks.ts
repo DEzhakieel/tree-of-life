@@ -13,7 +13,7 @@ import { LayerPanel } from './LayerPanel.js';
 export interface DockEntry {
   /** stable id — also the key into store.panelCollapsed */
   id: string;
-  Component: ComponentType;
+  Component: ComponentType<{ id?: string }>;
 }
 
 /** Left dock: the analysis column. Order is display order, top to bottom. */

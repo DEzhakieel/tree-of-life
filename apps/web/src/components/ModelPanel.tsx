@@ -9,7 +9,7 @@ import { Panel } from './Panel.js';
  * Tiers are stacked bottom→top (geometry → ecology). Patterns with a spatial
  * reading (▸) switch the ground layer when clicked.
  */
-export function ModelPanel() {
+export function ModelPanel({ id }: { id?: string }) {
   const stats = useStore((s) => s.stats);
   const groundLayer = useStore((s) => s.groundLayer);
   const [tiers, setTiers] = useState<TierMetric[]>(() => computeModelLayers(null, agents));
@@ -31,7 +31,7 @@ export function ModelPanel() {
     });
 
   return (
-    <Panel title="Model hierarchy" right={<span className="text-zinc-500">↑ emergence</span>}>
+    <Panel id={id} title="Model hierarchy" right={<span className="text-zinc-500">↑ emergence</span>}>
       <div className="flex flex-col gap-1">
         {tiers.map((t) => {
           const expanded = open.has(t.id);
@@ -66,17 +66,11 @@ export function ModelPanel() {
                   {t.patterns.map((p) => {
                     const mapped = p.ground !== undefined;
                     const active = mapped && groundLayer === p.ground;
-                    return (
-                      <button
-                        key={p.id}
-                        title={p.desc}
-                        onClick={() => {
-                          if (mapped) useStore.getState().setGroundLayer(p.ground!);
-                        }}
-                        className={`group flex items-center gap-2 rounded-md px-2 py-[3px] text-left ${
-                          mapped ? 'cursor-pointer hover:bg-white/5' : 'cursor-default'
-                        } ${active ? 'bg-indigo-500/20' : ''}`}
-                      >
+                    const cls = `group flex items-center gap-2 rounded-md px-2 py-[3px] text-left ${
+                      mapped ? 'cursor-pointer hover:bg-white/5' : 'cursor-default'
+                    } ${active ? 'bg-indigo-500/20' : ''}`;
+                    const body = (
+                      <>
                         <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: p.color }} />
                         <span className="w-[86px] shrink-0 truncate text-[11px] text-zinc-300">{p.name}</span>
                         <span className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
@@ -95,7 +89,21 @@ export function ModelPanel() {
                             ▸
                           </span>
                         )}
+                      </>
+                    );
+                    return mapped ? (
+                      <button
+                        key={p.id}
+                        title={p.desc}
+                        onClick={() => useStore.getState().setGroundLayer(p.ground!)}
+                        className={cls}
+                      >
+                        {body}
                       </button>
+                    ) : (
+                      <div key={p.id} title={p.desc} className={cls}>
+                        {body}
+                      </div>
                     );
                   })}
                 </div>

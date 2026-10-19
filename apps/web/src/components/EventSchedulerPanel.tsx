@@ -6,7 +6,10 @@ import type { ScheduledEvent } from '../store/useStore.js';
 import { intervene } from '../net/session.js';
 import { Panel } from './Panel.js';
 
-const EVENT_TYPES: InterventionType[] = ['meteor', 'seedFood', 'spawnAgent', 'pauseRegion', 'setTimeScale', 'nuke', 'setGene'];
+// setGene is deliberately absent: the scheduler form can only send
+// {x, y, radius, amount, timeScale}, and a setGene without agentId/index/value
+// is a guaranteed no-op in the engine — offering it would queue a dead event.
+const EVENT_TYPES: InterventionType[] = ['meteor', 'seedFood', 'spawnAgent', 'pauseRegion', 'setTimeScale', 'nuke'];
 
 const EVENT_ICON: Record<InterventionType, string> = {
   meteor: '☄',
@@ -224,7 +227,7 @@ export function EventSchedulerPanel() {
                   </span>
                 )}
                 <span className="ml-auto text-[9px] text-zinc-600">
-                  {fired ? `done@${e.firedTick}` : e.firedTick !== undefined ? `fired@${e.firedTick}` : `now:${currentTick}`}
+                  {fired ? `done@${e.firedTick}` : `now:${currentTick}`}
                 </span>
                 <button
                   onClick={() => useStore.getState().removeScheduledEvent(e.id)}

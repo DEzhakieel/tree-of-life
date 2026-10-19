@@ -20,7 +20,7 @@ interface SpeciesRow {
 }
 
 /** Top populations by species, recomputed ~2x/sec from the agent buffer. */
-export function SpeciesPanel() {
+export function SpeciesPanel({ id }: { id?: string }) {
   const visible = useStore((s) => s.showSpecies);
   const [rows, setRows] = useState<SpeciesRow[]>([]);
 
@@ -52,7 +52,7 @@ export function SpeciesPanel() {
   if (!visible) return null;
 
   return (
-    <Panel title="Species" right={<span className="font-mono text-zinc-500">{rows.length}</span>}>
+    <Panel id={id} title="Species" right={<span className="font-mono text-zinc-500">{rows.length}</span>}>
       <ul className="space-y-1">
         {rows.map((r) => (
           <li key={r.id} className="flex items-center gap-2">

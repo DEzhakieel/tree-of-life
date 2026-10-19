@@ -137,7 +137,7 @@ function loadSelection(): Set<string> {
 }
 
 /** Live time-series of the system-level observables, each auto-scaled. */
-export function ObservablesChart() {
+export function ObservablesChart({ id }: { id?: string }) {
   const history = useStore((s) => s.statsHistory);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [selected, setSelected] = useState<Set<string>>(loadSelection);
@@ -226,6 +226,7 @@ export function ObservablesChart() {
 
   return (
     <Panel
+      id={id}
       title="Signals"
       right={<span className="font-mono text-[10px] text-zinc-500">{activeCount} on</span>}
     >

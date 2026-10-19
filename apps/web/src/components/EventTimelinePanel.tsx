@@ -28,7 +28,7 @@ const VERDICT_STYLE: Record<string, string> = {
  * the detailed feed. Type chips toggle visibility — first click solos a type,
  * later clicks combine, and clearing the last one returns to "show all".
  */
-export function EventTimelinePanel() {
+export function EventTimelinePanel({ id }: { id?: string }) {
   const marks = useStore((s) => s.eventMarks);
   const events = useStore((s) => s.events);
   const statsHistory = useStore((s) => s.statsHistory);
@@ -57,6 +57,7 @@ export function EventTimelinePanel() {
 
   return (
     <Panel
+      id={id}
       title="Events"
       right={
         <span className="font-mono text-zinc-500">

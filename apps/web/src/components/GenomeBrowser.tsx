@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { GENOME_BLOCKS } from '@fractal-life/shared';
 
 export interface GenomeBrowserProps {
@@ -142,6 +142,12 @@ function GeneRow({
   disabled?: boolean;
 }) {
   const [local, setLocal] = useState(value);
+  // Re-sync when the genome changes from outside (block jitter, inspector
+  // refresh, design-genome swap) — otherwise the slider keeps a stale value
+  // until the user touches it.
+  useEffect(() => {
+    setLocal(value);
+  }, [value]);
   const shown = onEdit ? local : value;
   return (
     <div className="flex items-center gap-1.5 rounded px-1 py-px font-mono text-[10px] text-zinc-300 hover:bg-white/5">

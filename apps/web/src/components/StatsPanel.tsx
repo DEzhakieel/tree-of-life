@@ -6,7 +6,7 @@ type Row = [label: string, value: string];
 
 const SECTION_LABEL = 'text-[10px] font-semibold uppercase tracking-widest text-zinc-500';
 
-export function StatsPanel() {
+export function StatsPanel({ id }: { id?: string }) {
   const stats = useStore((s) => s.stats);
   const events = useStore((s) => s.events);
   const status = useStore((s) => s.status);
@@ -48,7 +48,7 @@ export function StatsPanel() {
     : [];
 
   return (
-    <Panel title="Vitals" right={<span className="font-mono text-zinc-500">t {status?.currentTick ?? 0}</span>}>
+    <Panel id={id} title="Vitals" right={<span className="font-mono text-zinc-500">t {status?.currentTick ?? 0}</span>}>
       <div className="flex flex-col gap-2">
         {sections.map((section) => (
           <div key={section.label}>
