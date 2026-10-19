@@ -1,9 +1,11 @@
 /// <reference lib="webworker" />
 import { createWasmSimEngine, WasmSimEngine, type BrainConfigLike, type WorldStochLike } from './wasmAdapter';
+import { SubstrateEngine } from '@fractal-life/simulation/substrates';
 import {
   encodeStats,
   encodeAck,
   encodeWorld,
+  isSubstrateWorld,
   type WorldConfig,
   type Intervention,
   type SimStats,
@@ -50,7 +52,11 @@ type WorkerRequest =
  *  Bounded so pause/intervene/snapshot still land promptly. */
 const BATCH_MS = 8;
 
-let engine: WasmSimEngine | null = null;
+/** The active engine: the WASM agent engine, or a pure-TS substrate kernel
+ *  adapter for worlds that opted into a non-agent life substrate. Both expose
+ *  the same duck-typed surface (tick/stats/frames/interventions), so the whole
+ *  loop below is substrate-agnostic. */
+let engine: WasmSimEngine | SubstrateEngine | null = null;
 let timer: ReturnType<typeof setInterval> | ReturnType<typeof setTimeout> | null = null;
 /** turbo = run flat out with no wall-clock pacing */
 let turbo = false;
@@ -187,7 +193,9 @@ function applyRenderPolicy(): void {
 }
 
 async function init(world: WorldConfig, wasmUrl?: string, brainCfg?: BrainConfigLike, worldStoch?: Partial<WorldStochLike> | null): Promise<void> {
-  engine = await createWasmSimEngine(world, wasmUrl);
+  // substrate worlds run the pure-TS kernel in this worker — no WASM, no
+  // server round trip; the agent engine keeps its original path untouched
+  engine = isSubstrateWorld(world) ? new SubstrateEngine(world) : await createWasmSimEngine(world, wasmUrl);
   if (brainCfg) engine.setBrainConfig(brainCfg);
   if (worldStoch !== undefined) engine.setWorldStochastics(worldStoch);
   paused = false;
@@ -269,7 +277,9 @@ self.onmessage = async (ev: MessageEvent<WorkerRequest>) => {
     }
     case 'snapshot': {
       if (!engine) break;
-      if (msg.tick === undefined || msg.tick >= engine.currentTick) {
+      if (msg.tick === undefined || msg.tick >= engine.currentTick || !(engine instanceof WasmSimEngine)) {
+        // substrates snapshot only — no time travel: substrate states are
+        // ticked forward, never replayed from history
         postFrame(engine.encodeSnapshotMessage());
       } else {
         try {

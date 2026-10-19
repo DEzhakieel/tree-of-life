@@ -1,5 +1,15 @@
-import type { WorldConfig, WorldParams, SimStats } from './types.js';
+import type { WorldConfig, WorldParams, SimStats, SubstrateKind } from './types.js';
 import { WORLD_SIZE } from './constants.js';
+
+/** The world's substrate kind; absent `substrate` means the full agent engine. */
+export function substrateKind(world: Pick<WorldConfig, 'substrate'>): SubstrateKind {
+  return world.substrate?.kind ?? 'agents';
+}
+
+/** True when the world runs on a pure-TS substrate instead of the agent engine. */
+export function isSubstrateWorld(world: Pick<WorldConfig, 'substrate'>): boolean {
+  return substrateKind(world) !== 'agents';
+}
 
 /**
  * Neutral zero-row for SimStats, used when a wasm/remote engine is asked for

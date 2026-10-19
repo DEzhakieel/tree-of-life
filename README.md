@@ -93,6 +93,9 @@ See [`docs/SETUP.md`](docs/SETUP.md) for the full tutorial and
   probability (independence + Fréchet bounds).
 - **One focused vertical**: critical transitions & early-warning signals —
   a reproducible collapse experiment with pre-registered indicators.
+- **Four life substrates**: the agent engine plus pure-TS `particles`,
+  `lattice` and `graph` worlds — selectable at creation, same stats/terminal
+  surface ([docs/SUBSTRATES.md](docs/SUBSTRATES.md)).
 
 ## Terminal commands
 

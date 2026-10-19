@@ -121,6 +121,30 @@ export const TOPOLOGY_DEFS: Record<WorldTopology, { desc: string; wrapsY: boolea
   kleinBottle: { desc: 'non-orientable: longitude wraps, latitude loops flipped', wrapsY: true },
 };
 
+/**
+ * Life substrate — the rule set that advances a world's bodies each tick.
+ * `agents` is the full behavioural engine (the only kind the Rust/WASM engine
+ * and the server understand); the others are pure-TS substrates that run in
+ * the web worker and the console TUI only, and are chosen at world creation.
+ */
+export type SubstrateKind = 'agents' | 'particles' | 'lattice' | 'graph';
+
+export const SUBSTRATES: readonly SubstrateKind[] = ['agents', 'particles', 'lattice', 'graph'] as const;
+
+/** Optional per-substrate knobs. All fields have engine-side defaults; the
+ *  world is valid with only `kind` set. */
+export interface SubstrateConfig {
+  kind: SubstrateKind;
+  /** particles: near-field attraction gain (default 1). */
+  attraction?: number;
+  /** particles: near-field repulsion gain (default 1). */
+  repulsion?: number;
+  /** lattice: per-tick random cell flip probability (default 0). */
+  noise?: number;
+  /** graph: neighbour-link radius in world units (default 90). */
+  linkRadius?: number;
+}
+
 export interface WorldConfig {
   id: string;
   seed: string;
@@ -206,6 +230,12 @@ export interface WorldConfig {
    *  no state->action feedback (adaptive-agent ablation). Absent/`true` =
    *  legacy behaviour. */
   sensing?: boolean;
+  /** Life substrate selector (see SubstrateKind). Absent = 'agents' (the
+   *  full engine, bit-identical legacy behaviour). Non-agent substrates run
+   *  on the pure-TS substrate engine in the web worker / console TUI; the
+   *  Rust/WASM engine and the server ignore this field (serde skips unknown
+   *  fields), so remote sessions always run the agent engine. */
+  substrate?: SubstrateConfig;
 }
 
 export interface AgentSummary {

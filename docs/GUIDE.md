@@ -57,6 +57,12 @@ combinatorial, recombination, universe, environment, topology, discovery,
 reproduction, sensing, signal deposit, meme copy rate). Anything left off is
 **inert** — it reports neutral/DORMANT rather than simulating a half‑field.
 
+In **local mode** it also offers a *Life substrate* picker: besides the full
+agent engine you can spawn a pure‑TS `particles`, `lattice` or `graph` world —
+agent‑only options hide and the representation switches automatically. Remote
+worlds always run the agent engine. See [SUBSTRATES](SUBSTRATES.md); the
+console equivalent is `npm run terminal -- --substrate <kind>`.
+
 ## 2. The terminal
 
 Open it in the browser with the **`> terminal`** button, or run the console

@@ -19,6 +19,7 @@ This `docs/` folder is the published, task‑oriented documentation. The
 |---|---|
 | Install and run it | [SETUP](SETUP.md) |
 | Use the dashboard + terminal | [GUIDE](GUIDE.md) |
+| Choose a life substrate (particles / lattice / graph) | [SUBSTRATES](SUBSTRATES.md) |
 | Run and reproduce experiments | [EXPERIMENTS](EXPERIMENTS.md) |
 | Understand how it is built | [ARCHITECTURE](ARCHITECTURE.md) |
 | Understand *why* it is built this way | [DESIGN](DESIGN.md) |

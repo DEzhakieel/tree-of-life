@@ -1,4 +1,4 @@
-import type { WorldConfig, WorldParams, FractalType, Intervention, UniverseConfig, EnvironmentPreset, WorldTopology } from '@fractal-life/shared';
+import type { WorldConfig, WorldParams, FractalType, Intervention, UniverseConfig, EnvironmentPreset, WorldTopology, SubstrateConfig } from '@fractal-life/shared';
 import type { SimSource } from './source.js';
 import { AgentBuffer } from './agentBuffer.js';
 import { useStore } from '../store/useStore.js';
@@ -43,6 +43,8 @@ export function buildLocalWorld(opts: {
   discovery?: boolean;
   reproduction?: boolean;
   sensing?: boolean;
+  /** life substrate for this world (absent = the full agent engine) */
+  substrate?: SubstrateConfig;
 }): WorldConfig {
   const world: WorldConfig = {
     id: `local-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`,
@@ -66,6 +68,7 @@ export function buildLocalWorld(opts: {
   if (opts.discovery) world.discovery = true;
   if (opts.reproduction !== undefined) world.reproduction = opts.reproduction;
   if (opts.sensing !== undefined) world.sensing = opts.sensing;
+  if (opts.substrate) world.substrate = opts.substrate;
   return world;
 }
 
@@ -105,7 +108,7 @@ export async function createRemoteWorld(opts: {
 export async function startSession(opts: {
   mode: 'local' | 'remote';
   world?: WorldConfig;
-  create?: { seed: string; fractalType: FractalType; params: WorldParams; cellBio?: boolean; biophysics?: boolean; omics?: boolean; omicsStochastic?: boolean; combinatorial?: boolean; recombination?: boolean; universe?: UniverseConfig; environment?: EnvironmentPreset; topology?: WorldTopology; signalDeposit?: number; memeCopyRate?: number; discovery?: boolean; reproduction?: boolean; sensing?: boolean };
+  create?: { seed: string; fractalType: FractalType; params: WorldParams; cellBio?: boolean; biophysics?: boolean; omics?: boolean; omicsStochastic?: boolean; combinatorial?: boolean; recombination?: boolean; universe?: UniverseConfig; environment?: EnvironmentPreset; topology?: WorldTopology; signalDeposit?: number; memeCopyRate?: number; discovery?: boolean; reproduction?: boolean; sensing?: boolean; substrate?: SubstrateConfig };
 }): Promise<WorldConfig> {
   const epoch = ++sessionEpoch;
   source?.destroy();

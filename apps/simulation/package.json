@@ -8,7 +8,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./research": "./src/research/index.ts",
-    "./research/registry": "./src/research/experimentRegistry.ts"
+    "./research/registry": "./src/research/experimentRegistry.ts",
+    "./substrates": "./src/substrates/index.ts"
   },
   "scripts": {
     "test": "node ../../scripts/run-tests.mjs",

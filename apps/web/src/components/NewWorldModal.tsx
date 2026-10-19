@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FractalType, WorldParams, UniverseConfig, EnvironmentPreset, WorldTopology } from '@fractal-life/shared';
+import type { FractalType, WorldParams, UniverseConfig, EnvironmentPreset, WorldTopology, SubstrateKind } from '@fractal-life/shared';
 import { UNIVERSE_EARTH_LIKE, UNIVERSE_LUNA, UNIVERSE_MARS, ENV_PROFILES, TOPOLOGIES, TOPOLOGY_DEFS } from '@fractal-life/shared';
 import { useStore } from '../store/useStore.js';
 import { startSession } from '../net/session.js';
@@ -8,6 +8,15 @@ const FRACTALS: { id: FractalType; label: string; hint: string }[] = [
   { id: 'mandelbrot', label: 'Mandelbrot', hint: 'coastal terrain around the Set' },
   { id: 'julia', label: 'Julia', hint: 'repeating archipelago (uses cReal/cImag)' },
   { id: 'perlin', label: 'Perlin', hint: 'smooth value-noise continents' },
+];
+
+/** Life substrates selectable at world creation (local/worker mode only —
+ *  remote worlds always run the WASM agent engine). */
+const SUBSTRATE_CHOICES: { id: SubstrateKind; label: string; hint: string }[] = [
+  { id: 'agents', label: 'Agents', hint: 'full agent engine — terrain, genome, research parity' },
+  { id: 'particles', label: 'Particles', hint: 'attraction-repulsion bodies with an energy life cycle' },
+  { id: 'lattice', label: 'Lattice', hint: 'cellular automaton on the 128×128 grid' },
+  { id: 'graph', label: 'Graph', hint: 'excitable-medium nodes on a proximity graph' },
 ];
 
 const UNIVERSE_PRESETS: { id: 'off' | 'earth' | 'moon' | 'mars'; label: string; hint: string; cfg: UniverseConfig | null }[] = [
@@ -39,6 +48,8 @@ export function NewWorldModal() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const st = useStore();
+  /** remote worlds always run the WASM agent engine; substrates are local-only */
+  const isAgents = mode === 'remote' || st.formSubstrate === 'agents';
 
   const start = async () => {
     setBusy(true);
@@ -64,6 +75,7 @@ export function NewWorldModal() {
           discovery: st.formDiscovery,
           reproduction: st.formReproduction,
           sensing: st.formSensing,
+          substrate: mode === 'local' && st.formSubstrate !== 'agents' ? { kind: st.formSubstrate } : undefined,
         },
       });
       st.setWorld(world);
@@ -71,6 +83,10 @@ export function NewWorldModal() {
       st.clearEvents();
       st.clearStats();
       st.clearScheduledEvents();
+      // substrate worlds have a purpose-built representation — switch to it
+      if (st.formSubstrate === 'particles') st.setRepresentation('particle');
+      else if (st.formSubstrate === 'lattice') st.setRepresentation('lattice');
+      else if (st.formSubstrate === 'graph') st.setRepresentation('graph');
       setOpen(false);
     } catch (err) {
       setError((err as Error).message);
@@ -119,6 +135,33 @@ export function NewWorldModal() {
               className="mb-3 w-full rounded-md border border-white/10 bg-zinc-900 px-2 py-1.5 text-sm text-white outline-none focus:border-indigo-400"
             />
 
+            {mode === 'local' && (
+              <div className="mb-4">
+                <div className="mb-1 text-xs text-zinc-400">Life substrate</div>
+                <div className="grid grid-cols-4 gap-2">
+                  {SUBSTRATE_CHOICES.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => st.setFormSubstrate(s.id)}
+                      title={s.hint}
+                      className={`rounded-lg border px-2 py-1.5 text-xs ${
+                        st.formSubstrate === s.id
+                          ? 'border-indigo-400 bg-indigo-500/20 text-white'
+                          : 'border-white/10 text-zinc-400 hover:border-white/30'
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-1 text-[11px] text-zinc-500">
+                  {SUBSTRATE_CHOICES.find((s) => s.id === st.formSubstrate)?.hint}
+                </div>
+              </div>
+            )}
+
+            {isAgents && (
+              <>
             <div className="mb-4 grid grid-cols-3 gap-2">
               {FRACTALS.map((f) => (
                 <button
@@ -403,6 +446,8 @@ export function NewWorldModal() {
                 />
               </label>
             ))}
+              </>
+            )}
 
             {error && <div className="mb-3 rounded-md bg-red-500/20 px-3 py-2 text-xs text-red-300">{error}</div>}
 

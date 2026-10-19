@@ -2,6 +2,9 @@ import readline from 'node:readline';
 import {
   createDefaultRegistry,
   executeLine,
+  SUBSTRATES,
+  type SubstrateConfig,
+  type SubstrateKind,
   type TerminalContext,
   type TerminalMeta,
 } from '@fractal-life/shared';
@@ -24,6 +27,7 @@ interface Args {
   steps: number | null;
   json: boolean;
   watch: boolean;
+  substrate: SubstrateConfig | undefined;
 }
 
 function parseArgs(argv: string[]): Args {
@@ -34,18 +38,27 @@ function parseArgs(argv: string[]): Args {
     if (i >= 0 && argv[i + 1] && !argv[i + 1]!.startsWith('--')) return argv[i + 1];
     return undefined;
   };
+  const substrateArg = get('substrate');
+  let substrate: SubstrateConfig | undefined;
+  if (substrateArg !== undefined && substrateArg !== 'agents') {
+    if (!(SUBSTRATES as readonly string[]).includes(substrateArg)) {
+      throw new Error(`unknown substrate "${substrateArg}" (expected one of: ${SUBSTRATES.join(', ')})`);
+    }
+    substrate = { kind: substrateArg as SubstrateKind };
+  }
   return {
     seed: get('seed') ?? `tol-${Math.random().toString(36).slice(2, 8)}`,
     tps: Number(get('tps') ?? 30),
     steps: get('steps') !== undefined ? Number(get('steps')) : null,
     json: argv.includes('--json'),
     watch: !argv.includes('--no-watch'),
+    substrate,
   };
 }
 
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
-  const session = new ConsoleSession(args.seed, args.tps);
+  const session = new ConsoleSession(args.seed, args.tps, args.substrate);
   const width = () => process.stdout.columns ?? 100;
   const registry = createDefaultRegistry(META);
 

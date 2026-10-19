@@ -1,20 +1,27 @@
 import {
   DEFAULT_PARAMS,
   type SimStats,
+  type SubstrateConfig,
   type TerminalHost,
   type WorldConfig,
 } from '@fractal-life/shared';
 import { Engine } from '../engine.js';
+import { SubstrateEngine } from '../substrates/index.js';
+
+/** The subset of engine surface the console session drives — the TS reference
+ *  engine or a pure-TS substrate engine, chosen at session construction. */
+type SessionEngine = Engine | SubstrateEngine;
 
 /**
- * Headless console session: owns a TS reference {@link Engine} and implements
- * the same {@link TerminalHost} contract as the browser, so the shared command
- * set drives both identically.
+ * Headless console session: owns a TS reference {@link Engine} (or, with a
+ * `substrate` config, a {@link SubstrateEngine}) and implements the same
+ * {@link TerminalHost} contract as the browser, so the shared command set
+ * drives both identically.
  */
 export class ConsoleSession implements TerminalHost {
   readonly platform = 'console' as const;
 
-  private engine: Engine;
+  private engine: SessionEngine;
   private seq = 0;
   private pendingSteps = 0;
 
@@ -25,12 +32,13 @@ export class ConsoleSession implements TerminalHost {
   constructor(
     public seed: string = 'tol-console',
     tickRate = 30,
+    private readonly substrate?: SubstrateConfig,
   ) {
     this.tickRate = tickRate;
     this.engine = this.build(this.seed);
   }
 
-  private build(seed: string): Engine {
+  private build(seed: string): SessionEngine {
     const config: WorldConfig = {
       id: `console-${seed}`,
       seed,
@@ -38,11 +46,13 @@ export class ConsoleSession implements TerminalHost {
       params: { ...DEFAULT_PARAMS },
       createdAt: Date.now(),
       currentTick: 0,
+      ...(this.substrate ? { substrate: this.substrate } : {}),
     };
+    if (this.substrate) return new SubstrateEngine(config);
     return new Engine(config);
   }
 
-  get engineRef(): Engine {
+  get engineRef(): SessionEngine {
     return this.engine;
   }
 
@@ -60,7 +70,7 @@ export class ConsoleSession implements TerminalHost {
     const s = this.engine.stats();
     return {
       platform: 'console',
-      backend: 'ts-reference',
+      backend: this.substrate ? `substrate:${this.substrate.kind}` : 'ts-reference',
       seed: this.seed,
       tick: s.tick,
       population: s.population,

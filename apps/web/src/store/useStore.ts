@@ -9,6 +9,7 @@ import type {
   FractalType,
   AgentSummary,
   RadarSample,
+  SubstrateKind,
 } from '@fractal-life/shared';
 import { DEFAULT_PARAMS, GENOME_SIZE } from '@fractal-life/shared';
 import type { WorldParams, UniverseConfig, EnvironmentPreset, WorldTopology, Intervention } from '@fractal-life/shared';
@@ -209,6 +210,8 @@ export interface SimState {
   formReproduction: boolean;
   /** Sensorimotor master switch (false = agents frozen in place). */
   formSensing: boolean;
+  /** Life substrate chosen at world creation (local worlds only). */
+  formSubstrate: SubstrateKind;
 
   // event scheduler
   scheduledEvents: ScheduledEvent[];
@@ -281,6 +284,7 @@ export interface SimState {
   setFormDiscovery: (v: boolean) => void;
   setFormReproduction: (v: boolean) => void;
   setFormSensing: (v: boolean) => void;
+  setFormSubstrate: (k: SubstrateKind) => void;
   resetForm: () => void;
   addScheduledEvent: (e: Omit<ScheduledEvent, 'id'>) => void;
   removeScheduledEvent: (id: number) => void;
@@ -366,6 +370,7 @@ export const useStore = create<SimState>((set) => ({
   formDiscovery: false,
   formReproduction: true,
   formSensing: true,
+  formSubstrate: 'agents',
 
   scheduledEvents: [],
   nextScheduledEventId: 0,
@@ -431,7 +436,8 @@ export const useStore = create<SimState>((set) => ({
   setFormDiscovery: (v) => set({ formDiscovery: v }),
   setFormReproduction: (v) => set({ formReproduction: v }),
   setFormSensing: (v) => set({ formSensing: v }),
-  resetForm: () => set({ formSeed: '', formFractal: 'mandelbrot', formParams: { ...DEFAULT_PARAMS }, formCellBio: false, formBiophysics: false, formOmics: false, formOmicsStochastic: false, formCombinatorial: false, formRecombination: false, formUniverse: null, formEnvironment: null, formTopology: null, formSignalDeposit: 1, formMemeCopyRate: 1, formDiscovery: false, formReproduction: true, formSensing: true }),
+  setFormSubstrate: (k) => set({ formSubstrate: k }),
+  resetForm: () => set({ formSeed: '', formFractal: 'mandelbrot', formParams: { ...DEFAULT_PARAMS }, formCellBio: false, formBiophysics: false, formOmics: false, formOmicsStochastic: false, formCombinatorial: false, formRecombination: false, formUniverse: null, formEnvironment: null, formTopology: null, formSignalDeposit: 1, formMemeCopyRate: 1, formDiscovery: false, formReproduction: true, formSensing: true, formSubstrate: 'agents' }),
   addScheduledEvent: (e) =>
     set((st) => ({
       scheduledEvents: [...st.scheduledEvents, { ...e, id: st.nextScheduledEventId }],

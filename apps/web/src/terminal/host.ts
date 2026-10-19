@@ -84,6 +84,9 @@ export function createWebHost(): TerminalHost {
         seed: '',
         fractalType: s.formFractal,
         params: s.formParams,
+        // keep the active life substrate so reset does not silently fall
+        // back to the agent engine
+        substrate: s.world?.substrate,
       });
       s.clearStats();
       void startSession({ mode: s.mode, world });
