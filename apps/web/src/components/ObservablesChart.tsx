@@ -140,6 +140,8 @@ function loadSelection(): Set<string> {
 export function ObservablesChart({ id }: { id?: string }) {
   const history = useStore((s) => s.statsHistory);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [width, setWidth] = useState(W);
   const [selected, setSelected] = useState<Set<string>>(loadSelection);
   const [groupsOpen, setGroupsOpen] = useState<Set<string>>(
     () => new Set(['ecology', 'strategy', 'selection']),
@@ -175,17 +177,28 @@ export function ObservablesChart({ id }: { id?: string }) {
   };
 
   useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const ro = new ResizeObserver((entries) => {
+      const cw = entries[0]?.contentRect.width ?? W;
+      setWidth(Math.max(140, Math.floor(cw)));
+    });
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = W * dpr;
+    canvas.width = width * dpr;
     canvas.height = H * dpr;
-    canvas.style.width = `${W}px`;
+    canvas.style.width = `${width}px`;
     canvas.style.height = `${H}px`;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0, 0, width, H);
 
     // grid
     ctx.strokeStyle = 'rgba(255,255,255,0.07)';
@@ -194,7 +207,7 @@ export function ObservablesChart({ id }: { id?: string }) {
       const y = PAD + (i * (H - 2 * PAD)) / 4;
       ctx.beginPath();
       ctx.moveTo(PAD, y);
-      ctx.lineTo(W - PAD, y);
+      ctx.lineTo(width - PAD, y);
       ctx.stroke();
     }
 
@@ -213,14 +226,14 @@ export function ObservablesChart({ id }: { id?: string }) {
       for (let i = 0; i < n; i++) {
         const raw = history[i]![def.key] as number;
         const v = Math.max(0, Math.min(1, scale(raw) / max));
-        const x = PAD + (i / (n - 1)) * (W - 2 * PAD);
+        const x = PAD + (i / (n - 1)) * (width - 2 * PAD);
         const y = PAD + (1 - v) * (H - 2 * PAD);
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
       ctx.stroke();
     }
-  }, [history, selected, allSignals]);
+  }, [history, selected, allSignals, width]);
 
   const activeCount = allSignals.filter((s) => selected.has(s.key)).length;
 
@@ -230,7 +243,9 @@ export function ObservablesChart({ id }: { id?: string }) {
       title="Signals"
       right={<span className="font-mono text-[10px] text-zinc-500">{activeCount} on</span>}
     >
-      <canvas ref={canvasRef} />
+      <div ref={wrapRef} className="w-full">
+        <canvas ref={canvasRef} className="block" />
+      </div>
       <div className="mt-1.5 flex flex-col gap-0.5">
         {SIGNAL_GROUPS.map((g) => {
           const open = groupOpen(g.id);

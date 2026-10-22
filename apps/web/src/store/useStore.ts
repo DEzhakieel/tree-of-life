@@ -212,6 +212,14 @@ export interface SimState {
   formSensing: boolean;
   /** Life substrate chosen at world creation (local worlds only). */
   formSubstrate: SubstrateKind;
+  /** particles: near-field attraction gain (engine default 1). */
+  formAttraction: number;
+  /** particles: near-field repulsion gain (engine default 1). */
+  formRepulsion: number;
+  /** lattice: per-tick random cell flip probability (engine default 0). */
+  formNoise: number;
+  /** graph: neighbour-link radius in world units (engine default 90). */
+  formLinkRadius: number;
 
   // event scheduler
   scheduledEvents: ScheduledEvent[];
@@ -237,6 +245,9 @@ export interface SimState {
   showMinimap: boolean;
   showSpecies: boolean;
   showLineage: boolean;
+  /** boundary-identification overlay: draws how each world edge is identified
+   *  (wrap / reflect / twist) for the selected topology */
+  showBoundary: boolean;
   showCulture: boolean;
   lineage: LineageNode[] | null;
 
@@ -245,6 +256,10 @@ export interface SimState {
   panelCollapsed: Record<string, boolean>;
 
   cameraZoom: number;
+  /** WebGL availability as probed by SceneView (null = not yet probed).
+   *  The 2D fallback cannot draw the ground layer, so the Display panel
+   *  disables those controls instead of offering no-ops. */
+  webgl: boolean | null;
   workerError: string | null;
 
   // actions
@@ -285,6 +300,10 @@ export interface SimState {
   setFormReproduction: (v: boolean) => void;
   setFormSensing: (v: boolean) => void;
   setFormSubstrate: (k: SubstrateKind) => void;
+  setFormAttraction: (n: number) => void;
+  setFormRepulsion: (n: number) => void;
+  setFormNoise: (n: number) => void;
+  setFormLinkRadius: (n: number) => void;
   resetForm: () => void;
   addScheduledEvent: (e: Omit<ScheduledEvent, 'id'>) => void;
   removeScheduledEvent: (id: number) => void;
@@ -306,10 +325,12 @@ export interface SimState {
   setShowMinimap: (b: boolean) => void;
   setShowSpecies: (b: boolean) => void;
   setShowLineage: (b: boolean) => void;
+  setShowBoundary: (b: boolean) => void;
   setShowCulture: (b: boolean) => void;
   setLineage: (l: LineageNode[] | null) => void;
   togglePanel: (id: string) => void;
   setCameraZoom: (z: number) => void;
+  setWebgl: (v: boolean) => void;
   setWorkerError: (e: string | null) => void;
 }
 
@@ -371,6 +392,10 @@ export const useStore = create<SimState>((set) => ({
   formReproduction: true,
   formSensing: true,
   formSubstrate: 'agents',
+  formAttraction: 1,
+  formRepulsion: 1,
+  formNoise: 0,
+  formLinkRadius: 90,
 
   scheduledEvents: [],
   nextScheduledEventId: 0,
@@ -389,6 +414,7 @@ export const useStore = create<SimState>((set) => ({
   showMinimap: true,
   showSpecies: true,
   showLineage: false,
+  showBoundary: true,
   showCulture: false,
   lineage: null,
 
@@ -398,6 +424,7 @@ export const useStore = create<SimState>((set) => ({
   panelCollapsed: { atlas: true, radar: true, scheduler: true, experiments: true },
 
   cameraZoom: 1,
+  webgl: null,
   workerError: null,
 
   setMode: (m) => set({ mode: m }),
@@ -437,7 +464,11 @@ export const useStore = create<SimState>((set) => ({
   setFormReproduction: (v) => set({ formReproduction: v }),
   setFormSensing: (v) => set({ formSensing: v }),
   setFormSubstrate: (k) => set({ formSubstrate: k }),
-  resetForm: () => set({ formSeed: '', formFractal: 'mandelbrot', formParams: { ...DEFAULT_PARAMS }, formCellBio: false, formBiophysics: false, formOmics: false, formOmicsStochastic: false, formCombinatorial: false, formRecombination: false, formUniverse: null, formEnvironment: null, formTopology: null, formSignalDeposit: 1, formMemeCopyRate: 1, formDiscovery: false, formReproduction: true, formSensing: true, formSubstrate: 'agents' }),
+  setFormAttraction: (n) => set({ formAttraction: n }),
+  setFormRepulsion: (n) => set({ formRepulsion: n }),
+  setFormNoise: (n) => set({ formNoise: n }),
+  setFormLinkRadius: (n) => set({ formLinkRadius: n }),
+  resetForm: () => set({ formSeed: '', formFractal: 'mandelbrot', formParams: { ...DEFAULT_PARAMS }, formCellBio: false, formBiophysics: false, formOmics: false, formOmicsStochastic: false, formCombinatorial: false, formRecombination: false, formUniverse: null, formEnvironment: null, formTopology: null, formSignalDeposit: 1, formMemeCopyRate: 1, formDiscovery: false, formReproduction: true, formSensing: true, formSubstrate: 'agents', formAttraction: 1, formRepulsion: 1, formNoise: 0, formLinkRadius: 90 }),
   addScheduledEvent: (e) =>
     set((st) => ({
       scheduledEvents: [...st.scheduledEvents, { ...e, id: st.nextScheduledEventId }],
@@ -489,10 +520,12 @@ export const useStore = create<SimState>((set) => ({
   setShowMinimap: (b) => set({ showMinimap: b }),
   setShowSpecies: (b) => set({ showSpecies: b }),
   setShowLineage: (b) => set({ showLineage: b }),
+  setShowBoundary: (b) => set({ showBoundary: b }),
   setShowCulture: (b) => set({ showCulture: b }),
   setLineage: (l) => set({ lineage: l }),
   togglePanel: (id) =>
     set((st) => ({ panelCollapsed: { ...st.panelCollapsed, [id]: !st.panelCollapsed[id] } })),
   setCameraZoom: (z) => set({ cameraZoom: z }),
+  setWebgl: (v) => set({ webgl: v }),
   setWorkerError: (e) => set({ workerError: e }),
 }));

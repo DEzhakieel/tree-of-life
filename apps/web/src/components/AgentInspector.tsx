@@ -155,7 +155,7 @@ export function AgentInspector() {
   if (id === null) return null;
   if (!meta) {
     return (
-      <div className="absolute right-3 top-14 z-30 w-72">
+      <div className="w-full">
         <Panel title={`Agent #${id}`} right={<CloseButton onClick={close} />}>
           <div className="py-6 text-center text-zinc-500">requesting genome…</div>
         </Panel>
@@ -166,7 +166,7 @@ export function AgentInspector() {
   const genomeReady = meta.genome.length === GENOME_SIZE;
 
   return (
-    <div className="absolute right-3 top-14 z-30 flex max-h-[78vh] w-80 flex-col">
+    <div className="flex max-h-[70vh] w-full flex-col">
       <Panel
         title={`Agent #${meta.id}`}
         className="flex min-h-0 flex-1 flex-col"
@@ -196,7 +196,7 @@ export function AgentInspector() {
           {live && (
             <>
               <span className="text-zinc-600">·</span>
-              <span title="live cultural tag (meme)">{live.meme.toFixed(3)}🧠</span>
+              <span title="live cultural tag (meme)">meme {live.meme.toFixed(3)}</span>
             </>
           )}
           <span className="text-zinc-600">·</span>
@@ -244,9 +244,9 @@ export function AgentInspector() {
               useStore.getState().setTool('spawnAgent');
             }}
             className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] text-emerald-300 hover:bg-emerald-500/30"
-            title="copy this genome into the Spawn designer, then click the world to drop a clone"
+            title="copy this genome into the designer, then click the world to drop a clone"
           >
-            🧬 designer + spawn
+            load into designer
           </button>
           {designGenome && (
             <span className="text-[9px] text-zinc-500">design loaded ({designGenome.length} genes)</span>

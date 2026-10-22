@@ -11,16 +11,6 @@ import { Panel } from './Panel.js';
 // is a guaranteed no-op in the engine — offering it would queue a dead event.
 const EVENT_TYPES: InterventionType[] = ['meteor', 'seedFood', 'spawnAgent', 'pauseRegion', 'setTimeScale', 'nuke'];
 
-const EVENT_ICON: Record<InterventionType, string> = {
-  meteor: '☄',
-  seedFood: '🌾',
-  spawnAgent: '🧬',
-  pauseRegion: '❄',
-  setTimeScale: '⏱',
-  nuke: '💥',
-  setGene: '🧬',
-};
-
 const POLL_MS = 300;
 
 /** Fire a scheduled event once the world tick has reached it. Positional
@@ -108,7 +98,7 @@ export function EventSchedulerPanel() {
             >
               {EVENT_TYPES.map((t) => (
                 <option key={t} value={t}>
-                  {EVENT_ICON[t]} {t}
+                  {t}
                 </option>
               ))}
             </select>

@@ -18,7 +18,7 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
 
   await page.waitForFunction(
     () => {
-      const el = document.querySelector('span.font-mono');
+      const el = document.querySelector('[data-testid="tick-status"]');
       if (!el) return false;
       const m = (el.textContent ?? '').match(/\bt=(\d+)/);
       return m != null && Number(m[1]) > 0;
@@ -73,7 +73,7 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   await expect(page.getByRole('button', { name: '⏸', exact: true })).toBeVisible({ timeout: 5_000 });
 
   // Push the inspected genome into the designer: panel appears, Spawn armed.
-  await page.getByRole('button', { name: /designer \+ spawn/ }).click();
+  await page.getByRole('button', { name: /load into designer/ }).click();
   await expect(page.getByText('Genome Designer')).toBeVisible();
   await expect(page.getByText(/design loaded \(217 genes\)/)).toBeVisible();
 
@@ -91,7 +91,7 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   // (a pattern-drive weight ≥ 32): safe to carry and keeps the clone's
   // species identical, so the picked clone's gene 110 == -1 is unambiguous.
   const editRow = '110';
-  const designBrowser = page.locator('.overflow-y-auto').filter({ has: page.getByText('editing', { exact: true }) });
+  const designBrowser = page.getByTestId('genome-browser').filter({ has: page.getByText('editing', { exact: true }) });
   const designRow = () => designBrowser.locator(`span:text-is("${editRow}")`).locator('..');
 
   // Playwright cannot `fill()` range inputs, so use the native-value-setter
@@ -134,7 +134,7 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   // after the worker's genome-summary roundtrip, so re-click + poll until the
   // inspector actually shows the edited value (-1) — this tolerates both the
   // async genome load and an occasionally-missed first pick.
-  const inspectorBrowser = page.locator('.overflow-y-auto').filter({ has: page.getByText('genome', { exact: true }) });
+  const inspectorBrowser = page.getByTestId('genome-browser').filter({ has: page.getByText('genome', { exact: true }) });
   const inspectorRow = () => inspectorBrowser.locator(`span:text-is("${editRow}")`).locator('..');
   const readGene = () => inspectorRow().locator('span.text-right').innerText().catch(() => '');
   await page.getByRole('button', { name: /Pan/ }).click();

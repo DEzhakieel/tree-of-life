@@ -48,7 +48,10 @@ export function ModelPanel({ id }: { id?: string }) {
                 >
                   ▸
                 </span>
-                <span className="w-[52px] shrink-0 truncate text-[10px] font-semibold uppercase tracking-wider text-zinc-300">
+                <span
+                  title={t.name}
+                  className="w-16 shrink-0 truncate text-[10px] font-semibold uppercase tracking-wider text-zinc-300"
+                >
                   {t.name}
                 </span>
                 <span className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">

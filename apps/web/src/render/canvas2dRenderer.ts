@@ -3,6 +3,7 @@ import type { AgentBuffer } from '../net/agentBuffer.js';
 import { useStore } from '../store/useStore.js';
 import { frameSuspended } from './frameBudget.js';
 import { pickAgent, pickRadius, CLICK_SLOP_PX } from './pick.js';
+import { topologyEdges, effectiveTopology, worldRect, drawTopology2D } from './topology.js';
 import {
   buildEdges,
   buildLineageEdges,
@@ -356,6 +357,23 @@ export class Canvas2DRenderer {
     if (rep === 'graph') this.drawGraph(cw, ch, st.showCulture);
     if (rep === 'lattice') this.drawLattice(cw, ch, st.showCulture);
 
+    if (st.showBoundary) {
+      const r = worldRect(this.world.params);
+      // screen y is flipped, so the max-im corner is the visual top-left
+      const a = this.worldToScreen(r.x0, r.y1, cw, ch);
+      const b = this.worldToScreen(r.x1, r.y0, cw, ch);
+      drawTopology2D(
+        ctx,
+        {
+          x: Math.min(a.sx, b.sx),
+          y: Math.min(a.sy, b.sy),
+          w: Math.abs(b.sx - a.sx),
+          h: Math.abs(b.sy - a.sy),
+        },
+        topologyEdges(effectiveTopology(this.world)),
+      );
+    }
+
     this.frame++;
 
     // minimap every 4 frames
@@ -376,7 +394,7 @@ export class Canvas2DRenderer {
     };
 
     const prox = buildEdges(agents, this.world.params.worldScale / 60, 2500);
-    const lin = buildLineageEdges(agents, lineageParents(st.lineage));
+    const lin = buildLineageEdges(agents, lineageParents(st.showLineage ? st.lineage : null));
 
     ctx.lineWidth = 1;
     for (const e of prox) {

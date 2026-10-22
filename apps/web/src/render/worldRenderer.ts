@@ -14,6 +14,7 @@ import { GraphView, LatticeView } from './graphLattice.js';
 import { createEffects } from './effects.js';
 import { Minimap } from './minimap.js';
 import { pickAgent, pickRadius, CLICK_SLOP_PX } from './pick.js';
+import { TopologyOverlay } from './topology.js';
 
 export interface WorldRendererOptions {
   canvas: HTMLCanvasElement;
@@ -41,6 +42,7 @@ export class WorldRenderer {
   private agentsMesh: AgentsMesh | null = null;
   private graphView: GraphView | null = null;
   private latticeView: LatticeView | null = null;
+  private topoOverlay = new TopologyOverlay();
   private lastRepresentation = '';
   private effects: ReturnType<typeof createEffects> | null = null;
   private minimap: Minimap;
@@ -102,6 +104,8 @@ export class WorldRenderer {
     // above the additive glow field so the brush ring never drowns in it
     this.brush.renderOrder = 10;
     this.scene.add(this.brush);
+
+    this.scene.add(this.topoOverlay.group);
 
     this.bindEvents();
     this.loop();
@@ -384,11 +388,16 @@ export class WorldRenderer {
       }
     }
 
+    // Boundary identification: the topology is a property of the space, so it
+    // is drawn as part of the space rather than only reported in a badge.
+    this.topoOverlay.update(this.world);
+    this.topoOverlay.setVisible(st.showBoundary);
+
     if (this.graphView) {
       const on = rep === 'graph';
       this.graphView.setVisible(on);
       if (on && (this.frame % 4 === 0 || this.lastRepresentation !== rep)) {
-        this.graphView.update(p, this.opts.agents, st.lineage, st.showCulture);
+        this.graphView.update(p, this.opts.agents, st.showLineage ? st.lineage : null, st.showCulture);
       }
     }
 
@@ -417,6 +426,7 @@ export class WorldRenderer {
   destroy(): void {
     this.disposed = true;
     cancelAnimationFrame(this.rafHandle);
+    this.topoOverlay.dispose();
     const c = this.canvas;
     c.removeEventListener('pointerdown', this.onPointerDown);
     c.removeEventListener('pointermove', this.onPointerMove);

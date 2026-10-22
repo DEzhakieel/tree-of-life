@@ -22,7 +22,9 @@ export function EmergenceRadarPanel() {
           return (
             <div key={id} className="flex items-center gap-1.5 font-mono text-[10px] leading-4">
               <span className="w-2 text-zinc-500">{id}</span>
-              <span className="w-16 truncate text-zinc-400">{LEVEL_SHORT[id]}</span>
+              <span className="w-20 truncate text-zinc-400" title={LEVEL_SHORT[id]}>
+                {LEVEL_SHORT[id]}
+              </span>
               <span className="ml-auto flex items-center gap-1">
                 <span style={{ color: hex }}>{STATUS_LABEL[st]}</span>
                 <span className="text-zinc-500">{score.toFixed(2)}</span>

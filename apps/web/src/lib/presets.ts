@@ -20,7 +20,7 @@ function override(genome: Float32Array, index: number, weight: number): void {
   genome[index] = encodeWeight(weight);
 }
 
-/** Uniform random base genome (same convention as the designer's 🎲 roll). */
+/** Uniform random base genome (same convention as the designer's random roll). */
 export function randomGenome(): Float32Array {
   const g = new Float32Array(GENOME_SIZE);
   for (let i = 0; i < GENOME_SIZE; i++) g[i] = Math.random() * 2 - 1;

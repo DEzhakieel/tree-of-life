@@ -19,7 +19,7 @@ test('boots the local WASM world and simulates', async ({ page }) => {
 
   await page.waitForFunction(
     () => {
-      const el = document.querySelector('span.font-mono');
+      const el = document.querySelector('[data-testid="tick-status"]');
       if (!el) return false;
       const txt = el.textContent ?? '';
       const m = txt.match(/\bt=(\d+)/);
@@ -29,7 +29,7 @@ test('boots the local WASM world and simulates', async ({ page }) => {
     { timeout: 150_000 },
   );
 
-  const tickText = await page.locator('span.font-mono').first().textContent();
+  const tickText = await page.getByTestId('tick-status').textContent();
   expect(tickText).toMatch(/t=[1-9]\d*/);
 
   const speed = page.getByText(/tps/).first();
@@ -85,7 +85,7 @@ test('new world modal: physics frame + cell bio/omics shape the booted world', a
 
   await page.waitForFunction(
     () => {
-      const el = document.querySelector('span.font-mono');
+      const el = document.querySelector('[data-testid="tick-status"]');
       if (!el) return false;
       const m = (el.textContent ?? '').match(/\bt=(\d+)/);
       return m != null && Number(m[1]) > 0;

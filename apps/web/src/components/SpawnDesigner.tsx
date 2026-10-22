@@ -69,7 +69,7 @@ export function SpawnDesigner() {
               className="rounded px-1.5 py-0.5 text-[10px] text-zinc-300 hover:bg-white/10"
               title="random genome"
             >
-              🎲
+              random
             </button>
             <button
               type="button"
@@ -80,7 +80,7 @@ export function SpawnDesigner() {
               className="rounded px-1.5 py-0.5 text-[10px] text-zinc-300 hover:bg-white/10 disabled:opacity-40"
               title="clone inspected agent genome"
             >
-              📋 clone inspected
+              clone inspected
             </button>
             <button
               type="button"

@@ -17,12 +17,15 @@ const REPRESENTATIONS: { id: Representation; label: string; hint: string }[] = [
   { id: 'lattice', label: 'Lattice', hint: 'pixel grid, cell brightness = density' },
 ];
 
-function Switch({ on, onClick }: { on: boolean; onClick: () => void }) {
+function Switch({ on, onClick, disabled }: { on: boolean; onClick: () => void; disabled?: boolean }) {
   return (
     <button
       onClick={onClick}
-      className={`h-3.5 w-6 rounded-full p-0.5 transition-colors ${on ? 'bg-emerald-500/70' : 'bg-white/15'}`}
-      title={on ? 'on' : 'off'}
+      disabled={disabled}
+      className={`h-3.5 w-6 rounded-full p-0.5 transition-colors ${
+        disabled ? 'cursor-not-allowed bg-white/5 opacity-40' : on ? 'bg-emerald-500/70' : 'bg-white/15'
+      }`}
+      title={disabled ? 'unavailable in this renderer' : on ? 'on' : 'off'}
     >
       <span
         className={`block h-2.5 w-2.5 rounded-full bg-white transition-transform ${on ? 'translate-x-2.5' : ''}`}
@@ -31,13 +34,42 @@ function Switch({ on, onClick }: { on: boolean; onClick: () => void }) {
   );
 }
 
-function Row({ label, on, action }: { label: string; on: boolean; action: () => void }) {
+function Row({
+  label,
+  hint,
+  on,
+  action,
+  disabled,
+}: {
+  label: string;
+  hint?: string;
+  on: boolean;
+  action: () => void;
+  disabled?: boolean;
+}) {
   return (
-    <div className="flex items-center justify-between rounded-md px-1.5 py-1 hover:bg-white/5">
-      <button onClick={action} className="flex-1 text-left text-zinc-300">
+    <div
+      className={`flex items-center justify-between rounded-md px-1.5 py-1 ${
+        disabled ? 'opacity-40' : 'hover:bg-white/5'
+      }`}
+      title={hint}
+    >
+      <button onClick={action} disabled={disabled} className="flex-1 text-left text-zinc-300 disabled:cursor-not-allowed">
         {label}
       </button>
-      <Switch on={on} onClick={action} />
+      <Switch on={on} onClick={action} disabled={disabled} />
+    </div>
+  );
+}
+
+function Section({ children, first }: { children: string; first?: boolean }) {
+  return (
+    <div
+      className={`mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500 ${
+        first ? '' : 'mt-1 border-t border-white/10 pt-1.5'
+      }`}
+    >
+      {children}
     </div>
   );
 }
@@ -49,16 +81,29 @@ export function LayerPanel({ id }: { id?: string }) {
   const showAgents = useStore((s) => s.showAgents);
   const showMinimap = useStore((s) => s.showMinimap);
   const showSpecies = useStore((s) => s.showSpecies);
+  const showLineage = useStore((s) => s.showLineage);
   const showCulture = useStore((s) => s.showCulture);
+  const showBoundary = useStore((s) => s.showBoundary);
+  const webgl = useStore((s) => s.webgl);
+
+  const groundAvailable = webgl !== false;
+  const groundForced = representation === 'fractal';
+  const groundDisabled = !groundAvailable || groundForced;
 
   return (
     <Panel id={id} title="Display">
-      <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Representation</div>
+      <Section first>Representation</Section>
       <div className="mb-2 flex flex-col gap-0.5">
         {REPRESENTATIONS.map((r) => (
           <button
             key={r.id}
-            onClick={() => useStore.getState().setRepresentation(r.id)}
+            onClick={() => {
+              const st = useStore.getState();
+              st.setRepresentation(r.id);
+              // fractal foregrounds the ground; enabling it keeps the Ground
+              // toggle honest instead of silently ignored
+              if (r.id === 'fractal') st.setShowTerrain(true);
+            }}
             title={r.hint}
             className={`rounded-md px-1.5 py-1 text-left text-xs ${
               representation === r.id ? 'bg-indigo-500/40 text-white' : 'text-zinc-400 hover:bg-white/10'
@@ -68,30 +113,87 @@ export function LayerPanel({ id }: { id?: string }) {
           </button>
         ))}
       </div>
-      <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Ground layer</div>
+
+      <Section>Ground layer</Section>
+      {!groundAvailable && (
+        <div className="mb-1 rounded-md border border-amber-500/25 bg-amber-500/10 px-1.5 py-1 text-[10px] leading-snug text-amber-300/90">
+          2D fallback has no ground layer — reopen in a WebGL-capable browser
+        </div>
+      )}
       <div className="mb-2 flex flex-col gap-0.5">
         {GROUND_LAYERS.map((l) => (
           <button
             key={l.id}
             onClick={() => useStore.getState().setGroundLayer(l.id)}
-            title={l.hint}
+            disabled={!groundAvailable}
+            title={groundAvailable ? l.hint : 'ground layer unavailable without WebGL'}
             className={`rounded-md px-1.5 py-1 text-left text-xs ${
-              groundLayer === l.id ? 'bg-indigo-500/40 text-white' : 'text-zinc-400 hover:bg-white/10'
+              !groundAvailable
+                ? 'cursor-not-allowed text-zinc-600'
+                : groundLayer === l.id
+                  ? 'bg-indigo-500/40 text-white'
+                  : 'text-zinc-400 hover:bg-white/10'
             }`}
           >
             {l.label}
           </button>
         ))}
       </div>
-      <div className="mb-1 border-t border-white/10 pt-1.5 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
-        Overlays
-      </div>
+
+      <Section>Canvas overlays</Section>
       <div className="flex flex-col gap-0.5">
-        <Row label="Ground" on={showTerrain} action={() => useStore.getState().setShowTerrain(!showTerrain)} />
-        <Row label="Agents" on={showAgents} action={() => useStore.getState().setShowAgents(!showAgents)} />
-        <Row label="Culture colors" on={showCulture} action={() => useStore.getState().setShowCulture(!showCulture)} />
-        <Row label="Minimap" on={showMinimap} action={() => useStore.getState().setShowMinimap(!showMinimap)} />
-        <Row label="Species list" on={showSpecies} action={() => useStore.getState().setShowSpecies(!showSpecies)} />
+        <Row
+          label="Boundary"
+          hint="draw how each world edge is identified for the selected topology"
+          on={showBoundary}
+          action={() => useStore.getState().setShowBoundary(!showBoundary)}
+        />
+        {showBoundary && (
+          <div className="mb-1 px-1.5 font-mono text-[9px] leading-snug text-zinc-500">
+            <span className="text-indigo-400">wrap</span> · <span className="text-amber-400">reflect</span> ·{' '}
+            <span className="text-fuchsia-400">twist</span> edge markings
+          </div>
+        )}
+        <Row
+          label="Ground"
+          hint={groundForced ? 'the fractal representation always shows the ground' : 'terrain under the agents'}
+          on={groundForced || showTerrain}
+          action={() => useStore.getState().setShowTerrain(!showTerrain)}
+          disabled={groundDisabled}
+        />
+        <Row
+          label="Agents"
+          hint="particle and fractal representations only"
+          on={showAgents}
+          action={() => useStore.getState().setShowAgents(!showAgents)}
+        />
+        <Row
+          label="Culture colors"
+          hint="colour by meme instead of species"
+          on={showCulture}
+          action={() => useStore.getState().setShowCulture(!showCulture)}
+        />
+        <Row
+          label="Minimap"
+          on={showMinimap}
+          action={() => useStore.getState().setShowMinimap(!showMinimap)}
+        />
+      </div>
+
+      <Section>Panels</Section>
+      <div className="flex flex-col gap-0.5">
+        <Row
+          label="Species list"
+          hint="population breakdown panel"
+          on={showSpecies}
+          action={() => useStore.getState().setShowSpecies(!showSpecies)}
+        />
+        <Row
+          label="Genealogy"
+          hint="genealogy panel; also draws lineage edges in the network view"
+          on={showLineage}
+          action={() => useStore.getState().setShowLineage(!showLineage)}
+        />
       </div>
     </Panel>
   );

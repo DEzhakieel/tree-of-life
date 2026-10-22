@@ -22,7 +22,7 @@ function rowLabel(index: number): string {
 
 export function GenomeBrowser({ genome, onEdit, disabled, title }: GenomeBrowserProps) {
   return (
-    <div className="flex min-h-0 flex-col gap-1.5 overflow-y-auto pr-1">
+    <div className="flex min-h-0 flex-col gap-1.5 overflow-y-auto pr-1" data-testid="genome-browser">
       {title && (
         <div className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">
           {title}
@@ -151,11 +151,11 @@ function GeneRow({
   const shown = onEdit ? local : value;
   return (
     <div className="flex items-center gap-1.5 rounded px-1 py-px font-mono text-[10px] text-zinc-300 hover:bg-white/5">
-      <span className="w-24 shrink-0 truncate" title={label}>
+      <span className="w-16 shrink-0 truncate" title={label}>
         {label}
       </span>
-      <span className="w-8 shrink-0 text-zinc-600">{index}</span>
-      <span className={`w-16 shrink-0 text-right ${shown > 0 ? 'text-emerald-400/80' : shown < 0 ? 'text-rose-400/80' : 'text-zinc-500'}`}>
+      <span className="w-6 shrink-0 text-zinc-600">{index}</span>
+      <span className={`w-12 shrink-0 text-right ${shown > 0 ? 'text-emerald-400/80' : shown < 0 ? 'text-rose-400/80' : 'text-zinc-500'}`}>
         {shown.toFixed(3)}
       </span>
       {onEdit ? (

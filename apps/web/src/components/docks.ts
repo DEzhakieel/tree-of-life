@@ -16,20 +16,25 @@ export interface DockEntry {
   Component: ComponentType<{ id?: string }>;
 }
 
-/** Left dock: the analysis column. Order is display order, top to bottom. */
+/**
+ * Rails are grouped by instrument function, not by chronology:
+ *   left  = model + intervention (what you build and do to the world)
+ *   right = observation + analysis (what you measure back out)
+ * Order within a rail is display order, top to bottom.
+ */
 export const LEFT_DOCK: readonly DockEntry[] = [
   { id: 'model', Component: ModelPanel },
-  { id: 'vitals', Component: StatsPanel },
   { id: 'events', Component: EventTimelinePanel },
   { id: 'scheduler', Component: EventSchedulerPanel },
-  { id: 'atlas', Component: EmergenceAtlasPanel },
-  { id: 'radar', Component: EmergenceRadarPanel },
-  { id: 'signals', Component: ObservablesChart },
   { id: 'experiments', Component: ExperimentDirectoryPanel },
 ];
 
-/** Right dock: population + display. */
+/** Right rail: telemetry, emergence analysis, population, canvas layers. */
 export const RIGHT_DOCK: readonly DockEntry[] = [
+  { id: 'vitals', Component: StatsPanel },
+  { id: 'signals', Component: ObservablesChart },
+  { id: 'atlas', Component: EmergenceAtlasPanel },
+  { id: 'radar', Component: EmergenceRadarPanel },
   { id: 'species', Component: SpeciesPanel },
   { id: 'display', Component: LayerPanel },
 ];

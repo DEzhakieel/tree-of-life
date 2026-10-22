@@ -37,25 +37,24 @@ export function LineagePanel() {
   if (!show) return null;
 
   return (
-    <div className="absolute bottom-16 left-3 z-30 max-h-[60vh] w-80 overflow-y-auto rounded-xl border border-white/10 bg-black/80 backdrop-blur">
-      <Panel
-        title="Genealogy"
-        right={
-          <button onClick={() => useStore.getState().setShowLineage(false)} className="text-zinc-400 hover:text-white">
-            ✕
-          </button>
-        }
-      >
-        {lineage ? (
-          <ul>
-            {lineage.slice(0, 20).map((root) => (
-              <TreeNode key={root.id} node={root} depth={0} />
-            ))}
-          </ul>
-        ) : (
-          <div className="text-zinc-500">press 🌳 Lineage to fetch the tree</div>
-        )}
-      </Panel>
-    </div>
+    <Panel
+      id="lineage"
+      title="Genealogy"
+      right={
+        <button onClick={() => useStore.getState().setShowLineage(false)} className="text-zinc-400 hover:text-white" title="hide genealogy">
+          ✕
+        </button>
+      }
+    >
+      {lineage ? (
+        <ul className="max-h-72 overflow-y-auto">
+          {lineage.slice(0, 20).map((root) => (
+            <TreeNode key={root.id} node={root} depth={0} />
+          ))}
+        </ul>
+      ) : (
+        <div className="text-zinc-500">no lineage data yet — toggle Genealogy in the toolbar to fetch it</div>
+      )}
+    </Panel>
   );
 }

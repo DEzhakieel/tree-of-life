@@ -42,6 +42,40 @@ const PARAM_FIELDS: { key: keyof WorldParams; label: string; min: number; max: n
   { key: 'escapeRadius', label: 'Escape radius', min: 64, max: 65536, step: 64 },
 ];
 
+function Knob({
+  label,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+  hint,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (v: number) => void;
+  hint: string;
+}) {
+  return (
+    <label className="flex items-center gap-2 text-[11px] text-zinc-400" title={hint}>
+      <span className="w-24 shrink-0">{label}</span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="min-w-0 flex-1 accent-indigo-500"
+      />
+      <span className="w-10 shrink-0 text-right font-mono text-zinc-200">{value}</span>
+    </label>
+  );
+}
+
 export function NewWorldModal() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<'local' | 'remote'>('local');
@@ -55,6 +89,7 @@ export function NewWorldModal() {
     setBusy(true);
     setError(null);
     try {
+      const substrateKind: SubstrateKind = mode === 'local' ? st.formSubstrate : 'agents';
       const world = await startSession({
         mode,
         create: {
@@ -75,7 +110,17 @@ export function NewWorldModal() {
           discovery: st.formDiscovery,
           reproduction: st.formReproduction,
           sensing: st.formSensing,
-          substrate: mode === 'local' && st.formSubstrate !== 'agents' ? { kind: st.formSubstrate } : undefined,
+          substrate:
+            substrateKind !== 'agents'
+              ? {
+                  kind: substrateKind,
+                  ...(substrateKind === 'particles'
+                    ? { attraction: st.formAttraction, repulsion: st.formRepulsion }
+                    : {}),
+                  ...(substrateKind === 'lattice' ? { noise: st.formNoise } : {}),
+                  ...(substrateKind === 'graph' ? { linkRadius: st.formLinkRadius } : {}),
+                }
+              : undefined,
         },
       });
       st.setWorld(world);
@@ -83,10 +128,11 @@ export function NewWorldModal() {
       st.clearEvents();
       st.clearStats();
       st.clearScheduledEvents();
-      // substrate worlds have a purpose-built representation — switch to it
-      if (st.formSubstrate === 'particles') st.setRepresentation('particle');
-      else if (st.formSubstrate === 'lattice') st.setRepresentation('lattice');
-      else if (st.formSubstrate === 'graph') st.setRepresentation('graph');
+      // each substrate has a purpose-built representation; agent worlds return
+      // to the flagship particle field (never inherit the previous world's view)
+      if (substrateKind === 'lattice') st.setRepresentation('lattice');
+      else if (substrateKind === 'graph') st.setRepresentation('graph');
+      else st.setRepresentation('particle');
       setOpen(false);
     } catch (err) {
       setError((err as Error).message);
@@ -105,7 +151,7 @@ export function NewWorldModal() {
       </button>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-          <div className="w-[480px] max-h-[90vh] overflow-y-auto rounded-xl border border-white/10 bg-zinc-950 p-5 shadow-2xl">
+          <div className="max-h-[90vh] w-[480px] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-xl border border-white/10 bg-zinc-950 p-5 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-bold text-white">Spawn a new world</h2>
               <button onClick={() => setOpen(false)} className="text-zinc-400 hover:text-white">
@@ -157,6 +203,54 @@ export function NewWorldModal() {
                 <div className="mt-1 text-[11px] text-zinc-500">
                   {SUBSTRATE_CHOICES.find((s) => s.id === st.formSubstrate)?.hint}
                 </div>
+                {st.formSubstrate !== 'agents' && (
+                  <div className="mt-2 flex flex-col gap-1.5 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2">
+                    {st.formSubstrate === 'particles' && (
+                      <>
+                        <Knob
+                          label="Attraction gain"
+                          value={st.formAttraction}
+                          min={0}
+                          max={3}
+                          step={0.05}
+                          onChange={st.setFormAttraction}
+                          hint="near-field attraction between bodies (engine default 1)"
+                        />
+                        <Knob
+                          label="Repulsion gain"
+                          value={st.formRepulsion}
+                          min={0}
+                          max={3}
+                          step={0.05}
+                          onChange={st.setFormRepulsion}
+                          hint="near-field repulsion between bodies (engine default 1)"
+                        />
+                      </>
+                    )}
+                    {st.formSubstrate === 'lattice' && (
+                      <Knob
+                        label="Flip noise"
+                        value={st.formNoise}
+                        min={0}
+                        max={0.2}
+                        step={0.005}
+                        onChange={st.setFormNoise}
+                        hint="per-tick random cell flip probability (engine default 0)"
+                      />
+                    )}
+                    {st.formSubstrate === 'graph' && (
+                      <Knob
+                        label="Link radius"
+                        value={st.formLinkRadius}
+                        min={20}
+                        max={300}
+                        step={5}
+                        onChange={st.setFormLinkRadius}
+                        hint="neighbour-link radius in world units (engine default 90)"
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             )}
 

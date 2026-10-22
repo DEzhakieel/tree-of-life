@@ -3,6 +3,7 @@ import { SceneView } from './components/SceneView.js';
 import { TopBar } from './components/TopBar.js';
 import { Toolbar } from './components/Toolbar.js';
 import { LineagePanel } from './components/LineagePanel.js';
+import { AgentInspector } from './components/AgentInspector.js';
 import { TerminalDock } from './terminal/TerminalDock.js';
 import { LEFT_DOCK, RIGHT_DOCK } from './components/docks.js';
 import { startSession, destroySession } from './net/session.js';
@@ -67,18 +68,22 @@ export function App() {
     <div className="relative h-full w-full overflow-hidden bg-[#03040c] text-zinc-100">
       <SceneView />
       <TopBar />
-      <div className="pointer-events-none absolute left-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-56 flex-col gap-2 overflow-y-auto pb-28">
-  {LEFT_DOCK.map(({ id, Component }) => (
-      <Component key={id} id={id} />
-    ))}
+      <div className="pointer-events-auto absolute left-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-56 flex-col gap-2 overflow-y-auto overscroll-contain pb-24">
+        {/* selection-driven instruments stay pinned while the rail scrolls */}
+        <div className="sticky top-0 z-10 flex flex-col gap-2">
+          <AgentInspector />
+          <LineagePanel />
+        </div>
+        {LEFT_DOCK.map(({ id, Component }) => (
+          <Component key={id} id={id} />
+        ))}
       </div>
-      <div className="pointer-events-none absolute right-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-48 flex-col gap-2 overflow-y-auto pb-28">
+      <div className="pointer-events-auto absolute right-3 top-14 z-20 flex max-h-[calc(100vh-7.5rem)] w-64 flex-col gap-2 overflow-y-auto overscroll-contain pb-24">
         {RIGHT_DOCK.map(({ id, Component }) => (
           <Component key={id} id={id} />
         ))}
       </div>
       <Toolbar />
-      <LineagePanel />
       <TerminalDock />
     </div>
     </ErrorBoundary>

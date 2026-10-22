@@ -2,22 +2,27 @@ import { useStore } from '../store/useStore.js';
 import { requestLineage, intervene } from '../net/session.js';
 
 const TOOLS: { id: 'none' | 'meteor' | 'seedFood' | 'spawnAgent' | 'nuke' | 'pauseRegion'; label: string }[] = [
-  { id: 'none', label: '🖐 Pan' },
-  { id: 'meteor', label: '☄ Meteor' },
-  { id: 'seedFood', label: '🌾 Seed food' },
-  { id: 'spawnAgent', label: '🧬 Spawn' },
-  { id: 'pauseRegion', label: '❄ Freeze' },
-  { id: 'nuke', label: '💥 Nuke' },
+  { id: 'none', label: 'Pan' },
+  { id: 'meteor', label: 'Meteor' },
+  { id: 'seedFood', label: 'Seed food' },
+  { id: 'spawnAgent', label: 'Spawn' },
+  { id: 'pauseRegion', label: 'Freeze' },
+  { id: 'nuke', label: 'Nuke' },
 ];
 
 export function Toolbar() {
   const tool = useStore((s) => s.tool);
   const brushSize = useStore((s) => s.brushSize);
   const timeScale = useStore((s) => s.formParams.timeScale);
+  const showLineage = useStore((s) => s.showLineage);
+  const cameraZoom = useStore((s) => s.cameraZoom);
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center">
-      <div className="pointer-events-auto flex items-center gap-1 rounded-xl border border-white/10 bg-black/70 px-2 py-1.5 backdrop-blur">
+    <div
+      className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center px-3"
+      data-testid="toolbar"
+    >
+      <div className="pointer-events-auto flex max-w-[calc(100vw-1.5rem)] flex-wrap items-center justify-center gap-1 rounded-xl border border-white/10 bg-black/70 px-2 py-1.5 backdrop-blur">
         <span className="px-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Tools</span>
         {TOOLS.map((t) => (
           <button
@@ -32,7 +37,7 @@ export function Toolbar() {
           </button>
         ))}
         <div className="mx-2 h-6 w-px bg-white/10" />
-        <label className="flex items-center gap-2 text-xs text-zinc-400" title="brush radius">
+        <label className="flex items-center gap-2 text-xs text-zinc-400" title="brush radius in world units">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Brush</span>
           <input
             type="range"
@@ -62,15 +67,25 @@ export function Toolbar() {
           <span className="w-9 font-mono text-zinc-200">{timeScale.toFixed(2)}</span>
         </label>
         <div className="mx-2 h-6 w-px bg-white/10" />
+        <span className="font-mono text-[10px] text-zinc-500" title="camera zoom (mouse wheel)">
+          zoom ×{cameraZoom.toFixed(2)}
+        </span>
         <button
           onClick={() => {
+            const st = useStore.getState();
+            if (st.showLineage) {
+              st.setShowLineage(false);
+              return;
+            }
             requestLineage();
-            useStore.getState().setShowLineage(true);
+            st.setShowLineage(true);
           }}
-          className="rounded-md px-2 py-1 text-xs text-zinc-300 hover:bg-white/10"
-          title="genealogy tree"
+          className={`rounded-md px-2 py-1 text-xs ${
+            showLineage ? 'bg-indigo-500/40 text-white' : 'text-zinc-300 hover:bg-white/10'
+          }`}
+          title="genealogy panel and lineage edges"
         >
-          🌳 Lineage
+          Genealogy
         </button>
       </div>
     </div>
