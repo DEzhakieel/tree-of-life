@@ -1,18 +1,21 @@
 import * as THREE from 'three';
-import { WORLD_SIZE, worldToComplex, type WorldConfig, type WorldTopology } from '@fractal-life/shared';
+import { TOPOLOGY_DEFS, WORLD_SIZE, worldToComplex, type WorldConfig, type WorldTopology } from '@fractal-life/shared';
 
 /**
  * Boundary-condition annotation for the world rectangle.
  *
  * The engine identifies world edges when an agent reaches them
  * (crates/simulation/src/physics.rs): x (longitude) wraps in every
- * topology, while y (latitude) wraps, reflects, or reflects with a
- * half-twist. This module draws that identification so the chosen
- * topology is visible instead of inferred — indigo = periodic wrap,
- * amber = specular reflect, fuchsia = twist.
+ * topology, while y (latitude) wraps, reflects, or does either with a
+ * half-twist that mirrors x. This module draws that identification so the
+ * chosen topology is visible instead of inferred — indigo = periodic wrap,
+ * amber = specular reflect, fuchsia = reflect + half-twist, teal = wrap +
+ * half-twist (Klein bottle).
  */
 
-export type EdgeKind = 'wrap' | 'reflect' | 'twist';
+/** wrap: periodic. reflect: specular. twist: reflect + mirror x.
+ *  twistWrap: wrap + mirror x (orientation-reversing latitude, i.e. Klein). */
+export type EdgeKind = 'wrap' | 'reflect' | 'twist' | 'twistWrap';
 
 export interface TopologyInfo {
   /** identification applied to the two vertical (x) edges */
@@ -26,15 +29,15 @@ export interface TopologyInfo {
 export function topologyEdges(t: WorldTopology | null | undefined): TopologyInfo {
   switch (t) {
     case 'cylinder':
-      return { x: 'wrap', y: 'reflect', label: 'cylinder', desc: 'longitude wraps · polar caps reflect' };
+      return { x: 'wrap', y: 'reflect', label: 'cylinder', desc: TOPOLOGY_DEFS.cylinder.desc };
     case 'sphere':
-      return { x: 'wrap', y: 'reflect', label: 'sphere', desc: 'longitude wraps · poles reflect' };
+      return { x: 'wrap', y: 'reflect', label: 'sphere', desc: TOPOLOGY_DEFS.sphere.desc };
     case 'mobius':
-      return { x: 'wrap', y: 'twist', label: 'möbius', desc: 'longitude wraps · caps reflect with a half-twist' };
+      return { x: 'wrap', y: 'twist', label: 'möbius', desc: TOPOLOGY_DEFS.mobius.desc };
     case 'kleinBottle':
-      return { x: 'wrap', y: 'wrap', label: 'klein bottle', desc: 'longitude wraps · latitude loops flipped' };
+      return { x: 'wrap', y: 'twistWrap', label: 'klein bottle', desc: TOPOLOGY_DEFS.kleinBottle.desc };
     default:
-      return { x: 'wrap', y: 'wrap', label: 'torus', desc: 'both axes wrap' };
+      return { x: 'wrap', y: 'wrap', label: 'torus', desc: TOPOLOGY_DEFS.torus.desc };
   }
 }
 
@@ -42,13 +45,25 @@ export const EDGE_COLOR: Record<EdgeKind, number> = {
   wrap: 0x5b7cfa,
   reflect: 0xf0a83c,
   twist: 0xd964e8,
+  twistWrap: 0x2dd4bf,
 };
 
 export const EDGE_CSS: Record<EdgeKind, string> = {
   wrap: 'rgba(91,124,250,0.60)',
   reflect: 'rgba(240,168,60,0.80)',
   twist: 'rgba(217,100,232,0.80)',
+  twistWrap: 'rgba(45,212,191,0.80)',
 };
+
+/** base identification rule of a glyph: periodic tick vs specular chevron */
+function edgeBase(kind: EdgeKind): 'wrap' | 'reflect' {
+  return kind === 'wrap' || kind === 'twistWrap' ? 'wrap' : 'reflect';
+}
+
+/** whether crossing the edge mirrors longitude (half-twist) */
+function edgeReverses(kind: EdgeKind): boolean {
+  return kind === 'twist' || kind === 'twistWrap';
+}
 
 /** Axis-aligned bounding rectangle of the world in complex coordinates. */
 export interface WorldRect {
@@ -103,18 +118,18 @@ function edgeSegments(
   for (const t of [0.25, 0.5, 0.75]) {
     const px = x0 + dx * t;
     const py = y0 + dy * t;
-    if (kind === 'wrap') {
-      // periodic identification: perpendicular ticks
+    if (edgeBase(kind) === 'wrap') {
+      // periodic identification: perpendicular tick
       pushLine(pts, px - nx * tick * 0.5, py - ny * tick * 0.5, px + nx * tick, py + ny * tick);
-    } else if (kind === 'reflect') {
+    } else {
       // specular identification: inward chevron
       const ax = px + nx * tick;
       const ay = py + ny * tick;
       pushLine(pts, ax, ay, px - dx / len * tick * 0.6, py - dy / len * tick * 0.6);
       pushLine(pts, ax, ay, px + dx / len * tick * 0.6, py + dy / len * tick * 0.6);
-    } else {
-      // half-twist: tick + a cross bar (the identification reverses orientation)
-      pushLine(pts, px, py, px + nx * tick, py + ny * tick);
+    }
+    if (edgeReverses(kind)) {
+      // half-twist: longitude mirrors across the edge, so mark a slash
       pushLine(pts, px - tick * 0.15, py - tick * 0.15, px + tick * 0.15, py + tick * 0.15);
     }
   }
@@ -234,23 +249,24 @@ export function drawTopology2D(
       const px = e.ax + dx * t;
       const py = e.ay + dy * t;
       ctx.beginPath();
-      if (e.kind === 'wrap') {
+      if (edgeBase(e.kind) === 'wrap') {
         ctx.moveTo(px - nx * tick * 0.5, py - ny * tick * 0.5);
         ctx.lineTo(px + nx * tick, py + ny * tick);
-      } else if (e.kind === 'reflect') {
+      } else {
         const ix = px + nx * tick;
         const iy = py + ny * tick;
         ctx.moveTo(ix, iy);
         ctx.lineTo(px - (dx / len) * tick * 0.6, py - (dy / len) * tick * 0.6);
         ctx.moveTo(ix, iy);
         ctx.lineTo(px + (dx / len) * tick * 0.6, py + (dy / len) * tick * 0.6);
-      } else {
-        ctx.moveTo(px, py);
-        ctx.lineTo(px + nx * tick, py + ny * tick);
-        ctx.moveTo(px - tick * 0.15, py - tick * 0.15);
-        ctx.lineTo(px + tick * 0.15, py + tick * 0.15);
       }
       ctx.stroke();
+      if (edgeReverses(e.kind)) {
+        ctx.beginPath();
+        ctx.moveTo(px - tick * 0.15, py - tick * 0.15);
+        ctx.lineTo(px + tick * 0.15, py + tick * 0.15);
+        ctx.stroke();
+      }
     }
   }
   ctx.restore();

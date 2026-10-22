@@ -151,7 +151,8 @@ export function LayerPanel({ id }: { id?: string }) {
         {showBoundary && (
           <div className="mb-1 px-1.5 font-mono text-[9px] leading-snug text-zinc-500">
             <span className="text-indigo-400">wrap</span> · <span className="text-amber-400">reflect</span> ·{' '}
-            <span className="text-fuchsia-400">twist</span> edge markings
+            <span className="text-fuchsia-400">twist</span> · <span className="text-teal-300">flip-wrap</span> edge
+            markings
           </div>
         )}
         <Row
