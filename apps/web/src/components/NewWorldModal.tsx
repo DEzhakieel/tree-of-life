@@ -4,6 +4,7 @@ import type { FractalType, WorldParams, UniverseConfig, EnvironmentPreset, World
 import { UNIVERSE_EARTH_LIKE, UNIVERSE_LUNA, UNIVERSE_MARS, ENV_PROFILES, TOPOLOGIES, TOPOLOGY_DEFS } from '@fractal-life/shared';
 import { useStore } from '../store/useStore.js';
 import { startSession } from '../net/session.js';
+import { topologyEdges } from '../render/topology.js';
 
 const FRACTALS: { id: FractalType; label: string; hint: string }[] = [
   { id: 'mandelbrot', label: 'Mandelbrot', hint: 'coastal terrain around the Set' },
@@ -438,7 +439,7 @@ export function NewWorldModal() {
 
             <div className="mb-4">
               <div className="mb-1 text-xs text-zinc-400">Topology</div>
-              <div className="grid grid-cols-5 gap-1.5">
+              <div className="grid grid-cols-3 gap-1.5">
                 {([null, ...TOPOLOGIES] as (WorldTopology | null)[]).map((t) => {
                   const active = t === st.formTopology;
                   const def = t ? TOPOLOGY_DEFS[t] : TOPOLOGY_DEFS.torus;
@@ -451,7 +452,7 @@ export function NewWorldModal() {
                         active ? 'border-indigo-400 bg-indigo-500/20 text-white' : 'border-white/10 text-zinc-400 hover:border-white/30'
                       }`}
                     >
-                      {t ?? 'torus'}
+                      {t ? topologyEdges(t).label : 'default'}
                     </button>
                   );
                 })}
