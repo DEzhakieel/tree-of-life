@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { FractalType, WorldParams, UniverseConfig, EnvironmentPreset, WorldTopology, SubstrateKind } from '@fractal-life/shared';
 import { UNIVERSE_EARTH_LIKE, UNIVERSE_LUNA, UNIVERSE_MARS, ENV_PROFILES, TOPOLOGIES, TOPOLOGY_DEFS } from '@fractal-life/shared';
 import { useStore } from '../store/useStore.js';
@@ -81,6 +82,15 @@ export function NewWorldModal() {
   const [mode, setMode] = useState<'local' | 'remote'>('local');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
   const st = useStore();
   /** remote worlds always run the WASM agent engine; substrates are local-only */
   const isAgents = mode === 'remote' || st.formSubstrate === 'agents';
@@ -149,8 +159,16 @@ export function NewWorldModal() {
       >
         New World
       </button>
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+      {open &&
+        createPortal(
+          // portal to <body>: the top bar's backdrop-filter would otherwise
+          // become the containing block for this fixed overlay
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Spawn a new world"
+          >
           <div className="max-h-[90vh] w-[480px] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-xl border border-white/10 bg-zinc-950 p-5 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-bold text-white">Spawn a new world</h2>
@@ -543,18 +561,23 @@ export function NewWorldModal() {
               </>
             )}
 
-            {error && <div className="mb-3 rounded-md bg-red-500/20 px-3 py-2 text-xs text-red-300">{error}</div>}
+            <div className="sticky bottom-0 -mx-5 -mb-5 mt-2 border-t border-white/10 bg-zinc-950 px-5 pb-5 pt-3">
+              {error && (
+                <div className="mb-3 rounded-md bg-red-500/20 px-3 py-2 text-xs text-red-300">{error}</div>
+              )}
 
-            <button
-              onClick={start}
-              disabled={busy}
-              className="mt-2 w-full rounded-md bg-indigo-500 py-2 text-sm font-semibold text-white hover:bg-indigo-400 disabled:opacity-50"
-            >
-              {busy ? 'Spawning…' : 'Spawn'}
-            </button>
+              <button
+                onClick={start}
+                disabled={busy}
+                className="w-full rounded-md bg-indigo-500 py-2 text-sm font-semibold text-white hover:bg-indigo-400 disabled:opacity-50"
+              >
+                {busy ? 'Spawning…' : 'Spawn'}
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </>
   );
 }

@@ -68,9 +68,9 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   await expect(page.getByText(/Agent #\d+/)).toBeVisible({ timeout: 5_000 });
   await expect(page.getByText(/^immune \d+\.\d{2,3}$/)).toBeVisible();
 
-  // Resume the loop; the designer round-trip below pauses again on its own.
-  await page.getByRole('button', { name: '▶', exact: true }).click();
-  await expect(page.getByRole('button', { name: '⏸', exact: true })).toBeVisible({ timeout: 5_000 });
+  // Stay paused from the pick above (line 39): the designer edits below are not
+  // deterministic while the source cluster keeps drifting — under CPU load the
+  // edits take long enough for it to reach the drop point and win the pick.
 
   // Push the inspected genome into the designer: panel appears, Spawn armed.
   await page.getByRole('button', { name: /load into designer/ }).click();
@@ -109,8 +109,8 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   await expect.poll(() => designRow().locator('span.text-right').innerText()).toBe(expectedGene);
 
   // Drop a modest cluster of designed clones at a clear spot. Order matters:
-  //  (1) PAUSE first — the world stops growing, so no passers-by can crowd the
-  //      drop point while we work (picking it later becomes deterministic);
+  //  (1) the world is already paused (nothing crowds the drop point and the
+  //      source cluster cannot drift into it);
   //  (2) drop the clones into the paused engine — interventions are applied
   //      even while paused;
   //  (3) STEP one tick — the step's delta frame carries the just-spawned
@@ -119,8 +119,6 @@ test('pick an agent, inspect its genome, load it into the designer', async ({ pa
   //      deltas, so without the step the buffer would still be pre-spawn).
   const dropX = cx - 260;
   const dropY = cy - 60;
-  await page.getByRole('button', { name: '⏸', exact: true }).click();
-  await expect(page.getByRole('button', { name: '▶', exact: true })).toBeVisible({ timeout: 5_000 });
   for (let i = 0; i < 6; i++) {
     await page.mouse.click(dropX, dropY);
     await page.waitForTimeout(30);
