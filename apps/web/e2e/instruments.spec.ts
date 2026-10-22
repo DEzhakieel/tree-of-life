@@ -54,8 +54,13 @@ test('telemetry panels hydrate and the secondary canvases paint', async ({ page 
   // Species: at least one population row appears from the agent buffer
   await expect(page.getByText(/^sp\.\d+$/).first()).toBeVisible({ timeout: 30_000 });
 
-  // Atlas + radar: sample counters advance past the empty state
+  // Atlas + radar: sample counters advance past the empty state, and expanding
+  // the atlas shows the trajectory endpoint once stats exist
   await expect(page.getByText(/^\d+ pts$/).first()).toBeVisible({ timeout: 90_000 });
+  await page.getByTitle('expand Emergence atlas').click();
+  await expect(page.getByText(/^x-?\d/)).toBeVisible({ timeout: 60_000 });
+  await page.getByTitle('expand Emergence radar').click();
+  await expect(page.getByTitle('collapse Emergence radar')).toBeVisible();
 
   // Minimap and the observables chart must actually have pixels
   await expect
