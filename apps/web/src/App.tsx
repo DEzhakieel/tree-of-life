@@ -17,9 +17,27 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
       return (
         <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#f87171', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
           <h2 style={{ color: '#f87171', marginBottom: 8 }}>Render Error</h2>
-          {this.state.error.message}
-          {'\n\n'}
-          {this.state.error.stack}
+          <div style={{ marginBottom: 16 }}>
+            {this.state.error.message}
+            {'\n\n'}
+            {this.state.error.stack}
+          </div>
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            style={{
+              background: '#f8717133',
+              color: '#f87171',
+              border: '1px solid #f8717166',
+              padding: '6px 12px',
+              borderRadius: 6,
+              cursor: 'pointer',
+              fontFamily: 'monospace',
+              fontSize: 12,
+            }}
+          >
+            Retry
+          </button>
         </div>
       );
     }
@@ -49,7 +67,23 @@ export function App() {
     return (
       <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#fbbf24', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
         <h2 style={{ color: '#fbbf24', marginBottom: 8 }}>Boot Error (worker failed to start)</h2>
-        {bootError}
+        <div style={{ marginBottom: 16 }}>{bootError}</div>
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          style={{
+            background: '#fbbf2433',
+            color: '#fbbf24',
+            border: '1px solid #fbbf2466',
+            padding: '6px 12px',
+            borderRadius: 6,
+            cursor: 'pointer',
+            fontFamily: 'monospace',
+            fontSize: 12,
+          }}
+        >
+          Retry
+        </button>
       </div>
     );
   }
@@ -58,7 +92,23 @@ export function App() {
     return (
       <div style={{ position: 'fixed', inset: 0, background: '#111', color: '#f87171', padding: 24, fontFamily: 'monospace', fontSize: 13, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
         <h2 style={{ color: '#f87171', marginBottom: 8 }}>Worker Error (simulation crashed)</h2>
-        {workerError}
+        <div style={{ marginBottom: 16 }}>{workerError}</div>
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          style={{
+            background: '#f8717133',
+            color: '#f87171',
+            border: '1px solid #f8717166',
+            padding: '6px 12px',
+            borderRadius: 6,
+            cursor: 'pointer',
+            fontFamily: 'monospace',
+            fontSize: 12,
+          }}
+        >
+          Retry
+        </button>
       </div>
     );
   }

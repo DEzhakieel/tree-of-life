@@ -54,7 +54,7 @@ export function SpawnDesigner() {
   if (!designGenome) return null;
 
   return (
-    <div className="pointer-events-auto absolute bottom-20 left-1/2 z-20 flex w-[26rem] max-h-[45vh] -translate-x-1/2 flex-col rounded-xl border border-white/10 bg-black/80 shadow-2xl backdrop-blur">
+    <div className="pointer-events-auto absolute bottom-20 left-1/2 z-20 flex w-[26rem] max-w-[calc(100vw-1.5rem)] max-h-[45vh] -translate-x-1/2 flex-col rounded-xl border border-white/10 bg-black/80 shadow-2xl backdrop-blur">
       <Panel
         title="Genome Designer"
         className="flex min-h-0 flex-1 flex-col"
@@ -95,7 +95,7 @@ export function SpawnDesigner() {
       >
         <div className="mb-1 text-[10px] leading-snug text-zinc-500">
           The <span className="font-semibold text-zinc-300">Spawn</span> tool drops this genome
-          into the world wherever you click. Edits apply instantly.
+          into the world wherever you click. Select <span className="font-semibold text-zinc-300">Spawn</span> in the toolbar if it isn't active. Edits apply instantly.
         </div>
         <div className="mb-1.5 flex flex-wrap gap-1">
           {SPECIES_PRESETS.map((p) => (

@@ -29,6 +29,7 @@ export function Toolbar() {
             key={t.id}
             onClick={() => useStore.getState().setTool(t.id)}
             title={t.label}
+            aria-pressed={tool === t.id}
             className={`rounded-md px-2 py-1 text-xs ${
               tool === t.id ? 'bg-indigo-500/40 text-white' : 'text-zinc-300 hover:bg-white/10'
             }`}

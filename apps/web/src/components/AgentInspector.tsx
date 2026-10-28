@@ -244,7 +244,7 @@ export function AgentInspector() {
               useStore.getState().setTool('spawnAgent');
             }}
             className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] text-emerald-300 hover:bg-emerald-500/30"
-            title="copy this genome into the designer, then click the world to drop a clone"
+            title="copy this genome into the designer, then use the Spawn tool to drop clones"
           >
             load into designer
           </button>
