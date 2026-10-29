@@ -1,7 +1,8 @@
 # Thesis
 
-A computational thesis describing the Tree of Life platform: model, algorithms,
-mathematical foundations, methodology, and results.
+A computational thesis arguing that a deterministic artificial ecology is a
+**causal instrument** for complex-systems research, and using it to test whether
+critical-transition theory transports to a system with genomes and selection.
 
 - `main.tex` — the full document (single file).
 - `references.bib` — the bibliography (shared with `docs/REFERENCES.md`).
@@ -35,15 +36,17 @@ Output: `main.pdf`.
 
 | Section | Topic |
 |---|---|
-| Introduction | contribution and framing |
-| Related work | ALife, complexity, evolution, physiology, statistics |
+| Introduction | inference problem, three claims (instrument / non-transport / method) |
+| Related work | sciences of the artificial, open-ended evolution, critical transitions |
 | System architecture | dual-engine monorepo, shared command layer |
 | The model and algorithms | world, agents, ordered tick pipeline, determinism |
 | Mathematical foundations | drag, OU, Michaelis–Menten, GHK, replicator, Price, LMC, Lyapunov, statistics |
-| Methodology | reproducibility, objectives/search, pre-registration, rare events |
-| Results | scope ledger, verification, high-N worlds |
-| Discussion | limitations (omics/quantum are pool readings) |
-| Conclusion | emergence as an engineering objective |
+| Methodology | reproducibility, counterfactual protocol, pre-registration, rare events |
+| Research questions | Q1–Q8 with registered falsifiers and status |
+| Results | scope ledger, engineering QA, early-warning evidence |
+| Critical transitions | design, pooled skill, calibration rejection, what it licenses |
+| Discussion | instrument epistemics, threats to validity, what would falsify it, programme |
+| Conclusion | determinism changes what the substrate is *for* |
 
 ## Figures
 

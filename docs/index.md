@@ -25,6 +25,7 @@ This `docs/` folder is the published, task‑oriented documentation. The
 | Understand *why* it is built this way | [DESIGN](DESIGN.md) |
 | Map a phenomenon back to code | [REVERSE_ENGINEERING](REVERSE_ENGINEERING.md) |
 | See results and evidence | [RESULTS](RESULTS.md) |
+| Track claims and falsifiers | [CLAIMS](CLAIMS.md) |
 | Find the science it rests on | [REFERENCES](REFERENCES.md) |
 | Publish my own copy | [PUBLISH](PUBLISH.md) |
 | Read the full thesis | [`../THESIS.md`](../THESIS.md) and [`../thesis/`](../thesis/) |

@@ -9,9 +9,12 @@
 > **Docs:** [`docs/`](docs/index.md) · **Thesis:** [`THESIS.md`](THESIS.md) + [`thesis/main.tex`](thesis/main.tex)
 
 A deterministic, **two-engine** (TypeScript + Rust/WASM) artificial-life sandbox
-for studying how interactions produce life and cognition — and for *engineering*
-emergence: searching controllable parameters, measuring emergence, documenting
-and reproducing experiments, and analyzing rare/high-impact (black-swan) events.
+used as a **causal instrument**: because a world is a pure function of its seed
+and configuration, the same history can be branched at any tick with exactly one
+intervention. The platform studies how interactions produce life and cognition,
+measures emergence with a pre-registered claim ledger, and tests whether
+complex-systems theory — starting with critical-transition early-warning signals —
+actually transports to an evolving ecology.
 
 Everything is reproducible from a seed, bit-for-bit across both engines, and
 driven by **one command layer** that appears both as an in-browser terminal and
