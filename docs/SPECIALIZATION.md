@@ -145,20 +145,52 @@ Read together with the generated `research/output/ews.{md,json,csv}` and
   artefact — this was the main thing the refinement resolved.
 - **H4 — supported.**
 
-The honest headline: **variance is the workhorse early-warning indicator here; flicker
-is a distant second; autocorrelation-based indicators are at chance; skewness is
-anti-predictive; and warning quality steadily degrades the more slowly the tipping
-point is approached — contradicting the fixed-distance calibration prediction.**
+### Multiverse (E-EWS-11): how much of this is the analysis?
+
+The same 48 runs were re-analysed under 1,056 specifications (4 order parameters ×
+3 windows × 8 detrenders × 4 baseline estimators × 3 thresholds), data held fixed;
+`npm run research:multiverse`, or `-- --from-cache` in seconds. The registered
+cell reproduces the headline exactly (AUC slope −0.0003, lead slope −0.0142).
+
+| statistic | registered | median | 5–95% | negative | seed bootstrap |
+| :-- | ---: | ---: | :--: | ---: | :--: |
+| AUC vs τ (variance) | −0.0003 | −0.0001 | −0.0003 to 0.0003 | 73% | [−0.0005, 0.0000] |
+| lead(stress) vs τ (variance) | −0.0142 | −0.0047 | −0.0179 to 0.0047 | 60% | [−0.0203, −0.0120] |
+
+The AUC decline is specification-dependent (log population removes it; a median
+filter reverses it; the bootstrap reaches zero). The lead shrinkage survives but
+at a third of the registered magnitude. **No axis level met the pre-registered
+bar** (E-EWS-11: ≥50% median reduction *and* ≥90% of specifications flattened);
+the closest, an adaptive EWMA bar, flattened 89%. Two structural points:
+
+- M1 as originally stated is **not identifiable**: the pre-ramp series are
+  bit-identical across τ for 8/8 seeds, so a slow ramp cannot inflate the
+  baseline. The surviving mechanism is *bar rigidity*.
+- The AUC half cannot be a detection-rule artefact **by construction**: AUC is a
+  rank statistic, so only (order parameter, window, detrender) can move it.
+
+### The honest headline, narrowed
+
+The honest headline: **variance is the workhorse early-warning indicator here;
+flicker is a distant second; autocorrelation-based indicators are at chance;
+skewness is anti-predictive; and the lead in control-parameter units shrinks the
+more slowly the tipping point is approached — contradicting the fixed-distance
+calibration prediction.** The multiverse narrows the last clause: it is the
+*lead* that shrinks robustly, not the ranking; and the effect is a third the size
+of the registered estimate.
 
 ## 7. Limitations and what would falsify the story
 
 - **Order parameter → 0.** Because collapse means extinction, absolute variance
   vanishes in the final approach; the informative signals live in the 40–250-tick band,
   not at the last tick. Log-transformed population is the obvious next refinement.
-- **Slow-ramp degradation.** The H3 rejection is itself the interesting result, but it
-  is confounded with the fixed detection threshold: a slowly drifting baseline widens
-  the pre-ramp SD, raising the mean+1.5SD bar. A baseline tracked adaptively (or fixed
-  in stress units) would separate "signal weakens" from "threshold drifts".
+- **Bar rigidity, not baseline drift.** The bar is estimated from a fixed pre-ramp
+  window, and that window is *bit-identical* across ramp durations — the ramp begins
+  after it — so a slow ramp cannot inflate the baseline by itself. What does change
+  with τ is the number of pre-collapse windows over which the sustain rule is applied.
+  `npm run research:multiverse` (registered as E-EWS-11) varies the detrender, window,
+  order parameter, baseline estimator, and threshold over one stored dataset, and
+  reports the distribution of slopes rather than one specification.
 - **Trend contamination.** AR(1) on a drifting series is biased high; only the
   detrended form is used. Undetrended AR(1) would spuriously "succeed".
 - **No spatial indicator.** Spatial early-warning signals (rising spatial correlation /
@@ -171,6 +203,8 @@ point is approached — contradicting the fixed-distance calibration prediction.
 npm run research:ews -w @fractal-life/simulation          # full grid, writes output
 npm run research:ews -w @fractal-life/simulation -- --quick
 npm run research:ews -w @fractal-life/simulation -- --seeds a,b --ramps 300,600,900,1050
+npm run research:multiverse -w @fractal-life/simulation  # Q5: one dataset, 1,056 analyses
+npm run research:multiverse -w @fractal-life/simulation -- --from-cache  # re-analysis only
 npm run test:fast  -w @fractal-life/simulation            # incl. test/ews.test.ts
 ```
 

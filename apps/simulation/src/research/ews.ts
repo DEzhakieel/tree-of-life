@@ -130,7 +130,8 @@ export function runEwsControl(seeds: string[], ticks: number, onSeed?: (seed: st
   return out;
 }
 
-function runOne(spec: EwsRunSpec): EwsRun {
+/** one simulated trajectory; exported so the multiverse re-uses the same world, not a copy of it */
+export function runOne(spec: EwsRunSpec): EwsRun {
   const world = makeWorld(spec.seed, EW_SPAWN, {
     maxPopulation: EW_MAX_POP,
     foodRegenRate: EW_FOOD,

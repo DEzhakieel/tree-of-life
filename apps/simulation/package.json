@@ -32,6 +32,7 @@
     "research:highn": "tsx src/research/highN.ts",
     "research:life": "tsx src/research/lifeRun.ts",
     "research:ews": "tsx src/research/ewsRun.ts",
+    "research:multiverse": "tsx src/research/multiverseRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

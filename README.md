@@ -31,12 +31,16 @@ with how slowly the bifurcation is approached? The system is genuinely **bistabl
 ≈ 0.66), flicker is a distant second (≈ 0.56), autocorrelation-based indicators
 are at chance, and skewness is anti-predictive. On a fine τ grid the AUC **declines
 monotonically** as the tipping point is approached more slowly — so the
-fixed-distance-to-bifurcation prediction is **rejected**. Full charter:
+fixed-distance-to-bifurcation prediction is **rejected**. Re-analysing the same
+data under 1,056 specifications shows the rejection is carried by the *shrinking
+lead*, not by the AUC decline, and that no single analysis choice explains it
+away. Full charter:
 [`docs/SPECIALIZATION.md`](docs/SPECIALIZATION.md).
 
 ```bash
 npm run research:ews -w @fractal-life/simulation            # full grid -> research/output/ews.*
 npm run research:ews -w @fractal-life/simulation -- --quick # fast smoke
+npm run research:multiverse -w @fractal-life/simulation     # Q5: 1,056 analyses of one dataset
 ```
 
 <details>
@@ -174,6 +178,7 @@ Generators/CLIs live under `apps/simulation/src/research/` with npm scripts:
 | `research:ai` | LLM-assisted experiment proposal |
 | `research:experiment` | run/verify experiments |
 | `research:ews` | critical-transition early-warning sweep |
+| `research:multiverse` | Q5: detrender × window × order parameter × baseline × threshold over one dataset |
 
 Outputs land in `apps/simulation/research/{output,plots,experiments}/`. See
 [`docs/RESULTS.md`](docs/RESULTS.md).

@@ -36,7 +36,65 @@ falsifiers: [`SPECIALIZATION.md`](SPECIALIZATION.md).
 Reproduce: `npm run research:ews` (from `apps/simulation`; `--quick` to smoke).
 Outputs: `output/ews.{md,json,csv}`, `plots/ews.svg`.
 
-## 1. Scope ledger (v1.0.0, 2026‑10‑16)
+### 0.1 Q5 multiverse: does the failure survive the analysis space?
+
+A single specification can always be dismissed as arbitrary, so the registered
+analysis was re-run **1,056 ways over the same 48 runs** (4 order parameters ×
+3 windows × 8 detrenders × 4 baseline estimators × 3 detection thresholds; any
+smoother wider than its window is excluded because it is not a detrender). The
+data are held fixed; only the analysis varies. Reproduce with
+`npm run research:multiverse` (~15 min) or `-- --from-cache` (~8 s, series
+stored in `output/ews-multiverse-series.json`).
+
+The registered specification is inside the space and reproduces the headline
+exactly: AUC slope −0.0003 (R² 0.69), lead-in-stress slope −0.0142 (R² 0.34).
+
+| result | registered | multiverse median | 5–95% | share negative |
+| :-- | ---: | ---: | :--: | ---: |
+| AUC vs τ (variance) | −0.0003 | −0.0001 | −0.0003 to 0.0003 | 73% |
+| lead(stress) vs τ (variance) | −0.0142 | −0.0047 | −0.0179 to 0.0047 | 60% |
+| lead(stress) vs τ (CV) | −0.0128 | −0.0122 | −0.0169 to 0.0009 | 89% |
+
+Hierarchical-by-seed bootstrap (2,000 resamples, seeds as the independent unit):
+AUC slope [−0.0005, 0.0000] (96% negative), lead slope [−0.0203, −0.0120]
+(100% negative). So **seed-level uncertainty says the lead shrinks; the AUC
+interval reaches zero.**
+
+Three things follow, and the first two cut against the original statement:
+
+1. **The AUC decline is the fragile half.** Its bootstrap interval includes zero,
+   and 27% of specifications give a non-negative slope. Substituting log
+   population for raw population removes it (median −0.00001, 55% negative); a
+   median filter *reverses* it (+0.00032, 0% negative). The claim that "warning
+   skill degrades with slower forcing" is therefore specification-dependent in
+   AUC units.
+2. **The lead-in-stress shrinkage is the robust half.** It is negative under the
+   registered analysis, its seed-bootstrap interval excludes zero, and 60% of
+   specifications reproduce its sign — but the multiverse median (−0.0047) is a
+   third of the registered magnitude, and 40% of analyses give a non-negative
+   slope. Once analysis choice is counted, the *magnitude*, and for a large
+   minority the *sign*, is uncertain.
+3. **No axis level explains it away.** Under the pre-registered rule
+   (E-EWS-11: median reduction ≥ 50% **and** ≥ 90% of specifications flattened),
+   no level of any axis qualifies. The closest is an adaptive (EWMA) detection
+   bar: 100% reduction in the median, 89% of specifications flattened — one
+   percentage point below the bar. Bar rigidity is the leading mechanism, not a
+   declared one.
+
+**M1 as originally stated is not identifiable here.** The pre-ramp series are
+bit-identical across τ for 8/8 seeds (the ramp starts at the end of burn-in and
+the baseline window ends before it), so a slower ramp cannot inflate the
+pre-ramp baseline. What the baseline axis does test is bar rigidity: a bar whose
+scale is fixed while the number of pre-collapse windows grows with τ. That is
+the version the EWMA result points at.
+
+Consequence for the thesis: T2 narrows from "warning skill degrades" to **"the
+lead in control-parameter units shrinks, the effect is not rescued by plausible
+analyses, and its size is specification-dependent."** The mechanism stays open
+(Q5), and the honest headline is the one the multiverse produces — a field that
+reports one specification overstates how settled a result is.
+
+## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²
 tests where applicable, Bayes factors, Clopper–Pearson intervals).

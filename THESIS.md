@@ -12,9 +12,12 @@
 > critical transitions *transports* from low-dimensional stochastic models to a
 > high-dimensional evolving ecology. It does not, in a specific and measurable
 > way: variance survives as an early-warning indicator, autocorrelation-based
-> indicators are at chance, skewness inverts, and warning skill **degrades** as
-> the tipping point is approached more slowly. The negative result is the
-> scientific product; the instrument is the contribution that makes it credible.
+> indicators are at chance, skewness inverts, and the warning lead **shrinks** as
+> the tipping point is approached more slowly. Re-analysing the same data under
+> 1,056 defensible specifications shows which half of that result is load-bearing:
+> the shrinking lead survives, the decline in AUC-based skill does not. The
+> negative result is the scientific product; the instrument is what makes it
+> credible, and the multiverse is what keeps us honest about its size.
 
 > **Formal write-up:** [`thesis/main.tex`](thesis/main.tex) (build:
 > `latexmk -pdf main`). Task-oriented docs: [`docs/`](docs/index.md).
@@ -49,13 +52,20 @@ the only indicator clearly above chance (pooled AUC 0.659); flicker is a distant
 second (0.562); lag-1 autocorrelation and recovery rate are at chance (0.493);
 skewness is anti-predictive (0.361). The registered calibration prediction — that
 lead time in control-parameter units is invariant to ramp duration — is
-**rejected**: skill falls monotonically with slower forcing (AUC ≈ 0.72 → 0.54,
-slope −0.0003, R² 0.69) and the lead in stress units shrinks (CV slope −0.013,
-R² 0.89). We treat this as evidence that the generic theory does not transport
-unchanged across the dimensionality, noise colour, and adaptive response of an
-evolving system, and we specify the discriminating experiments that would decide
-whether the mechanism is threshold drift, detrending artifact, vanishing order
-parameter, or evolutionary rescue.
+**rejected**: skill falls with slower forcing (AUC ≈ 0.72 → 0.54, slope −0.0003,
+R² 0.69) and the lead in stress units shrinks (CV slope −0.013, R² 0.89). We then
+stress-test that rejection against 1,056 specifications of the analysis (order
+parameter, window, detrender, baseline, threshold) over the same data. The result
+is narrower than the registered one and more interesting for it: the lead-in-stress
+shrinkage survives (60% of specifications reproduce its sign; seed bootstrap
+[−0.0203, −0.0120]), while the AUC decline does not (27% of specifications give a
+non-negative slope; bootstrap [−0.0005, 0.0000]). No analysis level explains the
+effect away, but the multiverse median is a third of the registered magnitude. We
+treat this as evidence that the generic theory does not transport unchanged across
+the dimensionality, noise colour, and adaptive response of an evolving system, and
+we specify the discriminating experiments that would decide whether the mechanism
+is detection-bar rigidity, detrending artifact, vanishing order parameter, or
+evolutionary rescue.
 
 The broader claim is methodological. Emergence should be adjudicated by a
 falsifier-first ledger with artifact-level reproducibility, not by narrative or
@@ -105,10 +115,13 @@ results expensive to explain away.
 **T2 — Non-transport.** The generic early-warning theory of critical transitions
 does not transport unchanged to a high-dimensional evolving ecology. Under a
 pre-registered analysis, only variance retains discriminative skill; the
-autocorrelation family is at chance; skewness moves the wrong way; and warning
-skill degrades with slower forcing rather than staying calibrated in
-control-parameter units. The result is a boundary condition on the theory, not a
-failure to detect a signal.
+autocorrelation family is at chance; skewness moves the wrong way; and the warning
+lead shrinks with slower forcing rather than staying calibrated in
+control-parameter units. A 1,056-specification multiverse over the same data
+sharpens the claim: the *lead* shrinkage survives the analysis space, while the
+decline in AUC-based skill does not. The result is a boundary condition on the
+theory, reported with the size the data support rather than the size the first
+specification suggested.
 
 **T3 — Method.** Open-endedness and emergence claims should be adjudicated by a
 pre-registered ledger: claim → falsifier → registered analysis → artifact →
@@ -170,38 +183,68 @@ and the append-only revision log — is [`docs/CLAIMS.md`](docs/CLAIMS.md).
 | **Q2** | Does variance out-rank autocorrelation-based indicators? | AR(1)/recovery ≥ variance | **Supported** (0.493 vs 0.659) |
 | **Q3** | Is lead time calibrated in control-parameter units (invariant to ramp duration)? | Lead in stress units varies systematically with τ | **Rejected** (CV slope −0.013, R² 0.89) |
 | **Q4** | Is the warning specific to the forcing? | No-ramp control collapses or warns | **Supported** (8/8 survive) |
-| **Q5** | Is the Q3 failure threshold drift, detrending artifact, vanishing order parameter, or evolutionary rescue? | Pre-registered multiverse + ablation leaves the slope unexplained | **Open** — decisive tests below |
+| **Q5** | Is the Q3 failure bar rigidity, detrending artifact, vanishing order parameter, or evolutionary rescue? | Pre-registered multiverse + ablation leaves the slope unexplained | **Open** — multiverse run (1,056 specs); bar rigidity leading at 89% (bar 90%) |
 | **Q6** | Do spatial indicators transport where temporal ones fail? | Spatial AUC ≤ 0.5 or no gain over temporal | **Open** |
 | **Q7** | Does a direct response-function measure of critical slowing down succeed where AR(1) proxies fail? | Perturbation recovery time does not rise before collapse | **Open** |
 | **Q8** | Does warning skill scale with system size (finite-size scaling)? | AUC independent of N across 100–2000 | **Open** |
 
 ### 4.1 Decisive tests for Q5
 
-The Q3 rejection is currently a *phenomenological* result: the registered
-analysis rejects calibration, but does not identify the mechanism. Four
-hypotheses are separable with the existing instrument:
+The Q3 rejection is a *phenomenological* result: the registered analysis rejects
+calibration, but does not identify the mechanism. The first test has now been run
+and it changed the statement of the problem.
 
-- **M1 — threshold drift.** A slowly drifting baseline widens the pre-ramp SD,
-  raising the mean + 1.5 SD detection bar. *Test:* replace the fixed baseline
-  with an EWMA baseline, or fix the threshold in stress units; if the AUC–τ
-  slope collapses, M1 is the mechanism.
-- **M2 — detrending artifact.** The 25-tick moving-average detrender removes
-  precisely the slow variance growth that is supposed to be the signal. *Test:*
-  multiverse over detrenders (none, MA lengths 10/25/50, Gaussian, wavelet, SSA)
-  and report the distribution of slopes, not one specification.
+**What the multiverse settled.** `npm run research:multiverse` re-analyses the same
+48 runs under **1,056 specifications** (4 order parameters × 3 windows × 8
+detrenders × 4 baseline estimators × 3 thresholds), holding the data fixed. Under
+the pre-registered rule of E-EWS-11 — a level of an axis explains the failure only
+if its median removes ≥50% of the registered slope **and** ≥90% of its
+specifications are flattened — **no level qualifies**. The closest is an adaptive
+(EWMA) detection bar: 100% median reduction, 89% of specifications flattened, one
+percentage point short. Two consequences:
+
+- the AUC half of the registered result is **specification-dependent** (median
+  slope −0.0001 vs registered −0.0003; 27% of specifications non-negative;
+  seed bootstrap [−0.0005, 0.0000]);
+- the lead-in-stress half **survives** (median −0.0047, 60% negative, seed
+  bootstrap [−0.0203, −0.0120]) but at a third of the registered magnitude.
+
+So the robust claim is the *shrinking lead*, not the declining AUC, and the
+mechanism question is narrowed rather than closed.
+
+**M1 has to be restated.** The original wording — a slowly drifting baseline
+widens the pre-ramp SD — is not identifiable in this design: the pre-ramp series
+are bit-identical across τ for all 8 seeds (the ramp begins at the end of
+burn-in, and the baseline window ends before it). A slow ramp cannot inflate a
+baseline it never touches. The surviving mechanism is **bar rigidity**: the
+detector's scale is fixed while the number of pre-collapse windows over which the
+sustain rule acts grows with τ. *Test:* an adaptive (EWMA) bar or a baseline
+estimated in stress units; there the median slope goes to zero (100% reduction)
+but only 89% of specifications are flattened to within half the registered
+magnitude — one point short of the pre-registered 90% bar — and 26% remain
+negative, which is why the verdict is "leading candidate", not "supported".
+
+The three remaining mechanisms are separable with the existing instrument:
+
+- **M2 — detrending artifact.** The detrender may remove precisely the slow
+  variance growth that is supposed to be the signal. *Test:* the detrender axis
+  above; `none` and `ma50` preserve the slope (medians −0.0132, −0.0138) while
+  `gauss10` removes it (0.0000). The inconsistency across smoothers is itself
+  informative — the effect is not a monotone function of detrending strength.
 - **M3 — vanishing order parameter.** Extinction drives absolute variance to
-  zero, so the informative window is bounded away from the fold. *Test:* repeat
-  with log population and with CV as the order parameter; if skill still
-  degrades, the effect is not merely scale.
+  zero, so the informative window is bounded away from the fold. *Test:* the
+  order-parameter axis; `log` population leaves the slope negative (median
+  −0.0062) but attenuates it, so scale explains part, not all.
 - **M4 — evolutionary rescue.** Selection on metabolic efficiency buffers the
   stress, so the system is never as close to the fold as the ramp schedule
   implies. *Test:* clonal, mutation-off ablation and a measured genetic-variance
-  trajectory; if the slope flattens without adaptation, M4 is implicated.
+  trajectory; not yet run.
 
-The registered decision rule: a mechanism is supported only if its manipulation
-removes at least half of the AUC–τ slope *and* the remaining slope is not
-significant under a hierarchical bootstrap. No mechanism is declared on the
-basis of the current 8-seed data.
+The registered decision rule (E-EWS-11, fixed before the run): a mechanism is
+supported only if its manipulation removes at least half of the slope **and** at
+least 90% of its specifications are flattened to within half the registered
+magnitude. No mechanism is declared on the basis of the current 8-seed data; the
+89% result is reported as 89%, not rounded up to a finding.
 
 ### 4.2 Q7 in practice
 
@@ -237,16 +280,32 @@ ramp-caused.
 | AR(1) / recovery | 0.493 | 5% | 39 | 1.4 |
 | skewness | 0.361 | 7% | 50 | 3.9 |
 
-**Calibration.** AUC declines monotonically with τ (≈0.72 for τ ≤ 750, ≈0.54 for
-τ ≥ 900; slope −0.0003, R² 0.69). Lead in stress units shrinks with τ (CV slope
-−0.013, R² 0.89; variance −0.014, R² 0.34). The fixed-distance prediction fails.
+**Calibration.** AUC declines with τ (≈0.72 for τ ≤ 750, ≈0.54 for τ ≥ 900;
+slope −0.0003, R² 0.69). Lead in stress units shrinks with τ (CV slope −0.013,
+R² 0.89; variance −0.014, R² 0.34). The fixed-distance prediction fails.
+
+**Multiverse (1,056 specifications, same data).** Re-analysing rather than
+re-simulating separates the robust half of that result from the fragile half:
+
+| statistic | registered | median | 5–95% | negative | seed bootstrap |
+|---|---:|---:|---|---:|---|
+| AUC vs τ (variance) | −0.0003 | −0.0001 | −0.0003 to 0.0003 | 73% | [−0.0005, 0.0000] |
+| lead(stress) vs τ (variance) | −0.0142 | −0.0047 | −0.0179 to 0.0047 | 60% | [−0.0203, −0.0120] |
+
+The registered AUC interval reaches zero, and substituting log population removes
+the AUC decline entirely; the lead shrinkage keeps its sign under most
+specifications and its bootstrap interval excludes zero. Neither is rescued or
+destroyed by changing the detection rule, because AUC is a rank statistic while
+lead is not.
 
 **What this does and does not license.** It licenses the statement that, under
 this registered analysis in this ecology, the autocorrelation family carries no
-warning and calibration fails. It does **not** yet identify why; with 8 seeds the
-confidence interval on a mean AUC is wide (order ±0.1), and the detection rule is
-one choice among many. That is why Q5 is registered as open, with a multiverse
-and ablation rather than a narrative.
+warning and the lead in control-parameter units shrinks as the fold is approached
+more slowly. It does **not** license "warning skill degrades" as a general claim:
+that is the specification-dependent part. It also does not identify the mechanism
+— no axis level met the pre-registered bar, and the closest (an adaptive bar, 89%
+of specifications flattened against a 90% bar) is reported as close, not as
+established.
 
 ## 6. From platform to programme: the inference gap
 
@@ -257,11 +316,11 @@ artifacts that let a skeptical reader redo the analysis. The gap analysis:
 | Requirement | Current state | Next artifact |
 |---|---|---|
 | **Theory** | Verbal expectation of critical slowing down | Derive AUC(τ) for a ramped fold with demographic noise; predict the slope sign and magnitude |
-| **Mechanism** | Q3 rejection is phenomenological | Q5 multiverse + M1–M4 ablations |
+| **Mechanism** | Q3 rejection is phenomenological; 1,056-spec multiverse run, no axis level met the bar | Q5 M1–M4 ablations (M4 not yet run); 32–64 seeds |
 | **Causal identification** | Determinism + replay implemented | Q7 impulse-response experiment; placebo ramps; dose–response |
 | **Scaling** | Single N ≈ 300–500 | Q8 finite-size sweep, 100–2000 |
 | **Generalization** | One ecology, one genotype–phenotype map | Substrate (agents/particles/lattice/graph) and topology (torus/cylinder/sphere/Möbius/Klein) replication |
-| **Statistics** | n = 8 seeds, one analysis path | 32–64 seeds; hierarchical bootstrap; multiverse; power analysis pre-registered |
+| **Statistics** | n = 8 seeds; hierarchical bootstrap + 1,056-spec multiverse implemented | 32–64 seeds; power analysis pre-registered |
 | **Open-endedness** | Ladder O0–O9, internal rungs | Bedau evolutionary activity, novelty rate, major-transition detector, with falsifiers |
 | **Artifacts** | Digests, manifests, dashboard | One-command replication package; archived manifests; analysis code frozen before data |
 
@@ -275,17 +334,25 @@ feasible at all.
   bifurcation. A ramped die-off can be a transcritical or saddle-node crossing;
   the theory's predictions differ. The order parameter (population) is bounded
   below, so absolute variance must vanish at extinction.
-- **Internal.** The detection threshold is estimated from the pre-ramp plateau;
-  a slow ramp inflates that baseline (M1). Detrending removes slow variance
-  (M2). Both are testable and currently untested.
+- **Internal.** The detection threshold is estimated from the pre-ramp plateau,
+  which is bit-identical across τ, so baseline drift cannot be the mechanism;
+  the surviving internal explanation is bar rigidity, and an adaptive bar removes
+  most of the effect (89% of specifications flattened). Detrending strength does
+  not act monotonically (M2), so "the detrender eats the signal" is too simple.
 - **External.** One ecology, one genome map, one topology, one noise model. The
   claim is about *this* class of systems until replicated.
 - **Statistical.** Eight seeds per cell; windows within a run are not
   independent (pseudoreplication); five indicators × six ramp lengths is a
-  multiple-comparison surface. The registered analysis averages per run, which
-  mitigates but does not remove these.
+  multiple-comparison surface. The seed bootstrap gives the AUC slope an interval
+  that reaches zero.
+- **Specification.** This is the threat the multiverse measures: the registered
+  lead slope (−0.0142) sits at the edge of its own specification space (median
+  −0.0047), and 40% of defensible analyses give a non-negative slope. A single
+  specification overstates certainty, including this thesis's first draft of the
+  result.
 - **Conclusion.** The mechanism is unidentified. "The theory does not transport"
-  is supported; "because of adaptation" is not.
+  is supported for the *lead*; "because of adaptation" is not; "warning skill
+  degrades" is specification-dependent.
 
 ## 8. Relation to prior work
 
@@ -329,9 +396,9 @@ Target: Oikos / Ecology and Evolution / PNAS Nexus; registered report for Q5–Q
 evolutionary activity, novelty, and major transitions, each with a null.
 
 **Immediate sequence.** (1) Freeze the current analysis as the registered
-baseline; (2) run Q5's multiverse + M1–M4 with 32 seeds; (3) run Q7's
-impulse-response measurement; (4) publish B with A as the methods appendix;
-(5) only then extend to substrates and topologies.
+baseline; (2) run M2–M4 with 32 seeds, since the multiverse has already narrowed
+M1 to bar rigidity; (3) run Q7's impulse-response measurement; (4) publish B with
+A as the methods appendix; (5) only then extend to substrates and topologies.
 
 ## 10. What would falsify the thesis
 
@@ -339,11 +406,14 @@ impulse-response measurement; (4) publish B with A as the methods appendix;
   counterfactual divergence were dominated by floating-point or scheduler
   effects. (Current evidence: cross-engine digests are bit-identical.)
 - **T2** would collapse to a methods caveat if a pre-registered multiverse
-  showed the AUC–τ slope is an artifact of the threshold rule or detrender and
-  vanishes under every reasonable specification.
+  showed the lead-in-stress slope is an artifact of the threshold rule or
+  detrender and vanishes under every reasonable specification. The 1,056-spec
+  multiverse did not: no axis level met the bar, though the AUC decline did not
+  survive either, which is why T2 is now stated in lead units only.
 - **T3** would fail if ledger statuses could be revised after seeing the data
   without recording the revision. (Current practice: append-only ledger with
-  claim IDs and artifacts.)
+  claim IDs and artifacts — E-EWS-11 was registered before its run and resolved
+  against its own author's expectation.)
 
 A thesis that names its own failure modes is the minimum price of admission to
 the conversation this project wants to join.
@@ -358,13 +428,17 @@ npm run typecheck
 npm run test:fast
 npm run dev:web                                  # dashboard
 npm run research:ews -w @fractal-life/simulation  # critical-transition grid
+npm run research:multiverse -w @fractal-life/simulation            # Q5: 1,056 analyses
+npm run research:multiverse -w @fractal-life/simulation -- --from-cache  # re-analysis only
 npm run research:scope -w @fractal-life/simulation
 npm run research:experiment -- --verify          # bit-exact reproduction
 ```
 
-Outputs: `research/output/ews.{md,json,csv}`, `scope.*`, `plots/ews.svg`;
-manifests under `apps/simulation/research/experiments/`. The dashboard shows the
-same observables live, and the terminal exposes the same commands.
+Outputs: `research/output/ews.{md,json,csv}`, `ews-multiverse.{md,json,csv}`,
+`ews-multiverse-series.json` (the stored series that makes `--from-cache`
+possible), `scope.*`, `plots/ews.svg`, `plots/ews-multiverse.svg`; manifests under
+`apps/simulation/research/experiments/`. The dashboard shows the same observables
+live, and the terminal exposes the same commands.
 
 ## References
 

@@ -63,18 +63,31 @@ bistable and the control never collapses; variance is the only indicator
 clearly above chance (pooled AUC $0.659$), flicker a distant second ($0.562$),
 lag-1 autocorrelation and recovery at chance ($0.493$), and skewness
 anti-predictive ($0.361$). The registered calibration prediction is
-\emph{rejected}: warning skill declines monotonically with slower forcing
-($0.72 \to 0.54$; slope $-0.0003$, $R^2 = 0.69$) and the lead in
-control-parameter units shrinks (CV slope $-0.013$, $R^2 = 0.89$).
+\emph{rejected}: the lead in control-parameter units shrinks as the fold is
+approached more slowly (CV slope $-0.013$, $R^2 = 0.89$; variance $-0.014$,
+$R^2 = 0.34$), and AUC-based skill falls with slower forcing
+($0.72 \to 0.54$; slope $-0.0003$, $R^2 = 0.69$).
+
+We then re-analyse the same 48 runs under $1{,}056$ defensible specifications of
+the analysis (order parameter, window, detrender, baseline estimator, detection
+threshold), holding the data fixed. The result is narrower than the registered
+one and more informative for it: the lead-in-stress shrinkage survives (60\% of
+specifications reproduce its sign; hierarchical-by-seed bootstrap
+$[-0.0203, -0.0120]$) while the AUC decline does not (27\% of specifications
+give a non-negative slope; bootstrap $[-0.0005, 0.0000]$). No level of any
+analysis axis removes the effect under the pre-registered decision rule, though
+an adaptive detection bar comes closest (89\% of specifications flattened
+against a 90\% bar).
 
 We treat the negative result as the scientific product and the instrument as
-what makes it credible. We state the four candidate mechanisms (threshold drift,
-detrending artifact, vanishing order parameter, evolutionary rescue), the
-pre-registered multiverse and ablations that separate them, and a direct
-impulse-response measurement of critical slowing down that the usual
-autocorrelation proxy only approximates. The broader methodological claim is
-that emergence claims should be adjudicated by a falsifier-first ledger with
-artifact-level reproducibility, not by narrative or internal composite scores.
+what makes it credible. We state the candidate mechanisms (detection-bar
+rigidity, detrending artifact, vanishing order parameter, evolutionary rescue),
+the ablations that separate them, and a direct impulse-response measurement of
+critical slowing down that the usual autocorrelation proxy only approximates.
+The broader methodological claim is that emergence claims should be adjudicated
+by a falsifier-first ledger with artifact-level reproducibility, not by narrative
+or internal composite scores --- and that a single specification, including the
+one in this thesis's first draft, overstates how settled a result is.
 \end{abstract}
 
 \section{Introduction}
@@ -326,9 +339,9 @@ Q3 & Is lead time calibrated in control-parameter units? & Lead in stress units
 varies systematically with $\tau$ & Rejected\\
 Q4 & Is the warning specific to the forcing? & No-ramp control collapses or
 warns & Supported\\
-Q5 & Is the Q3 failure threshold drift, detrending artifact, vanishing order
+Q5 & Is the Q3 failure bar rigidity, detrending artifact, vanishing order
 parameter, or evolutionary rescue? & A registered multiverse and ablation leave
-the slope unexplained & Open\\
+the slope unexplained & Open: multiverse run, no axis level met the bar\\
 Q6 & Do spatial indicators transport where temporal ones fail? & Spatial AUC
 $\le 0.5$ or no gain over temporal & Open\\
 Q7 & Does a direct response-function measure succeed where AR(1) proxies fail? &
@@ -339,19 +352,47 @@ Q8 & Does warning skill scale with system size? & AUC independent of $N$ across
 \end{tabular}
 \end{table}
 
-\paragraph{Q5: four mechanisms.} The rejection of Q3 is phenomenological: it
-establishes that calibration fails, not why. Four mechanisms are separable with
-the existing instrument. \emph{M1 (threshold drift):} a slowly drifting baseline
-widens the pre-ramp SD and raises the mean $+1.5$ SD bar; replace the baseline
-with an EWMA or fix the threshold in stress units. \emph{M2 (detrending
-artifact):} the 25-tick moving average removes the slow variance growth that is
-the signal; run a multiverse over detrenders \citep{steegen2016}. \emph{M3
-(vanishing order parameter):} extinction drives absolute variance to zero;
-repeat with log population and with CV as the order parameter. \emph{M4
-(evolutionary rescue):} selection on metabolic efficiency buffers the stress;
-run a clonal, mutation-off ablation and measure genetic variance. A mechanism is
-supported only if its manipulation removes at least half of the AUC--$\tau$
-slope and the residual is not significant under a hierarchical bootstrap.
+\paragraph{Q5: the multiverse, run.} The rejection of Q3 is phenomenological: it
+establishes that calibration fails, not why. The first discriminating test has
+been run. The same 48 runs were re-analysed under $1{,}056$ specifications ---
+$4$ order parameters $\times$ $3$ windows $\times$ $8$ detrenders $\times$ $4$
+baseline estimators $\times$ $3$ thresholds, excluding any smoother wider than
+its analysis window --- with collapse detection and window labelling held fixed,
+because those are properties of the data. Three findings:
+
+\begin{enumerate}\setlength\itemsep{1pt}
+\item \textbf{The AUC decline is the fragile half.} Its 8-seed bootstrap
+interval reaches zero, and 27\% of specifications give a non-negative slope;
+substituting log population for population removes it (median $-0.00001$), and a
+median filter reverses it ($+0.00032$).
+\item \textbf{The lead-in-stress shrinkage is the robust half.} Median slope
+$-0.0047$ against the registered $-0.0142$, 60\% of specifications negative,
+seed bootstrap $[-0.0203, -0.0120]$: the sign survives, the magnitude is a third
+of the registered estimate.
+\item \textbf{No mechanism is declared.} Under the pre-registered rule of
+E-EWS-11 --- median reduction $\ge 50\%$ \emph{and} $\ge 90\%$ of specifications
+flattened --- no level of any axis qualifies. An adaptive (EWMA) detection bar
+comes closest at 89\%.
+\end{enumerate}
+
+\paragraph{M1, restated.} The original wording of M1 (threshold drift) is not
+identifiable in this design: the pre-ramp series are bit-identical across $\tau$
+for all eight seeds, because the ramp begins at the end of burn-in and the
+baseline window ends before it. A slow ramp cannot inflate a baseline it never
+touches. The surviving mechanism is \emph{bar rigidity}: the detector's scale is
+fixed while the number of pre-collapse windows over which the sustain rule acts
+grows with $\tau$. The remaining mechanisms are separable with the existing
+instrument. \emph{M2 (detrending artifact):} the detrender may remove the slow
+variance growth that is the signal; the axis shows no monotone dependence on
+detrending strength (``none'' and MA-50 preserve the slope, a Gaussian
+smoother removes it), which is itself a warning against a simple detrending
+story. \emph{M3 (vanishing order parameter):} extinction drives absolute
+variance to zero; log population attenuates but does not remove the slope.
+\emph{M4 (evolutionary rescue):} selection on metabolic efficiency buffers the
+stress; a clonal, mutation-off ablation with a measured genetic-variance
+trajectory has not yet been run. A mechanism is supported only if its
+manipulation removes at least half of the slope and at least 90\% of its
+specifications are flattened; the 89\% result is reported as 89\%.
 
 \paragraph{Q7: direct slowing-down.} Determinism permits the measurement the
 AR(1) proxy approximates. At ticks along the ramp, branch the run, apply a
@@ -442,25 +483,47 @@ Skewness & 0.361 & 50 & 3.9\\
 
 Variance is the workhorse indicator, flicker a distant second; the
 autocorrelation-based indicators are at chance and skewness falls \emph{below}
-chance. On this finer grid the AUC-vs-$\tau$ curve is \emph{monotone
-decreasing} --- roughly $0.72$ for $\tau \le 750$ falling to $0.54$ for
-$\tau \ge 900$ (slope $-0.0003$, $R^2 = 0.69$); the previously reported
-``non-monotone'' curve was a four-replicate artefact. Consequently the
-fixed distance-to-bifurcation prediction is rejected: the lead measured in
-stress units \emph{shrinks} with $\tau$ (CV slope $-0.013$, $R^2 = 0.89$) rather
-than staying constant, so warning quality degrades as the tipping point is
-approached more slowly. The experiment is fully reproducible via
-\texttt{npm run research:ews}.
+chance. On this finer grid the AUC-vs-$\tau$ curve declines --- roughly $0.72$
+for $\tau \le 750$ falling to $0.54$ for $\tau \ge 900$ (slope $-0.0003$,
+$R^2 = 0.69$); the previously reported ``non-monotone'' curve was a
+four-replicate artefact. Consequently the fixed distance-to-bifurcation
+prediction is rejected: the lead measured in stress units \emph{shrinks} with
+$\tau$ (CV slope $-0.013$, $R^2 = 0.89$) rather than staying constant. The
+experiment is fully reproducible via \texttt{npm run research:ews}.
+
+\paragraph{The multiverse.} A single specification invites the reply that another
+would have said something else, so the same 48 runs were re-analysed under
+$1{,}056$ specifications ($4$ order parameters $\times$ $3$ windows $\times$ $8$
+detrenders $\times$ $4$ baselines $\times$ $3$ thresholds), with the series
+cached to disk so the re-analysis costs seconds
+(\texttt{npm run research:multiverse}, \texttt{--from-cache}). The registered
+cell reproduces the headline exactly, which validates the reimplementation. Two
+statistics then behave differently:
+
+\begin{itemize}\setlength\itemsep{0pt}
+\item \textbf{AUC vs $\tau$:} registered $-0.0003$; multiverse median $-0.0001$;
+5--95\% $[-0.0003, 0.0003]$; 73\% of specifications negative; seed bootstrap
+$[-0.0005, 0.0000]$.
+\item \textbf{lead(stress) vs $\tau$:} registered $-0.0142$; median $-0.0047$;
+5--95\% $[-0.0179, 0.0047]$; 60\% negative; seed bootstrap $[-0.0203, -0.0120]$.
+\end{itemize}
+
+The AUC interval reaches zero and the log-transformed order parameter removes
+the decline; the lead interval excludes zero and keeps its sign in most
+specifications. Because AUC is a rank statistic, no detection rule can move it,
+which is why the two rows diverge: the failure lives in the \emph{lead}, not in
+the ranking, and it is smaller than the registered estimate by a factor of three.
 
 \paragraph{What this licenses, and what it does not.} It licenses the statement
 that, under this registered analysis in this ecology, the autocorrelation family
-carries no warning and calibration fails. It does not identify why, and with
-eight seeds per cell the confidence interval on a mean AUC is wide (order
-$\pm 0.1$); the detection rule is one choice among many, and windows within a
-run are not independent. These are not caveats appended after the fact: they are
-the reason Q5 is registered as open, with a multiverse and ablations rather than
-a narrative, and the reason the next phase increases replicates before it
-increases claims.
+carries no warning and the lead in control-parameter units shrinks with slower
+forcing. It does not license ``warning skill degrades'' as a general claim: the
+AUC version of that sentence is specification-dependent, and the thesis now says
+so. It does not identify the mechanism: no analysis level met the pre-registered
+bar, and the closest, an adaptive detection bar, is reported at 89\% against a
+90\% bar rather than rounded into a finding. Eight seeds per cell remain few, the
+detection rule remains one family among many, and windows within a run are not
+independent.
 
 \section{Discussion}\label{sec:disc}
 \paragraph{What the instrument changes.} Treating emergence as an engineering
@@ -477,20 +540,29 @@ it.
 \emph{Construct:} AUC is not lead time, and extinction is not a fold
 bifurcation; a ramped die-off may be a transcritical or saddle-node crossing, and
 the theory's predictions differ. \emph{Internal:} the detection threshold is
-estimated from the pre-ramp plateau, which a slow ramp inflates (M1), and the
-detrender removes slow variance (M2); both are testable and currently untested.
+estimated from a pre-ramp plateau that is bit-identical across $\tau$, so baseline
+drift cannot be the mechanism; the surviving internal explanation is bar
+rigidity, and an adaptive bar removes most of the effect (89\% of specifications
+flattened against a 90\% bar). Detrending strength does not act monotonically, so
+``the detrender eats the signal'' is too simple.
 \emph{External:} one ecology, one genotype--phenotype map, one topology, one
 noise model --- the claim is about this class of systems until replicated.
 \emph{Statistical:} eight seeds per cell, non-independent windows within a run,
 and a multiple-comparison surface of five indicators by six ramp lengths.
+\emph{Specification:} the threat the multiverse measures --- the registered lead
+slope lies at the edge of its own specification space (median $-0.0047$), and
+40\% of defensible analyses give a non-negative slope.
 \emph{Conclusion:} the mechanism is unidentified; ``the theory does not
-transport'' is supported, ``because of adaptation'' is not.
+transport'' is supported for the lead, ``because of adaptation'' is not, and
+``warning skill degrades'' is specification-dependent.
 
 \paragraph{What would falsify the thesis.} T1 fails if replay is not exact under
 interventions, or if counterfactual divergence is dominated by floating-point or
 scheduler effects. T2 collapses to a methods caveat if a pre-registered
-multiverse shows the AUC--$\tau$ slope is an artifact of the threshold rule or
-the detrender and vanishes under every reasonable specification. T3 fails if
+multiverse shows the lead-in-stress slope is an artifact of the threshold rule or
+the detrender and vanishes under every reasonable specification. The multiverse
+did not: no analysis level met the bar, although the AUC decline did not survive
+either, which is why T2 is now stated in lead units only. T3 fails if
 ledger statuses can be revised after seeing the data without recording the
 revision. Each failure mode is named here so that the next phase can be judged
 against it.
@@ -504,8 +576,9 @@ registered extension. \emph{C (open-endedness):} a falsifier-first ledger for
 open-ended evolution, using evolutionary activity \citep{bedau1998,bedau2003},
 novelty, and a major-transition detector \citep{szathmary1995}, each with a null.
 The immediate sequence is to freeze the present analysis as the registered
-baseline, run Q5 with 32--64 seeds, run Q7's impulse response, and only then
-extend to substrates and topologies.
+baseline, run M2--M4 with 32--64 seeds (the multiverse has already narrowed M1 to
+bar rigidity), run Q7's impulse response, and only then extend to substrates and
+topologies.
 
 \begin{table}[t]\centering
 \caption{Gap analysis for a programme-level contribution. Each row is
@@ -518,15 +591,15 @@ Requirement & Current state & Next artifact\\
 \midrule
 Theory & Verbal expectation of critical slowing down & Derive AUC($\tau$) for
 a ramped fold with demographic noise\\
-Mechanism & Q3 rejection is phenomenological & Q5 multiverse + M1--M4
-ablations\\
+Mechanism & Q3 rejection phenomenological; 1,056-spec multiverse run, no axis
+level met the bar & M2--M4 ablations; 32--64 seeds\\
 Causal identification & Determinism and replay implemented & Q7
 impulse-response; placebo ramps; dose--response\\
 Scaling & Single $N \approx 300$--$500$ & Q8 finite-size sweep, 100--2000\\
 Generalization & One ecology and topology & Substrate and topology
 replication\\
-Statistics & 8 seeds, one analysis path & 32--64 seeds; hierarchical bootstrap;
-multiverse\\
+Statistics & 8 seeds; hierarchical bootstrap and 1,056-spec multiverse
+implemented & 32--64 seeds; pre-registered power analysis\\
 Open-endedness & Internal ladder O0--O9 & Bedau activity, novelty rate,
 major-transition detector\\
 Artifacts & Digests, manifests, dashboard & Frozen analysis code; archived
@@ -550,7 +623,11 @@ more importantly, that determinism changes what the substrate can be used
 \emph{for}. The early-warning study is the proof of concept: a theory imported
 from dynamical systems was given a fair test, failed its calibration prediction
 in a measurable way, and left a tractable set of mechanisms rather than a
-rhetorical dispute. The two refutations already in the ledger are the same
+rhetorical dispute. The multiverse then trimmed that result to what the data
+support --- the shrinking lead, not the declining ranking --- which is the more
+useful outcome: a negative result whose size is known is a premise for the next
+experiment, while a negative result reported at one specification is an
+invitation to argue. The two refutations already in the ledger are the same
 phenomenon at smaller scale: a laboratory that cannot lose is not measuring
 anything. The next step is not a larger simulator but a sharper instrument ---
 frozen analyses, more replicates, direct response functions, and a ledger that
