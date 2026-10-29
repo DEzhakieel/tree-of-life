@@ -94,6 +94,56 @@ analyses, and its size is specification-dependent."** The mechanism stays open
 (Q5), and the honest headline is the one the multiverse produces — a field that
 reports one specification overstates how settled a result is.
 
+### 0.2 M4 ablation: is the shrinkage evolutionary rescue?
+
+The first mechanism candidate is **evolutionary rescue (M4)**: a slow ramp gives
+lineages more time to adapt, so the population is never as close to the fold as
+the schedule says, and the measured lead shrinks. The test moves the capacity to
+adapt while holding the ramp schedule fixed, so the thing being measured is
+untouched. Three arms, 8 seeds × 6 τ = 48 runs each:
+
+| arm | `mutationScale` | supply (loci/birth) | collapsed | lead slope | seed bootstrap | detection |
+| :-- | ---: | ---: | ---: | ---: | :--: | ---: |
+| clonal | 0 | 0.0 | 43/48 | −0.01422 | [−0.0181, −0.0088] | 33% |
+| registered | 1 | 12.4 | 43/48 | −0.01419 | [−0.0203, −0.0120] | 28% |
+| elevated | 4 | 48.3 | 25/48 | n/a | n/a | 8% |
+
+Two checks make this an ablation rather than a correlation. The registered arm is
+**re-simulated**, not reused, and reproduces the cached Q5 population series
+bit-for-bit (lever check `true`), so adding the lever did not perturb the
+baseline. And the mutation supply is **counted** at each birth against the
+post-recombination genome — so sexual crossover is not mistaken for mutation —
+giving 0 / 12.4 / 48.3 loci per birth (3.90×), exactly the dose the lever was
+supposed to deliver. Standing variance is *not* used as the manipulation check:
+it is founder-dominated and barely moves between ×0 and ×1 (87% retention in
+both), which a 12-run smoke test showed before the full grid ran.
+
+**E-EWS-12: refuted.** The clonal arm retains **100%** of the registered lead
+slope (ratio 1.0018), and the two bootstrap intervals nearly coincide. Removing
+de-novo mutation and lateral gene transfer does not flatten the lead shrinkage.
+The AUC half behaves differently — clonal retains 52% of the registered AUC
+slope (−0.0001 vs −0.0003) — so mutation supply accounts for about half of the
+*fragile* AUC decline and none of the robust lead decline.
+
+Two results sit beside the verdict and must not be folded into it:
+
+- **Rescue is real.** Quadrupling the supply cut collapse from 43/48 to 25/48,
+  two-sided Fisher exact **p = 9.1×10⁻⁵**. Adaptation changes *whether* the
+  system collapses.
+- **The elevated arm has no slope.** With 8% detection and a zero-resample
+  bootstrap, its −0.0182 is fitted from two pre-collapse windows; the runner
+  reports `n/a`. A slope is read only above 20% detection and 100 bootstrap
+  resamples.
+
+So adaptation is a real process in this ecology, but the mutation supply is not
+the mechanism of the lead shrinkage. Selection on the standing variation of the
+300 founders and crossover remain untested; M4 as a family is narrowed, not
+closed.
+
+Reproduce: `npm run research:ablation` (from `apps/simulation`; ~20 min) or
+`-- --from-cache` (seconds). Outputs: `output/ews-ablation.{md,json,csv}`,
+`plots/ews-ablation.svg`.
+
 ## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²

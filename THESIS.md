@@ -62,10 +62,14 @@ shrinkage survives (60% of specifications reproduce its sign; seed bootstrap
 non-negative slope; bootstrap [−0.0005, 0.0000]). No analysis level explains the
 effect away, but the multiverse median is a third of the registered magnitude. We
 treat this as evidence that the generic theory does not transport unchanged across
-the dimensionality, noise colour, and adaptive response of an evolving system, and
-we specify the discriminating experiments that would decide whether the mechanism
-is detection-bar rigidity, detrending artifact, vanishing order parameter, or
-evolutionary rescue.
+the dimensionality, noise colour, and adaptive response of an evolving system. A
+first ablation runs against one mechanism candidate: removing de-novo mutation
+and lateral gene transfer leaves the lead slope unchanged (clonal retains 100%,
+bootstrap [−0.0181, −0.0088] vs [−0.0203, −0.0120]), although quadrupling the
+mutation supply cuts collapse from 43/48 to 25/48 (Fisher exact p = 9.1×10⁻⁵).
+Evolutionary rescue changes whether the system collapses, not the warning lead,
+so the mechanism question stays open and narrows to standing variation, crossover,
+and detection-bar rigidity.
 
 The broader claim is methodological. Emergence should be adjudicated by a
 falsifier-first ledger with artifact-level reproducibility, not by narrative or
@@ -183,7 +187,7 @@ and the append-only revision log — is [`docs/CLAIMS.md`](docs/CLAIMS.md).
 | **Q2** | Does variance out-rank autocorrelation-based indicators? | AR(1)/recovery ≥ variance | **Supported** (0.493 vs 0.659) |
 | **Q3** | Is lead time calibrated in control-parameter units (invariant to ramp duration)? | Lead in stress units varies systematically with τ | **Rejected** (CV slope −0.013, R² 0.89) |
 | **Q4** | Is the warning specific to the forcing? | No-ramp control collapses or warns | **Supported** (8/8 survive) |
-| **Q5** | Is the Q3 failure bar rigidity, detrending artifact, vanishing order parameter, or evolutionary rescue? | Pre-registered multiverse + ablation leaves the slope unexplained | **Open** — multiverse run (1,056 specs); bar rigidity leading at 89% (bar 90%) |
+| **Q5** | Is the Q3 failure bar rigidity, detrending artifact, vanishing order parameter, or evolutionary rescue? | Pre-registered multiverse + ablation leaves the slope unexplained | **Open** — multiverse run (1,056 specs), bar rigidity leading at 89% (bar 90%); M4 mutation-supply ablation refuted (E-EWS-12) |
 | **Q6** | Do spatial indicators transport where temporal ones fail? | Spatial AUC ≤ 0.5 or no gain over temporal | **Open** |
 | **Q7** | Does a direct response-function measure of critical slowing down succeed where AR(1) proxies fail? | Perturbation recovery time does not rise before collapse | **Open** |
 | **Q8** | Does warning skill scale with system size (finite-size scaling)? | AUC independent of N across 100–2000 | **Open** |
@@ -237,8 +241,19 @@ The three remaining mechanisms are separable with the existing instrument:
   −0.0062) but attenuates it, so scale explains part, not all.
 - **M4 — evolutionary rescue.** Selection on metabolic efficiency buffers the
   stress, so the system is never as close to the fold as the ramp schedule
-  implies. *Test:* clonal, mutation-off ablation and a measured genetic-variance
-  trajectory; not yet run.
+  implies. *Test (run):* `npm run research:ablation`, a dose–response in mutation
+  supply — clonal ×0 / registered ×1 / elevated ×4, 8 seeds × 6 τ, with the
+  registered arm re-simulated to prove the lever inert at ×1 and mutation supply
+  counted directly as loci changed per birth (0 / 12.4 / 48.3, a 3.90× positive
+  control). **Result: refuted (E-EWS-12).** The clonal arm retains 100% of the
+  lead slope (−0.01422 vs −0.01419) and the two seed-bootstrap intervals nearly
+  coincide, so removing de-novo mutation and lateral transfer does not flatten
+  the shrinkage. Adaptation is nevertheless real: the ×4 arm collapses in 25/48
+  runs against 43/48 for clonal (Fisher exact p = 9.1×10⁻⁵). Rescue changes
+  *whether* the system collapses, not the warning lead. Mutation supply accounts
+  for about half of the fragile AUC decline (clonal retains 52%) and none of the
+  robust lead decline, and selection on standing founder variation and crossover
+  remain untested.
 
 The registered decision rule (E-EWS-11, fixed before the run): a mechanism is
 supported only if its manipulation removes at least half of the slope **and** at
@@ -298,6 +313,17 @@ specifications and its bootstrap interval excludes zero. Neither is rescued or
 destroyed by changing the detection rule, because AUC is a rank statistic while
 lead is not.
 
+**Ablation (M4, 144 runs).** A dose–response in mutation supply — ×0 clonal / ×1
+registered / ×4 elevated — tests whether adaptation produces the shrinkage. The
+×1 arm reproduces the cached population series bit-for-bit and the supply is
+counted at birth (0 / 12.4 / 48.3 loci per birth, 3.90×), so the manipulation is
+verified rather than assumed. The clonal arm retains 100% of the lead slope
+(−0.01422 vs −0.01419; bootstrap [−0.0181, −0.0088] vs [−0.0203, −0.0120]):
+**refuted**. But the ×4 arm collapses in 25/48 runs against 43/48 (Fisher exact
+p = 9.1×10⁻⁵), so adaptation is real and changes *whether* the system collapses.
+Its lead slope is not reported — 8% detection and zero bootstrap resamples — which
+is itself the honest handling of an unestimable quantity.
+
 **What this does and does not license.** It licenses the statement that, under
 this registered analysis in this ecology, the autocorrelation family carries no
 warning and the lead in control-parameter units shrinks as the fold is approached
@@ -316,7 +342,7 @@ artifacts that let a skeptical reader redo the analysis. The gap analysis:
 | Requirement | Current state | Next artifact |
 |---|---|---|
 | **Theory** | Verbal expectation of critical slowing down | Derive AUC(τ) for a ramped fold with demographic noise; predict the slope sign and magnitude |
-| **Mechanism** | Q3 rejection is phenomenological; 1,056-spec multiverse run, no axis level met the bar | Q5 M1–M4 ablations (M4 not yet run); 32–64 seeds |
+| **Mechanism** | Q3 rejection is phenomenological; 1,056-spec multiverse run, no axis level met the bar; M4 mutation-supply ablation refuted (E-EWS-12) | Q5 M1–M4 ablations: standing-variation and crossover arms (M4), 32–64 seeds |
 | **Causal identification** | Determinism + replay implemented | Q7 impulse-response experiment; placebo ramps; dose–response |
 | **Scaling** | Single N ≈ 300–500 | Q8 finite-size sweep, 100–2000 |
 | **Generalization** | One ecology, one genotype–phenotype map | Substrate (agents/particles/lattice/graph) and topology (torus/cylinder/sphere/Möbius/Klein) replication |
@@ -396,8 +422,9 @@ Target: Oikos / Ecology and Evolution / PNAS Nexus; registered report for Q5–Q
 evolutionary activity, novelty, and major transitions, each with a null.
 
 **Immediate sequence.** (1) Freeze the current analysis as the registered
-baseline; (2) run M2–M4 with 32 seeds, since the multiverse has already narrowed
-M1 to bar rigidity; (3) run Q7's impulse-response measurement; (4) publish B with
+baseline; (2) complete M2–M4 with 32 seeds, since the multiverse has already
+narrowed M1 to bar rigidity and the M4 mutation-supply arm is refuted, leaving
+the standing-variation and crossover arms; (3) run Q7's impulse-response measurement; (4) publish B with
 A as the methods appendix; (5) only then extend to substrates and topologies.
 
 ## 10. What would falsify the thesis
@@ -430,15 +457,18 @@ npm run dev:web                                  # dashboard
 npm run research:ews -w @fractal-life/simulation  # critical-transition grid
 npm run research:multiverse -w @fractal-life/simulation            # Q5: 1,056 analyses
 npm run research:multiverse -w @fractal-life/simulation -- --from-cache  # re-analysis only
+npm run research:ablation -w @fractal-life/simulation              # M4: mutation-supply ablation
+npm run research:ablation -w @fractal-life/simulation -- --from-cache    # re-analysis only
 npm run research:scope -w @fractal-life/simulation
 npm run research:experiment -- --verify          # bit-exact reproduction
 ```
 
 Outputs: `research/output/ews.{md,json,csv}`, `ews-multiverse.{md,json,csv}`,
 `ews-multiverse-series.json` (the stored series that makes `--from-cache`
-possible), `scope.*`, `plots/ews.svg`, `plots/ews-multiverse.svg`; manifests under
-`apps/simulation/research/experiments/`. The dashboard shows the same observables
-live, and the terminal exposes the same commands.
+possible), `ews-ablation.{md,json,csv}`, `ews-ablation-series.json`, `scope.*`,
+`plots/ews.svg`, `plots/ews-multiverse.svg`, `plots/ews-ablation.svg`; manifests
+under `apps/simulation/research/experiments/`. The dashboard shows the same
+observables live, and the terminal exposes the same commands.
 
 ## References
 

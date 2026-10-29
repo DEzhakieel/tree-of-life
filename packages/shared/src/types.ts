@@ -194,6 +194,12 @@ export interface WorldConfig {
    *  reproduction. When absent/false reproduction keeps the legacy single-
    *  point crossover. */
   recombination?: boolean;
+  /** Multiplier on the per-replication mutation rate/sigma and on the lateral
+   *  gene-transfer probability. `1` (or absent) is the registered default,
+   *  `0` is a clonal (mutation- and HGT-free) ablation, `>1` elevates the
+   *  mutation supply. Applied only at reproduction, the sole genome-variation
+   *  site; absent = legacy bit-identical dynamics. */
+  mutationScale?: number;
   /** Phase M environment preset: seeds the chemical terrain bases
    *  (o2 / ph / toxin / minerals) at world build and biases the per-agent
    *  omics environment (water factor, default heat). Selecting any preset

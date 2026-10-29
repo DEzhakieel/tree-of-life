@@ -179,6 +179,10 @@ export class Engine {
   readonly config: WorldConfig;
   readonly params: WorldParams;
   agents = new Map<number, SimAgent>();
+  /** loci changed by mutation + lateral transfer at birth; instrument for ablation studies */
+  mutationLoci = 0;
+  /** lifetime birth count, paired with `mutationLoci` */
+  birthCount = 0;
   grid: TerrainGrid;
   interventionLog: RecordedIntervention[] = [];
   private nextId = 0;
@@ -1381,23 +1385,29 @@ export class Engine {
           mate.energy = bPre * (0.45 * (1 - mate.repro.parentalInvestment * 0.1));
           mate.lastReproTick = t;
         }
-        const mutRate = Math.min(1, 0.05 * pheno.mutability);
-        const mutSigma = 0.05 * pheno.mutability;
+        const mutRate = Math.min(1, 0.05 * pheno.mutability * (this.config.mutationScale ?? 1));
+        const mutSigma = 0.05 * pheno.mutability * (this.config.mutationScale ?? 1);
         const recombined = this.config.recombination && mate;
-        const genome = mutateGenomeScaled(
-          mate
-            ? recombined
-              ? recombineGenomes(a.genome, mate.genome, childRng)
-              : crossoverGenome(a.genome, mate.genome, childRng)
-            : a.genome,
-          childRng,
-          mutRate,
-          mutSigma,
-        );
-        if (nbCount > 0 && childRng.nextFloat() < LGT_RATE * pheno.mutability) {
+        const baseGenome = mate
+          ? recombined
+            ? recombineGenomes(a.genome, mate.genome, childRng)
+            : crossoverGenome(a.genome, mate.genome, childRng)
+          : a.genome;
+        const genome = mutateGenomeScaled(baseGenome, childRng, mutRate, mutSigma);
+        // Count mutation supply against the *post-recombination* base: sexual
+        // crossover must not be mistaken for de-novo mutation in an ablation.
+        let mutatedLoci = 0;
+        for (let i = 0; i < genome.length; i++) if (genome[i] !== baseGenome[i]) mutatedLoci++;
+        if (nbCount > 0 && childRng.nextFloat() < LGT_RATE * pheno.mutability * (this.config.mutationScale ?? 1)) {
           const donor = this.agents.get(neighbors[childRng.nextInt(nbCount)]!);
-          if (donor) spliceGenome(genome, donor.genome, childRng, LGT_BLOCK);
+          if (donor) {
+            const before = Float32Array.from(genome);
+            spliceGenome(genome, donor.genome, childRng, LGT_BLOCK);
+            for (let i = 0; i < genome.length; i++) if (genome[i] !== before[i]) mutatedLoci++;
+          }
         }
+        this.mutationLoci += mutatedLoci;
+        this.birthCount += 1;
         const childEnergy = Math.min(cap, Math.max(1, mate ? (pre + bPre) * CHILD_ENERGY_FRACTION * 0.5 * investMult : pre * CHILD_ENERGY_FRACTION * investMult));
         const childX = wrap(a.x + childRng.nextSigned() * 3);
         const childY = wrap(a.y + childRng.nextSigned() * 3);

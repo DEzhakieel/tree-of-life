@@ -34,13 +34,17 @@ monotonically** as the tipping point is approached more slowly — so the
 fixed-distance-to-bifurcation prediction is **rejected**. Re-analysing the same
 data under 1,056 specifications shows the rejection is carried by the *shrinking
 lead*, not by the AUC decline, and that no single analysis choice explains it
-away. Full charter:
+away. A mutation-supply ablation then refutes the first mechanism candidate
+(evolutionary rescue): removing de-novo mutation leaves the lead unchanged,
+while quadrupling the supply cuts collapse from 43/48 to 25/48 — adaptation
+changes *whether* the system collapses, not the warning lead. Full charter:
 [`docs/SPECIALIZATION.md`](docs/SPECIALIZATION.md).
 
 ```bash
 npm run research:ews -w @fractal-life/simulation            # full grid -> research/output/ews.*
 npm run research:ews -w @fractal-life/simulation -- --quick # fast smoke
 npm run research:multiverse -w @fractal-life/simulation     # Q5: 1,056 analyses of one dataset
+npm run research:ablation -w @fractal-life/simulation       # M4: clonal / registered / elevated mutation
 ```
 
 <details>
@@ -179,6 +183,7 @@ Generators/CLIs live under `apps/simulation/src/research/` with npm scripts:
 | `research:experiment` | run/verify experiments |
 | `research:ews` | critical-transition early-warning sweep |
 | `research:multiverse` | Q5: detrender × window × order parameter × baseline × threshold over one dataset |
+| `research:ablation` | M4: mutation-supply dose–response (clonal ×0 / registered ×1 / elevated ×4) |
 
 Outputs land in `apps/simulation/research/{output,plots,experiments}/`. See
 [`docs/RESULTS.md`](docs/RESULTS.md).

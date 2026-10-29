@@ -83,11 +83,17 @@ We treat the negative result as the scientific product and the instrument as
 what makes it credible. We state the candidate mechanisms (detection-bar
 rigidity, detrending artifact, vanishing order parameter, evolutionary rescue),
 the ablations that separate them, and a direct impulse-response measurement of
-critical slowing down that the usual autocorrelation proxy only approximates.
-The broader methodological claim is that emergence claims should be adjudicated
-by a falsifier-first ledger with artifact-level reproducibility, not by narrative
-or internal composite scores --- and that a single specification, including the
-one in this thesis's first draft, overstates how settled a result is.
+critical slowing down that the usual autocorrelation proxy only approximates. A
+first ablation is decisive against one of them: removing de-novo mutation and
+lateral gene transfer leaves the lead slope unchanged (clonal retains 100\%,
+$[-0.0181,-0.0088]$ against $[-0.0203,-0.0120]$), even though quadrupling the
+mutation supply cuts collapse from 43/48 to 25/48 (Fisher exact
+$p = 9.1\times10^{-5}$). Adaptation changes whether the system collapses, not the
+warning lead. The broader methodological claim is that emergence claims should be
+adjudicated by a falsifier-first ledger with artifact-level reproducibility, not
+by narrative or internal composite scores --- and that a single specification,
+including the one in this thesis's first draft, overstates how settled a result
+is.
 \end{abstract}
 
 \section{Introduction}
@@ -341,7 +347,8 @@ Q4 & Is the warning specific to the forcing? & No-ramp control collapses or
 warns & Supported\\
 Q5 & Is the Q3 failure bar rigidity, detrending artifact, vanishing order
 parameter, or evolutionary rescue? & A registered multiverse and ablation leave
-the slope unexplained & Open: multiverse run, no axis level met the bar\\
+the slope unexplained & Open: multiverse run, no axis level met the bar; M4
+mutation-supply ablation refuted\\
 Q6 & Do spatial indicators transport where temporal ones fail? & Spatial AUC
 $\le 0.5$ or no gain over temporal & Open\\
 Q7 & Does a direct response-function measure succeed where AR(1) proxies fail? &
@@ -389,10 +396,44 @@ smoother removes it), which is itself a warning against a simple detrending
 story. \emph{M3 (vanishing order parameter):} extinction drives absolute
 variance to zero; log population attenuates but does not remove the slope.
 \emph{M4 (evolutionary rescue):} selection on metabolic efficiency buffers the
-stress; a clonal, mutation-off ablation with a measured genetic-variance
-trajectory has not yet been run. A mechanism is supported only if its
+stress; the ablation is now run (below). A mechanism is supported only if its
 manipulation removes at least half of the slope and at least 90\% of its
 specifications are flattened; the 89\% result is reported as 89\%.
+
+\paragraph{M4: the mutation-supply ablation, run.} The test moves the capacity to
+adapt while holding the ramp schedule fixed: \texttt{mutationScale} $=0$ (clonal),
+$1$ (registered), $4$ (elevated), eight seeds $\times$ six $\tau$ each. Two checks
+make it an ablation rather than a correlation. The registered arm is re-simulated,
+not reused, and reproduces the cached Q5 population series bit-for-bit, so the new
+lever is inert at $\times 1$. Mutation supply is counted at each birth against the
+post-recombination genome --- so crossover is not mistaken for mutation --- giving
+$0$ / $12.4$ / $48.3$ loci per birth, a $3.90\times$ positive control. Standing
+variance is \emph{not} used as the check: it is founder-dominated and barely moves
+between $\times0$ and $\times1$.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+arm & collapsed & lead slope & seed bootstrap \\
+\midrule
+clonal ($\times0$) & 43/48 & $-0.01422$ & $[-0.0181, -0.0088]$ \\
+registered ($\times1$) & 43/48 & $-0.01419$ & $[-0.0203, -0.0120]$ \\
+elevated ($\times4$) & 25/48 & n/a (8\% detect) & n/a \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{E-EWS-12 is refuted.} The clonal arm retains 100\% of the registered lead
+slope and the two bootstrap intervals nearly coincide, so removing de-novo
+mutation and lateral gene transfer does not flatten the shrinkage. Adaptation is
+nevertheless real: the $\times4$ arm collapses in 25/48 runs against 43/48
+(two-sided Fisher exact $p = 9.1\times10^{-5}$). Rescue changes \emph{whether} the
+system collapses, not the warning lead. The elevated arm's slope is reported as
+uninterpretable rather than large --- it rests on 8\% detection and a
+zero-resample bootstrap --- and mutation supply accounts for about half of the
+fragile AUC decline (clonal retains 52\%) and none of the robust lead decline.
+Selection on standing founder variation and crossover remain untested, so M4 is
+narrowed, not closed.
 
 \paragraph{Q7: direct slowing-down.} Determinism permits the measurement the
 AR(1) proxy approximates. At ticks along the ramp, branch the run, apply a
@@ -514,6 +555,23 @@ specifications. Because AUC is a rank statistic, no detection rule can move it,
 which is why the two rows diverge: the failure lives in the \emph{lead}, not in
 the ranking, and it is smaller than the registered estimate by a factor of three.
 
+\paragraph{The mutation-supply ablation.} One mechanism can be tested without
+touching the ramp schedule, which is what makes the test clean: the capacity to
+adapt is moved, and the forcing that defines the measurement is held fixed.
+\texttt{npm run research:ablation} runs three arms over the same eight seeds and
+six durations --- clonal (mutation scale $0$), registered ($1$), elevated ($4$)
+--- and checks two things before reading any slope. The registered arm is
+re-simulated and reproduces the cached population series bit-for-bit, so the new
+lever is inert at $\times1$; and the mutation supply, counted at each birth
+against the post-recombination genome, is $0$ / $12.4$ / $48.3$ loci per birth, a
+$3.90\times$ positive control. The clonal arm retains 100\% of the lead slope
+($-0.01422$ against $-0.01419$, bootstrap $[-0.0181,-0.0088]$ against
+$[-0.0203,-0.0120]$), so the mechanism is refuted. The elevated arm collapses in
+25/48 runs against 43/48 for clonal (Fisher exact $p = 9.1\times10^{-5}$), so
+adaptation is real --- but it changes whether the system collapses, not the
+warning lead. Its own slope is reported as uninterpretable, not as a large value:
+8\% detection and a zero-resample bootstrap do not support an estimate.
+
 \paragraph{What this licenses, and what it does not.} It licenses the statement
 that, under this registered analysis in this ecology, the autocorrelation family
 carries no warning and the lead in control-parameter units shrinks with slower
@@ -576,9 +634,10 @@ registered extension. \emph{C (open-endedness):} a falsifier-first ledger for
 open-ended evolution, using evolutionary activity \citep{bedau1998,bedau2003},
 novelty, and a major-transition detector \citep{szathmary1995}, each with a null.
 The immediate sequence is to freeze the present analysis as the registered
-baseline, run M2--M4 with 32--64 seeds (the multiverse has already narrowed M1 to
-bar rigidity), run Q7's impulse response, and only then extend to substrates and
-topologies.
+baseline, complete M2--M4 with 32--64 seeds (the multiverse has already narrowed
+M1 to bar rigidity, and the M4 mutation-supply arm is refuted, leaving standing
+variation and crossover), run Q7's impulse response, and only then extend to
+substrates and topologies.
 
 \begin{table}[t]\centering
 \caption{Gap analysis for a programme-level contribution. Each row is
@@ -592,7 +651,8 @@ Requirement & Current state & Next artifact\\
 Theory & Verbal expectation of critical slowing down & Derive AUC($\tau$) for
 a ramped fold with demographic noise\\
 Mechanism & Q3 rejection phenomenological; 1,056-spec multiverse run, no axis
-level met the bar & M2--M4 ablations; 32--64 seeds\\
+level met the bar; M4 mutation-supply ablation refuted & M2, M3, and M4's
+standing-variation and crossover arms; 32--64 seeds\\
 Causal identification & Determinism and replay implemented & Q7
 impulse-response; placebo ramps; dose--response\\
 Scaling & Single $N \approx 300$--$500$ & Q8 finite-size sweep, 100--2000\\

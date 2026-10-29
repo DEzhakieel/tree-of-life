@@ -169,6 +169,32 @@ the closest, an adaptive EWMA bar, flattened 89%. Two structural points:
 - The AUC half cannot be a detection-rule artefact **by construction**: AUC is a
   rank statistic, so only (order parameter, window, detrender) can move it.
 
+### Ablation (E-EWS-12): is the shrinkage evolutionary rescue?
+
+M4 says a slow ramp buys time to adapt, so the population never gets as close to
+the fold as the schedule implies. The test moves the capacity to adapt and holds
+the ramp schedule fixed: `mutationScale` 0 (clonal) / 1 (registered) / 4
+(elevated), 8 seeds × 6 τ each. The registered arm is re-simulated and must
+reproduce the cached Q5 population series bit-for-bit; it does, so the lever is
+inert at ×1. Mutation supply is counted at birth against the post-recombination
+genome (0 / 12.4 / 48.3 loci per birth, 3.90×), so sex is not mistaken for
+mutation.
+
+| arm | collapse | lead slope | seed bootstrap |
+| :-- | ---: | ---: | :--: |
+| clonal ×0 | 43/48 | −0.01422 | [−0.0181, −0.0088] |
+| registered ×1 | 43/48 | −0.01419 | [−0.0203, −0.0120] |
+| elevated ×4 | 25/48 | n/a (8% detect) | n/a |
+
+**Refuted.** The clonal arm retains 100% of the lead slope, so the mutation
+supply is not the mechanism. Two things are nevertheless established: rescue is
+real (43/48 vs 25/48 collapses, Fisher exact p = 9.1×10⁻⁵), and the elevated
+arm's slope is uninterpretable rather than large — it is fitted from two
+pre-collapse windows and is reported as `n/a`. Mutation supply explains about
+half of the *fragile* AUC decline (clonal retains 52%) and none of the robust
+lead decline. Standing founder variation and crossover remain untested, so M4 is
+narrowed, not closed.
+
 ### The honest headline, narrowed
 
 The honest headline: **variance is the workhorse early-warning indicator here;
@@ -191,6 +217,11 @@ of the registered estimate.
   `npm run research:multiverse` (registered as E-EWS-11) varies the detrender, window,
   order parameter, baseline estimator, and threshold over one stored dataset, and
   reports the distribution of slopes rather than one specification.
+- **Rescue is not the mechanism — but only its mutation-supply component was
+  ablated.** `npm run research:ablation` (E-EWS-12) removes de-novo mutation and
+  lateral transfer and the lead slope is unchanged, while a ×4 supply cuts collapse
+  from 43/48 to 25/48. Selection on the standing variation of the 300 founders and
+  crossover were not removed, so a rescue mechanism operating there is untested.
 - **Trend contamination.** AR(1) on a drifting series is biased high; only the
   detrended form is used. Undetrended AR(1) would spuriously "succeed".
 - **No spatial indicator.** Spatial early-warning signals (rising spatial correlation /
@@ -205,6 +236,8 @@ npm run research:ews -w @fractal-life/simulation -- --quick
 npm run research:ews -w @fractal-life/simulation -- --seeds a,b --ramps 300,600,900,1050
 npm run research:multiverse -w @fractal-life/simulation  # Q5: one dataset, 1,056 analyses
 npm run research:multiverse -w @fractal-life/simulation -- --from-cache  # re-analysis only
+npm run research:ablation -w @fractal-life/simulation     # M4: clonal / registered / elevated
+npm run research:ablation -w @fractal-life/simulation -- --from-cache    # re-analysis only
 npm run test:fast  -w @fractal-life/simulation            # incl. test/ews.test.ts
 ```
 

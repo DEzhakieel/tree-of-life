@@ -54,6 +54,7 @@ export const CreateWorldSchema = z.object({
   omicsStochastic: z.boolean().optional(),
   combinatorial: z.boolean().optional(),
   recombination: z.boolean().optional(),
+  mutationScale: z.number().min(0).max(64).optional(),
   environment: z.enum(['calm', 'anoxicTrench', 'hyperthermal', 'hypersaline', 'acidicCrater', 'sodaLake', 'cryoFrozen', 'irradiated', 'toxicSump', 'limestoneCave', 'gutLumen', 'termiteMound', 'rhizosphere', 'wetlandMarsh', 'desertDune', 'hotSpring', 'canopyTop']).optional(),
   topology: z.enum(['torus', 'cylinder', 'sphere', 'mobius', 'kleinBottle']).optional(),
   signalDeposit: z.number().min(0).max(10).optional(),
