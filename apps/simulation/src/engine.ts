@@ -49,6 +49,7 @@ import { createSelectionState, updateSpecies, computeSelectionPressure, computeF
 import { createBrain, spawnBrain, forwardBrain, observeBrain, backpropBrain, policySigma, sampleGaussianAction, learnedMag, stepPomdp, DEFAULT_POMDP_HIDDEN, type BrainConfig, type BrainState, type PolicyConfig, type BackpropOpts } from './brain.js';
 import { ELEMENT_COUNT, MOLECULE_COUNT, ENZYME_TYPE_COUNT, CHEM_MAX_MOLECULE, CHEM_MAX_ENZYME, PH_NEUTRAL, IMMUNE_COST, BASAL_METABOLIC_COST, AEROBIC_ATP_RATE, ENV_REINJECT_RATE, THERMOREGULATION_COST, DORMANCY_CONSERVATION, PACK_BONUS, SEXUAL_COST_MULT, MLP_HIDDEN, MLP_WEIGHTS, GENOME_SIZE } from '@fractal-life/shared';
 import { DEFAULT_WEATHER_MATRIX, stepWeather, stepOu, stepBurst, poissonDraw, createWorldStochState, WEATHER_NAMES, type WorldStochasticConfig, type WorldStochState } from './worldStoch.js';
+import { auditWorld, type Violation } from './mathAudit.js';
 
 const EATING_RATE = 0.008;
 const MEAT_EATING_RATE = 0.012;
@@ -327,6 +328,27 @@ export class Engine {
 
   get currentTick(): number {
     return this.tickNum;
+  }
+
+  /**
+   * Check the current state against the engine's mathematical invariants
+   * (`src/mathAudit.ts`, contract in `docs/MATHEMATICS.md`). Pure: no draws, no
+   * mutation, no reordering, so calling it cannot change a trajectory. Returns
+   * `[]` when the state is inside the domain the update equations assume.
+   * Pass the stats object from the last `tick()` to include it in the audit.
+   */
+  audit(stats?: object): Violation[] {
+    return auditWorld(
+      {
+        tick: this.tickNum,
+        worldSize: this.grid.size * this.grid.cell,
+        maxPopulation: this.params.maxPopulation,
+        energyCapacity: this.params.energyCapacity,
+        agents: this.agents.values(),
+        stats,
+      },
+      GENOME_SIZE,
+    );
   }
 
   /** Configure the plastic recurrent brains. Must be set before the first tick

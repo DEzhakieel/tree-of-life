@@ -134,6 +134,8 @@ npm run terminal -- --steps 1000 --json            # raw state
 - `docs/` — published documentation · `thesis/` — LaTeX + bibliography.
 
 Deep dive: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
+[`docs/MATHEMATICS.md`](docs/MATHEMATICS.md) (units, update order, invariants,
+measured RNG quality, frozen deviations),
 [`docs/REVERSE_ENGINEERING.md`](docs/REVERSE_ENGINEERING.md),
 [`apps/simulation/research/manual/`](apps/simulation/research/manual/) (the
 exhaustive engineering manual).

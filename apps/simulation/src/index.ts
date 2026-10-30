@@ -1,4 +1,6 @@
 export * from './rng.js';
+export * from './distributions.js';
+export * from './mathAudit.js';
 export * from './genome.js';
 export * from './terrain.js';
 export * from './spatialHash.js';

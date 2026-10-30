@@ -405,7 +405,12 @@ export function recombineGenomes(a: Float32Array, b: Float32Array, rng: SplitMix
   return child;
 }
 
-/** Cosine similarity over the genome, [0,1]. */
+/**
+ * Cosine similarity over the genome, in [-1, 1] (1 when either genome is all
+ * zeros, so a null genome is treated as identical to any other null genome).
+ * Species identity is `similarity > SPECIATION_THRESHOLD` (0.9), so negatively
+ * correlated genomes are unambiguously different species.
+ */
 export function genomeSimilarity(a: Float32Array, b: Float32Array): number {
   let dot = 0;
   let na = 0;

@@ -22,6 +22,7 @@ This `docs/` folder is the published, task‑oriented documentation. The
 | Choose a life substrate (particles / lattice / graph) | [SUBSTRATES](SUBSTRATES.md) |
 | Run and reproduce experiments | [EXPERIMENTS](EXPERIMENTS.md) |
 | Understand how it is built | [ARCHITECTURE](ARCHITECTURE.md) |
+| Check the engine's units, invariants, and RNG quality | [MATHEMATICS](MATHEMATICS.md) |
 | Understand *why* it is built this way | [DESIGN](DESIGN.md) |
 | Map a phenomenon back to code | [REVERSE_ENGINEERING](REVERSE_ENGINEERING.md) |
 | See results and evidence | [RESULTS](RESULTS.md) |

@@ -44,10 +44,18 @@ export class SplitMix64 {
     return this.nextFloat() * 2 - 1;
   }
 
-  /** Integer in [0, n). Bias-free. */
+  /**
+   * Integer in [0, n). Bias-free (rejection on the incomplete last block).
+   *
+   * Domain: 1 ≤ n ≤ 2^32. `n <= 0` is a degenerate range and returns 0. Larger
+   * n previously produced `limit = 0`, so the rejection loop `while (v >= 0)`
+   * could never terminate; it now throws instead of hanging.
+   */
   nextInt(n: number): number {
+    if (!Number.isInteger(n)) throw new RangeError(`nextInt needs an integer bound, got ${n}`);
     if (n <= 0) return 0;
     if (n === 1) return 0;
+    if (n > 4294967296) throw new RangeError(`nextInt bound must be <= 2^32, got ${n}`);
     const limit = Math.floor(4294967296 / n) * n;
     let v = this.next();
     while (v >= limit) v = this.next();
