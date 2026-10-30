@@ -1,0 +1,3490 @@
+{
+  "version": 2,
+  "generatedAt": "2026-10-30T16:47:44.844Z",
+  "provenance": "simulated in this run (TypeScript, Life-like CA research model)",
+  "config": {
+    "seeds": [
+      "dd.a",
+      "dd.b",
+      "dd.c",
+      "dd.d",
+      "dd.e",
+      "dd.f",
+      "dd.g",
+      "dd.h"
+    ],
+    "size": 32,
+    "generations": 20,
+    "population": 14,
+    "assayReplicates": 3,
+    "maturity": 5,
+    "meaningfulCost": 0.1,
+    "minPrePop": 32
+  },
+  "primary": {
+    "version": 1,
+    "generatedAt": "2026-10-30T16:47:43.032Z",
+    "provenance": "simulated in this run (TypeScript, Life-like CA research model)",
+    "config": {
+      "size": 32,
+      "cells": 1024,
+      "population": 14,
+      "generations": 20,
+      "lineagesPerArm": 8,
+      "fitness": "births",
+      "meaningfulCost": 0.1,
+      "arms": [
+        {
+          "id": "drift",
+          "label": "drift (no selection)",
+          "top": 0
+        },
+        {
+          "id": "weak",
+          "label": "weak (top 50%)",
+          "top": 0.5
+        },
+        {
+          "id": "moderate",
+          "label": "moderate (top 25%)",
+          "top": 0.25
+        },
+        {
+          "id": "strong",
+          "label": "strong (top 12.5%)",
+          "top": 0.125
+        }
+      ],
+      "shocks": {
+        "noise": [
+          0.002,
+          0.01,
+          0.05
+        ],
+        "death": [
+          0.2,
+          0.5,
+          0.8
+        ],
+        "compute": [
+          0.5,
+          0.25,
+          0.1
+        ]
+      },
+      "burn": 60,
+      "train": 80,
+      "maturity": 5,
+      "warm": 100,
+      "shockTicks": 150,
+      "tail": 30,
+      "minPrePop": 32,
+      "assayReplicates": 3
+    },
+    "lineages": [
+      {
+        "id": "drift:dd.a",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B146/S0246",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 12199.5,
+        "reproFinal": 17588,
+        "reproGain": 5388.5,
+        "heldReproAncestor": 12199.5,
+        "heldReproFinal": 17588,
+        "heldReproGain": 5388.5,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.4322265625000001,
+        "turnoverGain": 0.1349121093750001,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 1.0250686475117856,
+          "death": 1.0166588372609775,
+          "compute": 0.9612479083032807
+        },
+        "retentionDelta": {
+          "noise": 0.017600186672184437,
+          "death": 0.23500854329525422,
+          "compute": -0.09742271572111882
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.a",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B1234567/S58",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 12199.5,
+        "reproFinal": 40900,
+        "reproGain": 28700.5,
+        "heldReproAncestor": 12199.5,
+        "heldReproFinal": 40900,
+        "heldReproGain": 28700.5,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.9954427083333334,
+        "turnoverGain": 0.6981282552083334,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 1.041543934150938,
+          "death": 0.9958338549778237,
+          "compute": 1.1606510067599562
+        },
+        "retentionDelta": {
+          "noise": 0.03407547331133687,
+          "death": 0.21418356101210045,
+          "compute": 0.10198038273555676
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.a",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B12345678/S-",
+        "distance": 12,
+        "viability": 1,
+        "reproAncestor": 12199.5,
+        "reproFinal": 40960,
+        "reproGain": 28760.5,
+        "heldReproAncestor": 12199.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 28760.5,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.702685546875,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 1.4906265631173086,
+          "death": 1.4914813959288806,
+          "compute": 1.4889820088730477
+        },
+        "retentionDelta": {
+          "noise": 0.4831581022777074,
+          "death": 0.7098311019631574,
+          "compute": 0.43031138484864817
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.a",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B2345678/S8",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 12199.5,
+        "reproFinal": 40960,
+        "reproGain": 28760.5,
+        "heldReproAncestor": 12199.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 28760.5,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.702685546875,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 1.1254711704033733,
+          "death": 1.1279737050880028,
+          "compute": 1.0914350548664842
+        },
+        "retentionDelta": {
+          "noise": 0.11800270956377212,
+          "death": 0.3463234111222795,
+          "compute": 0.03276443084208469
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.b",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B28/S12467",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 6531.5,
+        "reproFinal": 3984,
+        "reproGain": -2547.5,
+        "heldReproAncestor": 6531.5,
+        "heldReproFinal": 3984,
+        "heldReproGain": -2547.5,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.11678059895833333,
+        "turnoverGain": -0.040543619791666666,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 0.9423585891469306,
+          "death": 1.0550552162881335,
+          "compute": 1.0344441790873937
+        },
+        "retentionDelta": {
+          "noise": -0.6546852796323741,
+          "death": 0.3661845363759153,
+          "compute": -0.8692253013722724
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.b",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B134567/S0",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 6531.5,
+        "reproFinal": 40960,
+        "reproGain": 34428.5,
+        "heldReproAncestor": 6531.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 34428.5,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.84267578125,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 0.9601923925540077,
+          "death": 0.9707723189460941,
+          "compute": 0.8749441985124582
+        },
+        "retentionDelta": {
+          "noise": -0.636851476225297,
+          "death": 0.2819016390338759,
+          "compute": -1.028725281947208
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.b",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B134567/S7",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 6531.5,
+        "reproFinal": 40960,
+        "reproGain": 34428.5,
+        "heldReproAncestor": 6531.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 34428.5,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.84267578125,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 0.9675998546257212,
+          "death": 0.9763291586535571,
+          "compute": 0.8852629893058841
+        },
+        "retentionDelta": {
+          "noise": -0.6294440141535835,
+          "death": 0.2874584787413389,
+          "compute": -1.018406491153782
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.b",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B13456/S0",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 6531.5,
+        "reproFinal": 40920,
+        "reproGain": 34388.5,
+        "heldReproAncestor": 6531.5,
+        "heldReproFinal": 40920,
+        "heldReproGain": 34388.5,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.9983723958333334,
+        "turnoverGain": 0.8410481770833333,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 0.9694137348133829,
+          "death": 0.9926683981373733,
+          "compute": 0.8802200830249576
+        },
+        "retentionDelta": {
+          "noise": -0.6276301339659218,
+          "death": 0.3037977182251551,
+          "compute": -1.0234493974347085
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.c",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B2/S25678",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 20004.5,
+        "reproFinal": 15998.5,
+        "reproGain": -4006,
+        "heldReproAncestor": 20004.5,
+        "heldReproFinal": 15998.5,
+        "heldReproGain": -4006,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.3907877604166667,
+        "turnoverGain": -0.09703776041666662,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 1.0074058215833395,
+          "death": 0.9791285998627914,
+          "compute": 0.9952040576860544
+        },
+        "retentionDelta": {
+          "noise": -0.022726268954672113,
+          "death": -0.03876247792953724,
+          "compute": -0.2149515942819642
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.c",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B12345678/S-",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 20004.5,
+        "reproFinal": 40960,
+        "reproGain": 20955.5,
+        "heldReproAncestor": 20004.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 20955.5,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.5121744791666667,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 1.469995537887448,
+          "death": 1.4707035532815995,
+          "compute": 1.4659758794535565
+        },
+        "retentionDelta": {
+          "noise": 0.4398634473494365,
+          "death": 0.45281247548927084,
+          "compute": 0.2558202274855379
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.c",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B1245678/S6",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 20004.5,
+        "reproFinal": 40900,
+        "reproGain": 20895.5,
+        "heldReproAncestor": 20004.5,
+        "heldReproFinal": 40900,
+        "heldReproGain": 20895.5,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.9993489583333334,
+        "turnoverGain": 0.5115234375000001,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 0.9784128580802408,
+          "death": 0.995026607539859,
+          "compute": 0.8704829596681009
+        },
+        "retentionDelta": {
+          "noise": -0.05171923245777077,
+          "death": -0.022864470252469626,
+          "compute": -0.3396726922999177
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.c",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B134568/S1",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 20004.5,
+        "reproFinal": 40960,
+        "reproGain": 20955.5,
+        "heldReproAncestor": 20004.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 20955.5,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.9995442708333333,
+        "turnoverGain": 0.51171875,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 0.9731648658951106,
+          "death": 0.9940646994430777,
+          "compute": 0.9114062553791408
+        },
+        "retentionDelta": {
+          "noise": -0.05696722464290094,
+          "death": -0.023826378349250943,
+          "compute": -0.2987493965888778
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.d",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B2/S0127",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 3841,
+        "reproFinal": 14001.5,
+        "reproGain": 10160.5,
+        "heldReproAncestor": 3841,
+        "heldReproFinal": 14001.5,
+        "heldReproGain": 10160.5,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.3458007812500001,
+        "turnoverGain": 0.2765462239583334,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 1.0864409008933693,
+          "death": 1.053011763039766,
+          "compute": 1.409648250164094
+        },
+        "retentionDelta": {
+          "noise": -2.0624786125641874,
+          "death": 0.9793661453724092,
+          "compute": -1.5806467808918063
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.d",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B1234567/S16",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 3841,
+        "reproFinal": 40860,
+        "reproGain": 37019,
+        "heldReproAncestor": 3841,
+        "heldReproFinal": 40860,
+        "heldReproGain": 37019,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.9978190104166668,
+        "turnoverGain": 0.9285644531250001,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 1.0136152144144919,
+          "death": 0.991440462815491,
+          "compute": 1.0852523363820121
+        },
+        "retentionDelta": {
+          "noise": -2.1353042990430646,
+          "death": 0.9177948451481343,
+          "compute": -1.905042694673888
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.d",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B134567/S0",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 3841,
+        "reproFinal": 40960,
+        "reproGain": 37119,
+        "heldReproAncestor": 3841,
+        "heldReproFinal": 40960,
+        "heldReproGain": 37119,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.9307454427083334,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.9832868707722694,
+          "death": 0.992846325324423,
+          "compute": 0.8888367987179001
+        },
+        "retentionDelta": {
+          "noise": -2.165632642685287,
+          "death": 0.9192007076570662,
+          "compute": -2.101458232338
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.d",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B24567/S7",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 3841,
+        "reproFinal": 40720,
+        "reproGain": 36879,
+        "heldReproAncestor": 3841,
+        "heldReproFinal": 40720,
+        "heldReproGain": 36879,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.998046875,
+        "turnoverGain": 0.9287923177083334,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.9527550093532232,
+          "death": 1.00010402297734,
+          "compute": 0.5619090733341152
+        },
+        "retentionDelta": {
+          "noise": -2.1961645041043334,
+          "death": 0.9264584053099831,
+          "compute": -2.428385957721785
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.e",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B368/S3458",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 240,
+        "reproFinal": 12834.5,
+        "reproGain": 12594.5,
+        "heldReproAncestor": 240,
+        "heldReproFinal": 12834.5,
+        "heldReproGain": 12594.5,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 0.30937499999999996,
+        "turnoverGain": 0.30546874999999996,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 1.0099275233712277,
+          "death": 0.7579376695963884,
+          "compute": 1.139815373856377
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.e",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B12345678/S8",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 240,
+        "reproFinal": 40960,
+        "reproGain": 40720,
+        "heldReproAncestor": 240,
+        "heldReproFinal": 40960,
+        "heldReproGain": 40720,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.99609375,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 1.4723766988542706,
+          "death": 1.471990412555115,
+          "compute": 1.477393647150178
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.e",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B234567/S05",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 240,
+        "reproFinal": 40720,
+        "reproGain": 40480,
+        "heldReproAncestor": 240,
+        "heldReproFinal": 40720,
+        "heldReproGain": 40480,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.99609375,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 1.0379455313563841,
+          "death": 1.0009955251663023,
+          "compute": 1.140095804657568
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.e",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B2345678/S78",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 240,
+        "reproFinal": 40960,
+        "reproGain": 40720,
+        "heldReproAncestor": 240,
+        "heldReproFinal": 40960,
+        "heldReproGain": 40720,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.99609375,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 1.094035999890827,
+          "death": 1.0941783345615328,
+          "compute": 1.088859070935342
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.f",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B12378/S013567",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 2423,
+        "reproFinal": 13328,
+        "reproGain": 10905,
+        "heldReproAncestor": 2423,
+        "heldReproFinal": 13328,
+        "heldReproGain": 10905,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.33273111979166664,
+        "turnoverGain": 0.2572102864583333,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 0.9896458086263209,
+          "death": 1.0018815922300162,
+          "compute": 0.8081734656688602
+        },
+        "retentionDelta": {
+          "noise": -1.4825558526104277,
+          "death": 0.7375864818822742,
+          "compute": -1.2107428681597547
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.f",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B134568/S7",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 2423,
+        "reproFinal": 40870,
+        "reproGain": 38447,
+        "heldReproAncestor": 2423,
+        "heldReproFinal": 40870,
+        "heldReproGain": 38447,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.9966959635416667,
+        "turnoverGain": 0.9211751302083333,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 0.9735455409234218,
+          "death": 0.993456061620263,
+          "compute": 0.8786691226698107
+        },
+        "retentionDelta": {
+          "noise": -1.4986561203133268,
+          "death": 0.729160951272521,
+          "compute": -1.1402472111588042
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.f",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B1234678/S8",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 2423,
+        "reproFinal": 40946,
+        "reproGain": 38523,
+        "heldReproAncestor": 2423,
+        "heldReproFinal": 40946,
+        "heldReproGain": 38523,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.9984375,
+        "turnoverGain": 0.9229166666666666,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.8331082531878806,
+          "death": 1.8797716743513913,
+          "compute": 1.6827855306028232
+        },
+        "retentionDelta": {
+          "noise": -0.6390934080488679,
+          "death": 1.6154765640036493,
+          "compute": -0.3361308032257917
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.f",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B1234678/S3",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 2423,
+        "reproFinal": 40960,
+        "reproGain": 38537,
+        "heldReproAncestor": 2423,
+        "heldReproFinal": 40960,
+        "heldReproGain": 38537,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.9244791666666666,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.984506486444994,
+          "death": 1.9902080692294417,
+          "compute": 1.9942085536011298
+        },
+        "retentionDelta": {
+          "noise": -0.4876951747917546,
+          "death": 1.7259129588816997,
+          "compute": -0.0247077802274851
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.g",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B14678/S246",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 1060.5,
+        "reproFinal": 18507,
+        "reproGain": 17446.5,
+        "heldReproAncestor": 1060.5,
+        "heldReproFinal": 18507,
+        "heldReproGain": 17446.5,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.44697265625,
+        "turnoverGain": 0.38981119791666663,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 1.027425892958741,
+          "death": 1.0161650647450697,
+          "compute": 0.9569032036638657
+        },
+        "retentionDelta": {
+          "noise": 0.07963748766823386,
+          "death": 0.01754143741416425,
+          "compute": -0.045979544608610534
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.g",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B234567/S05",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 1060.5,
+        "reproFinal": 40900,
+        "reproGain": 39839.5,
+        "heldReproAncestor": 1060.5,
+        "heldReproFinal": 40900,
+        "heldReproGain": 39839.5,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.9990234375,
+        "turnoverGain": 0.9418619791666667,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 1.047905310058936,
+          "death": 1.0057958559584033,
+          "compute": 1.1485685968588502
+        },
+        "retentionDelta": {
+          "noise": 0.10011690476842883,
+          "death": 0.007172228627497779,
+          "compute": 0.1456858485863739
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.g",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B13456/S08",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 1060.5,
+        "reproFinal": 40940,
+        "reproGain": 39879.5,
+        "heldReproAncestor": 1060.5,
+        "heldReproFinal": 40940,
+        "heldReproGain": 39879.5,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.9990234375,
+        "turnoverGain": 0.9418619791666667,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 0.987689310826003,
+          "death": 1.0104232527284518,
+          "compute": 0.9010426084783529
+        },
+        "retentionDelta": {
+          "noise": 0.039900905535495856,
+          "death": 0.01179962539754631,
+          "compute": -0.10184013979412332
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.g",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B134567/S07",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 1060.5,
+        "reproFinal": 40960,
+        "reproGain": 39899.5,
+        "heldReproAncestor": 1060.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 39899.5,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.9428385416666667,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 0.9996058659349288,
+          "death": 1.0078150006882207,
+          "compute": 0.9324066238583433
+        },
+        "retentionDelta": {
+          "noise": 0.05181746064442172,
+          "death": 0.009191373357315236,
+          "compute": -0.07047612441413298
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.h",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B123568/S0478",
+        "distance": 12,
+        "viability": 1,
+        "reproAncestor": 17950.5,
+        "reproFinal": 28405.5,
+        "reproGain": 10455,
+        "heldReproAncestor": 17950.5,
+        "heldReproFinal": 28405.5,
+        "heldReproGain": 10455,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.6980143229166668,
+        "turnoverGain": 0.26389973958333346,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 1.0093850507519981,
+          "death": 1.006961023688592,
+          "compute": 1.0165449730370575
+        },
+        "retentionDelta": {
+          "noise": -0.019141403661357526,
+          "death": 0.02679172614207692,
+          "compute": -0.29873153228006677
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.h",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B24567/S05",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 17950.5,
+        "reproFinal": 40900,
+        "reproGain": 22949.5,
+        "heldReproAncestor": 17950.5,
+        "heldReproFinal": 40900,
+        "heldReproGain": 22949.5,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.9970703125,
+        "turnoverGain": 0.5629557291666667,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 0.9870573695906144,
+          "death": 0.9916530762566335,
+          "compute": 0.8332252814475222
+        },
+        "retentionDelta": {
+          "noise": -0.04146908482274125,
+          "death": 0.011483778710118409,
+          "compute": -0.4820512238696021
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.h",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B12345678/S2",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 17950.5,
+        "reproFinal": 40870,
+        "reproGain": 22919.5,
+        "heldReproAncestor": 17950.5,
+        "heldReproFinal": 40870,
+        "heldReproGain": 22919.5,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.998291015625,
+        "turnoverGain": 0.5641764322916667,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 1.8391749105968787,
+          "death": 1.822352926934715,
+          "compute": 1.9114184801463037
+        },
+        "retentionDelta": {
+          "noise": 0.810648456183523,
+          "death": 0.8421836293881999,
+          "compute": 0.5961419748291794
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.h",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B1234678/S-",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 17950.5,
+        "reproFinal": 40960,
+        "reproGain": 23009.5,
+        "heldReproAncestor": 17950.5,
+        "heldReproFinal": 40960,
+        "heldReproGain": 23009.5,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 1,
+        "turnoverGain": 0.5658854166666667,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 1.8720681753644546,
+          "death": 1.9168126655736661,
+          "compute": 1.7209051844261045
+        },
+        "retentionDelta": {
+          "noise": 0.8435417209510989,
+          "death": 0.9366433680271511,
+          "compute": 0.40562867910898026
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      }
+    ],
+    "conway": {
+      "label": "B3/S23",
+      "reproduction": 2757.8125,
+      "turnover": 0.06780776977539062,
+      "retention": {
+        "noise": 2.195852276896776,
+        "death": 0.3734659301649099,
+        "compute": 2.162549235375083
+      },
+      "collapse": {
+        "noise": 0.013888888888888888,
+        "death": 0.3472222222222222,
+        "compute": 0
+      },
+      "viability": 1
+    },
+    "byFamily": [
+      {
+        "family": "noise",
+        "rhoGain": {
+          "rho": -0.08678987727090928,
+          "lo": -0.46129444833688427,
+          "hi": 0.28647324328855367,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": 0.15961114241073382,
+          "lo": -0.2709064812452537,
+          "hi": 0.5263063567973341,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": 0.017833803407077076,
+          "lo": -0.027820027023812144,
+          "hi": 0.10040252289158769,
+          "n": 21,
+          "positive": 0.74625
+        },
+        "meanDelta": {
+          "median": -0.04659415864025601,
+          "lo": -0.6331477451894403,
+          "hi": 0.03409130707001108,
+          "n": 28,
+          "positive": 0.103
+        },
+        "selectedAncestorDelta": {
+          "median": -0.05171923245777077,
+          "lo": -0.6294440141535835,
+          "hi": 0.05181746064442172,
+          "n": 21,
+          "positive": 0.25025
+        },
+        "driftAncestorDelta": {
+          "median": -0.022726268954672113,
+          "lo": -1.4825558526104277,
+          "hi": 0.017600186672184437,
+          "n": 7,
+          "positive": 0.10825
+        },
+        "doseRho": 0.13445458642986471,
+        "doseP": 0.5136215946013497,
+        "rhoTurnover": {
+          "rho": -0.11060918112759417,
+          "lo": -0.5110664415404911,
+          "hi": 0.28103517372291115,
+          "n": 28
+        }
+      },
+      {
+        "family": "death",
+        "rhoGain": {
+          "rho": 0.19411363717689176,
+          "lo": -0.23233307548813406,
+          "hi": 0.6071358972622483,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": 0.0830314554544415,
+          "lo": -0.35138283363786527,
+          "hi": 0.4712573773167873,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": -0.008350064056849016,
+          "lo": -0.02082498228315377,
+          "hi": 0.11131486782702527,
+          "n": 21,
+          "positive": 0.25675
+        },
+        "meanDelta": {
+          "median": 0.3250605646737173,
+          "lo": 0.12048764357708869,
+          "hi": 0.7333737165773976,
+          "n": 28,
+          "positive": 1
+        },
+        "selectedAncestorDelta": {
+          "median": 0.3463234111222795,
+          "lo": 0.21418356101210045,
+          "hi": 0.8421836293881999,
+          "n": 21,
+          "positive": 1
+        },
+        "driftAncestorDelta": {
+          "median": 0.23500854329525422,
+          "lo": 0.01754143741416425,
+          "hi": 0.7375864818822742,
+          "n": 7,
+          "positive": 0.9905
+        },
+        "doseRho": 0.17400005302688376,
+        "doseP": 0.38640339915021243,
+        "rhoTurnover": {
+          "rho": 0.20506504124893077,
+          "lo": -0.23902382797691948,
+          "hi": 0.5941714482316266,
+          "n": 28
+        }
+      },
+      {
+        "family": "compute",
+        "rhoGain": {
+          "rho": -0.033401782419719035,
+          "lo": -0.3974293031850055,
+          "hi": 0.311735865997272,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": 0.1649408642135527,
+          "lo": -0.22251784948293316,
+          "hi": 0.5033260506379788,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": -0.024496579805522445,
+          "lo": -0.14918118978150963,
+          "hi": 0.1994030984566756,
+          "n": 21,
+          "positive": 0.41025
+        },
+        "meanDelta": {
+          "median": -0.2987404644344723,
+          "lo": -0.9438158962630272,
+          "hi": -0.05822783451137176,
+          "n": 28,
+          "positive": 0.003
+        },
+        "selectedAncestorDelta": {
+          "median": -0.2987493965888778,
+          "lo": -1.018406491153782,
+          "hi": 0.03276443084208469,
+          "n": 21,
+          "positive": 0.055
+        },
+        "driftAncestorDelta": {
+          "median": -0.29873153228006677,
+          "lo": -1.2107428681597547,
+          "hi": -0.09742271572111882,
+          "n": 7,
+          "positive": 0
+        },
+        "doseRho": 0.15422731972837422,
+        "doseP": 0.45763559110222446,
+        "rhoTurnover": {
+          "rho": -0.07720739870787514,
+          "lo": -0.4596442207279351,
+          "hi": 0.2912717743502681,
+          "n": 28
+        }
+      }
+    ],
+    "byArm": [
+      {
+        "arm": "drift",
+        "n": 8,
+        "reproGain": 7549.5625,
+        "heldReproGain": 7549.5625,
+        "retentionDelta": {
+          "noise": -0.022726268954672113,
+          "death": 0.23500854329525422,
+          "compute": -0.29873153228006677
+        },
+        "viability": 1,
+        "distance": 8.875
+      },
+      {
+        "arm": "weak",
+        "n": 8,
+        "reproGain": 32882.4375,
+        "heldReproGain": 32882.4375,
+        "retentionDelta": {
+          "noise": -0.04146908482274125,
+          "death": 0.2819016390338759,
+          "compute": -0.4820512238696021
+        },
+        "viability": 1,
+        "distance": 8.25
+      },
+      {
+        "arm": "moderate",
+        "n": 8,
+        "reproGain": 32875.6875,
+        "heldReproGain": 32875.6875,
+        "retentionDelta": {
+          "noise": -0.05171923245777077,
+          "death": 0.7098311019631574,
+          "compute": -0.3361308032257917
+        },
+        "viability": 1,
+        "distance": 9
+      },
+      {
+        "arm": "strong",
+        "n": 8,
+        "reproGain": 32893.6875,
+        "heldReproGain": 32893.6875,
+        "retentionDelta": {
+          "noise": -0.05696722464290094,
+          "death": 0.3463234111222795,
+          "compute": -0.07047612441413298
+        },
+        "viability": 1,
+        "distance": 8.125
+      }
+    ],
+    "mediation": {
+      "noise": {
+        "slope": -0.20496234905990343,
+        "armBefore": 0.017833803407077076,
+        "armAfter": 0.13362904202554987
+      },
+      "death": {
+        "slope": 0.3407448962229097,
+        "armBefore": -0.008350064056849016,
+        "armAfter": -0.19385029818342547
+      },
+      "compute": {
+        "slope": -0.2563127363471453,
+        "armBefore": -0.024496579805522445,
+        "armAfter": 0.1172513719458334
+      }
+    },
+    "verdict": {
+      "verdict": "no-trade-off",
+      "reason": "reproduction gain and retention change are not negatively associated under the primary shock",
+      "manipulationOk": true,
+      "viabilityOk": true,
+      "primaryFamily": "noise",
+      "rho": -0.08678987727090928,
+      "rhoLo": -0.46129444833688427,
+      "rhoHi": 0.28647324328855367,
+      "selectedMinusDrift": 0.017833803407077076,
+      "selectedMinusDriftLo": -0.027820027023812144,
+      "selectedMinusDriftHi": 0.10040252289158769,
+      "doseRho": 0.13445458642986471,
+      "doseP": 0.5136215946013497,
+      "turnoverRho": -0.11060918112759417,
+      "turnoverLo": -0.5110664415404911,
+      "turnoverHi": 0.28103517372291115,
+      "armBefore": 0.017833803407077076,
+      "armAfter": 0.13362904202554987
+    }
+  },
+  "secondary": {
+    "version": 1,
+    "generatedAt": "2026-10-30T16:47:44.547Z",
+    "provenance": "simulated in this run (TypeScript, Life-like CA research model)",
+    "config": {
+      "size": 32,
+      "cells": 1024,
+      "population": 14,
+      "generations": 20,
+      "lineagesPerArm": 8,
+      "fitness": "established",
+      "meaningfulCost": 0.1,
+      "arms": [
+        {
+          "id": "drift",
+          "label": "drift (no selection)",
+          "top": 0
+        },
+        {
+          "id": "weak",
+          "label": "weak (top 50%)",
+          "top": 0.5
+        },
+        {
+          "id": "moderate",
+          "label": "moderate (top 25%)",
+          "top": 0.25
+        },
+        {
+          "id": "strong",
+          "label": "strong (top 12.5%)",
+          "top": 0.125
+        }
+      ],
+      "shocks": {
+        "noise": [
+          0.002,
+          0.01,
+          0.05
+        ],
+        "death": [
+          0.2,
+          0.5,
+          0.8
+        ],
+        "compute": [
+          0.5,
+          0.25,
+          0.1
+        ]
+      },
+      "burn": 60,
+      "train": 80,
+      "maturity": 5,
+      "warm": 100,
+      "shockTicks": 150,
+      "tail": 30,
+      "minPrePop": 32,
+      "assayReplicates": 3
+    },
+    "lineages": [
+      {
+        "id": "drift:dd.a",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B3/S023",
+        "distance": 4,
+        "viability": 1,
+        "reproAncestor": 1261.5,
+        "reproFinal": 315.5,
+        "reproGain": -946,
+        "heldReproAncestor": 1261.5,
+        "heldReproFinal": 315.5,
+        "heldReproGain": -946,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.14794921875,
+        "turnoverGain": -0.149365234375,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 1.4407670238954595,
+          "death": 0.6569332000666334,
+          "compute": 1.940448201825013
+        },
+        "retentionDelta": {
+          "noise": 0.43329856305585834,
+          "death": -0.12471709389908991,
+          "compute": 0.8817775778006136
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0.1111111111111111,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.a",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B234567/S0234578",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 1261.5,
+        "reproFinal": 3726.5,
+        "reproGain": 2465,
+        "heldReproAncestor": 1261.5,
+        "heldReproFinal": 3726.5,
+        "heldReproGain": 2465,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.4050130208333333,
+        "turnoverGain": 0.1076985677083333,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 0.9932013928743744,
+          "death": 1.0099512101938588,
+          "compute": 1.016795012808782
+        },
+        "retentionDelta": {
+          "noise": -0.01426706796522681,
+          "death": 0.22830091622813553,
+          "compute": -0.04187561121561756
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.a",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B134568/S23567",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 1261.5,
+        "reproFinal": 3874.5,
+        "reproGain": 2613,
+        "heldReproAncestor": 1261.5,
+        "heldReproFinal": 3874.5,
+        "heldReproGain": 2613,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.3345865885416666,
+        "turnoverGain": 0.03727213541666663,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 0.9978289863065203,
+          "death": 0.9994376951905386,
+          "compute": 1.0592226513982328
+        },
+        "retentionDelta": {
+          "noise": -0.009639474533080894,
+          "death": 0.21778740122481532,
+          "compute": 0.0005520273738333081
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.a",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.a",
+        "ancestorLabel": "B3/S23578",
+        "finalLabel": "B234567/S0234578",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 1261.5,
+        "reproFinal": 3726.5,
+        "reproGain": 2465,
+        "heldReproAncestor": 1261.5,
+        "heldReproFinal": 3726.5,
+        "heldReproGain": 2465,
+        "turnoverAncestor": 0.297314453125,
+        "turnoverFinal": 0.4050130208333333,
+        "turnoverGain": 0.1076985677083333,
+        "retentionAncestor": {
+          "noise": 1.0074684608396012,
+          "death": 0.7816502939657233,
+          "compute": 1.0586706240243995
+        },
+        "retentionFinal": {
+          "noise": 0.9932013928743744,
+          "death": 1.0099512101938588,
+          "compute": 1.016795012808782
+        },
+        "retentionDelta": {
+          "noise": -0.01426706796522681,
+          "death": 0.22830091622813553,
+          "compute": -0.04187561121561756
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.2222222222222222,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.b",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B12348/S128",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 366,
+        "reproFinal": 33,
+        "reproGain": -333,
+        "heldReproAncestor": 366,
+        "heldReproFinal": 33,
+        "heldReproGain": -333,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.9319498697916666,
+        "turnoverGain": 0.7746256510416666,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 1.4505775763580286,
+          "death": 1.4935509479547435,
+          "compute": 1.4362879675514861
+        },
+        "retentionDelta": {
+          "noise": -0.14646629242127607,
+          "death": 0.8046802680425253,
+          "compute": -0.46738151290818
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.b",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B134568/S23567",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 366,
+        "reproFinal": 3893,
+        "reproGain": 3527,
+        "heldReproAncestor": 366,
+        "heldReproFinal": 3893,
+        "heldReproGain": 3527,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.3388671875,
+        "turnoverGain": 0.18154296875,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 1.0063179221998315,
+          "death": 1.0087558288322935,
+          "compute": 1.0652364785796093
+        },
+        "retentionDelta": {
+          "noise": -0.5907259465794732,
+          "death": 0.31988514892007536,
+          "compute": -0.8384330018800568
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.b",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B134568/S023567",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 366,
+        "reproFinal": 3848.5,
+        "reproGain": 3482.5,
+        "heldReproAncestor": 366,
+        "heldReproFinal": 3848.5,
+        "heldReproGain": 3482.5,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.34112955729166666,
+        "turnoverGain": 0.18380533854166667,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 1.0022331160297695,
+          "death": 1.006257406513161,
+          "compute": 1.0623554145845966
+        },
+        "retentionDelta": {
+          "noise": -0.5948107527495352,
+          "death": 0.3173867266009429,
+          "compute": -0.8413140658750695
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.b",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.b",
+        "ancestorLabel": "B3/S023",
+        "finalLabel": "B123478/S124568",
+        "distance": 12,
+        "viability": 1,
+        "reproAncestor": 366,
+        "reproFinal": 3425,
+        "reproGain": 3059,
+        "heldReproAncestor": 366,
+        "heldReproFinal": 3425,
+        "heldReproGain": 3059,
+        "turnoverAncestor": 0.15732421875,
+        "turnoverFinal": 0.3025390625,
+        "turnoverGain": 0.14521484375000002,
+        "retentionAncestor": {
+          "noise": 1.5970438687793047,
+          "death": 0.6888706799122182,
+          "compute": 1.903669480459666
+        },
+        "retentionFinal": {
+          "noise": 0.9924366046014291,
+          "death": 0.9989548261071266,
+          "compute": 1.015096720595909
+        },
+        "retentionDelta": {
+          "noise": -0.6046072641778756,
+          "death": 0.3100841461949084,
+          "compute": -0.8885727598637572
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.c",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B16/S01478",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 189,
+        "reproFinal": 630,
+        "reproGain": 441,
+        "heldReproAncestor": 189,
+        "heldReproFinal": 630,
+        "heldReproGain": 441,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.30426432291666666,
+        "turnoverGain": -0.18356119791666664,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 1.0584248922923374,
+          "death": 1.0451196129774063,
+          "compute": 0.9957148961608857
+        },
+        "retentionDelta": {
+          "noise": 0.028292801754325803,
+          "death": 0.027228535185077618,
+          "compute": -0.21444075580713284
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.c",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B23568/S23567",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 189,
+        "reproFinal": 3833,
+        "reproGain": 3644,
+        "heldReproAncestor": 189,
+        "heldReproFinal": 3833,
+        "heldReproGain": 3644,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.32421875,
+        "turnoverGain": -0.1636067708333333,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 1.018220885403036,
+          "death": 1.02289640054979,
+          "compute": 1.097212086811082
+        },
+        "retentionDelta": {
+          "noise": -0.011911205134975678,
+          "death": 0.00500532275746135,
+          "compute": -0.1129435651569366
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.c",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B234568/S023567",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 189,
+        "reproFinal": 3840.5,
+        "reproGain": 3651.5,
+        "heldReproAncestor": 189,
+        "heldReproFinal": 3840.5,
+        "heldReproGain": 3651.5,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.346435546875,
+        "turnoverGain": -0.1413899739583333,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 1.0052395477492375,
+          "death": 1.0095143735763015,
+          "compute": 1.063575087616052
+        },
+        "retentionDelta": {
+          "noise": -0.024892542788774064,
+          "death": -0.008376704216027209,
+          "compute": -0.14658056435196665
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.c",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.c",
+        "ancestorLabel": "B23/S23",
+        "finalLabel": "B12345678/S1234578",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 189,
+        "reproFinal": 3606,
+        "reproGain": 3417,
+        "heldReproAncestor": 189,
+        "heldReproFinal": 3606,
+        "heldReproGain": 3417,
+        "turnoverAncestor": 0.4878255208333333,
+        "turnoverFinal": 0.4231770833333333,
+        "turnoverGain": -0.06464843749999999,
+        "retentionAncestor": {
+          "noise": 1.0301320905380116,
+          "death": 1.0178910777923287,
+          "compute": 1.2101556519680186
+        },
+        "retentionFinal": {
+          "noise": 0.9990639009220411,
+          "death": 1.0131144188796444,
+          "compute": 1.1668406612388478
+        },
+        "retentionDelta": {
+          "noise": -0.031068189615970465,
+          "death": -0.004776658912684306,
+          "compute": -0.04331499072917078
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.d",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B2345/S012378",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 96.5,
+        "reproFinal": 318,
+        "reproGain": 221.5,
+        "heldReproAncestor": 96.5,
+        "heldReproFinal": 318,
+        "heldReproGain": 221.5,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.6863932291666668,
+        "turnoverGain": 0.6171386718750002,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.9991814931427166,
+          "death": 0.9967363050228664,
+          "compute": 0.9863189328540205
+        },
+        "retentionDelta": {
+          "noise": -2.14973802031484,
+          "death": 0.9230906873555096,
+          "compute": -2.0039760982018797
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.d",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B34568/S023567",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 96.5,
+        "reproFinal": 3797,
+        "reproGain": 3700.5,
+        "heldReproAncestor": 96.5,
+        "heldReproFinal": 3797,
+        "heldReproGain": 3700.5,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.3390462239583334,
+        "turnoverGain": 0.2697916666666667,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.99781300962384,
+          "death": 0.9994940087011037,
+          "compute": 1.0602130622011543
+        },
+        "retentionDelta": {
+          "noise": -2.1511065038337165,
+          "death": 0.9258483910337469,
+          "compute": -1.930081968854746
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.d",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B123457/S123567",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 96.5,
+        "reproFinal": 3871.5,
+        "reproGain": 3775,
+        "heldReproAncestor": 96.5,
+        "heldReproFinal": 3871.5,
+        "heldReproGain": 3775,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.28442382812499994,
+        "turnoverGain": 0.21516927083333326,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.9921209986801102,
+          "death": 1.004029136284391,
+          "compute": 1.0871534613046931
+        },
+        "retentionDelta": {
+          "noise": -2.1567985147774467,
+          "death": 0.9303835186170342,
+          "compute": -1.903141569751207
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.d",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.d",
+        "ancestorLabel": "B35/S23",
+        "finalLabel": "B12578/S01234568",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 96.5,
+        "reproFinal": 3740.5,
+        "reproGain": 3644,
+        "heldReproAncestor": 96.5,
+        "heldReproFinal": 3740.5,
+        "heldReproGain": 3644,
+        "turnoverAncestor": 0.06925455729166667,
+        "turnoverFinal": 0.3026041666666666,
+        "turnoverGain": 0.23334960937499993,
+        "retentionAncestor": {
+          "noise": 3.1489195134575567,
+          "death": 0.07364561766735679,
+          "compute": 2.9902950310559
+        },
+        "retentionFinal": {
+          "noise": 0.9915601220830373,
+          "death": 0.9993145360121761,
+          "compute": 1.0326373865134317
+        },
+        "retentionDelta": {
+          "noise": -2.1573593913745195,
+          "death": 0.9256689183448193,
+          "compute": -1.9576576445424685
+        },
+        "collapseAncestor": {
+          "noise": 0.16666666666666666,
+          "death": 0.8333333333333334,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.e",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B1347/S38",
+        "distance": 5,
+        "viability": 1,
+        "reproAncestor": 0,
+        "reproFinal": 30,
+        "reproGain": 30,
+        "heldReproAncestor": 0,
+        "heldReproFinal": 30,
+        "heldReproGain": 30,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 0.6432291666666666,
+        "turnoverGain": 0.6393229166666666,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 0.9866041783165073,
+          "death": 0.9794977452740008,
+          "compute": 1.0317726402201286
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.e",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B12368/S234578",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 0,
+        "reproFinal": 3204.5,
+        "reproGain": 3204.5,
+        "heldReproAncestor": 0,
+        "heldReproFinal": 3204.5,
+        "heldReproGain": 3204.5,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 0.2796549479166667,
+        "turnoverGain": 0.2757486979166667,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 0.9803769666644144,
+          "death": 0.9892666005622901,
+          "compute": 0.9559843001883392
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.e",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B2368/S1234678",
+        "distance": 8,
+        "viability": 1,
+        "reproAncestor": 0,
+        "reproFinal": 2956.5,
+        "reproGain": 2956.5,
+        "heldReproAncestor": 0,
+        "heldReproFinal": 2956.5,
+        "heldReproGain": 2956.5,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 0.28644205729166666,
+        "turnoverGain": 0.28253580729166666,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 0.9296960304326645,
+          "death": 0.9787149862687371,
+          "compute": 0.9602641055475664
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.e",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.e",
+        "ancestorLabel": "B3/S28",
+        "finalLabel": "B12578/S1234568",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 0,
+        "reproFinal": 3735.5,
+        "reproGain": 3735.5,
+        "heldReproAncestor": 0,
+        "heldReproFinal": 3735.5,
+        "heldReproGain": 3735.5,
+        "turnoverAncestor": 0.00390625,
+        "turnoverFinal": 0.3069173177083333,
+        "turnoverGain": 0.3030110677083333,
+        "retentionAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "retentionFinal": {
+          "noise": 1.0202100132897522,
+          "death": 1.0304176532772873,
+          "compute": 1.0608430918822986
+        },
+        "retentionDelta": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseAncestor": {
+          "noise": null,
+          "death": null,
+          "compute": null
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.f",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B12368/S0127",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 131,
+        "reproFinal": 94,
+        "reproGain": -37,
+        "heldReproAncestor": 131,
+        "heldReproFinal": 94,
+        "heldReproGain": -37,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.6872721354166668,
+        "turnoverGain": 0.6117513020833334,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.022374336914662,
+          "death": 1.028750419513989,
+          "compute": 0.9277573878710526
+        },
+        "retentionDelta": {
+          "noise": -1.4498273243220865,
+          "death": 0.7644553091662469,
+          "compute": -1.0911589459575624
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.f",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B123456/S01234578",
+        "distance": 12,
+        "viability": 1,
+        "reproAncestor": 131,
+        "reproFinal": 3501.5,
+        "reproGain": 3370.5,
+        "heldReproAncestor": 131,
+        "heldReproFinal": 3501.5,
+        "heldReproGain": 3370.5,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.38691406250000004,
+        "turnoverGain": 0.31139322916666673,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.0067959408899085,
+          "death": 1.0217577719017805,
+          "compute": 0.927416350163322
+        },
+        "retentionDelta": {
+          "noise": -1.46540572034684,
+          "death": 0.7574626615540385,
+          "compute": -1.091499983665293
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.f",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B123457/S023567",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 131,
+        "reproFinal": 3902.5,
+        "reproGain": 3771.5,
+        "heldReproAncestor": 131,
+        "heldReproFinal": 3902.5,
+        "heldReproGain": 3771.5,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.2668294270833333,
+        "turnoverGain": 0.19130859374999998,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.0120133431235165,
+          "death": 1.0237040589324882,
+          "compute": 1.1080909313064953
+        },
+        "retentionDelta": {
+          "noise": -1.460188318113232,
+          "death": 0.7594089485847462,
+          "compute": -0.9108254025221196
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.f",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.f",
+        "ancestorLabel": "B38/S23",
+        "finalLabel": "B123457/S013567",
+        "distance": 12,
+        "viability": 1,
+        "reproAncestor": 131,
+        "reproFinal": 3744.5,
+        "reproGain": 3613.5,
+        "heldReproAncestor": 131,
+        "heldReproFinal": 3744.5,
+        "heldReproGain": 3613.5,
+        "turnoverAncestor": 0.07552083333333333,
+        "turnoverFinal": 0.2843912760416667,
+        "turnoverGain": 0.20887044270833338,
+        "retentionAncestor": {
+          "noise": 2.4722016612367486,
+          "death": 0.26429511034774195,
+          "compute": 2.018916333828615
+        },
+        "retentionFinal": {
+          "noise": 1.0149689289595512,
+          "death": 1.0287159495274536,
+          "compute": 1.1168198231585538
+        },
+        "retentionDelta": {
+          "noise": -1.4572327322771974,
+          "death": 0.7644208391797116,
+          "compute": -0.9020965106700611
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0.3333333333333333,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.g",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B12567/S2457",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 209.5,
+        "reproFinal": 1689.5,
+        "reproGain": 1480,
+        "heldReproAncestor": 209.5,
+        "heldReproFinal": 1689.5,
+        "heldReproGain": 1480,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.47153320312499997,
+        "turnoverGain": 0.4143717447916666,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 0.9954050104798744,
+          "death": 1.003629725873374,
+          "compute": 1.0151999043673272
+        },
+        "retentionDelta": {
+          "noise": 0.04761660518936728,
+          "death": 0.005006098542468473,
+          "compute": 0.012317156094850956
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.g",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B123568/S123567",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 209.5,
+        "reproFinal": 3871.5,
+        "reproGain": 3662,
+        "heldReproAncestor": 209.5,
+        "heldReproFinal": 3871.5,
+        "heldReproGain": 3662,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.3247884114583333,
+        "turnoverGain": 0.26762695312499996,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 1.0096052917574756,
+          "death": 1.0139169077645651,
+          "compute": 1.0800088423373755
+        },
+        "retentionDelta": {
+          "noise": 0.06181688646696848,
+          "death": 0.015293280433659628,
+          "compute": 0.07712609406489923
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.g",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B14678/S0134568",
+        "distance": 11,
+        "viability": 1,
+        "reproAncestor": 209.5,
+        "reproFinal": 3582,
+        "reproGain": 3372.5,
+        "heldReproAncestor": 209.5,
+        "heldReproFinal": 3582,
+        "heldReproGain": 3372.5,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.3675130208333333,
+        "turnoverGain": 0.31035156249999996,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 0.9617021209165563,
+          "death": 0.974026784896696,
+          "compute": 1.0193400589032475
+        },
+        "retentionDelta": {
+          "noise": 0.01391371562604915,
+          "death": -0.024596842434209454,
+          "compute": 0.01645731063077127
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.g",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.g",
+        "ancestorLabel": "B3/S1235",
+        "finalLabel": "B12467/S1234568",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 209.5,
+        "reproFinal": 3722.5,
+        "reproGain": 3513,
+        "heldReproAncestor": 209.5,
+        "heldReproFinal": 3722.5,
+        "heldReproGain": 3513,
+        "turnoverAncestor": 0.05716145833333333,
+        "turnoverFinal": 0.3453125000000001,
+        "turnoverGain": 0.2881510416666667,
+        "retentionAncestor": {
+          "noise": 0.9477884052905071,
+          "death": 0.9986236273309055,
+          "compute": 1.0028827482724763
+        },
+        "retentionFinal": {
+          "noise": 0.970880344621611,
+          "death": 0.9811544326690629,
+          "compute": 1.0141833556418725
+        },
+        "retentionDelta": {
+          "noise": 0.023091939331103872,
+          "death": -0.017469194661842602,
+          "compute": 0.011300607369396198
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "drift:dd.h",
+        "arm": "drift",
+        "dose": 0,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B13458/S0124568",
+        "distance": 10,
+        "viability": 1,
+        "reproAncestor": 82,
+        "reproFinal": 3479.5,
+        "reproGain": 3397.5,
+        "heldReproAncestor": 82,
+        "heldReproFinal": 3479.5,
+        "heldReproGain": 3397.5,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.2673014322916667,
+        "turnoverGain": -0.1668131510416666,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 1.001870726705278,
+          "death": 1.0062141729884355,
+          "compute": 1.020606829460207
+        },
+        "retentionDelta": {
+          "noise": -0.02665572770807767,
+          "death": 0.026044875441920468,
+          "compute": -0.29466967585691717
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "weak:dd.h",
+        "arm": "weak",
+        "dose": 1,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B23457/S23567",
+        "distance": 6,
+        "viability": 1,
+        "reproAncestor": 82,
+        "reproFinal": 3832.5,
+        "reproGain": 3750.5,
+        "heldReproAncestor": 82,
+        "heldReproFinal": 3832.5,
+        "heldReproGain": 3750.5,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.27776692708333334,
+        "turnoverGain": -0.15634765624999997,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 0.98017371725315,
+          "death": 0.9935185780946382,
+          "compute": 1.0733250680298059
+        },
+        "retentionDelta": {
+          "noise": -0.04835273716020572,
+          "death": 0.013349280548123121,
+          "compute": -0.24195143728731838
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "moderate:dd.h",
+        "arm": "moderate",
+        "dose": 2,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B134568/S23567",
+        "distance": 7,
+        "viability": 1,
+        "reproAncestor": 82,
+        "reproFinal": 3903,
+        "reproGain": 3821,
+        "heldReproAncestor": 82,
+        "heldReproFinal": 3903,
+        "heldReproGain": 3821,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.338916015625,
+        "turnoverGain": -0.09519856770833329,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 1.0088186312374938,
+          "death": 1.013016264351648,
+          "compute": 1.0697422542864856
+        },
+        "retentionDelta": {
+          "noise": -0.01970782317586184,
+          "death": 0.03284696680513299,
+          "compute": -0.24553425103063864
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      },
+      {
+        "id": "strong:dd.h",
+        "arm": "strong",
+        "dose": 3,
+        "seed": "dd.h",
+        "ancestorLabel": "B34/S23",
+        "finalLabel": "B234567/S1234578",
+        "distance": 9,
+        "viability": 1,
+        "reproAncestor": 82,
+        "reproFinal": 3683,
+        "reproGain": 3601,
+        "heldReproAncestor": 82,
+        "heldReproFinal": 3683,
+        "heldReproGain": 3601,
+        "turnoverAncestor": 0.4341145833333333,
+        "turnoverFinal": 0.38876953124999997,
+        "turnoverGain": -0.04534505208333334,
+        "retentionAncestor": {
+          "noise": 1.0285264544133557,
+          "death": 0.980169297546515,
+          "compute": 1.3152765053171243
+        },
+        "retentionFinal": {
+          "noise": 0.9604717224645243,
+          "death": 0.9781814980317649,
+          "compute": 0.9759171489654938
+        },
+        "retentionDelta": {
+          "noise": -0.06805473194883138,
+          "death": -0.0019877995147501437,
+          "compute": -0.3393593563516305
+        },
+        "collapseAncestor": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        },
+        "collapseFinal": {
+          "noise": 0,
+          "death": 0,
+          "compute": 0
+        }
+      }
+    ],
+    "conway": {
+      "label": "B3/S23",
+      "reproduction": 157.625,
+      "turnover": 0.06780776977539062,
+      "retention": {
+        "noise": 2.195852276896776,
+        "death": 0.3734659301649099,
+        "compute": 2.162549235375083
+      },
+      "collapse": {
+        "noise": 0.013888888888888888,
+        "death": 0.3472222222222222,
+        "compute": 0
+      },
+      "viability": 1
+    },
+    "byFamily": [
+      {
+        "family": "noise",
+        "rhoGain": {
+          "rho": -0.2817248486355941,
+          "lo": -0.6448637993200252,
+          "hi": 0.12183498617692046,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": -0.10458590104839355,
+          "lo": -0.49939023487363843,
+          "hi": 0.34385658679009296,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": -0.03370288956331813,
+          "lo": -0.05936099137029627,
+          "hi": -0.010360993791145523,
+          "n": 21,
+          "positive": 0
+        },
+        "meanDelta": {
+          "median": -0.03971046338808809,
+          "lo": -0.5997090084637053,
+          "hi": -0.01426706796522681,
+          "n": 28,
+          "positive": 0.00025
+        },
+        "selectedAncestorDelta": {
+          "median": -0.04835273716020572,
+          "lo": -0.6046072641778756,
+          "hi": -0.01426706796522681,
+          "n": 21,
+          "positive": 0
+        },
+        "driftAncestorDelta": {
+          "median": -0.02665572770807767,
+          "lo": -1.4498273243220865,
+          "hi": 0.04761660518936728,
+          "n": 7,
+          "positive": 0.34
+        },
+        "doseRho": -0.18588913113558314,
+        "doseP": 0.35241189702574355,
+        "rhoTurnover": {
+          "rho": -0.36381056665754175,
+          "lo": -0.7067561842675206,
+          "hi": 0.043747977961482554,
+          "n": 28
+        }
+      },
+      {
+        "family": "death",
+        "rhoGain": {
+          "rho": 0.06844627031962928,
+          "lo": -0.3618504118389989,
+          "hi": 0.4820514620800835,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": 0.06023271788127377,
+          "lo": -0.37790745592124814,
+          "hi": 0.504268333521222,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": -0.006992647612208414,
+          "lo": -0.02803267495667061,
+          "hi": 0.0027577036782373554,
+          "n": 21,
+          "positive": 0.13125
+        },
+        "meanDelta": {
+          "median": 0.22304415872647543,
+          "lo": 0.014321280490891375,
+          "hi": 0.5386739052370569,
+          "n": 28,
+          "positive": 1
+        },
+        "selectedAncestorDelta": {
+          "median": 0.22830091622813553,
+          "lo": 0.013349280548123121,
+          "hi": 0.31988514892007536,
+          "n": 21,
+          "positive": 0.9955
+        },
+        "driftAncestorDelta": {
+          "median": 0.027228535185077618,
+          "lo": 0.005006098542468473,
+          "hi": 0.8046802680425253,
+          "n": 7,
+          "positive": 0.98925
+        },
+        "doseRho": -0.07119158213703185,
+        "doseP": 0.725568607848038,
+        "rhoTurnover": {
+          "rho": 0.4837120175198467,
+          "lo": 0.09388577342382293,
+          "hi": 0.8037843124700935,
+          "n": 28
+        }
+      },
+      {
+        "family": "compute",
+        "rhoGain": {
+          "rho": -0.21519507388491446,
+          "lo": -0.5962110130397592,
+          "hi": 0.20568142507864168,
+          "n": 28
+        },
+        "rhoLevel": {
+          "rho": 0.39260780655339356,
+          "lo": -0.0761113408057283,
+          "hi": 0.7946604944912334,
+          "n": 28
+        },
+        "selectedMinusDrift": {
+          "median": 0.04631845365941123,
+          "lo": -0.044689680494713335,
+          "hi": 0.0678601914551662,
+          "n": 21,
+          "positive": 0.74225
+        },
+        "meanDelta": {
+          "median": -0.2701019634437779,
+          "lo": -0.863502880871907,
+          "hi": -0.07812927794305369,
+          "n": 28,
+          "positive": 0
+        },
+        "selectedAncestorDelta": {
+          "median": -0.24553425103063864,
+          "lo": -0.8885727598637572,
+          "hi": -0.04331499072917078,
+          "n": 21,
+          "positive": 0.00025
+        },
+        "driftAncestorDelta": {
+          "median": -0.29466967585691717,
+          "lo": -1.0911589459575624,
+          "hi": 0.012317156094850956,
+          "n": 7,
+          "positive": 0.10825
+        },
+        "doseRho": -0.03164070317201415,
+        "doseP": 0.8780304923769058,
+        "rhoTurnover": {
+          "rho": -0.32548590199835753,
+          "lo": -0.6713843613404565,
+          "hi": 0.08760958777833672,
+          "n": 28
+        }
+      }
+    ],
+    "byArm": [
+      {
+        "arm": "drift",
+        "n": 8,
+        "reproGain": 531.75,
+        "heldReproGain": 531.75,
+        "retentionDelta": {
+          "noise": -0.02665572770807767,
+          "death": 0.027228535185077618,
+          "compute": -0.29466967585691717
+        },
+        "viability": 1,
+        "distance": 7.625
+      },
+      {
+        "arm": "weak",
+        "n": 8,
+        "reproGain": 3415.5,
+        "heldReproGain": 3415.5,
+        "retentionDelta": {
+          "noise": -0.04835273716020572,
+          "death": 0.22830091622813553,
+          "compute": -0.24195143728731838
+        },
+        "viability": 1,
+        "distance": 7.75
+      },
+      {
+        "arm": "moderate",
+        "n": 8,
+        "reproGain": 3430.4375,
+        "heldReproGain": 3430.4375,
+        "retentionDelta": {
+          "noise": -0.024892542788774064,
+          "death": 0.21778740122481532,
+          "compute": -0.24553425103063864
+        },
+        "viability": 1,
+        "distance": 8.375
+      },
+      {
+        "arm": "strong",
+        "n": 8,
+        "reproGain": 3381,
+        "heldReproGain": 3381,
+        "retentionDelta": {
+          "noise": -0.06805473194883138,
+          "death": 0.22830091622813553,
+          "compute": -0.3393593563516305
+        },
+        "viability": 1,
+        "distance": 10.25
+      }
+    ],
+    "mediation": {
+      "noise": {
+        "slope": -1.6204365768520637,
+        "armBefore": -0.03370288956331813,
+        "armAfter": -0.22359034660160132
+      },
+      "death": {
+        "slope": 0.9501746602253895,
+        "armBefore": -0.006992647612208414,
+        "armAfter": 0.10345407811293045
+      },
+      "compute": {
+        "slope": -1.504560350425124,
+        "armBefore": 0.04631845365941123,
+        "armAfter": -0.448710402528234
+      }
+    },
+    "verdict": {
+      "verdict": "no-trade-off",
+      "reason": "reproduction gain and retention change are not negatively associated under the primary shock",
+      "manipulationOk": true,
+      "viabilityOk": true,
+      "primaryFamily": "noise",
+      "rho": -0.2817248486355941,
+      "rhoLo": -0.6448637993200252,
+      "rhoHi": 0.12183498617692046,
+      "selectedMinusDrift": -0.03370288956331813,
+      "selectedMinusDriftLo": -0.05936099137029627,
+      "selectedMinusDriftHi": -0.010360993791145523,
+      "doseRho": -0.18588913113558314,
+      "doseP": 0.35241189702574355,
+      "turnoverRho": -0.36381056665754175,
+      "turnoverLo": -0.7067561842675206,
+      "turnoverHi": 0.043747977961482554,
+      "armBefore": -0.03370288956331813,
+      "armAfter": -0.22359034660160132
+    }
+  }
+}

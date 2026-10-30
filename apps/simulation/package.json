@@ -34,6 +34,7 @@
     "research:ews": "tsx src/research/ewsRun.ts",
     "research:multiverse": "tsx src/research/multiverseRun.ts",
     "research:ablation": "tsx src/research/ablationRun.ts",
+    "research:doomsday": "tsx src/research/doomsdayRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

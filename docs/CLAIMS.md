@@ -117,7 +117,116 @@ shrinkage. Selection on standing founder variation and crossover remain
 untested, so M4 as a family of mechanisms is not refuted - only its
 mutation-supply component.
 
-## 2. Legacy scope claims (v1.0.0, 2026-10-16)
+## 2. Experiment A - evolutionary doomsday
+
+Question: **can a system that evolves to maximise reproduction become more
+fragile?** Model: a Life-like cellular automaton on a 32×32 torus (B0
+forbidden). The heritable unit is the 18-bit rule, not the cell; a rule's
+offspring count is the number of 0 → 1 transitions it produces after a warm-up.
+Eight lineage seeds × four arms (drift / weak 50% / moderate 25% / strong 12.5%
+truncation), 20 generations, 14 rules per generation, two training soups, two
+held-out soups. The ancestor is Conway plus 1–3 bit flips, viability-gated, and
+is shared by all four arms of a seed. The environment is fixed for every
+generation; the shock is applied only afterwards. `drift` is a
+viability-filtered neutral walk with no selection on reproduction. The model is
+self-contained in `research/`; it does not touch the agent engine.
+
+Assay: 100-tick benign warm-up, then one sudden shock - per-cell noise
+(0.2% / 1% / 5%), a one-off mortality pulse (20% / 50% / 80% of live cells), or a
+compute budget that updates 50% / 25% / 10% of cells per tick. Endpoint: mean
+population over the last 30 of 150 post-shock ticks divided by the pre-shock
+population. Every shock level starts from the same post-warm-up snapshot, so the
+comparison is paired.
+
+| ID | Claim | Falsifier | Registered analysis | Status |
+|---|---|---|---|---|
+| **A-DOOM-01** | Reproduction gain is traded against robustness: lineages selected harder lose more retention under the primary shock. | Paired Spearman rho between held-out reproduction gain and retention change > −0.3, or its 95% interval includes 0 | Noise family first; death and compute reported beside it; 4,000-resample bootstrap over lineages | **Not supported** (2026-10-30): raw births rho −0.087 [−0.461, 0.286]; established offspring −0.282 [−0.645, 0.122] |
+| **A-DOOM-02** | Selection itself causes the loss: selected endpoints retain less than their own drift controls. | selected − drift > −0.10, or interval includes 0, or selected endpoints do not fall below their own ancestors | Paired by lineage seed; median difference with bootstrap interval; `retentionDelta = final − ancestor`, so a loss is negative | **Not supported** (2026-10-30): raw births +0.018 [−0.028, 0.100]; established −0.034 [−0.059, −0.010], below the 0.10 floor |
+| **A-DOOM-03** | The loss is dose-dependent across truncation intensities. | Dose rho > −0.8 or permutation p ≥ 0.05 | Spearman of retention change on dose (drift 0, weak 1, moderate 2, strong 3); 4,000 label permutations | **Not supported** (2026-10-30): dose rho 0.13 (p = 0.51) raw, −0.19 (p = 0.35) established |
+| **A-DOOM-04** | Any loss is explained by elevated turnover rather than by specialisation. | Turnover–retention rho > −0.3 or interval includes 0, or the selected–drift contrast does not at least halve after adjustment | Spearman(turnover gain, retention change) + Theil–Sen turnover adjustment of the selected–drift median | **Not supported** (2026-10-30): raw rho −0.111 [−0.511, 0.281]; established −0.364 [−0.707, 0.044]; adjustment does not halve the contrast |
+
+**Registered decision rule (fixed before the final run).** Three gates precede
+the claim. *Manipulation*: the median held-out reproduction gain of selected
+lineages must be positive and exceed the drift arm's. *Viability*: at least 60%
+of selected endpoints must leave an assayable population after the benign
+warm-up. *Meaningful effect*: the median selected − drift retention difference
+must be at most −0.10, its interval must exclude zero, and selected endpoints
+must fall below their own ancestors. The 0.10 floor is about twice the median
+between-replicate SD of the family mean (0.048 / 0.054 / 0.060 for noise / death
+/ compute), measured on the pilot; a statistically nonzero contrast smaller than
+that is reported but is not a doomsday.
+
+A-DOOM-04's adjustment uses a **Theil–Sen slope**, not least squares, because
+three ancestors regrow from a few dozen cells after the shock and produce
+retention ratios of 2–5; OLS is set by those points. The adjustment subtracts
+`slope × turnoverGain` from every lineage's retention change and re-takes the
+selected − drift median.
+
+**Design revisions (recorded, not hidden).**
+
+1. *Raw births saturate.* The first pilot selected on raw 0 → 1 counts and
+   converged on the period-2 global flipper `B12345678/S-`: 40,960 births = 1,024
+   cells × 40 ticks, the hard ceiling. Every selected endpoint was identical, so
+   the dose axis carried no information. The final design runs **two fitness
+   definitions over the same ancestors**: `births` (primary, the question as
+   asked) and `established` (newborn cells still alive 5 ticks later). The
+   second removes the flipper and grades the axis, but partly conflates
+   reproduction with survival; neither is allowed to carry the verdict alone.
+2. *Near-empty pre-shock populations are not assayable.* One ancestor (dd.e)
+   held 3 live cells after the warm-up and scored a "retention" of 9.7 by
+   regrowing, which dominated means and OLS fits. Replicates below 32 live cells
+   before the shock (≈18% relative SD on the tail mean) are now excluded from
+   retention and from every paired statistic: 28 of 32 lineages remain. The
+   verdict under the previous, unfiltered assay was also *no-trade-off*, so the
+   floor did not decide the outcome.
+3. *Mediation statistic.* The three-predictor OLS was replaced by the robust
+   adjustment above. The prior fit produced arm coefficients outside the
+   possible range (1.9–2.3 on a 0/1 arm for a retention difference in [−1, 1]),
+   a symptom of the same outliers. The verdict was unchanged.
+
+**Result (2026-10-30).** All gates pass; nothing else does.
+
+| endpoint | arm | held-out reproduction gain | retention delta (noise, median) | viable |
+| :-- | :-- | ---: | ---: | ---: |
+| raw births | drift | +7,550 | −0.023 | 100% |
+| raw births | weak / moderate / strong | +32,882 / +32,876 / +32,894 | −0.041 / −0.052 / −0.057 | 100% |
+| established | drift | +532 | −0.027 | 100% |
+| established | weak / moderate / strong | +3,416 / +3,430 / +3,381 | −0.048 / −0.025 / −0.068 | 100% |
+
+Under raw births the selected arms sit at the same near-ceiling gain, so the
+three doses are effectively one treatment; under established offspring the gain
+is graded but the retention cost is still under 0.07 at every dose and the dose
+trend is non-monotone in sign (rho −0.19, p = 0.35).
+
+The primary family (noise) gives rho −0.087 [−0.461, 0.286] for raw births and
+−0.282 [−0.645, 0.122] for established offspring: the point estimate is negative
+in both, the interval includes zero in both. Death and compute are not better:
+raw-birth rho +0.194 and −0.033; established +0.068 and −0.215. The one interval
+that excludes zero is the established selected − drift contrast under noise
+(−0.034 [−0.059, −0.010]) — a **3.4-point** median retention cost, one third of
+the pre-registered floor, and not accompanied by a dose trend. Median final
+retention of the selected endpoints is 1.01 / 1.01 / 1.03 (noise / death /
+compute) under raw births and 1.00 / 1.01 / 1.06 under established offspring:
+the shocks barely dent them. The same assay does discriminate for other rules —
+Conway retains 2.20 under noise, **0.37 under the mortality pulse**, and 2.16
+under the compute budget — so the null is not an insensitive instrument.
+
+**Honest reading.** In this class of replicators, selection for reproduction did
+not buy fragility at any dose we could apply. The best-supported statement is a
+direction, not an effect: better replicators were *slightly* less robust under
+noise once reproduction was scored as surviving offspring, and the effect is an
+order of magnitude below the noise floor of the assay. The trade-off may exist
+outside this regime — larger lattices, longer evolution, selection on
+multi-species ecologies, or shocks that persist instead of arriving once.
+Nothing here rules it out; it rules out the strong version, in this model, at
+this scale.
+
+Artifacts: `research/output/doomsday.{md,json,csv}`,
+`research/output/plots/doomsday.svg` (primary endpoint). JSON holds both
+endpoints (`primary`, `secondary`). Reproduce with
+`npm run research:doomsday` (~2 min) or `-- --from-cache` (seconds).
+
+## 3. Legacy scope claims (v1.0.0, 2026-10-16)
 
 Pre-registered statistical claims over the engine's behaviour, canonical-model
 reproduction, and published measurements. Regenerate with
@@ -143,7 +252,7 @@ Refutations, kept visible:
 Full per-claim effects and intervals: `research/output/scope.json` and
 [`RESULTS.md`](RESULTS.md).
 
-## 3. Revision log
+## 4. Revision log
 
 | Date | Revision | Reason |
 |---|---|---|
@@ -155,8 +264,13 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-29 | E-EWS-12 registered with its decision rule, before running the M4 ablation. | The clonal/elevated comparison could be read post hoc; the estimability, manipulation, and retention bars must be fixed in advance. |
 | 2026-10-29 | E-EWS-12 manipulation check revised from standing genetic variance to direct loci-per-birth counting, after a 12-run smoke test showed standing variance is founder-dominated and cannot separate ×0 from ×1. The outcome rule (retention < 50%) is unchanged. | Better to fix a measurement that does not measure the manipulation before the full run, and record the change, than to run a test whose positive control cannot fire. |
 | 2026-10-29 | E-EWS-12 resolved **refuted**. 144 runs: clonal retains 100% of the lead slope (−0.01422 vs −0.01419; boot [−0.0181, −0.0088] vs [−0.0203, −0.0120]); AUC retained 52%. Mutation supply 0 / 12.4 / 48.3 loci per birth (3.90×). Elevated arm collapsed 25/48 vs clonal 43/48 (Fisher exact p = 9.1×10⁻⁵), so rescue is real but separate from the lead. | All three pre-registered checks passed, so the verdict is an effect failure, not a measurement failure. The elevated slope is gated to `n/a` (8% detection, 0 bootstrap resamples) rather than reported. |
+| 2026-10-30 | A-DOOM-01…04 registered with the three gates and the 0.10 retention floor, before the final run. | The question ("does selection for reproduction buy fragility?") is easy to answer post hoc in either direction; the floor and the sign convention must be fixed first. |
+| 2026-10-30 | A-DOOM design revised to run raw births (primary) and established offspring (secondary) over the same ancestors, after the raw-birth pilot converged on the period-2 flipper at the 40,960 ceiling. | A saturated axis makes the dose comparison meaningless; running both definitions stops the verdict from resting on the metric choice. |
+| 2026-10-30 | Retention assay revised to exclude pre-shock populations below 32 cells, after the first full run showed a 3-cell ancestor scoring a retention of 9.7. Verdict under the unfiltered assay was also *no-trade-off*. | Below that floor the ratio is stochastic amplification, not robustness; the change is recorded with the pre-change result so it cannot be mistaken for a rescue of the claim. |
+| 2026-10-30 | A-DOOM-04 mediation changed from three-predictor OLS to a Theil–Sen turnover adjustment. Verdict unchanged. | OLS arm coefficients left the possible range (1.9–2.3 on a 0/1 arm), driven by the same regrowing ancestors; the robust adjustment is the measurement the claim can actually bear. |
+| 2026-10-30 | A-DOOM-01…04 resolved **not supported**: no doomsday. Raw births rho −0.087 [−0.461, 0.286]; established −0.282 [−0.645, 0.122]; largest selected − drift contrast −0.034, below the 0.10 floor; dose p = 0.35. | All three gates passed, so this is an effect failure, not a measurement failure. |
 
-## 4. What is deliberately not claimed
+## 5. What is deliberately not claimed
 
 - That the early-warning theory is false in general. Only that it fails to
   transport unchanged to this class of evolving ecologies.
@@ -171,8 +285,12 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   reaches zero and 27% of the multiverse gives a non-negative slope. Only the
   lead-in-stress shrinkage is stable enough to be stated as the result, and even
   there the multiverse median is a third of the registered magnitude.
+- That reproduction and robustness trade off in general. Experiment A refutes
+  only the strong version, in one Life-like CA at 32×32 over 20 generations. It
+  does not show that a trade-off is impossible, and it does not transfer to the
+  agent ecology without its own run.
 
-## 5. Reproduce
+## 6. Reproduce
 
 ```bash
 # from apps/simulation
@@ -182,6 +300,8 @@ npm run research:multiverse          # Q5: 1,056 analyses of one dataset (~20 mi
 npm run research:multiverse -- --from-cache   # re-analysis only (seconds)
 npm run research:ablation            # M4: clonal / registered / elevated (~20 min)
 npm run research:ablation -- --from-cache     # re-analysis only (seconds)
+npm run research:doomsday            # Experiment A: both fitness modes (~2 min)
+npm run research:doomsday -- --from-cache     # re-analysis only (seconds)
 npm run research:scope               # legacy ledger -> research/output/scope.*
 npm run research:experiment -- --verify
 ```

@@ -144,6 +144,50 @@ Reproduce: `npm run research:ablation` (from `apps/simulation`; ~20 min) or
 `-- --from-cache` (seconds). Outputs: `output/ews-ablation.{md,json,csv}`,
 `plots/ews-ablation.svg`.
 
+### 0.3 Experiment A: does maximising reproduction breed fragility?
+
+A separate, self-contained model (Life-like CA on a 32×32 torus, heritable
+18-bit rule, cells are not individuals). Eight lineage seeds × four arms — no
+selection (drift), top 50%, top 25%, top 12.5% — for 20 generations. All four
+arms of a seed share a viability-gated Conway-plus-1–3-flips ancestor. The
+environment is fixed during evolution; the shock arrives afterwards and suddenly:
+per-cell noise, a mortality pulse, or a compute budget. Retention is the
+post-shock population over the last 30 of 150 ticks divided by the pre-shock
+population, with every shock level starting from the same snapshot.
+
+The first pilot selected on raw 0 → 1 counts and converged on the period-2 global
+flipper: 40,960 births = 1,024 cells × 40 ticks, the hard ceiling. Every selected
+endpoint was identical, so the design runs **both** a raw-birth endpoint (primary,
+the question as asked) and an established-offspring endpoint (newborn cells still
+alive 5 ticks later) over the same ancestors.
+
+| endpoint | rho(reproduction gain, retention change) | selected − drift | dose rho (p) |
+| :-- | :--: | :--: | :--: |
+| raw births, noise | −0.087 [−0.461, 0.286] | +0.018 [−0.028, 0.100] | 0.13 (0.51) |
+| established, noise | −0.282 [−0.645, 0.122] | −0.034 [−0.059, −0.010] | −0.19 (0.35) |
+
+All three gates passed (selected lineages gained substantially more held-out
+reproduction than drift; 100% of selected endpoints were assayable; effects were
+not saturated), and **A-DOOM-01…04 are not supported**. The negative point
+estimates do not survive their intervals, and the only interval that excludes
+zero — the established selected − drift contrast under noise — is a 3.4-point
+retention cost, one third of the pre-registered 0.10 floor, with no dose trend.
+Median final retention of selected endpoints is ≈1.0 across all three shocks,
+whereas the same assay sends Conway to 0.37 under the mortality pulse: the null
+is not an insensitive instrument.
+
+Honest reading: no doomsday in this regime. Selection for reproduction did not
+buy fragility at any dose we could apply; at most there is a direction, an order
+of magnitude below the assay's noise floor. Larger lattices, longer runs,
+multi-species ecologies, or persistent shocks may behave differently, and the
+result does not transfer to the agent ecology. Design revisions (the saturated
+raw metric, a 32-cell pre-shock floor, and a robust turnover adjustment) are
+recorded in [`CLAIMS.md`](CLAIMS.md).
+
+Reproduce: `npm run research:doomsday` (from `apps/simulation`; ~2 min) or
+`-- --from-cache` (seconds). Outputs: `output/doomsday.{md,json,csv}`,
+`output/plots/doomsday.svg`.
+
 ## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²
