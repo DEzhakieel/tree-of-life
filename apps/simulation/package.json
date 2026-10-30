@@ -35,6 +35,7 @@
     "research:multiverse": "tsx src/research/multiverseRun.ts",
     "research:ablation": "tsx src/research/ablationRun.ts",
     "research:doomsday": "tsx src/research/doomsdayRun.ts",
+    "research:selfattack": "tsx src/research/selfAttackRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
