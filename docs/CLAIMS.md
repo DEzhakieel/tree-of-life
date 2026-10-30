@@ -226,7 +226,102 @@ Artifacts: `research/output/doomsday.{md,json,csv}`,
 endpoints (`primary`, `secondary`). Reproduce with
 `npm run research:doomsday` (~2 min) or `-- --from-cache` (seconds).
 
-## 3. Legacy scope claims (v1.0.0, 2026-10-16)
+## 3. Experiment B - self-replication that attacks itself
+
+Question: **can a first-level structure reproduce while its own offspring
+destroy the second-level reproduction mechanism?** Model: a probabilistic
+birth–death process on a 40×40 torus with two explicit scales of reproduction.
+The model is self-contained in `research/`; it does not touch the agent engine.
+
+- **Scale 1 (local).** A cell divides into a nearby empty site (8-neighbourhood,
+  then Chebyshev radius 2). Heritable traits are `build ∈ {0,1,2}` (investment in
+  the scale-2 organ; 0 is a defector) and `fec ∈ {1,2,3}` (local fecundity). Birth
+  probability is `0.06 × (1 + 0.25·(fec−2)) × (1 − 0.25·build)`; death is
+  crowding-driven, `0.012 + 0.16·(n/8)²`, and a dead site is barren for 25 ticks.
+- **Scale 2 (collective).** A **nest** is a persistent site-level individual. It is
+  initiated by a builder with a quorum of four same-tag builders, spaced at
+  Chebyshev radius 2. Its integrity rises with the local builder fraction and
+  decays otherwise; it gives its lineage a birth bonus in the 3×3 block, charges
+  from that local builder fraction, and at full charge releases a propagule at
+  dispersal range 6–12. The propagule carries the nest's **current modal
+  genotype**, not its founder's.
+
+The self-attack is structural, not imposed: a nest is a club good for its tag. A
+non-builder mutant of that tag keeps the benefit, skips the build burden and
+divides faster; it dilutes the builder fraction, integrity falls, the nest stops
+reproducing, and because the propagule carries that genotype the defection
+travels to the next generation of nests.
+
+Three interventions act on three distinct links, singly and in all combinations
+(full 2³ factorial, eight conditions):
+
+| key | link | manipulation |
+|---|---|---|
+| `cost` | small structure | birth probability multiplied by `1 − 0.20·(fec−1)`, so fast local reproduction pays per birth |
+| `boundary` | cross-scale boundary | the propagule carries the nest's **founding `build` genotype** (germline sequestration); fecundity still evolves through the bottleneck |
+| `signal` | inter-scale signal | nests emit a field (decay 0.8, spread 0.5) that halves `build=0` births within reach, at 60% of their charge rate |
+
+`boundary` is deliberately narrow: it seals transmission of the cooperative
+trait only. Its result does not generalise to other boundary mechanisms
+(spatial sealing, membership policing), which are not implemented.
+
+**Registered design.** 8 fresh seeds `sa.0`…`sa.7` × 8 conditions × 1,200 ticks.
+Early window ticks 170–319 (after a 120-tick burn-in); late window the final 150
+ticks. Every run is paired by seed. The pilot seeds (`sb.`, `sc.`, `chk.`) are
+**excluded** from the confirmatory run: they were used to design the model and
+are exploratory only. The module's RNG stream differs from the prototype's, so
+prototype pilot seeds are not reproducible in the module in any case.
+
+| ID | Claim | Falsifier | Registered analysis | Status |
+|---|---|---|---|---|
+| **B-SELF-01** | In the unmanaged control, local reproduction persists to the end of the run while scale-2 reproduction collapses and the builder fraction is more than halved. | Local birth retention < 0.50, or propagule retention > 0.50, or builder retention > 0.75, each read as a confidently contrary interval | Control only, `n = 8`; late/early ratios; 2,000-resample bootstrap over seeds. Pass: birth retention ≥ 0.80 with lo > 0.50; propagule retention ≤ 0.25 with hi < 0.50; builder retention ≤ 0.50 with hi < 0.75 | Registered 2026-10-31; open |
+| **B-SELF-02a** | Intervening on the small structure alone raises late scale-2 reproduction above control by at least the between-seed floor, with a paired interval above zero. | Point difference < 0 | `cost` vs control, paired by seed; floor = 2 × between-seed SD of the control late propagule rate; 2,000-resample bootstrap of the paired difference | Registered 2026-10-31; open |
+| **B-SELF-02b** | Intervening on the cross-scale boundary alone does the same. | Point difference < 0 | as 02a, `boundary` vs control | Registered 2026-10-31; open |
+| **B-SELF-02c** | Intervening on the inter-scale signal alone does the same. | Point difference < 0 | as 02a, `signal` vs control | Registered 2026-10-31; open |
+| **B-SELF-03** | Late scale-2 reproduction is gated by the local builder fraction (Spearman rho ≥ 0.70, interval lo > 0.50) and not by the late local birth rate (\|rho\| < 0.50). The causal bottleneck separating local from hierarchical reproduction is the collective's builder supply. | Builder rho < 0.50, or \|birth rho\| ≥ 0.70 | Spearman over all 64 runs; 2,000-resample bootstrap over runs | Registered 2026-10-31; open |
+| **B-SELF-04** | The three interventions are super-additive: applying all three exceeds the sum of the three single-link gains over control by at least the between-seed floor, with a paired interval above zero. | Interaction < 0 (sub-additive) | Interaction contrast `all − cost − boundary − signal + 2·control` on the late propagule rate, paired by seed; same floor as 02a; 2,000-resample bootstrap | Registered 2026-10-31; open |
+
+**Decision rule (fixed before the confirmatory run).** A claim is *supported*
+only when its point estimate meets the registered threshold **and** the 2,000-
+resample bootstrap interval is on the required side of zero. It is *refuted*
+only when the interval is confidently contrary (the falsifier interval, not a
+non-significant null). Everything else is *inconclusive*: an underpowered null
+is not evidence for the null.
+
+**Effect floor.** `2 × between-seed SD of the control late propagule rate`,
+computed on the confirmatory controls. It is a noise floor derived from
+between-seed variability, not a value fitted to the observed effects. The
+super-additivity floor is the same quantity. At 8 seeds the paired bootstrap has
+limited resolution; this is registered as a limitation, not repaired by
+increasing the seed count after seeing the result.
+
+**Exploratory pilot (not evidence).** Four earlier designs were discarded:
+resource-flux cells starved; ring geometry saturated the lattice; a shared
+resource still saturated; an energy economy stalled division at the threshold.
+The registered model is the fifth. In the module pilot (3 `chk.` seeds, 1,200
+ticks) the control went from 0.88 to 0.09 builders and retained 0.06 of its
+propagule rate; `signal` held 0.73 propagules/tick late, `cost` 0.38,
+`boundary` 0.43, `all` 0.83. With four `sb.` seeds `boundary` held 0.11 against
+a control of 0.06. The pilot therefore predicts that 02a and 02c can pass, that
+**02b is seed-sensitive and may not**, and that the three-way combination is
+**sub-additive** (interaction ≈ −0.3 to −0.5, because the signal already
+saturates the rescue). B-SELF-04 is registered in the super-additive direction
+precisely so that this expectation can fail; a refutation there is a result, not
+a null.
+
+**Manipulation checks (engineering QA, not evidence).** Within-run determinism;
+identical seeds reproduce identical series; `boundary` propagules never carry
+`build = 0`; control runs do emit `build = 0` propagules; traits stay in range.
+These are tests, not claims.
+
+**Not claimed.** That this is a general law of major evolutionary transitions.
+The model implements three specific mechanisms and their relative strength is a
+property of this ecology. That `boundary` is ineffective in general: only
+germline sequestration of `build` was tested. That the control collapse is
+adaptive or inevitable: it is a parameter-dependent outcome of mutation rate,
+build burden and nest bonus.
+
+## 4. Legacy scope claims (v1.0.0, 2026-10-16)
 
 Pre-registered statistical claims over the engine's behaviour, canonical-model
 reproduction, and published measurements. Regenerate with
@@ -252,7 +347,7 @@ Refutations, kept visible:
 Full per-claim effects and intervals: `research/output/scope.json` and
 [`RESULTS.md`](RESULTS.md).
 
-## 4. Revision log
+## 5. Revision log
 
 | Date | Revision | Reason |
 |---|---|---|
@@ -269,8 +364,10 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-30 | Retention assay revised to exclude pre-shock populations below 32 cells, after the first full run showed a 3-cell ancestor scoring a retention of 9.7. Verdict under the unfiltered assay was also *no-trade-off*. | Below that floor the ratio is stochastic amplification, not robustness; the change is recorded with the pre-change result so it cannot be mistaken for a rescue of the claim. |
 | 2026-10-30 | A-DOOM-04 mediation changed from three-predictor OLS to a Theil–Sen turnover adjustment. Verdict unchanged. | OLS arm coefficients left the possible range (1.9–2.3 on a 0/1 arm), driven by the same regrowing ancestors; the robust adjustment is the measurement the claim can actually bear. |
 | 2026-10-30 | A-DOOM-01…04 resolved **not supported**: no doomsday. Raw births rho −0.087 [−0.461, 0.286]; established −0.282 [−0.645, 0.122]; largest selected − drift contrast −0.034, below the 0.10 floor; dose p = 0.35. | All three gates passed, so this is an effect failure, not a measurement failure. |
+| 2026-10-31 | Experiment B design moved from a resource-flux lattice to a probabilistic birth–death lattice with persistent nests (v5), after four prototypes failed: starvation, lattice saturation, division stalled at threshold, and no cheater spread. Pilot seeds `sb.`, `sc.`, `chk.` recorded as exploratory only. | Each failure was a mechanism failure, not an effect failure; the registered model is the first that produces local persistence with scale-2 collapse. |
+| 2026-10-31 | B-SELF-01…04 registered with the two-scale model, the three interventions, the between-seed effect floor and the decision rule, **before** the confirmatory run (`sa.0`…`sa.7`). | The question is easy to answer post hoc in either direction. Recording the pilot expectation (02b seed-sensitive, 04 sub-additive) keeps a refutation visible rather than re-narrated as a rescue. |
 
-## 5. What is deliberately not claimed
+## 6. What is deliberately not claimed
 
 - That the early-warning theory is false in general. Only that it fails to
   transport unchanged to this class of evolving ecologies.
@@ -289,8 +386,12 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   only the strong version, in one Life-like CA at 32×32 over 20 generations. It
   does not show that a trade-off is impossible, and it does not transfer to the
   agent ecology without its own run.
+- That a major evolutionary transition requires a particular boundary or signal.
+  Experiment B manipulates three specific mechanisms in one two-scale model; it
+  does not rank them in general, and it does not show that hierarchy always
+  collapses without management.
 
-## 6. Reproduce
+## 7. Reproduce
 
 ```bash
 # from apps/simulation
@@ -302,6 +403,8 @@ npm run research:ablation            # M4: clonal / registered / elevated (~20 m
 npm run research:ablation -- --from-cache     # re-analysis only (seconds)
 npm run research:doomsday            # Experiment A: both fitness modes (~2 min)
 npm run research:doomsday -- --from-cache     # re-analysis only (seconds)
+npm run research:selfattack          # Experiment B: 8 seeds x 8 conditions (~20 s)
+npm run research:selfattack -- --from-cache   # re-analysis only (seconds)
 npm run research:scope               # legacy ledger -> research/output/scope.*
 npm run research:experiment -- --verify
 ```
