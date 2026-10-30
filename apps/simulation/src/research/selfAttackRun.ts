@@ -209,6 +209,8 @@ function claimTable(): string {
 
 function renderMd(): string {
   const control = report.conditions.find((c) => c.name === 'control')!;
+  const cost = report.conditions.find((c) => c.name === 'cost')!;
+  const boundary = report.conditions.find((c) => c.name === 'boundary')!;
   const signal = report.conditions.find((c) => c.name === 'signal')!;
   const all = report.conditions.find((c) => c.name === 'all')!;
   const lines: string[] = [];
@@ -218,7 +220,7 @@ function renderMd(): string {
   lines.push('');
   lines.push(
     `${report.seeds.length} confirmatory seeds x ${report.conditions.length} conditions x ${report.ticks} ticks on a 40x40 torus. ` +
-      `Early window ${SA_EARLY_TO - SA_EARLY_FROM} ticks after burn-in; late window the final ${SA_LATE_SPAN} ticks.`,
+      `Early window ticks ${SA_EARLY_FROM}-${SA_EARLY_TO - 1}; late window the final ${SA_LATE_SPAN} ticks.`,
   );
   lines.push('');
   lines.push('## What this measures');
@@ -245,7 +247,7 @@ function renderMd(): string {
   lines.push('## Pre-registered claims');
   lines.push('');
   lines.push(
-    `Effect floor: ${report.rescueFloor.toFixed(3)} propagules/tick = ${2} x the between-seed SD of the control late rate. ` +
+    `Effect floor: ${report.rescueFloor.toFixed(3)} propagules/tick = 2 x the between-seed SD of the control late rate. ` +
       `Super-additivity floor: ${report.interactionFloor.toFixed(3)}.`,
   );
   lines.push('');
@@ -273,6 +275,8 @@ function renderMd(): string {
   lines.push('## Reading');
   lines.push('');
   const decouple = control.tDecoupleMedian >= 0 ? control.tDecoupleMedian.toFixed(0) : 'never';
+  const partial = control.metrics.propRetention!.values.filter((v) => v > 0.25).length;
+  const maxRet = Math.max(...control.metrics.propRetention!.values);
   lines.push(
     `- Control: local births go from ${fmt(control.metrics.birthEarly!.mean, 1)} to ${fmt(
       control.metrics.birthLate!.mean,
@@ -281,21 +285,31 @@ function renderMd(): string {
       control.metrics.propEarly!.mean,
       2,
     )} to ${fmt(control.metrics.propLate!.mean, 2)} (retention ${fmt(control.metrics.propRetention!.mean, 2)}). ` +
-      `In ${(control.decoupleFraction * 100).toFixed(0)}% of control runs the decoupled state is reached, at median tick ${decouple}.`,
+      `The decoupled state is reached in ${(control.decoupleFraction * 100).toFixed(0)}% of control runs, at median tick ${decouple}, ` +
+      `and ${partial} of ${control.n} control runs retained more than a quarter of their early rate (max ${maxRet.toFixed(2)}): ` +
+      'the collapse is a mean effect with seed-to-seed escapes, not a uniform extinction.',
   );
   lines.push(
     `- Signal alone: late propagule rate ${fmt(signal.metrics.propLate!.mean, 3)} vs control ${fmt(
       control.metrics.propLate!.mean,
       3,
-    )}; late builder fraction ${fmt(signal.metrics.lbLate!.mean, 2)}. Combined (all three): ${fmt(
+    )}; late builder fraction ${fmt(signal.metrics.lbLate!.mean, 2)}. Cost alone: ${fmt(
+      cost.metrics.propLate!.mean,
+      3,
+    )}; boundary alone: ${fmt(boundary.metrics.propLate!.mean, 3)}. Combined (all three): ${fmt(
       all.metrics.propLate!.mean,
       3,
-    )}.`,
+    )}, which is not above signal alone.`,
   );
   lines.push(
-    '- The message is not "interventions fix collapse". The boundary attempt shows that sealing transmission ' +
-      'alone does not necessarily restore scale-2 reproduction; what matters is whether the collective can keep ' +
-      'its builder supply. See the per-claim verdicts above rather than a single summary verdict.',
+    `- The bottleneck: rho(late builder fraction, late propagules) = ${fmt(report.bottleneck.rhoBuild)} ${ci(
+      report.bottleneck.rhoBuildLo,
+      report.bottleneck.rhoBuildHi,
+    )}, so builder supply tracks scale-2 output strongly. But rho(late local births, late propagules) = ${fmt(
+      report.bottleneck.rhoBirth,
+    )} ${ci(report.bottleneck.rhoBirthLo, report.bottleneck.rhoBirthHi)}, outside the pre-registered |rho| < 0.50 bound, ` +
+      'so B-SELF-03 is inconclusive rather than supported. The boundary result is a refutation of the registered ' +
+      'direction (point estimate below zero, interval spanning zero), not evidence that sealing can never work.',
   );
   lines.push('');
   lines.push('## Not claimed');
@@ -388,7 +402,7 @@ function esc(s: string): string {
 
 function renderSvg(): string {
   const w = 1080;
-  const h = 660;
+  const h = 700;
   const p: string[] = [];
   p.push(
     `<rect width="${w}" height="${h}" fill="#0e1116"/>`,

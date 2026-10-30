@@ -188,6 +188,73 @@ Reproduce: `npm run research:doomsday` (from `apps/simulation`; ~2 min) or
 `-- --from-cache` (seconds). Outputs: `output/doomsday.{md,json,csv}`,
 `output/plots/doomsday.svg`.
 
+### 0.4 Experiment B: can a hierarchy reproduce while its offspring destroy it?
+
+A second self-contained model, also outside the agent engine: probabilistic
+birth–death on a 40×40 torus for 1,200 ticks, 8 fresh seeds (`sa.0`…`sa.7`) × 8
+conditions (full 2³ factorial). Scale 1 is cell division into a nearby empty
+site. Scale 2 is a persistent **nest**: four same-tag builders initiate it, it
+decays when its local builder fraction falls, gives its lineage a birth bonus,
+and at full charge releases a propagule carrying the nest's **current** modal
+genotype. Builders pay a birth-rate burden; a non-builder mutant of the same tag
+keeps the bonus and divides faster, so the nest is destroyed by its own
+descendants. Three interventions target distinct links: `cost` penalises fast
+local reproduction, `boundary` seals the build trait at the propagule
+(germline sequestration), and `signal` lets nests suppress nearby defector
+births at a cost to their own charge rate.
+
+The effect floor is 2 × the between-seed SD of the control late propagule rate,
+computed after the run: 0.351 propagules/tick. Claims 01–04 were registered
+before the run; the pilot seeds (`sb.`, `sc.`, `chk.`) were excluded.
+
+| condition | late population | late births/tick | late builders | late nests | late propagules/tick |
+| :-- | ---: | ---: | ---: | ---: | ---: |
+| control | 715 | 32.8 | 0.15 | 15.8 | 0.170 |
+| cost | 665 | 28.1 | 0.30 | 31.2 | 0.428 |
+| boundary | 717 | 32.8 | 0.10 | 9.1 | 0.096 |
+| signal | 710 | 32.1 | 0.75 | 91.0 | 0.632 |
+| all three | 652 | 26.8 | 0.88 | 100.4 | 0.727 |
+
+**B-SELF-01 supported.** In the control, local births rose from 30.5 to 32.8
+per tick (retention 1.078 [1.072, 1.085]) and population from 695 to 715, while
+the propagule rate fell from 1.43 to 0.17 (retention 0.113 [0.049, 0.194]) and
+the builder fraction from 0.87 to 0.15 (0.161 [0.094, 0.247]); defectors rose
+from 0.15 to 0.86. The decoupled state was reached in 6 of 8 runs at median tick
+895. One seed (sa.6) kept 0.36 of its early rate, so the collapse is a mean
+effect with escapes, not a uniform extinction.
+
+**B-SELF-02a inconclusive, 02b refuted, 02c supported.** Against control, `cost`
+adds 0.258 [0.049, 0.508] propagules/tick — a positive effect whose interval
+excludes zero, but below the pre-registered 0.351 floor. `boundary` adds −0.074
+[−0.202, 0.034]: sealing the build trait did not restore scale-2 reproduction.
+`signal` adds 0.462 [0.260, 0.635] and is the only single-link intervention
+above the floor.
+
+**B-SELF-03 inconclusive.** The late builder fraction tracks the late propagule
+rate strongly (rho 0.868 [0.778, 0.924]), but the local birth rate does not meet
+the registered "unrelated" clause (rho −0.527 [−0.709, −0.293], absolute value
+above 0.50). Builder supply looks like the gate; the claim that it is the
+*exclusive* gate is not established.
+
+**B-SELF-04 refuted.** The three-way interaction is −0.090 [−0.460, 0.269],
+i.e. sub-additive. `signal` alone gives 0.632 and all three give 0.727, a
+difference the floor cannot resolve.
+
+Honest reading: the headline question is answered **yes in this model** — local
+reproduction persists while the hierarchy's own reproduction falls by an order
+of magnitude, and the mechanism is the second level being colonised by its own
+non-building offspring. But only the inter-scale signal clears the meaningful-
+effect floor. The small-structure penalty has a real, smaller effect; germline
+sequestration of the cooperative trait does not help; and the combination adds
+nothing to the signal alone. The bottleneck claim survived only its first
+clause, so "builder supply, not local births, is the gate" is a hypothesis this
+run did not isolate. The boundary result is one mechanism in one ecology, not a
+general verdict on boundaries.
+
+Reproduce: `npm run research:selfattack` (from `apps/simulation`; ~30 s) or
+`-- --from-cache` (seconds). Outputs: `output/self-attack.{md,json,csv}`,
+`output/plots/self-attack.svg`.
+
 ## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²

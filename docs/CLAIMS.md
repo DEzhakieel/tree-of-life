@@ -274,19 +274,21 @@ prototype pilot seeds are not reproducible in the module in any case.
 
 | ID | Claim | Falsifier | Registered analysis | Status |
 |---|---|---|---|---|
-| **B-SELF-01** | In the unmanaged control, local reproduction persists to the end of the run while scale-2 reproduction collapses and the builder fraction is more than halved. | Local birth retention < 0.50, or propagule retention > 0.50, or builder retention > 0.75, each read as a confidently contrary interval | Control only, `n = 8`; late/early ratios; 2,000-resample bootstrap over seeds. Pass: birth retention ≥ 0.80 with lo > 0.50; propagule retention ≤ 0.25 with hi < 0.50; builder retention ≤ 0.50 with hi < 0.75 | Registered 2026-10-31; open |
-| **B-SELF-02a** | Intervening on the small structure alone raises late scale-2 reproduction above control by at least the between-seed floor, with a paired interval above zero. | Point difference < 0 | `cost` vs control, paired by seed; floor = 2 × between-seed SD of the control late propagule rate; 2,000-resample bootstrap of the paired difference | Registered 2026-10-31; open |
-| **B-SELF-02b** | Intervening on the cross-scale boundary alone does the same. | Point difference < 0 | as 02a, `boundary` vs control | Registered 2026-10-31; open |
-| **B-SELF-02c** | Intervening on the inter-scale signal alone does the same. | Point difference < 0 | as 02a, `signal` vs control | Registered 2026-10-31; open |
-| **B-SELF-03** | Late scale-2 reproduction is gated by the local builder fraction (Spearman rho ≥ 0.70, interval lo > 0.50) and not by the late local birth rate (\|rho\| < 0.50). The causal bottleneck separating local from hierarchical reproduction is the collective's builder supply. | Builder rho < 0.50, or \|birth rho\| ≥ 0.70 | Spearman over all 64 runs; 2,000-resample bootstrap over runs | Registered 2026-10-31; open |
-| **B-SELF-04** | The three interventions are super-additive: applying all three exceeds the sum of the three single-link gains over control by at least the between-seed floor, with a paired interval above zero. | Interaction < 0 (sub-additive) | Interaction contrast `all − cost − boundary − signal + 2·control` on the late propagule rate, paired by seed; same floor as 02a; 2,000-resample bootstrap | Registered 2026-10-31; open |
+| **B-SELF-01** | In the unmanaged control, local reproduction persists to the end of the run while scale-2 reproduction collapses and the builder fraction is more than halved. | Local birth retention < 0.50, or propagule retention > 0.50, or builder retention > 0.75, each read as a confidently contrary interval | Control only, `n = 8`; late/early ratios; 2,000-resample bootstrap over seeds. Pass: birth retention ≥ 0.80 with lo > 0.50; propagule retention ≤ 0.25 with hi < 0.50; builder retention ≤ 0.50 with hi < 0.75 | **Supported** (2026-10-31): birth retention 1.078 [1.072, 1.085]; propagule 0.113 [0.049, 0.194]; builder 0.161 [0.094, 0.247] |
+| **B-SELF-02a** | Intervening on the small structure alone raises late scale-2 reproduction above control by at least the between-seed floor, with a paired interval above zero. | Point difference < 0 | `cost` vs control, paired by seed; floor = 2 × between-seed SD of the control late propagule rate; 2,000-resample bootstrap of the paired difference | **Inconclusive** (2026-10-31): delta +0.258 [+0.049, +0.508], a positive effect below the 0.351 floor |
+| **B-SELF-02b** | Intervening on the cross-scale boundary alone does the same. | Point difference < 0 | as 02a, `boundary` vs control | **Refuted** (2026-10-31): delta −0.074 [−0.202, +0.034]; no rescue, point estimate below zero |
+| **B-SELF-02c** | Intervening on the inter-scale signal alone does the same. | Point difference < 0 | as 02a, `signal` vs control | **Supported** (2026-10-31): delta +0.462 [+0.260, +0.635] |
+| **B-SELF-03** | Late scale-2 reproduction is gated by the local builder fraction (Spearman rho ≥ 0.70, interval lo > 0.50) and not by the late local birth rate (\|rho\| < 0.50). The causal bottleneck separating local from hierarchical reproduction is the collective's builder supply. | Builder rho < 0.50, or \|birth rho\| ≥ 0.70 | Spearman over all 64 runs; 2,000-resample bootstrap over runs | **Inconclusive** (2026-10-31): builder rho 0.868 [0.778, 0.924] passes, but birth rho −0.527 [−0.709, −0.293] fails the \|rho\| < 0.50 clause |
+| **B-SELF-04** | The three interventions are super-additive: applying all three exceeds the sum of the three single-link gains over control by at least the between-seed floor, with a paired interval above zero. | Interaction < 0 (sub-additive) | Interaction contrast `all − cost − boundary − signal + 2·control` on the late propagule rate, paired by seed; same floor as 02a; 2,000-resample bootstrap | **Refuted** (2026-10-31): interaction −0.090 [−0.460, +0.269]; sub-additive, and the combination adds nothing over signal alone |
 
 **Decision rule (fixed before the confirmatory run).** A claim is *supported*
 only when its point estimate meets the registered threshold **and** the 2,000-
 resample bootstrap interval is on the required side of zero. It is *refuted*
-only when the interval is confidently contrary (the falsifier interval, not a
-non-significant null). Everything else is *inconclusive*: an underpowered null
-is not evidence for the null.
+when its registered falsifier fires — for 01, a confidently contrary interval on
+any gate; for 02a–c, a negative point difference; for 03, builder rho < 0.50 or
+absolute birth rho ≥ 0.70; for 04, a negative interaction. Everything else is
+*inconclusive*: an underpowered null is not evidence for the null, and a
+supported-direction interval that misses the floor is not a rescue.
 
 **Effect floor.** `2 × between-seed SD of the control late propagule rate`,
 computed on the confirmatory controls. It is a noise floor derived from
@@ -294,6 +296,48 @@ between-seed variability, not a value fitted to the observed effects. The
 super-additivity floor is the same quantity. At 8 seeds the paired bootstrap has
 limited resolution; this is registered as a limitation, not repaired by
 increasing the seed count after seeing the result.
+
+**Result (2026-10-31).** 64 runs completed; the registered rule was applied
+unchanged. The effect floor is 0.351 propagules/tick (control late rate 0.170,
+between-seed SD 0.176).
+
+- **B-SELF-01 supported.** Control local births 30.5 → 32.8 per tick (retention
+  1.078 [1.072, 1.085]), propagule rate 1.43 → 0.17 (0.113 [0.049, 0.194]),
+  builder fraction 0.87 → 0.15 (0.161 [0.094, 0.247]); defectors 0.15 → 0.86 and
+  population 695 → 715. The decoupled state is reached in 6 of 8 runs, at median
+  tick 895. One seed (sa.6) kept 0.36 of its early rate, so this is a mean effect
+  with escapes, not a uniform extinction.
+- **B-SELF-02a inconclusive.** `cost` adds 0.258 [0.049, 0.508] propagules/tick.
+  The interval excludes zero, but the effect is below the pre-registered 0.351
+  meaningful floor. The floor, not the sign, decided this claim.
+- **B-SELF-02b refuted.** `boundary` adds −0.074 [−0.202, 0.034]: sealing the
+  build trait at the cross-scale transmission did not rescue scale-2
+  reproduction in this implementation, and the point estimate is negative.
+- **B-SELF-02c supported.** `signal` adds 0.462 [0.260, 0.635] propagules/tick,
+  the only single-link intervention above the floor.
+- **B-SELF-03 inconclusive.** The builder fraction tracks the late propagule
+  rate strongly (rho 0.868 [0.778, 0.924]), but the local birth rate does not
+  meet the registered "unrelated" clause (rho −0.527 [−0.709, −0.293],
+  |rho| > 0.50). The builder-supply link is real; the claim that it is the
+  *exclusive* gate is not established. The negative birth correlation is
+  consistent with the build burden — builder-rich runs divide less locally yet
+  reproduce more at scale 2 — but that reading was not the registered test.
+- **B-SELF-04 refuted.** Interaction −0.090 [−0.460, 0.269]: sub-additive.
+  `signal` alone gives 0.632 late propagules/tick and all three give 0.727, a
+  difference the floor cannot resolve. In this ecology the inter-scale signal is
+  the binding constraint, and the other two links do not add to it.
+
+**Honest reading.** The headline question is answered yes *in this model*: local
+reproduction persists (population 695 → 715, births 30.5 → 32.8) while
+second-level reproduction falls by an order of magnitude (1.43 → 0.17) and the
+builder fraction collapses (0.87 → 0.15). The causal claim is narrower than
+registered: builder supply is strongly associated with scale-2 output, but local
+birth rate is not independent of it, so the bottleneck was not isolated by the
+registered correlation. Of the three links, only the inter-scale signal clears
+the meaningful-effect floor; the small-structure penalty has a real but smaller
+effect, and germline sequestration of the cooperative trait does not help.
+Nothing here shows that boundary mechanisms are useless — only that this one, in
+this ecology, is not the binding constraint.
 
 **Exploratory pilot (not evidence).** Four earlier designs were discarded:
 resource-flux cells starved; ring geometry saturated the lattice; a shared
@@ -366,6 +410,7 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-30 | A-DOOM-01…04 resolved **not supported**: no doomsday. Raw births rho −0.087 [−0.461, 0.286]; established −0.282 [−0.645, 0.122]; largest selected − drift contrast −0.034, below the 0.10 floor; dose p = 0.35. | All three gates passed, so this is an effect failure, not a measurement failure. |
 | 2026-10-31 | Experiment B design moved from a resource-flux lattice to a probabilistic birth–death lattice with persistent nests (v5), after four prototypes failed: starvation, lattice saturation, division stalled at threshold, and no cheater spread. Pilot seeds `sb.`, `sc.`, `chk.` recorded as exploratory only. | Each failure was a mechanism failure, not an effect failure; the registered model is the first that produces local persistence with scale-2 collapse. |
 | 2026-10-31 | B-SELF-01…04 registered with the two-scale model, the three interventions, the between-seed effect floor and the decision rule, **before** the confirmatory run (`sa.0`…`sa.7`). | The question is easy to answer post hoc in either direction. Recording the pilot expectation (02b seed-sensitive, 04 sub-additive) keeps a refutation visible rather than re-narrated as a rescue. |
+| 2026-10-31 | B-SELF-01…04 resolved: 01 supported; 02a inconclusive (+0.258 vs floor 0.351); 02b refuted (−0.074); 02c supported (+0.462); 03 inconclusive (builder rho 0.868, birth rho −0.527); 04 refuted (interaction −0.090). | Registered rule unchanged. The floor, not the sign, decided 02a; the absolute-rho clause, not the builder correlation, decided 03. The pilot's predicted boundary weakness and sub-additivity both held, so the result was not rescued by re-reading. |
 
 ## 6. What is deliberately not claimed
 
@@ -390,6 +435,10 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   Experiment B manipulates three specific mechanisms in one two-scale model; it
   does not rank them in general, and it does not show that hierarchy always
   collapses without management.
+- That builder supply is the *exclusive* bottleneck between local and
+  hierarchical reproduction. Experiment B found a strong association (rho 0.868)
+  but the registered exclusivity clause failed: local birth rate was also
+  associated with scale-2 output (rho −0.527).
 
 ## 7. Reproduce
 
