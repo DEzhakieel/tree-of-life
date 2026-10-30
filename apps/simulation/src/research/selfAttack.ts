@@ -84,7 +84,7 @@ export const SA_LATE_SPAN = 150;
 export const SA_SMOOTH = 25;
 export const SA_SUSTAIN = 50;
 
-/** Between-seed floor, in units of the control late propagule rate. */
+/** Effect floor, in between-seed SDs of the control late propagule rate. */
 export const SA_FLOOR_SD = 2;
 
 /* ------------------------------------------------------------------- types -- */
