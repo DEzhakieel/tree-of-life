@@ -9,11 +9,13 @@
  * out-of-range coordinate silently poisons every downstream statistic long
  * before anyone notices a wrong number in a report.
  *
- * The rules below are the ones the engine actually maintains (see
- * `docs/MATHEMATICS.md`). Values a scenario deliberately overrides — e.g.
- * `feedGenome` writes threshold genes at ±5 — are not violations, which is why
- * genome values are checked for finiteness but not for the mutation kernel's
- * [-1, 1] range.
+ * The rules below are the ones the engine maintains after construction. A world
+ * configured with `spawnCount > maxPopulation` is reported as out of domain:
+ * the population ceiling gates births, but founder spawning trusts the
+ * configuration, so that case is a configuration error worth surfacing.
+ * Values a scenario deliberately overrides — e.g. `feedGenome` writes threshold
+ * genes at ±5 — are not violations, which is why genome values are checked for
+ * finiteness but not for the mutation kernel's [-1, 1] range.
  */
 
 export interface AuditableAgent {

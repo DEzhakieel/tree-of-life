@@ -24,8 +24,9 @@ The hardening pass was **behaviour-preserving** by construction:
 
 The engine's own stochastic primitives are `SplitMix64.next`,
 `nextGaussian`, `nextInt`, and the bounded product draw in `worldStoch.ts`
-(`poissonDraw`). None of those changed. Evidence that the trajectory did not
-move: the 49-file fast suite passes, including `determinism`, `reproducibility`,
+(`poissonDraw`). Their in-domain behaviour is unchanged (`nextInt` only gained a
+guard for invalid bounds). Evidence that the trajectory did not move: the
+49-file fast suite passes, including `determinism`, `reproducibility`,
 `rescueAblation`, and the inert-audit test added here. The M4 ×1 lever check
 (registered arm equals the cached Q5 series) remains the authority for the
 ablation artifacts and was not re-run by this pass.
@@ -123,6 +124,11 @@ if (violations.length) throw new Error(describeViolations(violations));
 | alive count `≤ maxPopulation` | world | reproduction is gated on capacity |
 | genome length `= 217`, all finite | every agent | `GENOME_SIZE`, float32 storage |
 | all numeric `SimStats` fields finite | stats | division guards use `max(1, …)` |
+
+`maxPopulation` is a ceiling for **births**, not for construction:
+`spawnFounders` trusts `params.spawnCount`, so a world configured with
+`spawnCount > maxPopulation` is correctly reported as out of domain. That is a
+configuration error, not a dynamics violation.
 
 Deliberately **not** checked: genome values within `[-1,1]` (scenario overrides),
 velocity magnitude (physics caps escape speed only when a `universe` frame is
@@ -222,7 +228,7 @@ cannot move a recorded result. Each is now covered by a contract test.
 
 | Defect | Before | After |
 |---|---|---|
-| `poissonRng(λ ≥ 30)` | `exp(−λ)` underflows to 0, so the Knuth product loop never terminates — it hangs forever | Ahrens–Dieter logistic envelope, exact pmf acceptance, O(1) per draw; verified against the pmf for λ = 30 and 1000 |
+| `poissonRng(λ ≥ 30)` | the "rejection" branch used a malformed envelope whose acceptance test practically never held at λ = 30 or 100, so the loop did not terminate (confirmed by timeout) | Ahrens–Dieter logistic envelope, exact pmf acceptance, O(1) per draw; verified against the pmf for λ = 30 and 1000 |
 | `multivariateGaussianRng` | reused one shared `z` for every column and drew a second, unused normal per row; for `Σ = [[1,0.8],[0.8,1]]` it gave `var(y) = 1.973`, `corr = −0.005` | independent `z_j`; recovers a full 3×3 covariance within sampling error |
 | `vonMisesRng` | `(sign·acos(f) + μ) mod 2π` could return a negative angle for small μ | positive modulo, `[0, 2π)` for every draw |
 | `nextInt(n > 2^32)` | `limit = 0`, so `while (v >= 0)` never terminates | throws `RangeError`; non-integer bounds also throw |
@@ -281,7 +287,8 @@ the idealized model.
    with the default `agentMaxAge = 4000` the derived `environmentalStress` is
    pinned near 1 instead of measuring age structure; that field is not used by
    `computeFitness` and has no dynamic effect. Fixing either without a
-   registered revision would change a persisted observable.
+   registered revision would change the reported fitness composite (and the
+   `SelectionState` field), so both are recorded rather than silently repaired.
 5. **Toxin gene conflates two traits.** `genome[125]` scales both toxin
    production and resistance. Absorption is multiplied by `(1 − 0.7·g)`, so
    resistance can remove at most 70% of environmental toxin, and the same gene
@@ -296,9 +303,8 @@ the idealized model.
 7. **No numerical-stability guarantee.** The integrator is explicit Euler with
    clamps. The tests bound the sampled distribution and the state domain; they
    do not prove that a chaotically diverging orbit stays close to a reference for
-   all inputs. Cross-engine parity is asserted for recorded scenarios, where JS
-   binary64 intermediates are rounded to `float32` at the same points as Rust's
-   `f32`; it is not a theorem about arbitrary arithmetic.
+   all inputs. Cross-engine parity is asserted for recorded scenarios and checked
+   by `test/parity.test.ts`; it is not a theorem about arbitrary arithmetic.
 
 ## 8. Reproducing the checks
 
