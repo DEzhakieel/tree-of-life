@@ -25,11 +25,18 @@ The hardening pass was **behaviour-preserving** by construction:
 The engine's own stochastic primitives are `SplitMix64.next`,
 `nextGaussian`, `nextInt`, and the bounded product draw in `worldStoch.ts`
 (`poissonDraw`). Their in-domain behaviour is unchanged (`nextInt` only gained a
-guard for invalid bounds). Evidence that the trajectory did not move: the
-49-file fast suite passes, including `determinism`, `reproducibility`,
-`rescueAblation`, and the inert-audit test added here. The M4 ×1 lever check
-(registered arm equals the cached Q5 series) remains the authority for the
-ablation artifacts and was not re-run by this pass.
+guard for invalid bounds). Evidence that the trajectory did not move:
+
+- the 49-file fast suite passes, including `determinism`, `reproducibility`,
+  `rescueAblation`, and the inert-audit test added here;
+- after the changes, a fresh run of the registered M4 arm (seed `ews.a`, ramp
+  300, burn 350, tail 300) reproduced the cached Q5 population series
+  element-for-element: **0 mismatches in 950 ticks**, first five values
+  `282, 241, 169, 135, 121`.
+
+The full M4 ×1 lever check (all 48 registered cells) remains the authority for
+the ablation artifacts; the single-cell re-run above is the spot check that the
+math edits did not perturb the stream.
 
 ## 2. State and units
 
