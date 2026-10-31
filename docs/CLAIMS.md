@@ -365,7 +365,145 @@ germline sequestration of `build` was tested. That the control collapse is
 adaptive or inevitable: it is a parameter-dependent outcome of mutation rate,
 build burden and nest bonus.
 
-## 4. Legacy scope claims (v1.0.0, 2026-10-16)
+## 4. Experiment C - the kill-switch map
+
+Question: **which directed perturbation most effectively destroys an emergent
+colony, and is a cell's reproductive participation a causal necessity or only a
+correlate?** The model is self-contained in `research/`; it does not touch the
+agent engine.
+
+### Model
+
+A colony on a 48 × 48 torus, 750 ticks, perturbation at tick 250 after a shared
+burn-in. The seed is a disc of radius 6. Each occupied cell contributes to a
+colony-level public good in proportion to its local crowding, `(n/4)^2` with `n`
+the number of occupied 4-neighbours. The good is well mixed inside each
+connected component, decays by 15% per tick, caps at 8, and gates birth at the
+quorum threshold `S_MIN = 3.0`. Births consume a global nutrient pool that caps
+population; death rises when the good is low and when a cell is exposed (few
+neighbours). Above the quorum the colony replaces itself; below it no cell can
+divide and the colony decays.
+
+Two assumptions are registered with the model. The public good is
+**component-mixed, not locally diffusive**: the experiment tests colony-level
+quorum maintenance, not local signalling. A cell's lifetime division count is a
+**marker, not a mechanism**: it is not read by birth or death, so any difference
+between the participation and matched arms is a spatial/demographic effect, not
+a direct cost of dividing.
+
+### Registered design
+
+16 fresh seeds `ck.0` … `ck.15`. The pilot seeds `ck.p0` … `ck.p9` are
+exploratory only and are excluded. Each seed contributes 46 runs:
+
+- **12 conditions** (40% lesion unless noted): `control`, `core`, `rim`,
+  `participation` (top lifetime divisions), `matched` (density-matched random),
+  `ageMatched` (5-tick age-bin-matched random, excluding the target set),
+  `random` (uniform), `seal` (wall ring at 0.6 × colony radius),
+  `randomEdges` (the same number of random internal links),
+  `delayCore`, `delayRim`, `delayParticipation` (100-tick freeze, then lifted).
+- **4 dose curves × 6 doses** `{0.05, 0.10, 0.15, 0.20, 0.30, 0.40}` for
+  `participation`, `matched`, `ageMatched`, `random`.
+- **10 location points**: a compact 40% lesion at the centroid, eight
+  mid-radius azimuths, and the rim (0.9 × colony radius).
+
+Total 736 runs. Every comparison is paired by seed. All conditions share the
+same pre-perturbation trajectory; dynamics and perturbation choices use two
+independent RNG streams (`killswitch:dyn:<seed>`, `killswitch:pert:<seed>`), so a
+perturbation cannot shift the noise sequence the control sees. Code:
+`apps/simulation/src/research/killSwitch.ts`; runner:
+`apps/simulation/src/research/killSwitchRun.ts`; tests:
+`apps/simulation/test/killSwitch.test.ts`.
+
+### Metrics
+
+- **Destruction**: final population below 5% of the pre-lesion count.
+- **Recovery**: first tick after a dip below 90% of the pre-lesion count at
+  which the population is back to 90%. Runs that never dip are reported
+  separately; runs still below 90% at the end are censored.
+- **Loss**: `1 - final / control final` for the same seed. Positive means the
+  perturbation left the colony smaller than its paired control.
+- **Fragmentation**: number of connected components and the largest component
+  as a fraction of surviving cells, measured immediately after the perturbation.
+
+### Assay viability gate
+
+The assay is valid only if the 16 controls give at least 5 runs, control
+destruction at most 0.20, and at least 70% of controls at a final/pre ratio of
+0.50 or more. If the gate fails, every Experiment C claim is reported
+**inconclusive** regardless of its point estimate.
+
+### Effect floors
+
+- Destruction-probability difference: **0.30** (about 5/16 paired runs). This is
+  a practical-significance floor fixed in advance, not estimated from the
+  confirmatory data.
+- Interface loss: `max(2 × between-seed SD of random-edge loss, 0.10)`.
+- Location equivalence: **±0.15** in loss.
+
+Paired intervals use 2,000-resample bootstrap over seeds. A claim is
+**supported** only when its point estimate clears the registered floor **and**
+the paired interval lies on the required side of zero. It is **refuted** when
+its registered falsifier fires. Everything else is **inconclusive**; a
+supported-direction interval that misses the floor is not a kill switch.
+
+### Registered claims
+
+| ID | Claim | Falsifier | Registered analysis | Status |
+|---|---|---|---|---|
+| **C-KILL-01** | Removing the 40% most participatory cells destroys the colony at least 0.30 more often than removing a uniform random 40%, with a paired 95% interval above zero. | Paired mean difference ≤ 0 | `participation − random`, paired by seed; 2,000-resample bootstrap; floor 0.30 | **Open** |
+| **C-KILL-02** | Participation is not merely age or density: removing the 40% most participatory cells destroys the colony at least 0.30 more often than either an age-matched random set or a density-matched random set, with paired intervals above zero. | Either paired mean difference ≤ 0 | `participation − ageMatched` and `participation − matched`, paired by seed; 2,000-resample bootstrap; floor 0.30 on both | **Open** |
+| **C-KILL-03** | The interface is a partial kill switch: sealing the core–periphery boundary damages the colony more than cutting the same number of random internal links, but leaves the core alive. | Seal loss difference ≤ 0, **or** seal destruction ≥ 0.50 | `seal − randomEdges` loss, paired by seed; 2,000-resample bootstrap; floor `max(2×SD(randomEdges loss), 0.10)`; destruction gate 0.50 | **Open** |
+| **C-KILL-04** | A pause is weaker than a lesion: a 100-tick pause of the most participatory cells destroys the colony at least 0.30 less often than permanent removal, and at least half of paused runs end at 90% or more of their contemporaneous control final population. | Pause destruction ≥ removal destruction, **or** fewer than 30% of paused runs recover to 90% of control final | `delayParticipation` vs `participation`; recovery fraction against the paired control final; destruction floor 0.30 | **Open** |
+| **C-KILL-05** | Compact-lesion location is not a major determinant: centre-minus-rim loss is smaller than 0.15 in absolute value, with the paired 95% interval inside ±0.15. | Pair interval lies entirely outside ±0.15 | Centre (radius 0) minus rim (radius 0.9) loss, paired by seed; 2,000-resample bootstrap; equivalence margin 0.15. Spearman rho(distance, loss) is reported descriptively, not as the verdict | **Open** |
+
+### Registered interpretation
+
+The design can return a negative map. If no small directed lesion clears the
+floor, the honest result is that the colony has no small kill switch in this
+model: geometric core, rim, interface seal, pause and lesion location are not
+sufficient, and only large distributed removal of highly participatory cells
+collapses it. C-KILL-03 and C-KILL-05 are explicitly expected-null candidates;
+they are registered in the positive direction so that a null is a verdict, not
+an unstated default. C-KILL-01 and C-KILL-02 are the headline tests. C-KILL-04
+asks whether a temporary pause is weaker than permanent removal.
+
+### Pilot disclosure (exploratory, not evidence)
+
+Two 5-seed pilots (`ck.p0` … `ck.p4`, `ck.p5` … `ck.p9`) ran the full 230-run
+design before registration. They are design evidence only and are not reused.
+Combined: control viable, final/pre 0.79–0.83; participation destruction 5/10 vs
+random 1/10, density-matched 1/10, age-matched 1/10; core, rim, seal and all
+pause arms 0/10; the compact-lesion location sweep was null; the participation
+dose threshold sat near 0.30–0.40. Fragmentation did not cleanly separate the
+participation arm from its controls: after a 40% participation lesion the largest
+component was 0.17 of survivors, versus 0.16 for density-matched and 0.20 for
+random, while participation still destroyed more colonies. The pilot therefore
+motivates the age/density controls in C-KILL-02; it does not establish them.
+
+Parameter excursions during model design (production exponent 3–4, production
+1.5–2.0, decay 0.19) were rejected before registration because they either
+collapsed the controls or made random removal lethal. The registered parameters
+are the original `PROD = 1.0`, `PROD_EXP = 2`, `DECAY = 0.15`. No model or
+analysis change will be made after the confirmatory seeds are opened; any later
+change is appended to the revision log and the affected claims are re-reported,
+not silently folded into this pre-registration.
+
+### Manipulation checks (engineering QA, not evidence)
+
+Within-run determinism; identical pre-burn trajectories across conditions; exact
+lesion counts; equal seal and random-edge counts; delayed cells frozen and then
+lifted; destruction consistent with the 5% threshold; report reproducibility from
+serialised observations. These are tests, not claims.
+
+### Artifacts and reproduce
+
+`research/output/kill-switch.{md,json,csv}`,
+`research/output/plots/kill-switch.svg`, cache
+`research/output/kill-switch-series.json`. Reproduce with
+`npm run research:killswitch` (736 runs) or `-- --from-cache` (re-render only).
+
+## 5. Legacy scope claims (v1.0.0, 2026-10-16)
 
 Pre-registered statistical claims over the engine's behaviour, canonical-model
 reproduction, and published measurements. Regenerate with
@@ -391,7 +529,7 @@ Refutations, kept visible:
 Full per-claim effects and intervals: `research/output/scope.json` and
 [`RESULTS.md`](RESULTS.md).
 
-## 5. Revision log
+## 6. Revision log
 
 | Date | Revision | Reason |
 |---|---|---|
@@ -411,8 +549,9 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-31 | Experiment B design moved from a resource-flux lattice to a probabilistic birth–death lattice with persistent nests (v5), after four prototypes failed: starvation, lattice saturation, division stalled at threshold, and no cheater spread. Pilot seeds `sb.`, `sc.`, `chk.` recorded as exploratory only. | Each failure was a mechanism failure, not an effect failure; the registered model is the first that produces local persistence with scale-2 collapse. |
 | 2026-10-31 | B-SELF-01…04 registered with the two-scale model, the three interventions, the between-seed effect floor and the decision rule, **before** the confirmatory run (`sa.0`…`sa.7`). | The question is easy to answer post hoc in either direction. Recording the pilot expectation (02b seed-sensitive, 04 sub-additive) keeps a refutation visible rather than re-narrated as a rescue. |
 | 2026-10-31 | B-SELF-01…04 resolved: 01 supported; 02a inconclusive (+0.258 vs floor 0.351); 02b refuted (−0.074); 02c supported (+0.462); 03 inconclusive (builder rho 0.868, birth rho −0.527); 04 refuted (interaction −0.090). | Registered rule unchanged. The floor, not the sign, decided 02a; the absolute-rho clause, not the builder correlation, decided 03. The pilot's predicted boundary weakness and sub-additivity both held, so the result was not rescued by re-reading. |
+| 2026-10-31 | C-KILL-01…05 registered with the component-mixed public-good model, the assay viability gate, the 0.30 / 2-SD / ±0.15 floors and the decision rule, **before** the confirmatory run (`ck.0`…`ck.15`). The two 5-seed pilots (`ck.p0`…`ck.p9`) are disclosed as exploratory only; model parameters are frozen at `PROD = 1.0`, `PROD_EXP = 2`, `DECAY = 0.15`. | The question ("which directed disturbance kills the colony?") is easy to answer post hoc from the most lethal arm. The floor, the viability gate and the pilot disclosure have to be fixed before the confirmatory seeds are opened. |
 
-## 6. What is deliberately not claimed
+## 7. What is deliberately not claimed
 
 - That the early-warning theory is false in general. Only that it fails to
   transport unchanged to this class of evolving ecologies.
@@ -440,7 +579,7 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   but the registered exclusivity clause failed: local birth rate was also
   associated with scale-2 output (rho −0.527).
 
-## 7. Reproduce
+## 8. Reproduce
 
 ```bash
 # from apps/simulation
@@ -454,6 +593,8 @@ npm run research:doomsday            # Experiment A: both fitness modes (~2 min)
 npm run research:doomsday -- --from-cache     # re-analysis only (seconds)
 npm run research:selfattack          # Experiment B: 8 seeds x 8 conditions (~20 s)
 npm run research:selfattack -- --from-cache   # re-analysis only (seconds)
+npm run research:killswitch          # Experiment C: 16 seeds x 46 runs (~5 min)
+npm run research:killswitch -- --from-cache   # re-render only (seconds)
 npm run research:scope               # legacy ledger -> research/output/scope.*
 npm run research:experiment -- --verify
 ```

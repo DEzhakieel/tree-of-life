@@ -36,6 +36,7 @@
     "research:ablation": "tsx src/research/ablationRun.ts",
     "research:doomsday": "tsx src/research/doomsdayRun.ts",
     "research:selfattack": "tsx src/research/selfAttackRun.ts",
+    "research:killswitch": "tsx src/research/killSwitchRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
