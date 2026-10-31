@@ -37,6 +37,7 @@
     "research:doomsday": "tsx src/research/doomsdayRun.ts",
     "research:selfattack": "tsx src/research/selfAttackRun.ts",
     "research:killswitch": "tsx src/research/killSwitchRun.ts",
+    "research:collapse": "tsx src/research/collapsePredictRun.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

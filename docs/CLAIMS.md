@@ -617,7 +617,123 @@ Refutations, kept visible:
 Full per-claim effects and intervals: `research/output/scope.json` and
 [`RESULTS.md`](RESULTS.md).
 
-## 6. Revision log
+## 6. Experiment D - predicting collapse before it is visible
+
+Question: **can an emergent colony's collapse be predicted from its first 100
+ticks, on rules and parameter regimes the model has never seen, and does the
+prediction stay calibrated?** The experiment runs the agent engine unchanged and
+does not intervene; it is a held-out prediction test, not a causal claim.
+
+### Design
+
+24 conditions = 3 mutation rules × 8 parameter regimes. The rule is
+`world.mutationScale`; the parameters are basal metabolism and food
+regeneration:
+
+| regime | `metabolismBase` | `foodRegenRate` | split |
+| :-- | ---: | ---: | :-- |
+| P0 | 6 | 0.0027 | train |
+| P1 | 8 | 0.0027 | train |
+| P2 | 10 | 0.0027 | train |
+| P3 | 12 | 0.0027 | test (unseen parameter) |
+| P4 | 8 | 0.0018 | test (unseen parameter) |
+| P5 | 10 | 0.0018 | test (unseen parameter) |
+| P6 | 12 | 0.0018 | train |
+| P7 | 16 | 0.0018 | train |
+
+Rules: `clonal` (`mutationScale = 0`), `legacy` (`1`), `elevated` (`4`).
+Training conditions are `clonal`/`legacy` × P0,P1,P2,P6,P7 (10 conditions) on
+fresh seeds `d.c0` … `d.c7`. Test conditions are `elevated` × all 8 regimes
+(unseen rule) plus `clonal`/`legacy` × P3,P4,P5 (unseen parameter regimes), 14
+conditions on seeds `d.c8` … `d.c15`. Each condition contributes 8 runs, 192 in
+total. No seed and no condition is shared between fit and evaluation.
+
+Every run is 600 ticks with 300 founders, `maxPopulation = 500`, and
+`deadRetention = 0`. Dead agents are retained in the engine only for lineage and
+are never read by the update equations, so the zero retention is
+dynamics-preserving; it keeps the 192 sequential runs inside the memory budget.
+The experiment does not modify the engine.
+
+**Labels.** The early window is ticks 40–140, sampled every 5 ticks (21
+samples); no later observation is a predictor. The outcome window is ticks
+500–599. A run is a collapse if its late mean alive count is **< 10**, a
+persistence if it is **≥ 30**, and ambiguous in the 10–30 interval. Ambiguous
+runs are excluded from fitting and scoring and are counted in the report. The
+thresholds are absolute rather than relative to the founder peak because pilot
+runs showed that a stressed world can settle at a low but nonzero population.
+
+**Features (14).** Population: log mean alive, log-population trend per 100
+ticks, coefficient of variation, lag-1 autocorrelation, mean-crossing rate
+("flicker"), trough/mean. Entropy: species Shannon entropy (bits) and
+normalised spatial entropy on a 16 × 16 torus grid. Spatial structure: Moran's
+I with rook weights, occupied-neighbour fraction, occupancy, largest 4-connected
+component as a fraction of occupied bins, radius of gyration around the circular
+centroid. Energy: mean energy / capacity. No condition label, rule, parameter
+value, or late-window quantity enters the feature vector.
+
+**Model.** L2-regularised logistic regression fitted by Newton–Raphson/IRLS on
+the training split only, with the penalty `λ = 0.1` fixed in advance and
+features standardised on the training mean and standard deviation. The
+intercept is unpenalised. Baselines and ablations fit the identical
+specification on the same training runs: training base rate, population
+size-plus-trend (`logMeanPop`, `popTrend`), temporal-only (the six population
+features), entropy-only (the two entropy features), structure-only (the five
+spatial-structure features), full-minus-entropy, and full-minus-structure.
+
+**Uncertainty.** Intervals are 95% percentile intervals from 1,000 condition-
+cluster bootstrap resamples: whole test conditions are resampled, not individual
+runs, because runs within a condition are not independent. The same resampling
+seeds are used for every contrast.
+
+**Label gate.** At least 8 labelled runs and at least 3 collapses and 3
+persistences in **each** split are required. If the gate fails, every
+Experiment D claim is reported **inconclusive**; no verdict is issued.
+
+### Registered claims
+
+A claim is **supported** only when its point estimate clears the registered
+floor **and** its interval lies on the required side. It is **refuted** when its
+falsifier fires. Everything else is **inconclusive**. All floors and the gate
+are fixed before the confirmatory seeds are opened.
+
+| ID | Claim | Falsifier | Registered analysis | Status |
+|---|---|---|---|---|
+| **D-PRED-01** | The full early-window model discriminates collapse from persistence on unseen conditions: test AUC ≥ 0.70 with a condition-cluster bootstrap lower bound > 0.50. | Test AUC ≤ 0.50 | Full 14-feature logistic model; test AUC; 1,000-resample condition-cluster 95% interval | Open |
+| **D-PRED-02** | The full model beats the population-size-plus-trend baseline by ΔAUC ≥ 0.05 with a bootstrap lower bound > 0, and has Brier skill ≥ 0.10 against the training base rate. | ΔAUC ≤ 0 | `full − population` AUC, paired by condition in the same bootstrap; Brier skill on the test runs; floor 0.05 | Open |
+| **D-PRED-03** | The full model is calibrated out of condition: ECE ≤ 0.10 over five probability bins and calibration slope in [0.5, 1.5]. | ECE > 0.20 **or** calibration slope outside [0, 2] | Test ECE and logistic recalibration slope (outcome on model logit); floors as stated | Open |
+| **D-PRED-04** | Entropy alone is not a universal collapse indicator: the entropy-only model fails the same discrimination bar, test AUC < 0.70. | Entropy-only test AUC ≥ 0.70 **and** bootstrap lower bound > 0.50 | Two-feature entropy-only logistic model; test AUC and 1,000-resample interval | Open |
+| **D-PRED-05** | Spatial structure adds predictive value beyond population and temporal features: full-minus-temporal ΔAUC ≥ 0.05 with a bootstrap lower bound > 0. | ΔAUC ≤ 0 | `full − temporal` AUC, paired by condition in the same bootstrap; floor 0.05 | Open |
+
+The registered interpretation is symmetric. D-PRED-01 and D-PRED-02 are the
+headline tests of transportable prediction. D-PRED-04 is a registered
+negative-direction claim: it is supported if the simple entropy model fails, and
+it is refuted if entropy alone clears the AUC bar with an interval above chance.
+D-PRED-03 can fail even when ranking survives, which is the calibration result
+that matters for any deployment. D-PRED-05 can fail while the full model works,
+which would say that the added value comes from population dynamics rather than
+spatial structure.
+
+### Pilot disclosure (exploratory, not evidence)
+
+The condition grid and the 10/30 outcome thresholds were chosen after three
+exploratory seeds (`d.p0` … `d.p2`) and a small single-seed parameter sweep. A
+full-pipeline pilot on those same three seeds is written to
+`research/output/collapse-predict-pilot.{md,json,csv}` and is marked
+exploratory. The confirmatory seeds `d.c0` … `d.c15` are fresh, and the split,
+floors and decision rule were frozen before they were opened. The smoke test
+uses `d.q0`/`d.q1`, a separate cache, and `collapse-predict-quick.*`; it is not
+evidence and cannot overwrite these artifacts.
+
+### Artifacts and reproduce
+
+`research/output/collapse-predict.{md,json,csv}` and the append-only cache
+`research/output/collapse-predict-cache.jsonl`. Reproduce with
+`npm run research:collapse` (192 runs) or `-- --from-cache` (re-render only).
+`-- --pilot` runs the exploratory pilot on `d.p0` … `d.p2`; `-- --quick` runs
+the four-run smoke test. The runner refuses to mix caches with different seeds,
+conditions or tick counts.
+
+## 7. Revision log
 
 | Date | Revision | Reason |
 |---|---|---|
@@ -639,8 +755,9 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-31 | B-SELF-01…04 resolved: 01 supported; 02a inconclusive (+0.258 vs floor 0.351); 02b refuted (−0.074); 02c supported (+0.462); 03 inconclusive (builder rho 0.868, birth rho −0.527); 04 refuted (interaction −0.090). | Registered rule unchanged. The floor, not the sign, decided 02a; the absolute-rho clause, not the builder correlation, decided 03. The pilot's predicted boundary weakness and sub-additivity both held, so the result was not rescued by re-reading. |
 | 2026-10-31 | C-KILL-01…05 registered with the component-mixed public-good model, the assay viability gate, the 0.30 / 2-SD / ±0.15 floors and the decision rule, **before** the confirmatory run (`ck.0`…`ck.15`). The two 5-seed pilots (`ck.p0`…`ck.p9`) are disclosed as exploratory only; model parameters are frozen at `PROD = 1.0`, `PROD_EXP = 2`, `DECAY = 0.15`. | The question ("which directed disturbance kills the colony?") is easy to answer post hoc from the most lethal arm. The floor, the viability gate and the pilot disclosure have to be fixed before the confirmatory seeds are opened. |
 | 2026-10-31 | C-KILL-01…05 resolved: 01 supported (0.38 [0.06, 0.63]); 02 supported (vs age 0.56 [0.31, 0.81], vs density 0.38 [0.19, 0.63]); 03 inconclusive (0.012 [−0.017, 0.040], floor 0.173); 04 supported (pause 0/16 vs removal 9/16; 12/16 within 90% of control final); 05 supported (−0.002 [−0.045, 0.040]). 736 runs, assay valid. | Registered rule unchanged. C-KILL-03's falsifier did not fire, but the interface effect is an order of magnitude below the floor. The density half of C-KILL-02 is carried by six paired runs, so the result is real but not large. |
+| 2026-10-31 | D-PRED-01…05 registered with the 3 rules × 8 regimes design, the 10/30 outcome thresholds, the 14-feature logistic model, the label gate and the 0.70 / 0.05 / 0.10 / [0.5, 1.5] floors, **before** the confirmatory run (`d.c0`…`d.c15`). Pilot seeds `d.p0`…`d.p2` and smoke seeds `d.q0`/`d.q1` are disclosed as exploratory only; the pilot grid and thresholds were chosen from those seeds. | The question ("does an early-window model transport to unseen conditions?") invites post-hoc choice of the split, features and calibration bar. The split, gate, floors and decision rule have to be fixed before the confirmatory seeds are opened. |
 
-## 7. What is deliberately not claimed
+## 8. What is deliberately not claimed
 
 - That the early-warning theory is false in general. Only that it fails to
   transport unchanged to this class of evolving ecologies.
@@ -676,8 +793,21 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   the division count is a marker, not a mechanism, and the density-matched
   control also destroyed 3/16. The supported statement is about this
   intervention in this ecology, not about participation as a law.
+- That early structure is a universal collapse predictor. Experiment D tests one
+  agent ecology, one 3 × 8 condition grid and one 600-tick horizon. A positive
+  result is a transport statement about these rules and parameters, not a law
+  about all ecologies or all collapse types.
+- That the selected features are causal. Experiment D is a prediction test;
+  feature weights are not intervention effects and no feature is manipulated.
+- That entropy is irrelevant to collapse. D-PRED-04 only tests whether a
+  two-feature entropy model clears the same discrimination bar as the full
+  model. A failure of that baseline does not show that entropy carries no
+  information.
+- That predicted collapse can be acted on. No rescue or intervention is tested;
+  calibration is reported because a probability is not useful if it is
+  systematically wrong, not because a management rule has been validated.
 
-## 8. Reproduce
+## 9. Reproduce
 
 ```bash
 # from apps/simulation
@@ -693,6 +823,10 @@ npm run research:selfattack          # Experiment B: 8 seeds x 8 conditions (~20
 npm run research:selfattack -- --from-cache   # re-analysis only (seconds)
 npm run research:killswitch          # Experiment C: 16 seeds x 46 runs (~5 min)
 npm run research:killswitch -- --from-cache   # re-render only (seconds)
+npm run research:collapse            # Experiment D: 192 runs (~25 min)
+npm run research:collapse -- --from-cache     # re-render only (seconds)
+npm run research:collapse -- --pilot          # exploratory pilot, not evidence
+npm run research:collapse -- --quick          # smoke test, not evidence
 npm run research:scope               # legacy ledger -> research/output/scope.*
 npm run research:experiment -- --verify
 ```
