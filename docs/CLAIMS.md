@@ -451,11 +451,11 @@ supported-direction interval that misses the floor is not a kill switch.
 
 | ID | Claim | Falsifier | Registered analysis | Status |
 |---|---|---|---|---|
-| **C-KILL-01** | Removing the 40% most participatory cells destroys the colony at least 0.30 more often than removing a uniform random 40%, with a paired 95% interval above zero. | Paired mean difference ≤ 0 | `participation − random`, paired by seed; 2,000-resample bootstrap; floor 0.30 | **Open** |
-| **C-KILL-02** | Participation is not merely age or density: removing the 40% most participatory cells destroys the colony at least 0.30 more often than either an age-matched random set or a density-matched random set, with paired intervals above zero. | Either paired mean difference ≤ 0 | `participation − ageMatched` and `participation − matched`, paired by seed; 2,000-resample bootstrap; floor 0.30 on both | **Open** |
-| **C-KILL-03** | The interface is a partial kill switch: sealing the core–periphery boundary damages the colony more than cutting the same number of random internal links, but leaves the core alive. | Seal loss difference ≤ 0, **or** seal destruction ≥ 0.50 | `seal − randomEdges` loss, paired by seed; 2,000-resample bootstrap; floor `max(2×SD(randomEdges loss), 0.10)`; destruction gate 0.50 | **Open** |
-| **C-KILL-04** | A pause is weaker than a lesion: a 100-tick pause of the most participatory cells destroys the colony at least 0.30 less often than permanent removal, and at least half of paused runs end at 90% or more of their contemporaneous control final population. | Pause destruction ≥ removal destruction, **or** fewer than 30% of paused runs recover to 90% of control final | `delayParticipation` vs `participation`; recovery fraction against the paired control final; destruction floor 0.30 | **Open** |
-| **C-KILL-05** | Compact-lesion location is not a major determinant: centre-minus-rim loss is smaller than 0.15 in absolute value, with the paired 95% interval inside ±0.15. | Pair interval lies entirely outside ±0.15 | Centre (radius 0) minus rim (radius 0.9) loss, paired by seed; 2,000-resample bootstrap; equivalence margin 0.15. Spearman rho(distance, loss) is reported descriptively, not as the verdict | **Open** |
+| **C-KILL-01** | Removing the 40% most participatory cells destroys the colony at least 0.30 more often than removing a uniform random 40%, with a paired 95% interval above zero. | Paired mean difference ≤ 0 | `participation − random`, paired by seed; 2,000-resample bootstrap; floor 0.30 | **Supported** (2026-10-31): participation 9/16 vs random 3/16; difference 0.38 [0.06, 0.63] |
+| **C-KILL-02** | Participation is not merely age or density: removing the 40% most participatory cells destroys the colony at least 0.30 more often than either an age-matched random set or a density-matched random set, with paired intervals above zero. | Either paired mean difference ≤ 0 | `participation − ageMatched` and `participation − matched`, paired by seed; 2,000-resample bootstrap; floor 0.30 on both | **Supported** (2026-10-31): vs ageMatched 0.56 [0.31, 0.81]; vs densityMatched 0.38 [0.19, 0.63] |
+| **C-KILL-03** | The interface is a partial kill switch: sealing the core–periphery boundary damages the colony more than cutting the same number of random internal links, but leaves the core alive. | Seal loss difference ≤ 0, **or** seal destruction ≥ 0.50 | `seal − randomEdges` loss, paired by seed; 2,000-resample bootstrap; floor `max(2×SD(randomEdges loss), 0.10)`; destruction gate 0.50 | **Inconclusive** (2026-10-31): seal − randomEdges loss 0.012 [−0.017, 0.040], below the 0.173 floor; seal destruction 0/16. Falsifier did not fire, but the effect did not clear the floor |
+| **C-KILL-04** | A pause is weaker than a lesion: a 100-tick pause of the most participatory cells destroys the colony at least 0.30 less often than permanent removal, and at least half of paused runs end at 90% or more of their contemporaneous control final population. | Pause destruction ≥ removal destruction, **or** fewer than 30% of paused runs recover to 90% of control final | `delayParticipation` vs `participation`; recovery fraction against the paired control final; destruction floor 0.30 | **Supported** (2026-10-31): pause 0/16 vs removal 9/16; 12/16 paused runs end at ≥90% of their paired control final |
+| **C-KILL-05** | Compact-lesion location is not a major determinant: centre-minus-rim loss is smaller than 0.15 in absolute value, with the paired 95% interval inside ±0.15. | Pair interval lies entirely outside ±0.15 | Centre (radius 0) minus rim (radius 0.9) loss, paired by seed; 2,000-resample bootstrap; equivalence margin 0.15. Spearman rho(distance, loss) is reported descriptively, not as the verdict | **Supported** (2026-10-31): centre − rim loss −0.002 [−0.045, 0.040]; sweep rho 0.00 [−0.12, 0.12] |
 
 ### Registered interpretation
 
@@ -467,6 +467,94 @@ collapses it. C-KILL-03 and C-KILL-05 are explicitly expected-null candidates;
 they are registered in the positive direction so that a null is a verdict, not
 an unstated default. C-KILL-01 and C-KILL-02 are the headline tests. C-KILL-04
 asks whether a temporary pause is weaker than permanent removal.
+
+### Result (2026-10-31)
+
+736 runs completed and the registered rule was applied unchanged. The assay is
+valid: 16 controls, 0/16 destroyed, mean final/pre **0.81** (minimum 0.67).
+
+| arm | destroyed | final / pre | loss vs control |
+|---|---:|---:|---:|
+| control | 0/16 | 0.81 | 0.00 |
+| participation (40%) | **9/16** | 0.36 | 0.55 |
+| matched, density (40%) | 3/16 | 0.68 | 0.16 |
+| random (40%) | 3/16 | 0.66 | 0.17 |
+| ageMatched (40%) | 0/16 | 0.82 | −0.02 |
+| core (40%) | 0/16 | 0.79 | 0.02 |
+| rim (40%) | 0/16 | 0.77 | 0.04 |
+| seal | 0/16 | 0.79 | 0.02 |
+| randomEdges | 0/16 | 0.80 | 0.01 |
+| delayParticipation | 0/16 | 0.79 | 0.02 |
+
+`delayCore` and `delayRim` also destroyed 0/16 (final/pre 0.79 and 0.77). The
+location sweep destroyed 0/16 at all ten points; loss ranged from −0.022 to
++0.023, with centre +0.020 and rim +0.023.
+
+The dose response has a sharp threshold at the top dose:
+
+| dose | participation | matched | ageMatched | random |
+|---:|---:|---:|---:|---:|
+| 0.05–0.20 | 0/16 | 0/16 | 0/16 | 0/16 |
+| 0.30 | 2/16 | 2/16 | 0/16 | 0/16 |
+| 0.40 | **9/16** | 3/16 | 0/16 | 3/16 |
+
+The five verdicts:
+
+- **C-KILL-01 supported.** Participation 9/16 (56%) vs random 3/16 (19%);
+  difference **0.38** [0.06, 0.63], floor 0.30. Seven participation runs
+  survived, so this is not a universal kill.
+- **C-KILL-02 supported.** Participation − ageMatched **0.56** [0.31, 0.81];
+  participation − densityMatched **0.38** [0.19, 0.63]. All three
+  density-matched kills (`ck.7`, `ck.11`, `ck.13`) are a subset of the nine
+  participation kills (`ck.0`, `ck.4`–`ck.8`, `ck.11`–`ck.13`); the six
+  participation-only kills carry the density contrast. The age-matched arm
+  removed 305 cells on average rather than the nominal 328 (93%), because some
+  5-tick age bins were exhausted; that asymmetry slightly favours participation
+  in the age comparison. The density-matched arm removed exactly 328 cells and
+  does not have that asymmetry.
+- **C-KILL-03 inconclusive.** Seal − randomEdges loss **0.012** [−0.017, 0.040],
+  below the 0.173 floor; seal destruction 0/16. The falsifier did not fire
+  (the difference is positive and the colony survives), but the effect is far
+  below the registered meaningful floor. Connectivity loss alone is not lethal
+  here: the seal does fragment the colony (largest component 0.78 of survivors
+  vs 0.98 for random edges) without destroying it.
+- **C-KILL-04 supported.** Pause 0/16 vs permanent removal 9/16; **12/16**
+  paused runs end at ≥90% of their paired control final. One caveat is visible
+  in the summary table and must not be read as a rescue: only 4/16 paused runs
+  return to 90% of *their own pre-lesion* count (median 249 ticks among those
+  four; 12 censored). The controls themselves end at 0.81 of their pre-lesion
+  count, so a 90%-of-own-baseline recovery is rarely reachable in any arm; the
+  registered C-KILL-04 recovery clause deliberately used the contemporaneous
+  control final instead. The pause leaves a small residual deficit (final/pre
+  0.79, loss 0.02), not a collapse.
+- **C-KILL-05 supported.** Centre − rim loss **−0.002** [−0.045, 0.040], inside
+  ±0.15; sweep rho(distance, loss) 0.00 [−0.12, 0.12]. A compact 40% lesion is
+  equally survivable wherever it lands.
+
+**Honest reading.** The map is mostly negative for geometry, interface and
+pause: the geometric core, the rim, the core–periphery seal, a 100-tick pause
+and the lesion's location are not kill switches at this scale. The registered
+positive result is narrower and larger than "a small disturbance": removing the
+**40% most participatory cells** is a distributed lesion of 328 cells (about
+40% of the colony), and it still leaves 7/16 colonies alive. Within that limit,
+the effect is not explained by age or density alone, and the density-matched
+kills are a strict subset of the participation kills. The participation arm is
+also the most fragmented (111 components, largest 0.19 of survivors), but
+fragmentation is not sufficient: density-matched and random lesions fragment
+almost as much (95/81 components, largest 0.14/0.23) and mostly survive. The
+dose curve shows that the specificity is a high-dose phenomenon: at 30% the
+participation and density-matched arms each destroy 2/16; only at 40% do they
+separate (9/16 vs 3/16).
+
+**Limits.** Five contrasts were tested on 16 seeds with no family-wise
+correction; the lower bounds of C-KILL-01 and the density half of C-KILL-02 are
+one and three paired runs above zero (0.0625 and 0.1875), so a few seeds could
+move the verdicts. The public good is component-mixed rather than locally
+diffusive; lifetime division count is a marker, not a mechanism; destruction is
+a 5% extinction threshold, not a functional-death assay; and the result is one
+48 × 48 ecology at 750 ticks. It does not establish that participation is
+causally necessary in general, only that removing the most participatory cells
+is the one registered intervention that clears the floor here.
 
 ### Pilot disclosure (exploratory, not evidence)
 
@@ -550,6 +638,7 @@ Full per-claim effects and intervals: `research/output/scope.json` and
 | 2026-10-31 | B-SELF-01…04 registered with the two-scale model, the three interventions, the between-seed effect floor and the decision rule, **before** the confirmatory run (`sa.0`…`sa.7`). | The question is easy to answer post hoc in either direction. Recording the pilot expectation (02b seed-sensitive, 04 sub-additive) keeps a refutation visible rather than re-narrated as a rescue. |
 | 2026-10-31 | B-SELF-01…04 resolved: 01 supported; 02a inconclusive (+0.258 vs floor 0.351); 02b refuted (−0.074); 02c supported (+0.462); 03 inconclusive (builder rho 0.868, birth rho −0.527); 04 refuted (interaction −0.090). | Registered rule unchanged. The floor, not the sign, decided 02a; the absolute-rho clause, not the builder correlation, decided 03. The pilot's predicted boundary weakness and sub-additivity both held, so the result was not rescued by re-reading. |
 | 2026-10-31 | C-KILL-01…05 registered with the component-mixed public-good model, the assay viability gate, the 0.30 / 2-SD / ±0.15 floors and the decision rule, **before** the confirmatory run (`ck.0`…`ck.15`). The two 5-seed pilots (`ck.p0`…`ck.p9`) are disclosed as exploratory only; model parameters are frozen at `PROD = 1.0`, `PROD_EXP = 2`, `DECAY = 0.15`. | The question ("which directed disturbance kills the colony?") is easy to answer post hoc from the most lethal arm. The floor, the viability gate and the pilot disclosure have to be fixed before the confirmatory seeds are opened. |
+| 2026-10-31 | C-KILL-01…05 resolved: 01 supported (0.38 [0.06, 0.63]); 02 supported (vs age 0.56 [0.31, 0.81], vs density 0.38 [0.19, 0.63]); 03 inconclusive (0.012 [−0.017, 0.040], floor 0.173); 04 supported (pause 0/16 vs removal 9/16; 12/16 within 90% of control final); 05 supported (−0.002 [−0.045, 0.040]). 736 runs, assay valid. | Registered rule unchanged. C-KILL-03's falsifier did not fire, but the interface effect is an order of magnitude below the floor. The density half of C-KILL-02 is carried by six paired runs, so the result is real but not large. |
 
 ## 7. What is deliberately not claimed
 
@@ -578,6 +667,15 @@ Full per-claim effects and intervals: `research/output/scope.json` and
   hierarchical reproduction. Experiment B found a strong association (rho 0.868)
   but the registered exclusivity clause failed: local birth rate was also
   associated with scale-2 output (rho −0.527).
+- That geometric core, interface, pause or lesion location are generally
+  irrelevant to colony death. Experiment C found them null in one 48 × 48
+  quorum model at 750 ticks; the result does not transfer to other geometries,
+  local signalling, or longer runs.
+- That participation is a general causal necessity. Experiment C removed the
+  40% most participatory cells in one model and still left 7/16 colonies alive;
+  the division count is a marker, not a mechanism, and the density-matched
+  control also destroyed 3/16. The supported statement is about this
+  intervention in this ecology, not about participation as a law.
 
 ## 8. Reproduce
 

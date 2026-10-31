@@ -50,6 +50,14 @@ npm run research:selfattack -w @fractal-life/simulation     # Experiment B: hier
 npm run research:killswitch -w @fractal-life/simulation     # Experiment C: which directed disturbance kills the colony?
 ```
 
+Three follow-up experiments extend the ledger. Experiment A found no
+reproduction–robustness trade-off; Experiment B found local reproduction
+persisting while its own offspring collapse second-level reproduction in the
+unmanaged control; and Experiment C found that removing the 40% most
+participatory cells is the one registered lesion that clears the kill-switch
+floor (9/16 destroyed vs 3/16 for uniform random), while the geometric core,
+rim, interface seal, a 100-tick pause and the lesion's location do not.
+
 <details>
 <summary><b>Project name note</b></summary>
 

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="980" viewBox="0 0 1120 980">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:system-ui,-apple-system,Segoe UI,sans-serif;fill:#1f2937} .t{font-size:15px;font-weight:600} .s{font-size:12px} .a{font-size:11px;fill:#6b7280}</style>
+<text x="70" y="38" class="t">A. Destruction by condition (40% lesion, 16 seeds)</text>
+<text x="70" y="76" class="s">participation</text>
+<rect x="260" y="60" width="539" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="809" y="76" class="a">56% (n=16)</text>
+<text x="70" y="105" class="s">matched</text>
+<rect x="260" y="89" width="179.66666666666666" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="449.66666666666663" y="105" class="a">19% (n=16)</text>
+<text x="70" y="134" class="s">random</text>
+<rect x="260" y="118" width="179.66666666666666" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="449.66666666666663" y="134" class="a">19% (n=16)</text>
+<text x="70" y="163" class="s">control</text>
+<rect x="260" y="147" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="163" class="a">0% (n=16)</text>
+<text x="70" y="192" class="s">core</text>
+<rect x="260" y="176" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="192" class="a">0% (n=16)</text>
+<text x="70" y="221" class="s">rim</text>
+<rect x="260" y="205" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="221" class="a">0% (n=16)</text>
+<text x="70" y="250" class="s">ageMatched</text>
+<rect x="260" y="234" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="250" class="a">0% (n=16)</text>
+<text x="70" y="279" class="s">seal</text>
+<rect x="260" y="263" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="279" class="a">0% (n=16)</text>
+<text x="70" y="308" class="s">randomEdges</text>
+<rect x="260" y="292" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="308" class="a">0% (n=16)</text>
+<text x="70" y="337" class="s">delayCore</text>
+<rect x="260" y="321" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="337" class="a">0% (n=16)</text>
+<text x="70" y="366" class="s">delayRim</text>
+<rect x="260" y="350" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="366" class="a">0% (n=16)</text>
+<text x="70" y="395" class="s">delayParticipation</text>
+<rect x="260" y="379" width="0" height="24" fill="#c0392b" opacity="0.8"/>
+<text x="270" y="395" class="a">0% (n=16)</text>
+<line x1="260" y1="60" x2="260" y2="408" stroke="#d1d5db"/>
+<text x="70" y="422" class="t">B. Dose response: destruction vs fraction removed</text>
+<rect x="150" y="440" width="860" height="250" fill="#f9fafb" stroke="#e5e7eb"/>
+<line x1="150" y1="440" x2="1010" y2="440" stroke="#e5e7eb"/>
+<text x="116" y="444" class="a">1.0</text>
+<line x1="150" y1="490" x2="1010" y2="490" stroke="#e5e7eb"/>
+<text x="116" y="494" class="a">0.8</text>
+<line x1="150" y1="540" x2="1010" y2="540" stroke="#e5e7eb"/>
+<text x="116" y="544" class="a">0.6</text>
+<line x1="150" y1="590" x2="1010" y2="590" stroke="#e5e7eb"/>
+<text x="116" y="594" class="a">0.4</text>
+<line x1="150" y1="640" x2="1010" y2="640" stroke="#e5e7eb"/>
+<text x="116" y="644" class="a">0.2</text>
+<line x1="150" y1="690" x2="1010" y2="690" stroke="#e5e7eb"/>
+<text x="116" y="694" class="a">0.0</text>
+<circle cx="257.5" cy="690.0" r="3.5" fill="#c0392b"/>
+<circle cx="365.0" cy="690.0" r="3.5" fill="#c0392b"/>
+<circle cx="472.5" cy="690.0" r="3.5" fill="#c0392b"/>
+<circle cx="580.0" cy="690.0" r="3.5" fill="#c0392b"/>
+<circle cx="795.0" cy="658.8" r="3.5" fill="#c0392b"/>
+<circle cx="1010.0" cy="549.4" r="3.5" fill="#c0392b"/>
+<polyline points="257.5,690.0 365.0,690.0 472.5,690.0 580.0,690.0 795.0,658.8 1010.0,549.4" fill="none" stroke="#c0392b" stroke-width="2"/>
+<rect x="162" y="706" width="12" height="12" fill="#c0392b"/>
+<text x="180" y="717" class="a">participation</text>
+<circle cx="257.5" cy="690.0" r="3.5" fill="#e67e22"/>
+<circle cx="365.0" cy="690.0" r="3.5" fill="#e67e22"/>
+<circle cx="472.5" cy="690.0" r="3.5" fill="#e67e22"/>
+<circle cx="580.0" cy="690.0" r="3.5" fill="#e67e22"/>
+<circle cx="795.0" cy="658.8" r="3.5" fill="#e67e22"/>
+<circle cx="1010.0" cy="643.1" r="3.5" fill="#e67e22"/>
+<polyline points="257.5,690.0 365.0,690.0 472.5,690.0 580.0,690.0 795.0,658.8 1010.0,643.1" fill="none" stroke="#e67e22" stroke-width="2"/>
+<rect x="322" y="706" width="12" height="12" fill="#e67e22"/>
+<text x="340" y="717" class="a">matched</text>
+<circle cx="257.5" cy="690.0" r="3.5" fill="#8e44ad"/>
+<circle cx="365.0" cy="690.0" r="3.5" fill="#8e44ad"/>
+<circle cx="472.5" cy="690.0" r="3.5" fill="#8e44ad"/>
+<circle cx="580.0" cy="690.0" r="3.5" fill="#8e44ad"/>
+<circle cx="795.0" cy="690.0" r="3.5" fill="#8e44ad"/>
+<circle cx="1010.0" cy="690.0" r="3.5" fill="#8e44ad"/>
+<polyline points="257.5,690.0 365.0,690.0 472.5,690.0 580.0,690.0 795.0,690.0 1010.0,690.0" fill="none" stroke="#8e44ad" stroke-width="2"/>
+<rect x="482" y="706" width="12" height="12" fill="#8e44ad"/>
+<text x="500" y="717" class="a">ageMatched</text>
+<circle cx="257.5" cy="690.0" r="3.5" fill="#2c3e50"/>
+<circle cx="365.0" cy="690.0" r="3.5" fill="#2c3e50"/>
+<circle cx="472.5" cy="690.0" r="3.5" fill="#2c3e50"/>
+<circle cx="580.0" cy="690.0" r="3.5" fill="#2c3e50"/>
+<circle cx="795.0" cy="690.0" r="3.5" fill="#2c3e50"/>
+<circle cx="1010.0" cy="643.1" r="3.5" fill="#2c3e50"/>
+<polyline points="257.5,690.0 365.0,690.0 472.5,690.0 580.0,690.0 795.0,690.0 1010.0,643.1" fill="none" stroke="#2c3e50" stroke-width="2"/>
+<rect x="642" y="706" width="12" height="12" fill="#2c3e50"/>
+<text x="660" y="717" class="a">random</text>
+<text x="245.5" y="738" class="a">0.05</text>
+<text x="353" y="738" class="a">0.10</text>
+<text x="460.5" y="738" class="a">0.15</text>
+<text x="568" y="738" class="a">0.20</text>
+<text x="783" y="738" class="a">0.30</text>
+<text x="998" y="738" class="a">0.40</text>
+<text x="560" y="758" class="a">fraction removed</text>
+<text x="70" y="802" class="t">C. Compact 40% lesion: loss vs distance from centroid</text>
+<rect x="150" y="820" width="860" height="220" fill="#f9fafb" stroke="#e5e7eb"/>
+<line x1="150" y1="820" x2="1010" y2="820" stroke="#e5e7eb"/>
+<text x="116" y="824" class="a">15%</text>
+<line x1="150" y1="875" x2="1010" y2="875" stroke="#e5e7eb"/>
+<text x="116" y="879" class="a">11%</text>
+<line x1="150" y1="930" x2="1010" y2="930" stroke="#e5e7eb"/>
+<text x="116" y="934" class="a">8%</text>
+<line x1="150" y1="985" x2="1010" y2="985" stroke="#e5e7eb"/>
+<text x="116" y="989" class="a">4%</text>
+<line x1="150" y1="1040" x2="1010" y2="1040" stroke="#e5e7eb"/>
+<text x="116" y="1044" class="a">0%</text>
+<circle cx="150.0" cy="1010.3" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1040.0" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1038.2" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1040.0" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1035.3" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1040.0" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1032.9" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1020.9" r="3.5" fill="#2563eb"/>
+<circle cx="627.8" cy="1040.0" r="3.5" fill="#2563eb"/>
+<circle cx="1010.0" cy="1006.9" r="3.5" fill="#2563eb"/>
+<polyline points="150.0,1010.3 627.8,1040.0 627.8,1038.2 627.8,1040.0 627.8,1035.3 627.8,1040.0 627.8,1032.9 627.8,1020.9 627.8,1040.0 1010.0,1006.9" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="550" y="1068" class="a">radius / colony radius</text>
+<text x="158" y="838" class="a">mean loss</text>
+</svg>

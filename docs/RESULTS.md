@@ -255,6 +255,83 @@ Reproduce: `npm run research:selfattack` (from `apps/simulation`; ~30 s) or
 `-- --from-cache` (seconds). Outputs: `output/self-attack.{md,json,csv}`,
 `output/plots/self-attack.svg`.
 
+### 0.5 Experiment C: which directed disturbance kills an emergent colony?
+
+Question: **which small directed perturbation most effectively destroys an
+emergent colony — targeted removal of highly replicative cells, removal of
+important geometry or connections, a delayed update, or a regional shutdown —
+and is a cell's reproductive participation a causal necessity or only a
+correlate?** Model: a probabilistic birth–death colony on a 48 × 48 torus,
+750 ticks, perturbation at tick 250. Each cell contributes to a colony-level
+public good in proportion to local crowding, `(n/4)^2`; the good is well mixed
+inside a connected component, decays, and gates birth at a quorum threshold.
+Births consume a global nutrient pool; death rises when the good is low and when
+a cell is exposed. The model is self-contained in `research/`.
+
+Design: 16 fresh seeds `ck.0`…`ck.15`, 46 runs each, 736 total — 12 conditions
+at a 40% lesion (core, rim, participation, density-matched, age-matched,
+uniform random, interface seal, matched random edge cuts, three 100-tick
+pauses), four dose curves × six doses (5–40%), and a ten-point location sweep.
+Every comparison is paired by seed and shares the pre-burn trajectory. The
+assay passes its viability gate: 16 controls, 0 destroyed, mean final/pre 0.81
+(minimum 0.67).
+
+| arm | destroyed | final / pre | loss vs control |
+|---|---:|---:|---:|
+| control | 0/16 | 0.81 | 0.00 |
+| participation (40%) | **9/16** | 0.36 | 0.55 |
+| density-matched (40%) | 3/16 | 0.68 | 0.16 |
+| random (40%) | 3/16 | 0.66 | 0.17 |
+| age-matched (40%) | 0/16 | 0.82 | −0.02 |
+| core / rim (40%) | 0/16 / 0/16 | 0.79 / 0.77 | 0.02 / 0.04 |
+| seal / random edges | 0/16 / 0/16 | 0.79 / 0.80 | 0.02 / 0.01 |
+| delayParticipation | 0/16 | 0.79 | 0.02 |
+
+Four of the five pre-registered claims are supported; one is inconclusive:
+
+- **C-KILL-01 supported.** Participation removal destroys 9/16 vs random 3/16;
+  difference **0.38** [0.06, 0.63], above the 0.30 floor. Seven participation
+  runs survive, so this is not a universal kill.
+- **C-KILL-02 supported.** Participation − age-matched **0.56** [0.31, 0.81];
+  participation − density-matched **0.38** [0.19, 0.63]. All three
+  density-matched kills are a subset of the nine participation kills.
+- **C-KILL-03 inconclusive.** Sealing the core–periphery interface changes loss
+  by **0.012** [−0.017, 0.040], far below the 0.173 floor; seal destruction
+  0/16. The falsifier did not fire, but connectivity loss alone is not lethal:
+  the seal fragments the colony without killing it.
+- **C-KILL-04 supported.** A 100-tick pause destroys 0/16 vs permanent removal
+  9/16, and 12/16 paused runs end at ≥90% of their paired control final. Only
+  4/16 return to 90% of their *own* pre-lesion count, because the controls
+  themselves drift to 0.81 of pre; the registered recovery clause uses the
+  contemporaneous control, not the absolute baseline.
+- **C-KILL-05 supported.** Centre − rim loss **−0.002** [−0.045, 0.040], inside
+  ±0.15; the sweep correlation with distance is 0.00 [−0.12, 0.12]. All ten
+  compact-lesion locations destroyed 0/16; loss ranged from −0.022 to +0.023.
+
+The dose response has a sharp threshold. At 5–20% no arm destroys a colony; at
+30% participation and density-matched each destroy 2/16; at 40% they separate
+(9/16 vs 3/16), while age-matched and uniform random remain at 0/16 and 3/16.
+At 30% the participation and matched kills are different seeds, so the
+specificity is a high-dose phenomenon rather than a smooth gradient.
+
+Honest reading: the map is mostly negative for geometry, interface and pause.
+The geometric core, the rim, the core–periphery seal, a temporary freeze and the
+lesion's location are not kill switches at this scale. The one positive result
+is a **large distributed lesion**, not a small one: removing the 40% most
+participatory cells (328 of roughly 820 cells) still leaves 7/16 colonies alive.
+Within that limit the effect is not age or density alone — the age-matched arm
+destroys none, and the density-matched kills are a strict subset of the
+participation kills — but fragmentation is not sufficient either: density-
+matched and random lesions fragment almost as much and mostly survive. Five
+contrasts on 16 seeds carry no family-wise correction, and the lower bounds of
+C-KILL-01 and the density half of C-KILL-02 are only one and three paired runs
+above zero. The result is one ecology, not a general law of participation.
+
+Reproduce: `npm run research:killswitch` (from `apps/simulation`; ~5 min) or
+`-- --from-cache` (seconds). Outputs: `output/kill-switch.{md,json,csv}`,
+`output/plots/kill-switch.svg`; pre-registration and verdicts in
+[`CLAIMS.md`](CLAIMS.md) §4.
+
 ## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²
@@ -332,7 +409,7 @@ its seed**, and the TypeScript and Rust engines agree.
 
 | Tier | Result |
 |---|---|
-| Fast tier | **45 / 45 files pass** (includes `terminal.test.ts` and `ews.test.ts`) |
+| Fast tier | **52 / 52 files pass** (includes `terminal.test.ts`, `ews.test.ts` and `killSwitch.test.ts`) |
 | Typecheck | clean in `packages/shared`, `apps/simulation`, `apps/web` |
 
 ## 7. Emergence hierarchies
