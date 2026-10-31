@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "node scripts/dev.mjs",
     "dev:web": "npm run dev -w @fractal-life/web",
     "dev:server": "npm run dev -w @fractal-life/server",
     "build:web": "npm run build -w @fractal-life/web",

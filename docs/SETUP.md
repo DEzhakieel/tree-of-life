@@ -34,21 +34,24 @@ deploy the dashboard.
 ## 2. Run the dashboard (web)
 
 ```bash
-npm run dev:web        # Vite dev server -> http://localhost:5173
+npm run dev            # API :8080 + Vite dev server -> http://localhost:5173
 ```
 
 The page boots a **local world in a Web Worker** automatically. Open the
 in‑browser terminal with the **`> terminal`** button (bottom‑right) and type
 `help`.
 
-To also run the HTTP/WS backend:
+The combined `dev` command also starts the HTTP/WS backend, which the
+dashboard's **Remote (Server)** mode needs (Vite proxies `/api` and `/ws` to
+it). To run only one surface:
 
 ```bash
-npm run dev:server     # REST + WS gateway -> http://localhost:8080
+npm run dev:web        # dashboard only — local worker worlds
+npm run dev:server     # REST + WS gateway only -> http://localhost:8080
 ```
 
-With the server up, the dashboard can run in `remote` mode (Vite proxies
-`/api` and `/ws` to it).
+With `dev:web` alone, spawning a remote world fails: the proxy has no backend
+to reach and answers `POST /api/worlds` with a 500.
 
 ## 3. Run the console dashboard (terminal)
 

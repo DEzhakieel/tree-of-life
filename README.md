@@ -83,9 +83,13 @@ git clone https://github.com/DEzhakieel/tree-of-life.git
 cd tree-of-life
 npm install
 
-npm run dev:web        # dashboard -> http://localhost:5173
+npm run dev            # API :8080 + dashboard -> http://localhost:5173
 npm run terminal       # console dashboard (same commands)
 ```
+
+`npm run dev:web` alone still boots local worker worlds, but the dashboard's
+**Remote (Server)** mode needs `npm run dev:server` (or the combined `dev`
+command above).
 
 In the browser, click **`> terminal`** (bottom-right) and type `help`. In the
 console, the ANSI dashboard is live and accepts the same commands.

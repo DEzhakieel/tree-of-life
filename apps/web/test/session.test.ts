@@ -5,7 +5,7 @@ import { buildLocalWorld, createRemoteWorld } from '../src/net/session.js';
 
 const originalFetch = globalThis.fetch;
 
-function stubFetch(response: { status: number; body: unknown }) {
+function stubFetch(response: { status: number; body: unknown; text?: string }) {
   const calls: { url: string; init?: RequestInit }[] = [];
   globalThis.fetch = (async (input: string | URL | Request, init?: RequestInit) => {
     calls.push({ url: String(input), init });
@@ -13,6 +13,7 @@ function stubFetch(response: { status: number; body: unknown }) {
       ok: response.status >= 200 && response.status < 300,
       status: response.status,
       json: async () => response.body,
+      text: async () => response.text ?? JSON.stringify(response.body),
     } as Response;
   }) as typeof fetch;
   return calls;
@@ -56,5 +57,17 @@ describe('createRemoteWorld universe forwarding', () => {
     await createRemoteWorld({ seed: 's' });
     const body = JSON.parse(String(calls[0].init?.body) ?? '{}');
     assert.equal('universe' in body, false);
+  });
+});
+
+describe('createRemoteWorld error reporting', () => {
+  it('surfaces the error message from a JSON API response', async () => {
+    stubFetch({ status: 500, body: { error: 'world limit reached' }, text: '{"error":"world limit reached"}' });
+    await assert.rejects(createRemoteWorld({ seed: 's' }), /world limit reached/);
+  });
+
+  it('explains a bodyless proxy 500 instead of returning a bare status', async () => {
+    stubFetch({ status: 500, body: null, text: '' });
+    await assert.rejects(createRemoteWorld({ seed: 's' }), /API server unavailable \(HTTP 500\)/);
   });
 });

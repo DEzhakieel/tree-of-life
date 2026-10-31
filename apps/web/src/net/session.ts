@@ -98,8 +98,21 @@ export async function createRemoteWorld(opts: {
     body: JSON.stringify(opts),
   });
   if (!res.ok) {
-    const body = (await res.json().catch(() => ({}))) as { error?: string };
-    throw new Error(body.error ?? `server returned ${res.status}`);
+    // A live API answers with JSON `{ error }`. When the backend is down, the
+    // dev proxy answers with an empty text/plain 500 instead — do not turn that
+    // into the bare "server returned 500" the user cannot act on.
+    const text = await res.text().catch(() => '');
+    let detail = '';
+    try {
+      const body = JSON.parse(text) as { error?: unknown };
+      if (typeof body.error === 'string') detail = body.error;
+    } catch {
+      detail = text.trim();
+    }
+    if (detail.startsWith('<')) detail = ''; // HTML error page, not a message
+    throw new Error(
+      detail || `API server unavailable (HTTP ${res.status}). Start it with \`npm run dev:server\`.`,
+    );
   }
   return (await res.json()) as WorldConfig;
 }
