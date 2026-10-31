@@ -257,8 +257,8 @@ export interface SimState {
 
   cameraZoom: number;
   /** WebGL availability as probed by SceneView (null = not yet probed).
-   *  The 2D fallback cannot draw the ground layer, so the Display panel
-   *  disables those controls instead of offering no-ops. */
+   *  The 2D fallback paints the same ground layers through Canvas 2D, so this
+   *  is a status flag rather than a capability gate. */
   webgl: boolean | null;
   workerError: string | null;
 

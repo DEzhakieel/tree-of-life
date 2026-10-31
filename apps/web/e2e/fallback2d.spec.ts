@@ -2,8 +2,8 @@ import { test, expect, type Page } from '@playwright/test';
 
 /**
  * No-WebGL environment: the app must fall back to the 2D canvas renderer and
- * still run the simulation, switch representations, draw the topology overlay
- * and expose the boundary switch (ground layers are the only loss).
+ * still run the simulation, switch representations, paint the ground layers,
+ * and draw the topology/boundary overlay.
  */
 
 const consoleFilter = /favicon|net::ERR_CONNECTION|status of 50\d/;
@@ -69,13 +69,62 @@ test('runs the 2D canvas fallback when WebGL is unavailable', async ({ page }) =
   await boundary.getByRole('button', { name: 'off', exact: true }).click();
   await expect(page.getByText('flip-wrap', { exact: true })).toBeVisible();
 
-  // ground layer is the one control that must be disabled, with a reason
-  await expect(page.getByText(/2D fallback has no ground layer/)).toBeVisible();
+  // ground layers are painted by the Canvas 2D path too
   const ground = page
     .locator('div.flex.items-center.justify-between')
     .filter({ has: page.getByRole('button', { name: 'Ground', exact: true }) });
-  await expect(ground.getByRole('button', { name: 'Ground', exact: true })).toBeDisabled();
-  await expect(ground.locator('button[title="unavailable in this renderer"]')).toBeDisabled();
+  // Fractal forces the ground on, so the switch is already on in Particle.
+  await expect(ground.getByRole('button', { name: 'on', exact: true })).toBeVisible();
+  await ground.getByRole('button', { name: 'on', exact: true }).click();
+  await expect(ground.getByRole('button', { name: 'off', exact: true })).toBeVisible();
+  await ground.getByRole('button', { name: 'off', exact: true }).click();
+  await expect(ground.getByRole('button', { name: 'on', exact: true })).toBeVisible();
+
+  const density = page.getByRole('button', { name: 'Density', exact: true });
+  await expect(density).toBeEnabled();
+  await density.click();
+  await expect(density).toHaveClass(/bg-indigo-500\/40/);
+
+  // The ground is not just enabled: toggling it must change what is painted.
+  // Pause first so the particle field is static across the two snapshots.
+  await page.getByRole('button', { name: '⏸', exact: true }).click();
+  await expect(page.getByRole('button', { name: '▶', exact: true })).toBeVisible();
+  await page.evaluate(
+    () => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))),
+  );
+  await page.evaluate(() => {
+    const c = document.querySelector('canvas') as HTMLCanvasElement;
+    (window as unknown as { __groundBefore?: Uint8ClampedArray }).__groundBefore = c
+      .getContext('2d')!
+      .getImageData(0, 0, c.width, c.height).data;
+  });
+  await ground.getByRole('button', { name: 'on', exact: true }).click();
+  await expect(ground.getByRole('button', { name: 'off', exact: true })).toBeVisible();
+  await page.evaluate(
+    () => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))),
+  );
+  const groundPixels = await page.evaluate(() => {
+    const c = document.querySelector('canvas') as HTMLCanvasElement;
+    const now = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+    const before = (window as unknown as { __groundBefore?: Uint8ClampedArray }).__groundBefore;
+    delete (window as unknown as { __groundBefore?: Uint8ClampedArray }).__groundBefore;
+    if (!before) return -1;
+    let n = 0;
+    for (let i = 0; i < now.length; i += 4) {
+      if (
+        Math.abs(now[i]! - before[i]!) +
+          Math.abs(now[i + 1]! - before[i + 1]!) +
+          Math.abs(now[i + 2]! - before[i + 2]!) >
+        20
+      ) {
+        n++;
+      }
+    }
+    return n;
+  });
+  expect(groundPixels).toBeGreaterThan(500);
+  await ground.getByRole('button', { name: 'off', exact: true }).click();
+  await expect(ground.getByRole('button', { name: 'on', exact: true })).toBeVisible();
 
   // the 2D renderer really paints (non-transparent pixels on its canvas)
   await expect

@@ -62,16 +62,14 @@ test('display panel drives representations, boundary and ground overlays', async
   await expect(boundary.getByRole('button', { name: 'on', exact: true })).toBeVisible();
 
   // Picking fractal now enables the ground overlay instead of silently forcing
-  // it in the renderer only — so switching back leaves the ground visible.
-  const is2D = (await page.getByText(/2D fallback/).count()) > 0;
-  if (!is2D) {
-    await rep('Fractal').click();
-    await rep('Particle').click();
-    const ground = displayRow(page, 'Ground');
-    await expect(ground.getByRole('button', { name: 'on', exact: true })).toBeVisible();
-    await ground.getByRole('button', { name: 'on', exact: true }).click();
-    await expect(ground.getByRole('button', { name: 'off', exact: true })).toBeVisible();
-  }
+  // it in the renderer only — so switching back leaves the ground visible. Both
+  // renderers paint the ground now, so this runs with or without WebGL.
+  await rep('Fractal').click();
+  await rep('Particle').click();
+  const ground = displayRow(page, 'Ground');
+  await expect(ground.getByRole('button', { name: 'on', exact: true })).toBeVisible();
+  await ground.getByRole('button', { name: 'on', exact: true }).click();
+  await expect(ground.getByRole('button', { name: 'off', exact: true })).toBeVisible();
 
   await expect(page.getByText(/Boot Error|Worker Error/)).toHaveCount(0);
   expect(pageErrors, `page errors: ${pageErrors.join('; ')}`).toEqual([]);

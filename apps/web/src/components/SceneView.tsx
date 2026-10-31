@@ -101,7 +101,7 @@ export function SceneView() {
       <div className="pointer-events-none absolute top-14 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5">
         {renderMode === '2d' && (
           <div className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] text-amber-400 backdrop-blur-sm">
-            2D fallback (no WebGL) — ground layers unavailable
+            2D fallback (no WebGL) — Canvas renderer
           </div>
         )}
         {!connected && renderMode !== 'loading' && (

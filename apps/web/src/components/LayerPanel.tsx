@@ -84,11 +84,9 @@ export function LayerPanel({ id }: { id?: string }) {
   const showLineage = useStore((s) => s.showLineage);
   const showCulture = useStore((s) => s.showCulture);
   const showBoundary = useStore((s) => s.showBoundary);
-  const webgl = useStore((s) => s.webgl);
 
-  const groundAvailable = webgl !== false;
   const groundForced = representation === 'fractal';
-  const groundDisabled = !groundAvailable || groundForced;
+  const groundDisabled = groundForced;
 
   return (
     <Panel id={id} title="Display">
@@ -115,24 +113,16 @@ export function LayerPanel({ id }: { id?: string }) {
       </div>
 
       <Section>Ground layer</Section>
-      {!groundAvailable && (
-        <div className="mb-1 rounded-md border border-amber-500/25 bg-amber-500/10 px-1.5 py-1 text-[10px] leading-snug text-amber-300/90">
-          2D fallback has no ground layer — reopen in a WebGL-capable browser
-        </div>
-      )}
       <div className="mb-2 flex flex-col gap-0.5">
         {GROUND_LAYERS.map((l) => (
           <button
             key={l.id}
             onClick={() => useStore.getState().setGroundLayer(l.id)}
-            disabled={!groundAvailable}
-            title={groundAvailable ? l.hint : 'ground layer unavailable without WebGL'}
+            title={l.hint}
             className={`rounded-md px-1.5 py-1 text-left text-xs ${
-              !groundAvailable
-                ? 'cursor-not-allowed text-zinc-600'
-                : groundLayer === l.id
-                  ? 'bg-indigo-500/40 text-white'
-                  : 'text-zinc-400 hover:bg-white/10'
+              groundLayer === l.id
+                ? 'bg-indigo-500/40 text-white'
+                : 'text-zinc-400 hover:bg-white/10'
             }`}
           >
             {l.label}

@@ -1,9 +1,10 @@
 import { WORLD_SIZE, complexToWorld, worldToComplex, type WorldConfig, type Intervention } from '@fractal-life/shared';
 import type { AgentBuffer } from '../net/agentBuffer.js';
-import { useStore } from '../store/useStore.js';
+import { useStore, type GroundLayer, type SetMap } from '../store/useStore.js';
 import { frameSuspended } from './frameBudget.js';
 import { pickAgent, pickRadius, CLICK_SLOP_PX } from './pick.js';
 import { topologyEdges, effectiveTopology, worldRect, drawTopology2D } from './topology.js';
+import { GroundPainter, GROUND_SIZE } from './groundPainter.js';
 import {
   buildEdges,
   buildLineageEdges,
@@ -96,12 +97,23 @@ export class Canvas2DRenderer {
   private minimapW = 0;
   private minimapH = 0;
 
+  private ground: GroundPainter | null = null;
+  private groundCanvas: HTMLCanvasElement;
+  private groundCtx: CanvasRenderingContext2D;
+  private groundImage: ImageData;
+  private lastGroundLayer = '';
+
   constructor(private opts: Canvas2DRendererOptions) {
     this.container = opts.canvas.parentElement ?? document.body;
     this.canvas = opts.canvas;
     this.minimapCanvas = opts.minimapCanvas;
     this.ctx = opts.canvas.getContext('2d')!;
     this.minimapCtx = opts.minimapCanvas.getContext('2d')!;
+    this.groundCanvas = document.createElement('canvas');
+    this.groundCanvas.width = GROUND_SIZE;
+    this.groundCanvas.height = GROUND_SIZE;
+    this.groundCtx = this.groundCanvas.getContext('2d')!;
+    this.groundImage = this.groundCtx.createImageData(GROUND_SIZE, GROUND_SIZE);
     this.resize();
     this.bindEvents();
     this.loop();
@@ -129,7 +141,12 @@ export class Canvas2DRenderer {
 
   setWorld(world: WorldConfig | null): void {
     this.world = world;
-    if (!world) return;
+    if (!world) {
+      this.ground = null;
+      return;
+    }
+    this.ground = new GroundPainter(world.params);
+    this.lastGroundLayer = '';
     this.camX = world.params.centerX;
     this.camY = world.params.centerY;
     this.span = world.params.worldScale * 1.05;
@@ -309,6 +326,13 @@ export class Canvas2DRenderer {
       ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(cw, sy); ctx.stroke();
     }
 
+    // Ground: the fractal representation always shows it; the other views
+    // show it only when the Display panel's Ground switch is on. This mirrors
+    // the WebGL renderer so the 2D fallback is not missing a layer.
+    if (rep === 'fractal' || st.showTerrain) {
+      this.drawGround(cw, ch, st.setMap, st.groundLayer);
+    }
+
     // draw agents
     if (st.showAgents && (rep === 'particle' || rep === 'fractal')) {
       const agents = this.opts.agents;
@@ -381,6 +405,38 @@ export class Canvas2DRenderer {
       this.drawMinimap();
     }
   };
+
+  /**
+   * Blit the live ground texture under the agents. The painter writes row 0 at
+   * the world's minimum imaginary coordinate (the visual bottom), so the canvas
+   * blit flips vertically to match the WebGL plane's orientation.
+   */
+  private drawGround(cw: number, ch: number, setMap: SetMap | null, layer: GroundLayer): void {
+    if (!this.world || !this.ground) return;
+    const layerChanged = layer !== this.lastGroundLayer;
+    if (layerChanged) this.lastGroundLayer = layer;
+    if (layerChanged || this.frame % 8 === 0) {
+      this.ground.paint(setMap, this.opts.agents, layer);
+      this.groundImage.data.set(this.ground.data);
+      this.groundCtx.putImageData(this.groundImage, 0, 0);
+    }
+
+    const r = worldRect(this.world.params);
+    const a = this.worldToScreen(r.x0, r.y1, cw, ch);
+    const b = this.worldToScreen(r.x1, r.y0, cw, ch);
+    const left = Math.min(a.sx, b.sx);
+    const right = Math.max(a.sx, b.sx);
+    const top = Math.min(a.sy, b.sy);
+    const bottom = Math.max(a.sy, b.sy);
+
+    const ctx = this.ctx;
+    ctx.save();
+    ctx.translate(left, bottom);
+    ctx.scale(1, -1);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(this.groundCanvas, 0, 0, right - left, bottom - top);
+    ctx.restore();
+  }
 
   /** Network view: proximity + lineage edges, then agents as nodes. */
   private drawGraph(cw: number, ch: number, showCulture: boolean): void {
