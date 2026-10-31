@@ -45,7 +45,13 @@ test('runs the 2D canvas fallback when WebGL is unavailable', async ({ page }) =
 
   await bootWorld(page);
 
-  await expect(page.getByText(/2D fallback \(no WebGL\)/)).toBeVisible();
+  const fallbackBadge = page.getByText(/2D fallback \(no WebGL\)/);
+  await expect(fallbackBadge).toBeVisible();
+  // The badge used to sit under the left dock, so it was "visible" to the DOM
+  // but hidden from the user. Keep it in the top status strip.
+  const fallbackBox = await fallbackBadge.boundingBox();
+  expect(fallbackBox).not.toBeNull();
+  expect(fallbackBox!.y).toBeLessThan(120);
 
   // every representation still renders through the 2D path
   for (const name of ['Fractal', 'Network', 'Lattice', 'Particle']) {

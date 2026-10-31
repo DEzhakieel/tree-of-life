@@ -98,12 +98,19 @@ export function SceneView() {
           </div>
         </div>
       )}
-      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex flex-col items-start gap-2">
+      <div className="pointer-events-none absolute top-14 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5">
         {renderMode === '2d' && (
-          <div className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] text-amber-400">
+          <div className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] text-amber-400 backdrop-blur-sm">
             2D fallback (no WebGL) — ground layers unavailable
           </div>
         )}
+        {!connected && renderMode !== 'loading' && (
+          <div className="rounded-md border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs text-red-400 backdrop-blur-sm">
+            Disconnected — worker may have crashed
+          </div>
+        )}
+      </div>
+      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex flex-col items-start gap-2">
         {world && (
           <div
             className="rounded-md border border-white/10 bg-black/50 px-2 py-1 font-mono text-[10px] text-zinc-400"
@@ -140,11 +147,6 @@ export function SceneView() {
           <canvas ref={minimapRef} />
         </div>
       </div>
-      {!connected && renderMode !== 'loading' && (
-        <div className="pointer-events-none absolute top-14 left-1/2 z-10 -translate-x-1/2 rounded-md border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs text-red-400">
-          Disconnected — worker may have crashed
-        </div>
-      )}
       <SpawnDesigner />
     </div>
   );
