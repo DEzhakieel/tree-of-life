@@ -332,6 +332,80 @@ Reproduce: `npm run research:killswitch` (from `apps/simulation`; ~5 min) or
 `output/plots/kill-switch.svg`; pre-registration and verdicts in
 [`CLAIMS.md`](CLAIMS.md) §4.
 
+### 0.6 Experiment D: can early structure predict collapse on unseen conditions?
+
+Question: **can an emergent colony's collapse be predicted from ticks 40–140,
+before it is visible, on mutation rules and parameter regimes the model has not
+seen — and are the resulting probabilities calibrated?** The experiment runs the
+agent engine unchanged. Design: 3 mutation rules (`mutationScale` 0, 1, 4) × 8
+`(metabolismBase, foodRegenRate)` regimes = 24 conditions, 8 fresh seeds each,
+192 runs of 600 ticks. Training is clonal/legacy × P0,P1,P2,P6,P7 (10
+conditions, seeds `d.c0`…`d.c7`); test is elevated × all 8 regimes (unseen rule)
+plus clonal/legacy × P3,P4,P5 (unseen parameters), 14 conditions, seeds
+`d.c8`…`d.c15`. Features are 14 population, temporal, entropy, spatial-structure
+and energy statistics computed only in the early window. The model is an
+L2 logistic regression (`λ = 0.1`) standardised on the training split; baselines
+and ablations use the same specification and training runs.
+
+The label gate passed: 62 labelled training runs (39 collapse / 23 persist, 18
+ambiguous) and 92 labelled test runs (59 collapse / 33 persist, 20 ambiguous).
+Collapse is late mean alive < 10, persistence ≥ 30, and the 10–30 interval is
+excluded.
+
+| model | features | test AUC | 95% cluster CI | Brier skill | ECE | slope |
+| :-- | ---: | ---: | :--: | ---: | ---: | ---: |
+| full | 14 | **0.885** | [0.825, 0.941] | −0.060 | 0.250 | 379,686 |
+| population (level + trend) | 2 | 0.712 | [0.593, 0.805] | 0.043 | 0.149 | 355,302 |
+| temporal | 6 | 0.775 | [0.659, 0.857] | 0.141 | 0.145 | 0.495 |
+| entropy | 2 | 0.812 | [0.733, 0.881] | 0.225 | 0.104 | 2.093 |
+| structure | 5 | 0.627 | [0.526, 0.730] | −0.304 | 0.268 | 250,789 |
+| full − entropy | 12 | 0.885 | [0.826, 0.940] | −0.058 | 0.247 | 436,373 |
+| full − structure | 9 | 0.713 | [0.589, 0.810] | −0.160 | 0.250 | 478,308 |
+
+Two claims are supported, one is inconclusive, two are refuted:
+
+- **D-PRED-01 supported.** The full model ranks held-out collapse above
+  persistence at AUC **0.885** [0.825, 0.941]. The features end 360 ticks before
+  the outcome window opens.
+- **D-PRED-02 inconclusive.** The AUC gain over the population baseline is
+  **0.173** [0.103, 0.288], but Brier skill is **−0.060**, missing the
+  registered 0.10 bar. The AUC clause passes; the probability clause does not.
+- **D-PRED-03 refuted.** ECE **0.250** and calibration slope **379,686**:
+  predictions pile near 0 and 1. The 0.8–1.0 bin contains 77 of 92 runs, predicts
+  0.993 and observes 72.7% collapse; the 0.2–0.4 bin predicts 0.293 and observes
+  0/4. Brier is 0.244 against a 0.230 base-rate score.
+- **D-PRED-04 refuted.** Entropy alone reaches AUC **0.812** [0.733, 0.881], so
+  the registered "entropy fails the bar" null is false in this grid. The carrier
+  is spatial entropy (species entropy alone is at chance, AUC 0.500); entropy is
+  also redundant in the full model, which stays at 0.885 without it.
+- **D-PRED-05 supported.** Full minus temporal is **0.110** [0.046, 0.238]:
+  structure adds ranking information beyond population dynamics. It is not a
+  standalone detector — structure-only AUC is 0.627 — and removing structure
+  from the full model drops AUC to 0.713.
+
+Honest reading: **the ranking transports, the probabilities do not.** Early
+population and spatial structure contain real information about which unseen
+condition will collapse, and the full model beats every baseline on AUC. But the
+same model is badly overconfident out of condition, with negative Brier skill
+and a calibration slope far outside any usable range. The registered design
+separated these two questions, and they returned different answers. The
+entropy-only result is a refutation of a pre-registered null, not evidence that
+entropy is a universal collapse signal; species diversity alone carries no
+signal here, and the full model does not need entropy once structure and
+temporal features are present.
+
+Limits: 14 held-out conditions, one engine, 600 ticks, one unseen mutation scale,
+absolute alive-count labels, 38/192 ambiguous runs excluded, and feature
+families that are correlated enough that the ablations are predictive contrasts,
+not causal effects. The bootstrap resamples conditions and treats unseen-rule
+and unseen-parameter conditions as exchangeable. No intervention or rescue is
+tested.
+
+Reproduce: `npm run research:collapse` (from `apps/simulation`; ~8 min) or
+`-- --from-cache` (seconds). Outputs: `output/collapse-predict.{md,json,csv}`
+and the append-only cache `output/collapse-predict-cache.jsonl`;
+pre-registration and verdicts in [`CLAIMS.md`](CLAIMS.md) §6.
+
 ## 1. Scope ledger (v1.0.0, 2026-10-16)
 
 A pre‑registered set of claims was tested statistically (effect sizes, t‑/χ²

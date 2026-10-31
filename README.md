@@ -48,6 +48,7 @@ npm run research:ablation -w @fractal-life/simulation       # M4: clonal / regis
 npm run research:doomsday -w @fractal-life/simulation       # Experiment A: reproduction vs robustness
 npm run research:selfattack -w @fractal-life/simulation     # Experiment B: hierarchy vs its own offspring
 npm run research:killswitch -w @fractal-life/simulation     # Experiment C: which directed disturbance kills the colony?
+npm run research:collapse -w @fractal-life/simulation       # Experiment D: predict collapse on unseen rules and parameters
 ```
 
 Three follow-up experiments extend the ledger. Experiment A found no
@@ -204,6 +205,7 @@ Generators/CLIs live under `apps/simulation/src/research/` with npm scripts:
 | `research:doomsday` | Experiment A: does selection for reproduction buy fragility? (raw births + established offspring) |
 | `research:selfattack` | Experiment B: can local reproduction persist while its own offspring destroy second-level reproduction? |
 | `research:killswitch` | Experiment C: which directed disturbance kills an emergent colony - participation, geometry, interface, pause, or location? |
+| `research:collapse` | Experiment D: can early-window structure predict collapse on unseen mutation rules and parameter regimes? |
 
 Outputs land in `apps/simulation/research/{output,plots,experiments}/`. See
 [`docs/RESULTS.md`](docs/RESULTS.md).

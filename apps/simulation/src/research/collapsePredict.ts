@@ -1015,7 +1015,8 @@ export function buildCollapseReport(runs: readonly CollapseRun[], generatedAt = 
   const testRuns = runs.filter((r) => r.split === 'test');
   const trainLabelled = trainRuns.filter((r) => r.outcome !== 'ambiguous');
   const testLabelled = testRuns.filter((r) => r.outcome !== 'ambiguous');
-  const uniqueSeeds = (rs: readonly CollapseRun[]): string[] => [...new Set(rs.map((r) => r.seed))].sort();
+  const uniqueSeeds = (rs: readonly CollapseRun[]): string[] =>
+    [...new Set(rs.map((r) => r.seed))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const trainSeedsUsed = uniqueSeeds(trainRuns);
   const testSeedsUsed = uniqueSeeds(testRuns);
   const sharedSeeds = trainSeedsUsed.filter((s) => testSeedsUsed.includes(s));

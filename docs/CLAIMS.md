@@ -698,11 +698,11 @@ are fixed before the confirmatory seeds are opened.
 
 | ID | Claim | Falsifier | Registered analysis | Status |
 |---|---|---|---|---|
-| **D-PRED-01** | The full early-window model discriminates collapse from persistence on unseen conditions: test AUC ≥ 0.70 with a condition-cluster bootstrap lower bound > 0.50. | Test AUC ≤ 0.50 | Full 14-feature logistic model; test AUC; 1,000-resample condition-cluster 95% interval | Open |
-| **D-PRED-02** | The full model beats the population-size-plus-trend baseline by ΔAUC ≥ 0.05 with a bootstrap lower bound > 0, and has Brier skill ≥ 0.10 against the training base rate. | ΔAUC ≤ 0 | `full − population` AUC, paired by condition in the same bootstrap; Brier skill on the test runs; floor 0.05 | Open |
-| **D-PRED-03** | The full model is calibrated out of condition: ECE ≤ 0.10 over five probability bins and calibration slope in [0.5, 1.5]. | ECE > 0.20 **or** calibration slope outside [0, 2] | Test ECE and logistic recalibration slope (outcome on model logit); floors as stated | Open |
-| **D-PRED-04** | Entropy alone is not a universal collapse indicator: the entropy-only model fails the same discrimination bar, test AUC < 0.70. | Entropy-only test AUC ≥ 0.70 **and** bootstrap lower bound > 0.50 | Two-feature entropy-only logistic model; test AUC and 1,000-resample interval | Open |
-| **D-PRED-05** | Spatial structure adds predictive value beyond population and temporal features: full-minus-temporal ΔAUC ≥ 0.05 with a bootstrap lower bound > 0. | ΔAUC ≤ 0 | `full − temporal` AUC, paired by condition in the same bootstrap; floor 0.05 | Open |
+| **D-PRED-01** | The full early-window model discriminates collapse from persistence on unseen conditions: test AUC ≥ 0.70 with a condition-cluster bootstrap lower bound > 0.50. | Test AUC ≤ 0.50 | Full 14-feature logistic model; test AUC; 1,000-resample condition-cluster 95% interval | **Supported** (2026-10-31): test AUC 0.885 [0.825, 0.941] on 92 labelled runs (59 collapses) |
+| **D-PRED-02** | The full model beats the population-size-plus-trend baseline by ΔAUC ≥ 0.05 with a bootstrap lower bound > 0, and has Brier skill ≥ 0.10 against the training base rate. | ΔAUC ≤ 0 | `full − population` AUC, paired by condition in the same bootstrap; Brier skill on the test runs; floor 0.05 | **Inconclusive** (2026-10-31): ΔAUC 0.173 [0.103, 0.288] clears the AUC clause, but Brier skill −0.060 misses 0.10; falsifier did not fire |
+| **D-PRED-03** | The full model is calibrated out of condition: ECE ≤ 0.10 over five probability bins and calibration slope in [0.5, 1.5]. | ECE > 0.20 **or** calibration slope outside [0, 2] | Test ECE and logistic recalibration slope (outcome on model logit); floors as stated | **Refuted** (2026-10-31): ECE 0.250 and slope 379,685 outside [0, 2]; Brier 0.244 vs base 0.230; predictions pile near 0/1 |
+| **D-PRED-04** | Entropy alone is not a universal collapse indicator: the entropy-only model fails the same discrimination bar, test AUC < 0.70. | Entropy-only test AUC ≥ 0.70 **and** bootstrap lower bound > 0.50 | Two-feature entropy-only logistic model; test AUC and 1,000-resample interval | **Refuted** (2026-10-31): entropy-only AUC 0.812 [0.733, 0.881]; carried by spatial entropy (species entropy alone AUC 0.500) |
+| **D-PRED-05** | Spatial structure adds predictive value beyond population and temporal features: full-minus-temporal ΔAUC ≥ 0.05 with a bootstrap lower bound > 0. | ΔAUC ≤ 0 | `full − temporal` AUC, paired by condition in the same bootstrap; floor 0.05 | **Supported** (2026-10-31): full−temporal ΔAUC 0.110 [0.046, 0.238]; temporal AUC 0.775 |
 
 The registered interpretation is symmetric. D-PRED-01 and D-PRED-02 are the
 headline tests of transportable prediction. D-PRED-04 is a registered
@@ -712,6 +712,73 @@ D-PRED-03 can fail even when ranking survives, which is the calibration result
 that matters for any deployment. D-PRED-05 can fail while the full model works,
 which would say that the added value comes from population dynamics rather than
 spatial structure.
+
+### Result (2026-10-31)
+
+192 runs completed and the registered rule was applied unchanged. The label
+gate passed: 62 labelled training runs (39 collapse / 23 persist, 18 ambiguous)
+and 92 labelled test runs (59 collapse / 33 persist, 20 ambiguous). Test base
+rate 64.1%, training base rate 62.9%.
+
+| model | features | test AUC | 95% cluster CI | Brier skill | ECE | slope |
+| :-- | ---: | ---: | :--: | ---: | ---: | ---: |
+| full | 14 | **0.885** | [0.825, 0.941] | −0.060 | 0.250 | 379,686 |
+| population | 2 | 0.712 | [0.593, 0.805] | 0.043 | 0.149 | 355,302 |
+| temporal | 6 | 0.775 | [0.659, 0.857] | 0.141 | 0.145 | 0.495 |
+| entropy | 2 | 0.812 | [0.733, 0.881] | 0.225 | 0.104 | 2.093 |
+| structure | 5 | 0.627 | [0.526, 0.730] | −0.304 | 0.268 | 250,789 |
+| full − entropy | 12 | 0.885 | [0.826, 0.940] | −0.058 | 0.247 | 436,373 |
+| full − structure | 9 | 0.713 | [0.589, 0.810] | −0.160 | 0.250 | 478,308 |
+
+The five verdicts:
+
+- **D-PRED-01 supported.** Test AUC **0.885** [0.825, 0.941] on 92 labelled
+  runs, with 59 collapses. The features end at tick 140 and the outcome is read
+  from ticks 500–599, so the ranking precedes the outcome by at least 360 ticks.
+- **D-PRED-02 inconclusive.** The full model beats the population baseline by
+  **0.173** AUC [0.103, 0.288], clearing the 0.05 floor with an interval above
+  zero. But Brier skill is **−0.060**, below the registered 0.10 bar: on the
+  shifted test set the full model's probabilities are worse than always
+  predicting the training base rate. The registered conjunction is not met, and
+  the falsifier (ΔAUC ≤ 0) did not fire.
+- **D-PRED-03 refuted.** ECE is **0.250**, above the 0.20 falsifier threshold,
+  and the calibration slope is **379,686**, far outside [0, 2]. Brier is 0.244
+  versus a 0.230 base-rate score. Predictions pile at the extremes: 77 of 92 test
+  runs sit in the 0.8–1.0 bin with mean prediction 0.993 and observed collapse
+  72.7%; the 0.2–0.4 bin predicts 0.293 and observes 0/4.
+- **D-PRED-04 refuted.** The entropy-only model reaches AUC **0.812**
+  [0.733, 0.881], so entropy alone does clear the discrimination bar. The signal
+  is spatial entropy, not species diversity: species entropy alone is at chance
+  (AUC 0.500), while early spatial entropy is lower in collapse (univariate test
+  AUC 0.188 with the sign reversed). Entropy is nevertheless redundant in the
+  full model: full-minus-entropy is also 0.885, a ΔAUC of 0.073 [0.027, 0.156]
+  that comes with no change in AUC at all.
+- **D-PRED-05 supported.** Adding structure to the temporal features raises AUC
+  by **0.110** [0.046, 0.238], from 0.775 to 0.885. This is a conditional gain,
+  not a standalone structural detector: structure-only AUC is 0.627, and
+  removing structure from the full model drops AUC to 0.713.
+
+**Honest reading.** The experiment supports **transportable ranking, not
+calibrated risk**. The full model separates collapse from persistence on unseen
+rules and parameters, and spatial structure contributes ranking information
+beyond population dynamics. But the same model's probabilities are unusable out
+of condition: it is badly overconfident, its Brier skill is negative, and the
+registered calibration claim is refuted. The distinction is exactly what
+D-PRED-02 and D-PRED-03 were registered to expose: a model can win on AUC and
+still be a worse probability forecast than the base rate. The registered
+entropy-only null was also refuted; the honest statement is that early spatial
+entropy carries information in this grid, not that entropy is a universal
+collapse signal.
+
+**Limits.** There are 24 conditions and only 14 held-out conditions, eight seeds
+each, on one engine at 600 ticks. The unseen rule is one mutation scale (×4),
+not a new engine. The condition-cluster bootstrap treats the 14 test conditions
+as exchangeable even though they mix unseen-rule and unseen-parameter shifts.
+The labels are absolute alive-count thresholds and are noisy: 38 of 192 runs are
+ambiguous and excluded. Feature families are correlated, so the ablation deltas
+are not causal effects. No intervention or rescue is tested; post-hoc Platt
+scaling could improve calibration, but it is not part of the registered
+analysis and is not reported as a result.
 
 ### Pilot disclosure (exploratory, not evidence)
 
@@ -757,6 +824,9 @@ conditions or tick counts.
 | 2026-10-31 | C-KILL-01…05 resolved: 01 supported (0.38 [0.06, 0.63]); 02 supported (vs age 0.56 [0.31, 0.81], vs density 0.38 [0.19, 0.63]); 03 inconclusive (0.012 [−0.017, 0.040], floor 0.173); 04 supported (pause 0/16 vs removal 9/16; 12/16 within 90% of control final); 05 supported (−0.002 [−0.045, 0.040]). 736 runs, assay valid. | Registered rule unchanged. C-KILL-03's falsifier did not fire, but the interface effect is an order of magnitude below the floor. The density half of C-KILL-02 is carried by six paired runs, so the result is real but not large. |
 | 2026-10-31 | D-PRED-01…05 registered with the 3 rules × 8 regimes design, the 10/30 outcome thresholds, the 14-feature logistic model, the label gate and the 0.70 / 0.05 / 0.10 / [0.5, 1.5] floors, **before** the confirmatory run (`d.c0`…`d.c15`). Pilot seeds `d.p0`…`d.p2` and smoke seeds `d.q0`/`d.q1` are disclosed as exploratory only; the pilot grid and thresholds were chosen from those seeds. | The question ("does an early-window model transport to unseen conditions?") invites post-hoc choice of the split, features and calibration bar. The split, gate, floors and decision rule have to be fixed before the confirmatory seeds are opened. |
 
+| 2026-10-31 | D-PRED-01…05 resolved: 01 supported (AUC 0.885 [0.825, 0.941], 59/92 test collapses); 02 inconclusive (ΔAUC 0.173 [0.103, 0.288], Brier skill −0.060); 03 refuted (ECE 0.250, slope 379,686, Brier 0.244 vs base 0.230); 04 refuted (entropy-only AUC 0.812 [0.733, 0.881]); 05 supported (full−temporal ΔAUC 0.110 [0.046, 0.238]). 192 runs, label gate passed. | Registered rule unchanged. Ranking transports but the probabilities do not: D-PRED-02's AUC clause passes while its Brier clause fails, and D-PRED-03 fails independently. D-PRED-04's null was refuted by spatial entropy, not species entropy; entropy adds no AUC to the full model. |
+| 2026-10-31 | D-PRED result rendering fixed to sort seeds numerically and to print the seeds actually present in each split. No model, feature, split, label or verdict changed; artifacts re-rendered from the frozen cache. | The first rendering called the test seeds `d.c10..d.c9` because of lexicographic sorting, and the pilot rendering described the confirmatory seed ranges. Both were display errors, not analysis changes. |
+
 ## 8. What is deliberately not claimed
 
 - That the early-warning theory is false in general. Only that it fails to
@@ -799,10 +869,13 @@ conditions or tick counts.
   about all ecologies or all collapse types.
 - That the selected features are causal. Experiment D is a prediction test;
   feature weights are not intervention effects and no feature is manipulated.
-- That entropy is irrelevant to collapse. D-PRED-04 only tests whether a
-  two-feature entropy model clears the same discrimination bar as the full
-  model. A failure of that baseline does not show that entropy carries no
-  information.
+- That entropy is a universal collapse signal. D-PRED-04's registered null was
+  refuted in this grid: spatial entropy alone ranked collapse well (AUC 0.812),
+  while species entropy alone was at chance, and entropy added no AUC to the
+  full model. This is one grid, not a law.
+- That the Experiment D probabilities are usable as risk forecasts. D-PRED-03
+  was refuted: the full model was badly overconfident out of condition (ECE
+  0.250, Brier skill −0.060). The supported statement is about ranking only.
 - That predicted collapse can be acted on. No rescue or intervention is tested;
   calibration is reported because a probability is not useful if it is
   systematically wrong, not because a management rule has been validated.
